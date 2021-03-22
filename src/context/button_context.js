@@ -11,6 +11,7 @@ const initialState = {
 
 export const ButtonProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  //name is mimi , action is open or close
   const miniAction = (action, name) => {
     dispatch({ type: MINI_ACTION, payload: { name, action } });
   };

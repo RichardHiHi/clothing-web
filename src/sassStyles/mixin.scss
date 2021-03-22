@@ -16,7 +16,7 @@
   overflow-x: hidden;
   top: 0;
   #{$position}: 0;
-  width: 30%;
+  width: 340px;
   height: 100vh;
   background-color: $whiteColor;
   @include transform(translateX($transform));
@@ -25,4 +25,32 @@
 @mixin mini-open {
   @include transform(translateX(0));
   @include box-shadow-modal;
+}
+@mixin btn-rotate {
+  outline: none;
+  border: none;
+  width: 25px;
+  height: 25px;
+  padding: 0;
+  background-color: $whiteColor;
+  .line-1 {
+    height: 21px;
+    width: 2px;
+    margin-left: 11px;
+    background-color: lighten($letterColor, 20%);
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+    .line-2 {
+      height: 21px;
+      width: 2px;
+      background-color: lighten($letterColor, 20%);
+      transform: rotate(90deg);
+    }
+  }
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover .line-1 {
+    transform: rotate(225deg);
+  }
 }
