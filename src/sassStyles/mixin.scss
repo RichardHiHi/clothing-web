@@ -1,0 +1,28 @@
+@import './variables.scss';
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+@mixin box-shadow-modal {
+  box-shadow: 0px 0px 10px rgb(34, 33, 33);
+}
+@mixin side-bar-open {
+}
+@mixin mini-close($position, $transform) {
+  z-index: 11;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: 0;
+  #{$position}: 0;
+  width: 30%;
+  height: 100vh;
+  background-color: $whiteColor;
+  @include transform(translateX($transform));
+  transition: all 0.3s;
+}
+@mixin mini-open {
+  @include transform(translateX(0));
+  @include box-shadow-modal;
+}

@@ -1,0 +1,8 @@
+@import '../../sassStyles/variables.scss';
+@import '../../sassStyles/mixin.scss';
+.sidebar {
+  @include mini-close(left, -100%);
+}
+.sidebar-openned {
+  @include mini-open;
+}

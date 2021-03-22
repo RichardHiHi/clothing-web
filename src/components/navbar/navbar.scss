@@ -1,0 +1,123 @@
+@import '../../sassStyles/variables.scss';
+@import '../../sassStyles/mixin.scss';
+.nav {
+  height: 70px;
+  display: flex;
+  position: relative;
+  background-color: $whiteColor;
+}
+.logo {
+  img {
+    height: 50px;
+  }
+}
+.nav-links {
+  margin: 0px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  & > li {
+    padding: 0 10px;
+    position: relative;
+    line-height: 74px;
+    list-style: none;
+    & > a {
+      padding: 0 17.5px;
+      font-size: 18px;
+      font-weight: 400;
+      color: $letterColor;
+    }
+    &:hover {
+      &::after,
+      &::before {
+        opacity: 1;
+        width: 50%;
+      }
+      cursor: pointer;
+    }
+    &:hover > a {
+      color: $hoverColor;
+    }
+    &:hover > ul {
+      opacity: 1;
+      visibility: visible;
+      @include transform(translateY(0));
+    }
+    &::before {
+      right: 50%;
+    }
+    &::after {
+      left: 50%;
+    }
+    &::after,
+    &::before {
+      content: '';
+      bottom: 20px;
+      width: 0;
+      margin: 5px 0 0;
+      height: 2px;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      background-color: $lightLetterColor;
+    }
+  }
+  a {
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+}
+.sub-menu {
+  visibility: hidden;
+  top: 100%;
+  left: 0;
+  padding: 10px 0px;
+  max-height: 75vh;
+  overflow-y: auto;
+  background-color: $whiteColor;
+  position: absolute;
+  box-shadow: 0px 0px 10px rgb(146, 144, 144);
+  min-width: 260px;
+  @include transform(translateY(15px));
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  padding: 0;
+  li {
+    list-style: none;
+    padding: 17px 15px;
+    a {
+      font-size: 100%;
+      line-height: 1.5;
+      display: block;
+      color: $lightLetterColor;
+    }
+    &:hover {
+      a {
+        color: $letterColor;
+      }
+    }
+  }
+}
+.nav-toggle {
+  background-color: $whiteColor;
+  border: none;
+  color: $letterColor;
+  font-size: 30px;
+  outline: none;
+  transition: color 0.4s ease-in-out;
+  &:hover {
+    color: $hoverColor;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1280px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+@media (max-width: 1280px) {
+  .nav-links {
+    display: none;
+  }
+}

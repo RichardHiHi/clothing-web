@@ -1,0 +1,8 @@
+@import '../../sassStyles/mixin.scss';
+
+.login-mini {
+  @include mini-close(right, 100%);
+}
+.login-mini-openned {
+  @include mini-open;
+}

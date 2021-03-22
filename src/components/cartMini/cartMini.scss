@@ -1,0 +1,8 @@
+@import '../../sassStyles/mixin.scss';
+
+.cart-mini {
+  @include mini-close(right, 100%);
+}
+.cart-mini-openned {
+  @include mini-open;
+}

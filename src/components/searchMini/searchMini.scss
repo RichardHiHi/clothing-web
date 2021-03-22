@@ -1,0 +1,8 @@
+@import '../../sassStyles/mixin.scss';
+
+.search-mini {
+  @include mini-close(right, 100%);
+}
+.search-mini-openned {
+  @include mini-open;
+}
