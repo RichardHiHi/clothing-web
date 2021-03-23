@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './maskOverlay.scss';
+import CloseIcon from '@material-ui/icons/Close';
+
 import { useButtonContext } from '../../context/button_context';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
 const MaskOverlay = () => {
   const {
     isSideBarOpen,
@@ -23,7 +27,13 @@ const MaskOverlay = () => {
           : 'mask-overlay'
       }
       onClick={action}
-    ></div>
+    >
+      {isSideBarOpen && (
+        <button className='btn-close'>
+          <CloseIcon />
+        </button>
+      )}
+    </div>
   );
 };
 

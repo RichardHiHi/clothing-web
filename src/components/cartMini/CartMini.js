@@ -7,7 +7,7 @@ const CartMini = () => {
   const { isMiniCartOpen, miniAction } = useButtonContext();
   return (
     <div
-      className={!isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
+      className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
     >
       <button
         className='btn-rotate'
