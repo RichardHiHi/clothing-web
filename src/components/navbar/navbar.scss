@@ -23,7 +23,7 @@
     list-style: none;
     & > a {
       padding: 0 17.5px;
-      font-size: 18px;
+      font-size: 1.8rem;
       font-weight: 400;
       color: $letterColor;
     }
@@ -86,7 +86,7 @@
     list-style: none;
     padding: 17px 15px;
     a {
-      font-size: 100%;
+      font-size: 1.8rem;
       line-height: 1.5;
       display: block;
       color: $lightLetterColor;
@@ -102,7 +102,7 @@
   background-color: $whiteColor;
   border: none;
   color: $letterColor;
-  font-size: 30px;
+  font-size: 3rem;
   outline: none;
   transition: color 0.4s ease-in-out;
   &:hover {

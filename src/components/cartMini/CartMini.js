@@ -9,14 +9,11 @@ const CartMini = () => {
     <div
       className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
     >
-      <button
-        className='btn-rotate'
-        onClick={() => miniAction('close', 'MiniCart')}
-      >
-        <div className='line-1'>
-          <div className='line-2'></div>
-        </div>
-      </button>
+      <div className='wrap'>
+        <div className='box box1'>box1</div>
+        <div className='box'>box2</div>
+        <div className='box'>box3</div>
+      </div>
     </div>
   );
 };

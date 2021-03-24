@@ -1,8 +1,138 @@
 @import '../../sassStyles/mixin.scss';
+@import '../../sassStyles/variables.scss';
 
 .search-mini {
   @include mini-close(right, 100%);
 }
 .search-mini-openned {
   @include mini-open;
+}
+.mini-header-title {
+  padding: 5px 0 5px 20px;
+  border-bottom: $boderBottomColor;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 {
+    letter-spacing: 0.03rem;
+    font-weight: 480;
+    font-size: 1.7rem;
+  }
+}
+.search-header {
+  padding: 30px 20px;
+  border-bottom: $boderBottomColor;
+  .cat-search {
+    margin-bottom: 20px;
+    select {
+      width: 100%;
+      height: 40px;
+      color: $letterColor;
+      font-size: 1.6rem;
+      outline: none;
+      padding: 0 30px 0 15px;
+      border-radius: 20px;
+      border: $borderColor;
+      background-color: $whiteColor;
+    }
+  }
+  .input-search {
+    position: relative;
+    input {
+      border-radius: 20px;
+      outline: none;
+      border: $borderColor;
+      padding: 0 30px 0 15px;
+      max-width: 100%;
+      width: 100%;
+      height: 40px;
+      border: $borderColor;
+      font-size: 1.5rem;
+      &::placeholder {
+        color: $letterColor;
+      }
+    }
+    .input-submit-btn {
+      top: 0;
+      bottom: 0;
+      right: 2px;
+      width: 55px;
+
+      border-radius: 40px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+      padding: 0;
+      svg {
+        font-size: 2.3rem;
+      }
+      &:hover {
+        background-color: $hoverColor;
+        cursor: pointer;
+        svg {
+          color: $whiteColor;
+        }
+      }
+    }
+  }
+}
+.result-header {
+  padding: 10px 20px;
+  border-bottom: $boderBottomColor;
+  box-shadow: 0 3px 10px 0 rgba(129, 129, 129, 0.2);
+  span {
+    font-size: 1.5rem;
+    font-weight: 480;
+    line-height: 2rem;
+  }
+}
+.mini_cart_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+.wrap-mini-search {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.wraper-result-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .result-content {
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    padding: 20px;
+    .result-list {
+      overflow: auto;
+      overflow-x: hidden;
+      padding: 0;
+      li {
+        list-style: none;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        border-bottom: $boderBottomColor;
+        a {
+          text-decoration: none;
+          display: block;
+          display: flex;
+          img {
+            width: 95px;
+            height: 95px;
+          }
+        }
+      }
+    }
+  }
+}
+.flex11 {
+  flex: 1 1 auto;
 }

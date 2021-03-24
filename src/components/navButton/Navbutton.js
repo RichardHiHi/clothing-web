@@ -1,11 +1,9 @@
 import React from 'react';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import PersonIcon from '@material-ui/icons/Person';
 import './navButton.scss';
 import { useButtonContext } from '../../context/button_context';
+import { BsSearch, BsHeart } from 'react-icons/bs';
+import { BiUser, BiUserCheck } from 'react-icons/bi';
+import { FiShoppingCart } from 'react-icons/fi';
 const Navbutton = () => {
   const { miniAction } = useButtonContext();
   return (
@@ -15,7 +13,7 @@ const Navbutton = () => {
         className='nav-icon-search'
         onClick={() => miniAction('open', 'MiniSearch')}
       >
-        <SearchOutlinedIcon />
+        <BsSearch />
       </a>
 
       <a
@@ -23,12 +21,12 @@ const Navbutton = () => {
         className='nav-icon-user'
         onClick={() => miniAction('open', 'MiniLogin')}
       >
-        <PersonOutlineOutlinedIcon />
+        <BiUser />
         {/* icon when user login */}
-        {/* <PersonIcon color='secondary' /> */}
+        {/* <BiUserCheck /> */}
       </a>
       <a href='#' className='nav-icon-wishlist'>
-        <FavoriteBorderOutlinedIcon />
+        <BsHeart />
         <span>1</span>
       </a>
       <a
@@ -36,7 +34,7 @@ const Navbutton = () => {
         className='nav-icon-cart'
         onClick={() => miniAction('open', 'MiniCart')}
       >
-        <ShoppingCartOutlinedIcon />
+        <FiShoppingCart />
         <span>1</span>
       </a>
     </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './sassStyles/global.scss';
-import logo from './assets/logo.svg';
+import Typography from '@material-ui/core/Typography';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Navbar } from './components';
 import { HomePage } from './pages';
