@@ -63,3 +63,14 @@ p {
   font-size: 1.6rem;
   line-height: 19px;
 }
+.mini-wrap-2 {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mini-wrap {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}

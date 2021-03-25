@@ -17,12 +17,12 @@ const SearchMini = () => {
         isMiniSearchOpen ? 'search-mini search-mini-openned' : 'search-mini'
       }
     >
-      <div className='wrap-mini-search'>
+      <div className='mini-wrap'>
         <div className=' mini-header-title'>
           <h3>SEARCH OUR SITE</h3>
           <RotateCloseBtn action={action} />
         </div>
-        <div className='mini_cart_wrap'>
+        <div className='mini-wrap-2'>
           <form action='/search' className='flex11 search-header'>
             <div className='cat-search'>
               <select name='product_type'>

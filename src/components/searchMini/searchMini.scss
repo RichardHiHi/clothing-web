@@ -9,7 +9,7 @@
 }
 .mini-header-title {
   padding: 5px 0 5px 20px;
-  border-bottom: $boderBottomColor;
+  border-bottom: $borderBottomColor;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,7 @@
 }
 .search-header {
   padding: 30px 20px;
-  border-bottom: $boderBottomColor;
+  border-bottom: $borderBottomColor;
   .cat-search {
     margin-bottom: 20px;
     select {
@@ -78,7 +78,7 @@
 }
 .result-header {
   padding: 10px 20px;
-  border-bottom: $boderBottomColor;
+  border-bottom: $borderBottomColor;
   box-shadow: 0 3px 10px 0 rgba(129, 129, 129, 0.2);
   span {
     font-size: 1.5rem;
@@ -86,17 +86,7 @@
     line-height: 2rem;
   }
 }
-.mini_cart_wrap {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.wrap-mini-search {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-}
+
 .wraper-result-content {
   flex: 1 1 auto;
   position: relative;
@@ -119,7 +109,7 @@
         list-style: none;
         padding-bottom: 10px;
         margin-bottom: 10px;
-        border-bottom: $boderBottomColor;
+        border-bottom: $borderBottomColor;
         a {
           text-decoration: none;
           display: block;
@@ -194,7 +184,7 @@
   align-items: center;
   padding-top: 20px;
   margin: 20px 0;
-  border-top: $boderBottomColor;
+  border-top: $borderBottomColor;
   &:hover .link-to-all-product-btn {
     color: $hoverColor;
   }
