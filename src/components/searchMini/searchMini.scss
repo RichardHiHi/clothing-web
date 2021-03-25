@@ -56,7 +56,6 @@
       bottom: 0;
       right: 2px;
       width: 55px;
-
       border-radius: 40px;
       border: none;
       outline: none;
@@ -104,6 +103,7 @@
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  @include scroll-bar;
   .result-content {
     top: 0;
     left: 0;
@@ -189,25 +189,35 @@
     }
   }
 }
-.link-to-all-product-btn {
-  display: block;
-  border-top: $boderBottomColor;
+.mini-search-footer {
+  display: flex;
+  align-items: center;
   padding-top: 20px;
   margin: 20px 0;
-  text-decoration: none;
-  color: $letterColor;
-  font-size: 1.4rem;
-  font-weight: 600;
-  transition: color 0.3s ease-in-out;
-  svg {
-    transition: all 0.3s ease-in-out;
-    transform: translateY(3px);
-    font-size: 1.7rem;
-  }
-  &:hover svg {
-    margin-left: 10px;
+  border-top: $boderBottomColor;
+  &:hover .link-to-all-product-btn {
+    color: $hoverColor;
   }
   &:hover {
     color: $hoverColor;
+    cursor: pointer;
+  }
+  &:hover .arrow-icon {
+    transform: translateX(6px);
+  }
+  .link-to-all-product-btn {
+    display: block;
+    text-decoration: none;
+    color: $letterColor;
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+  }
+  .arrow-icon {
+    margin-left: 3px;
+    transition: all 0.3s ease-in-out;
+    svg {
+      font-size: 1.7rem;
+    }
   }
 }

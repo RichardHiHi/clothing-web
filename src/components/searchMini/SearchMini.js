@@ -162,9 +162,16 @@ const SearchMini = () => {
                     </div>
                   </a>
                 </li>
-                <a href='#' className='link-to-all-product-btn'>
-                  View All <ArrowForwardIcon />
-                </a>
+                <div className='mini-search-footer'>
+                  <div>
+                    <a href='#' className='link-to-all-product-btn'>
+                      View All
+                    </a>
+                  </div>
+                  <div className='arrow-icon'>
+                    <ArrowForwardIcon />
+                  </div>
+                </div>
               </ul>
             </div>
           </div>

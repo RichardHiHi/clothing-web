@@ -8,13 +8,7 @@ const CartMini = () => {
   return (
     <div
       className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
-    >
-      <div className='wrap'>
-        <div className='box box1'>box1</div>
-        <div className='box'>box2</div>
-        <div className='box'>box3</div>
-      </div>
-    </div>
+    ></div>
   );
 };
 
