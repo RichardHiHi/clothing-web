@@ -2,12 +2,14 @@ import React from 'react';
 import './cartMini.scss';
 import { useButtonContext } from '../../context/button_context';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
-
+import CartMiniProduct from '../cartMini-product/CartMiniProduct';
+import CartMiniEmty from '../cartMini-emty/CartMiniEmty';
 const CartMini = () => {
   const { isMiniCartOpen, miniAction } = useButtonContext();
   const action = () => {
     miniAction('close', 'MiniCart');
   };
+  const test = true;
   return (
     <div
       className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
@@ -17,24 +19,11 @@ const CartMini = () => {
           <h3>SEARCH OUR SITE</h3>
           <RotateCloseBtn action={action} />
         </div>
-        <div className='mini-wrap-2'>
-          <div className='content-mini-cart'></div>
-          <div className='footer-mini-cart'>
-            <div className='footer-mini-cart-total-wrapper'>
-              <div className='footer-mini-cart-total'>
-                <strong>Subtotal:</strong>
-              </div>
-              <div className='footer-mini-cart-price'>
-                <span>$100.00</span>
-              </div>
-            </div>
-            <p>Taxes, shipping and discounts codes calculated at checkout</p>
-            <a href='#' className='view-mini-cart-link'>
-              view cart
-            </a>
-            <button className='mini-cart-checkout-btn'>check out</button>
-          </div>
-        </div>
+        {test ? (
+          <CartMiniProduct isMiniCartOpen={isMiniCartOpen} />
+        ) : (
+          <CartMiniEmty />
+        )}
       </div>
     </div>
   );
