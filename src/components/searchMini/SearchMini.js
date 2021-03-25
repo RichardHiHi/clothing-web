@@ -4,6 +4,8 @@ import { useButtonContext } from '../../context/button_context';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 import prch20_2 from '../../assets/prch20_2.jpg';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+
 const SearchMini = () => {
   const { isMiniSearchOpen, miniAction } = useButtonContext();
   const action = () => {
@@ -20,7 +22,7 @@ const SearchMini = () => {
           <h3>SEARCH OUR SITE</h3>
           <RotateCloseBtn action={action} />
         </div>
-        <div className=' flex11 mini_cart_wrap'>
+        <div className='mini_cart_wrap'>
           <form action='/search' className='flex11 search-header'>
             <div className='cat-search'>
               <select name='product_type'>
@@ -55,7 +57,7 @@ const SearchMini = () => {
           <div className='result-header'>
             <span>Search Results:</span>
           </div>
-          <div className='flex11 wraper-result-content'>
+          <div className='wraper-result-content'>
             <div className='result-content'>
               <ul className='result-list'>
                 <li>
@@ -63,7 +65,11 @@ const SearchMini = () => {
                     <img src={prch20_2} alt='' />
                     <div className='product-title'>
                       <span className='product-name'>Combat Hoodie</span>
-                      <span className='price'>$28.00</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
                     </div>
                   </a>
                 </li>
@@ -72,7 +78,11 @@ const SearchMini = () => {
                     <img src={prch20_2} alt='' />
                     <div className='product-title'>
                       <span className='product-name'>Combat Hoodie</span>
-                      <span className='price'>$28.00</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
                     </div>
                   </a>
                 </li>
@@ -81,7 +91,11 @@ const SearchMini = () => {
                     <img src={prch20_2} alt='' />
                     <div className='product-title'>
                       <span className='product-name'>Combat Hoodie</span>
-                      <span className='price'>$28.00</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
                     </div>
                   </a>
                 </li>
@@ -90,11 +104,67 @@ const SearchMini = () => {
                     <img src={prch20_2} alt='' />
                     <div className='product-title'>
                       <span className='product-name'>Combat Hoodie</span>
-                      <span className='price'>$28.00</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
                     </div>
                   </a>
                 </li>
-                <a href='#' className='link-btn'></a>
+                <li>
+                  <a href='#'>
+                    <img src={prch20_2} alt='' />
+                    <div className='product-title'>
+                      <span className='product-name'>Combat Hoodie</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href='#'>
+                    <img src={prch20_2} alt='' />
+                    <div className='product-title'>
+                      <span className='product-name'>Combat Hoodie</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href='#'>
+                    <img src={prch20_2} alt='' />
+                    <div className='product-title'>
+                      <span className='product-name'>Combat Hoodie</span>
+                      <div className='price-title'>
+                        <span className='price'>$28.00</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href='#'>
+                    <img src={prch20_2} alt='' />
+                    <div className='product-title'>
+                      <span className='product-name'>Combat Hoodie</span>
+                      <div className='price-title'>
+                        <del>$60.00</del>
+                        <ins>$45.00</ins>
+                        <span class='onsale-label'>-25%</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <a href='#' className='link-to-all-product-btn'>
+                  View All <ArrowForwardIcon />
+                </a>
               </ul>
             </div>
           </div>
