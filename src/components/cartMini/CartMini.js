@@ -14,7 +14,7 @@ const CartMini = () => {
     >
       <div className='mini-wrap'>
         <div className=' mini-header-title'>
-          <h3>SEARCH OUR SITE</h3>
+          <h3>SHOPPING CART</h3>
           <RotateCloseBtn action={action} />
         </div>
         <div className='mini-wrap-2'>
