@@ -15,7 +15,7 @@ const CartMini = () => {
       className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
     >
       <div className='mini-wrap'>
-        <div className=' mini-header-title'>
+        <div className=' mini-header-title mini-header-title-shadow'>
           <h3>SHOPPING CART</h3>
           <RotateCloseBtn action={action} />
         </div>
