@@ -1,13 +1,6 @@
 @import '../../sassStyles/mixin.scss';
 @import '../../sassStyles/variables.scss';
 
-.cart-mini {
-  @include mini-close(right, 100%);
-  overflow-y: hidden;
-}
-.cart-mini-openned {
-  @include mini-open;
-}
 .content-mini-cart {
   flex: 1 1 auto;
 }
@@ -59,7 +52,7 @@
   font-size: 19px;
   border-radius: 30px;
 }
-.mini-cart-checkout-btn {
+.button_primary {
   margin: 10px 0;
   width: 100%;
   border-radius: 30px;
