@@ -243,19 +243,3 @@
   font-size: 19px;
   border-radius: 30px;
 }
-.button_primary {
-  margin: 10px 0;
-  width: 100%;
-  border-radius: 30px;
-  padding: 10px 25px;
-  font-size: 19px;
-  outline: none;
-  border: none;
-  background-color: $hoverColor;
-  color: $whiteColor;
-  transition: all 0.3s ease-in-out;
-  &:hover {
-    cursor: pointer;
-    background-color: lighten($hoverColor, 8%);
-  }
-}

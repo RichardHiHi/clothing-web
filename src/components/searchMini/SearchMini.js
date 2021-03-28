@@ -25,11 +25,7 @@ const SearchMini = () => {
         <div className='mini-wrap-2'>
           <form action='/search' className='flex11 search-header'>
             <div
-              className={
-                isMiniSearchOpen
-                  ? 'cat-search cat-search-openned'
-                  : 'cat-search'
-              }
+              className={isMiniSearchOpen ? 'cat-search openned' : 'cat-search'}
             >
               <select name='product_type'>
                 <option value='*'>All Categories</option>
@@ -50,9 +46,7 @@ const SearchMini = () => {
             </div>
             <div
               className={
-                isMiniSearchOpen
-                  ? 'input-search input-search-openned'
-                  : 'input-search'
+                isMiniSearchOpen ? 'input-search openned' : 'input-search'
               }
             >
               <input
@@ -72,9 +66,7 @@ const SearchMini = () => {
           <div className='wraper-result-content'>
             <div
               className={
-                isMiniSearchOpen
-                  ? 'result-content result-content-openned'
-                  : 'result-content'
+                isMiniSearchOpen ? 'result-content openned' : 'result-content'
               }
             >
               <ul className='result-list'>

@@ -22,6 +22,7 @@
   transition: all 0.3s;
   @include scroll-bar;
 }
+
 @mixin mini-open {
   @include transform(translateX(0));
   @include box-shadow-modal;
@@ -42,5 +43,14 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
+  }
+}
+@mixin animationTransform($second) {
+  opacity: 0;
+  transition: transform $second ease-in-out;
+  @include transform(translateX(100%));
+  &.openned {
+    opacity: 1;
+    @include transform(translateX(0));
   }
 }
