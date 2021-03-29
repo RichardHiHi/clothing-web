@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const LoginMini = () => {
   const { isMiniLoginOpen, miniAction } = useButtonContext();
   const action = () => {
-    miniAction('close', 'LoginMini');
+    miniAction('close', 'MiniLogin');
   };
   return (
     <div

@@ -1,21 +1,11 @@
 import React from 'react';
-import {
-  MaskOverlay,
-  SideBar,
-  SearchMini,
-  LoginMini,
-  CartMini,
-} from '../components';
+import { SlideShow } from '../components';
 
 const HomePage = () => {
   return (
-    <>
-      <MaskOverlay />
-      <SideBar />
-      <SearchMini />
-      <LoginMini />
-      <CartMini />
-    </>
+    <div className='content'>
+      <SlideShow />
+    </div>
   );
 };
 

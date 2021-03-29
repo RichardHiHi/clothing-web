@@ -5,6 +5,7 @@ import SideBar from './sideBar/SideBar';
 import SearchMini from './searchMini/SearchMini';
 import LoginMini from './loginMini/LoginMini';
 import CartMini from './cartMini/CartMini';
+import SlideShow from './slideShow/SlideShow';
 export {
   Navbar,
   NavButton,
@@ -13,4 +14,5 @@ export {
   SearchMini,
   LoginMini,
   CartMini,
+  SlideShow,
 };
