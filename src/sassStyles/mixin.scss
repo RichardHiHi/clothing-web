@@ -54,3 +54,18 @@
     @include transform(translateX(0));
   }
 }
+//////responsive////
+@mixin contentSlide($text, $title) {
+  .slide-content-caption {
+    .slide-content-title {
+      p {
+        font-size: $title;
+      }
+    }
+    .slide-content-text {
+      p {
+        font-size: $text;
+      }
+    }
+  }
+}

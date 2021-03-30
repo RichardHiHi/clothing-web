@@ -9,29 +9,30 @@ import anh_8 from '../../assets/backGround/anh_8.jpg';
 const SlideShow = () => {
   const data = [
     {
+      image: anh_6,
+      position: 'right',
+      title: 'SUMMER SALE',
+      text: 'Lookbook Collection',
+    },
+    {
       image: anh_2,
       position: 'left',
       title: 'NEW SEASON',
-      text: 'Lookbook Collection2',
+      text: 'Save up to 70%',
     },
 
     {
       image: anh_5,
       position: 'left',
-      title: 'NEW SEASON',
-      text: 'Lookbook Collection2',
+      title: 'NEW SEASON 2021',
+      text: 'New Arrival Collection',
     },
-    {
-      image: anh_6,
-      position: 'right',
-      title: 'NEW SEASON',
-      text: 'Lookbook Colle',
-    },
+
     {
       image: anh_8,
       position: 'left',
-      title: 'NEW SEASON',
-      text: 'Lookbook Colle',
+      title: 'SUMMER SALE',
+      text: 'Save up to 90%',
     },
   ];
   const [test, setTest] = useState(0);
