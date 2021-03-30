@@ -11,6 +11,7 @@ const SearchMini = () => {
   const action = () => {
     miniAction('close', 'MiniSearch');
   };
+
   return (
     <div
       className={

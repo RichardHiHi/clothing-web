@@ -35,7 +35,47 @@ const SlideShow = () => {
     },
   ];
   const [test, setTest] = useState(0);
-
+  const [mouseDown, setMouseDown] = useState(0);
+  const [mouseUp, setMouseUp] = useState(0);
+  const fn = () => {};
+  useEffect(() => {
+    document
+      .querySelector('.slide-show-inner')
+      .addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        setMouseDown(e.x);
+      });
+    document
+      .querySelector('.slide-show-inner')
+      .addEventListener('mouseup', (e) => {
+        setMouseUp(e.x);
+      });
+  }, []);
+  useEffect(() => {
+    if (mouseDown !== mouseUp) {
+      if (mouseDown > mouseUp) {
+        setTest((oldTest) => {
+          let newTest = oldTest + 1;
+          console.log(newTest);
+          if (newTest > 3) {
+            newTest = 0;
+          }
+          return newTest;
+        });
+      }
+      if (mouseDown < mouseUp) {
+        setTest((oldTest) => {
+          let newTest = oldTest - 1;
+          if (newTest < 0) {
+            newTest = 3;
+          }
+          return newTest;
+        });
+      }
+    }
+    setMouseDown(0);
+    setMouseUp(0);
+  }, [mouseUp]);
   return (
     <div className='slide-show-inner'>
       <div className='slides'>
@@ -45,9 +85,9 @@ const SlideShow = () => {
           if (index === test) {
             classa = 'slide slide-actived';
           } else if (index > test) {
-            classa = 'slide slide-left';
-          } else {
             classa = 'slide slide-right';
+          } else {
+            classa = 'slide slide-left';
           }
           return (
             <div className={classa}>
@@ -65,7 +105,9 @@ const SlideShow = () => {
                 </div>
               </div>
               <div className='img-container'>
-                <img class='slide-img' src={image} alt='' />
+                <div className='overlay-img'>
+                  <img class='slide-img' src={image} alt='' />
+                </div>
               </div>
             </div>
           );
