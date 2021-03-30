@@ -51,6 +51,19 @@ const SlideShow = () => {
       .addEventListener('mouseup', (e) => {
         setMouseUp(e.x);
       });
+    document
+      .querySelector('.slide-show-inner')
+      .addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        setMouseDown(e.touches[0].clientX);
+        console.log(e.touches[0].clientX);
+      });
+    document
+      .querySelector('.slide-show-inner')
+      .addEventListener('touchend', (e) => {
+        setMouseUp(e.changedTouches[0].clientX);
+        console.log(e);
+      });
   }, []);
   useEffect(() => {
     if (mouseDown !== mouseUp) {
