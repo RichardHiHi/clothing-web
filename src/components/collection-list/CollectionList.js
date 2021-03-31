@@ -3,7 +3,7 @@ import './collectionList.scss';
 import Grid from '@material-ui/core/Grid';
 import bag from '../../assets/collect/bag.jpg';
 import shoes from '../../assets/collect/shoes.jpeg';
-import watch from '../../assets/collect/watch.jpeg';
+import watch from '../../assets/collect/watch.jpg';
 import women from '../../assets/collect/women.jpg';
 import women_1 from '../../assets/collect/women_1.jpg';
 
@@ -12,49 +12,58 @@ const CollectionList = () => {
     <div className='section-collection-list'>
       <div className='collection-list-container'>
         <div className='collection-list'>
-          <Grid container spacing={3}>
-            <Grid item md={12} lg={6}>
+          <Grid container>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='item-collection-content'>
-                {/* <a href='#'>
-                  <img src={women} alt='' />
-                </a> */}
-                <div
-                  className='item-collection-title'
-                  style={{ backgroundImage: `url(${women})` }}
-                >
-                  <h3>hello</h3>
+                <a href='#' className='item-collection-link'>
+                  <div
+                    className='item-collection-img'
+                    style={{ backgroundImage: `url(${women})` }}
+                  ></div>
+                </a>
+                <div className='item-collection-title'>
+                  <h3>Women</h3>
                 </div>
               </div>
             </Grid>
-            <Grid item md={6} lg={3}>
-              <Grid md={12}>
-                <div className='item-collection-content'>
-                  {/* <a href='#'>
-                    <img src={bag} alt='' />
-                  </a> */}
+            <Grid container item xs={6} sm={3} md={3} lg={3}>
+              <Grid xs={12} sm={12} md={12} lg={12}>
+                <div className='item-collection-content '>
+                  <a href='#' className='item-collection-link'>
+                    <div
+                      className='item-collection-img'
+                      style={{ backgroundImage: `url(${shoes})` }}
+                    ></div>
+                  </a>
                   <div className='item-collection-title'>
-                    <h3>hello</h3>
+                    <h3>Acessories</h3>
                   </div>
                 </div>
               </Grid>
-              <Grid md={12}>
+              <Grid xs={12} sm={12} md={12} lg={12}>
                 <div className='item-collection-content'>
-                  {/* <a href='#'>
-                    <img src={shoes} alt='' />
-                  </a> */}
+                  <a href='#' className='item-collection-link'>
+                    <div
+                      className='item-collection-img'
+                      style={{ backgroundImage: `url(${bag})` }}
+                    ></div>
+                  </a>
                   <div className='item-collection-title'>
-                    <h3>hello</h3>
+                    <h3>Footwear</h3>
                   </div>
                 </div>
               </Grid>
             </Grid>
-            <Grid item md={6} lg={3}>
+            <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='item-collection-content'>
-                {/* <a href='#'>
-                  <img src={women} alt='' />
-                </a> */}
+                <a href='#' className='item-collection-link'>
+                  <div
+                    className='item-collection-img'
+                    style={{ backgroundImage: `url(${watch})` }}
+                  ></div>
+                </a>
                 <div className='item-collection-title'>
-                  <h3>hello</h3>
+                  <h3>Watch</h3>
                 </div>
               </div>
             </Grid>
