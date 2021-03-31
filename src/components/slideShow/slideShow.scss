@@ -1,6 +1,5 @@
 @import '../../sassStyles/mixin.scss';
 .slide-show-inner {
-  display: none;
   width: 100vw;
   height: 38vw;
   position: relative;
@@ -151,22 +150,23 @@
     }
   }
 }
+
 // // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
-  @include contentSlide(3.6rem, 1.7rem);
+@media (max-width: 575.99px) {
+  @include contentSlide(2rem, 1rem);
 }
 
 // // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-  @include contentSlide(4.6rem, 1.8rem);
+@media (max-width: 767.99px) and (min-width: 576px) {
+  @include contentSlide(3.9rem, 2rem);
 }
 
 // // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-  @include contentSlide(6rem, 1.9rem);
+@media (max-width: 1199.99px) and (min-width: 768px) {
+  @include contentSlide(5rem, 2.1rem);
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-  @include contentSlide(6.5rem, 2rem);
+  @include contentSlide(7.5rem, 2rem);
 }

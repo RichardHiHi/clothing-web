@@ -3,7 +3,6 @@
 .nav-icons {
   display: flex;
   justify-content: flex-end;
-  padding: 0 15px;
   a {
     padding: 0 8px;
     color: $letterColor;
@@ -35,7 +34,14 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 576px) {
+  // .nav-icons {
+  //   a{
+  //     svg{
+
+  //     }
+  //   }
+  // }
   .nav-icon-user {
     display: none;
   }
