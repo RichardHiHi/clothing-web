@@ -41,25 +41,25 @@ const SlideShow = () => {
   const fn = () => {};
   useEffect(() => {
     document
-      .querySelector('.slide-show-inner')
+      .querySelector('.section-slide-show-inner')
       .addEventListener('mousedown', (e) => {
         e.preventDefault();
         setMouseDown(e.x);
       });
     document
-      .querySelector('.slide-show-inner')
+      .querySelector('.section-slide-show-inner')
       .addEventListener('mouseup', (e) => {
         setMouseUp(e.x);
       });
     document
-      .querySelector('.slide-show-inner')
+      .querySelector('.section-slide-show-inner')
       .addEventListener('touchstart', (e) => {
         e.preventDefault();
         setMouseDown(e.touches[0].clientX);
         console.log(e.touches[0].clientX);
       });
     document
-      .querySelector('.slide-show-inner')
+      .querySelector('.section-slide-show-inner')
       .addEventListener('touchend', (e) => {
         setMouseUp(e.changedTouches[0].clientX);
         console.log(e);
@@ -91,7 +91,7 @@ const SlideShow = () => {
     setMouseUp(0);
   }, [mouseUp]);
   return (
-    <div className='slide-show-inner'>
+    <div className='section-slide-show-inner'>
       <div className='slides'>
         {data.map((a, index) => {
           const { image, position, title, text } = a;

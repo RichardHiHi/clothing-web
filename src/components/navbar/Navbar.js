@@ -2,7 +2,6 @@ import React from 'react';
 import './navbar.scss';
 import NavButton from '../navButton/Navbutton';
 import logo from '../../assets/logo.svg';
-import '../../sassStyles/global.scss';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
 const Navbar = () => {

@@ -6,6 +6,7 @@ import SearchMini from './searchMini/SearchMini';
 import LoginMini from './loginMini/LoginMini';
 import CartMini from './cartMini/CartMini';
 import SlideShow from './slideShow/SlideShow';
+import CollectionList from './collection-list/CollectionList';
 export {
   Navbar,
   NavButton,
@@ -15,4 +16,5 @@ export {
   LoginMini,
   CartMini,
   SlideShow,
+  CollectionList,
 };
