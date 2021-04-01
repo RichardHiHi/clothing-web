@@ -26,8 +26,8 @@ const CollectionList = () => {
                 </div>
               </div>
             </Grid>
-            <Grid container item xs={6} sm={3} md={3} lg={3}>
-              <Grid xs={12} sm={12} md={12} lg={12}>
+            <Grid item xs={6} sm={3} md={3} lg={3}>
+              <div className='row'>
                 <div className='item-collection-content '>
                   <a href='#' className='item-collection-link'>
                     <div
@@ -39,8 +39,6 @@ const CollectionList = () => {
                     <h3>Acessories</h3>
                   </div>
                 </div>
-              </Grid>
-              <Grid xs={12} sm={12} md={12} lg={12}>
                 <div className='item-collection-content'>
                   <a href='#' className='item-collection-link'>
                     <div
@@ -52,7 +50,7 @@ const CollectionList = () => {
                     <h3>Footwear</h3>
                   </div>
                 </div>
-              </Grid>
+              </div>
             </Grid>
             <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='item-collection-content'>
