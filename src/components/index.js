@@ -7,6 +7,7 @@ import LoginMini from './loginMini/LoginMini';
 import CartMini from './cartMini/CartMini';
 import SlideShow from './slideShow/SlideShow';
 import CollectionList from './collection-list/CollectionList';
+import Footer from './footer/Footer';
 export {
   Navbar,
   NavButton,
@@ -17,4 +18,5 @@ export {
   CartMini,
   SlideShow,
   CollectionList,
+  Footer,
 };

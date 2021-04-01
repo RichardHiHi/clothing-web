@@ -54,6 +54,12 @@
     @include transform(translateX(0));
   }
 }
+
+@mixin font-size-weight($font-size, $font-weight) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
 //////responsive////
 @mixin contentSlide($text, $title) {
   .slide-content-caption {

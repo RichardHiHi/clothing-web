@@ -9,6 +9,7 @@ import {
   SearchMini,
   LoginMini,
   CartMini,
+  Footer,
 } from './components';
 import { HomePage } from './pages';
 
@@ -26,6 +27,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

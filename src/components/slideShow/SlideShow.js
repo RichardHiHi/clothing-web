@@ -1,40 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
-import anh_2 from '../../assets/backGround/anh_2.jpg';
-import anh_5 from '../../assets/backGround/anh_5.jpg';
-import anh_6 from '../../assets/backGround/anh_6.jpg';
-import anh_8 from '../../assets/backGround/anh_8.jpg';
 
-// import { data } from '../../utils/data';
+import { slide } from '../../utils/data';
 const SlideShow = () => {
-  const data = [
-    {
-      image: anh_6,
-      position: 'right',
-      title: 'SUMMER SALE',
-      text: 'Lookbook Collection',
-    },
-    {
-      image: anh_2,
-      position: 'left',
-      title: 'NEW SEASON',
-      text: 'Save up to 70%',
-    },
-
-    {
-      image: anh_5,
-      position: 'left',
-      title: 'NEW SEASON 2021',
-      text: 'New Arrival Collection',
-    },
-
-    {
-      image: anh_8,
-      position: 'left',
-      title: 'SUMMER SALE',
-      text: 'Save up to 90%',
-    },
-  ];
   const [test, setTest] = useState(0);
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
@@ -93,7 +61,7 @@ const SlideShow = () => {
   return (
     <div className='section-slide-show-inner'>
       <div className='slides'>
-        {data.map((a, index) => {
+        {slide.map((a, index) => {
           const { image, position, title, text } = a;
           let classa;
           if (index === test) {
@@ -128,7 +96,7 @@ const SlideShow = () => {
         })}
       </div>
       <div className='slide-dot-button-container'>
-        {data.map((a, index) => {
+        {slide.map((a, index) => {
           return (
             <button
               className={test === index ? 'slide-dot-btn-actived' : null}

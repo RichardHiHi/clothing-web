@@ -5,7 +5,6 @@ import bag from '../../assets/collect/bag.jpg';
 import shoes from '../../assets/collect/shoes.jpeg';
 import watch from '../../assets/collect/watch.jpg';
 import women from '../../assets/collect/women.jpg';
-import women_1 from '../../assets/collect/women_1.jpg';
 
 const CollectionList = () => {
   return (
