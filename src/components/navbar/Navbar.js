@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './navbar.scss';
 import NavButton from '../navButton/Navbutton';
 import logo from '../../assets/logo.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
+import SearchMini from '../searchMini/SearchMini';
 const Navbar = () => {
   const { miniAction } = useButtonContext();
+  const [upDown, setUpDown] = useState(true);
+
+  useEffect(() => {
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      let currentScrollPos = window.pageYOffset;
+      console.log(currentScrollPos);
+      if (prevScrollpos > currentScrollPos) {
+        document.querySelector('.nav').classList.remove('hidden');
+      } else {
+        document.querySelector('.nav').classList.add('hidden');
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  }, []);
   return (
     <div className='nav'>
       <div className='navbar'>
