@@ -9,7 +9,7 @@ const Navbutton = () => {
   return (
     <div className='nav-icons'>
       <a
-        href='#'
+        href='javascript:void(0)'
         className='nav-icon-search'
         onClick={() => miniAction('open', 'MiniSearch')}
       >
@@ -17,7 +17,7 @@ const Navbutton = () => {
       </a>
 
       <a
-        href='#'
+        href='javascript:void(0)'
         className='nav-icon-user'
         onClick={() => miniAction('open', 'MiniLogin')}
       >
@@ -25,12 +25,12 @@ const Navbutton = () => {
         {/* icon when user login */}
         {/* <BiUserCheck /> */}
       </a>
-      <a href='#' className='nav-icon-wishlist'>
+      <a href='javascript:void(0)' className='nav-icon-wishlist'>
         <BsHeart />
         <span>1</span>
       </a>
       <a
-        href='#'
+        href='javascript:void(0)'
         className='nav-icon-cart'
         onClick={() => miniAction('open', 'MiniCart')}
       >
