@@ -5,6 +5,12 @@ import anh_6 from '../assets/backGround/anh_6.jpg';
 import anh_8 from '../assets/backGround/anh_8.jpg';
 import { FaFacebookF, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
 import { AiOutlineTwitter, AiOutlineInstagram } from 'react-icons/ai';
+import banner_1 from '../assets/banner/banner_1.jpg';
+import banner_2 from '../assets/banner/banner_2.jpg';
+export const banners = [
+  { img: banner_1, smallText: 'LOOKBOOK 2020', bigText: 'MAKE LOVE THIS LOOK' },
+  { img: banner_2, smallText: 'SUMMER SALE', bigText: 'UP TO 70%' },
+];
 
 export const footers = [
   {
