@@ -4,6 +4,7 @@ import NavButton from '../navButton/Navbutton';
 import logo from '../../assets/logo.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
+import SearchMini from '../searchMini/SearchMini';
 const Navbar = () => {
   const { miniAction } = useButtonContext();
   useEffect(() => {

@@ -1,14 +1,24 @@
 @import '../../sassStyles/variables.scss';
 @import '../../sassStyles/mixin.scss';
 .nav {
+<<<<<<< HEAD
   &.nav-hidden {
+=======
+  &.hidden {
+>>>>>>> f69eb496bf473df9d7b84d3d95f6af85200012ff
     top: -50%;
     opacity: 0;
     visibility: hidden;
   }
+<<<<<<< HEAD
   transition: all 0.3s;
   visibility: visible;
   opacity: 1;
+=======
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s;
+>>>>>>> f69eb496bf473df9d7b84d3d95f6af85200012ff
   width: 100%;
   height: 70px;
   display: flex;
