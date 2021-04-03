@@ -2,9 +2,15 @@ import React from 'react';
 import './blogInsta.scss';
 const BlogInsta = () => {
   return (
-    <div>
-      <h2>aa</h2>
+   <>
+    <div className='blog-section'>
+     <div className="blog-container">
+      <div className="section-title">
+       
+      </div>
+     </div>
     </div>
+    </>
   );
 };
 
