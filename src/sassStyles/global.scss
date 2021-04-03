@@ -7,8 +7,9 @@
 html {
   font-size: 62.5%;
   letter-spacing: 0.03rem;
-  max-width: 100%;
   overflow-x: hidden;
+  height: 100vh;
+  min-height: 100%;
 }
 
 body {
@@ -17,13 +18,10 @@ body {
   font-family: 'Segoe UI', 'Roboto';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
   background-color: $whiteColor;
   box-sizing: border-box;
   height: 100vh;
   min-height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 #root {
