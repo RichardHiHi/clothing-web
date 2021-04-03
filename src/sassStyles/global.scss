@@ -93,6 +93,12 @@ p {
     background-color: lighten($hoverColor, 8%);
   }
 }
+//container of section
+.section-container {
+  padding: 15px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
 
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {

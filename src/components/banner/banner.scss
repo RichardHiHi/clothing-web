@@ -36,12 +36,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(34, 34, 34, 0.466);
+    background-color: rgba(34, 34, 34, 0.433);
     color: $whiteColor;
     h3 {
       @include font-size-weight(3rem, 900);
+      text-align: center;
     }
     h4 {
+      text-align: center;
       @include font-size-weight(1.5rem, 900);
     }
   }
