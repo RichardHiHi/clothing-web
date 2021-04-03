@@ -3,7 +3,7 @@ import './slideShow.scss';
 
 import { slide } from '../../utils/data';
 const SlideShow = () => {
-  const [test, setTest] = useState(0);
+  const [slideIdex, setSlideIndex] = useState(0);
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
   const fn = () => {};
@@ -36,7 +36,7 @@ const SlideShow = () => {
   useEffect(() => {
     if (mouseDown !== mouseUp) {
       if (mouseDown > mouseUp) {
-        setTest((oldTest) => {
+        setSlideIndex((oldTest) => {
           let newTest = oldTest + 1;
           console.log(newTest);
           if (newTest > 3) {
@@ -46,7 +46,7 @@ const SlideShow = () => {
         });
       }
       if (mouseDown < mouseUp) {
-        setTest((oldTest) => {
+        setSlideIndex((oldTest) => {
           let newTest = oldTest - 1;
           if (newTest < 0) {
             newTest = 3;
@@ -64,15 +64,24 @@ const SlideShow = () => {
         {slide.map((a, index) => {
           const { image, position, title, text } = a;
           let classa;
-          if (index === test) {
-            classa = 'slide slide-actived';
-          } else if (index > test) {
-            classa = 'slide slide-right';
-          } else {
-            classa = 'slide slide-left';
+          if (index === slideIdex) {
+            classa = 'slide-actived';
+          }
+          if (index === slideIdex - 1) {
+            classa = 'slide-left';
+          }
+          // if index = 0 so left is 3
+          if (index === slideIdex + 1) {
+            classa = 'slide-right';
+          }
+          if (index === 3 && slideIdex - 1 < 0) {
+            classa = 'slide-left';
+          }
+          if (index === 0 && slideIdex + 1 > 3) {
+            classa = 'slide-right';
           }
           return (
-            <div className={classa}>
+            <div className={`slide ${classa}`}>
               <div className={`slide-content slide-content-${position}`}>
                 <div className='slide-content-caption'>
                   <div className='slide-content-title'>
@@ -99,8 +108,8 @@ const SlideShow = () => {
         {slide.map((a, index) => {
           return (
             <button
-              className={test === index ? 'slide-dot-btn-actived' : null}
-              onClick={() => setTest(index)}
+              className={slideIdex === index ? 'slide-dot-btn-actived' : null}
+              onClick={() => setSlideIndex(index)}
             ></button>
           );
         })}
