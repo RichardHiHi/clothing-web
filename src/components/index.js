@@ -8,7 +8,8 @@ import CartMini from './cartMini/CartMini';
 import SlideShow from './slideShow/SlideShow';
 import CollectionList from './collection-list/CollectionList';
 import Footer from './footer/Footer';
-import BannerBlog from './banner_blog/BannerBlog';
+import Banner from './banner/Banner';
+import BlogInsta from './blog-instagram/BlogInsta';
 export {
   Navbar,
   NavButton,
@@ -20,5 +21,6 @@ export {
   SlideShow,
   CollectionList,
   Footer,
-  BannerBlog,
+  Banner,
+  BlogInsta,
 };

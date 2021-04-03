@@ -1,5 +1,5 @@
 import React from 'react';
-import './bannerBlog.scss';
+import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import { banners } from '../../utils/data';
 
@@ -19,7 +19,7 @@ const BannerBlog = () => {
                         style={{ backgroundImage: `url(${banner.img})` }}
                       ></div>
                     </a>
-
+                    {/* change h3 h4 */}
                     {index % 2 == 0 ? (
                       <div className='banner-title'>
                         <h3>{banner.bigText}</h3>

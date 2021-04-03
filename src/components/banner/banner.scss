@@ -19,7 +19,7 @@
     @include transform(scale(1.1));
   }
   .banner-img {
-    padding-top: 50%;
+    padding-top: 56%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,10 +39,10 @@
     background-color: rgba(34, 34, 34, 0.466);
     color: $whiteColor;
     h3 {
-      @include font-size-weight(4rem, 900);
+      @include font-size-weight(3rem, 900);
     }
     h4 {
-      @include font-size-weight(2rem, 900);
+      @include font-size-weight(1.5rem, 900);
     }
   }
 }
