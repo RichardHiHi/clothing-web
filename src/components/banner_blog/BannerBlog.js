@@ -8,8 +8,8 @@ const BannerBlog = () => {
     <div className='banner-section'>
       <div className='banner-container'>
         <div className='banner-content-wrapper'>
-          <Grid container>
-            {banners.map((banner) => {
+          <Grid container className='banner-list-container'>
+            {banners.map((banner, index) => {
               return (
                 <Grid item sx={12} sm={6} md={6} lg={6}>
                   <div className='banner-content'>
@@ -19,10 +19,18 @@ const BannerBlog = () => {
                         style={{ backgroundImage: `url(${banner.img})` }}
                       ></div>
                     </a>
-                    <div className='banner-title'>
-                      <h3>{banner.bigText}</h3>
-                      <h4>{banner.smallText}</h4>
-                    </div>
+
+                    {index % 2 == 0 ? (
+                      <div className='banner-title'>
+                        <h3>{banner.bigText}</h3>
+                        <h4>{banner.smallText}</h4>
+                      </div>
+                    ) : (
+                      <div className='banner-title'>
+                        <h4>{banner.smallText}</h4>
+                        <h3>{banner.bigText}</h3>
+                      </div>
+                    )}
                   </div>
                 </Grid>
               );
