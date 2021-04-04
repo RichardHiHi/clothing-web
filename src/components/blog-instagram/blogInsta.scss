@@ -4,11 +4,13 @@
 @import 'slick-carousel/slick/slick.css';
 @import 'slick-carousel/slick/slick-theme.css';
 //image blog
+
 .slide-blog-container {
   margin-top: 20px;
 }
 .blog-slide {
   padding: 15px;
+  outline: none;
   & > a {
     overflow: hidden;
     display: block;
@@ -35,7 +37,7 @@
     @include transform(scale(1.1));
   }
   &:hover .img-blog::before {
-    animation: fadeIn 0.6s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
   }
 }
 //info and content
@@ -64,4 +66,40 @@
   @include font-size-weight(1.45rem, 400);
   color: $lightLetterColor;
   line-height: 1.7;
+}
+///arrow
+.slick-slider {
+  position: relative;
+  .next-arrow,
+  .prev-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #808283b6;
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 30%;
+    z-index: 2;
+    font-size: 4rem;
+    transition: all 0.5s;
+    &:hover {
+      cursor: pointer;
+      background-color: $hoverColor;
+      color: rgba(255, 255, 255, 0.637);
+    }
+  }
+  .next-arrow {
+    right: 10px;
+  }
+  .prev-arrow {
+    left: 10px;
+  }
+}
+@media (max-width: 960px) {
+  .blog-slide {
+    padding: 5px;
+  }
 }

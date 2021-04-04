@@ -4,7 +4,10 @@
 * {
   box-sizing: border-box;
 }
-
+// *:focus {
+//   outline: 0;
+//   outline: none;
+// }
 html {
   font-size: 62.5%;
   letter-spacing: 0.03rem;

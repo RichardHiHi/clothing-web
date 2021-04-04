@@ -1,15 +1,43 @@
 import React from 'react';
 import './blogInsta.scss';
 import Slider from 'react-slick';
-import prch20_2 from '../../assets/prch20_2.jpg';
 import { blogs } from '../../utils/data';
+import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 const BlogInsta = () => {
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className='next-arrow' onClick={onClick}>
+        <BiChevronRight />
+      </div>
+    );
+  };
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className='prev-arrow' onClick={onClick}>
+        <BiChevronLeft />
+      </div>
+    );
+  };
   var settings = {
-    dots: true,
-    infinite: true,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    infinite: false,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          // fade: true,
+          lazyLoad: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
   };
   return (
     <>
