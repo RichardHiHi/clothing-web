@@ -40,7 +40,7 @@ const BlogInsta = () => {
                         by <span className='bold'>{blog.author}</span>
                       </span>
                       <span className='post-time'>
-                        on
+                        on{' '}
                         <span className='bold'>
                           <time datetime='2020-04-06T02:17:00Z'>
                             April 6, 2020
