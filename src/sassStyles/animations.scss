@@ -1,0 +1,13 @@
+@import './mixin.scss';
+
+@include keyframes(fadeIn) {
+  //scale bigger and blur
+  0% {
+    opacity: 1;
+    @include transform(scale(0));
+  }
+  100% {
+    @include transform(scale(180));
+    opacity: 0;
+  }
+}

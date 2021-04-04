@@ -1,1 +1,39 @@
 @import '../../sassStyles/variables.scss';
+@import '../../sassStyles/mixin.scss';
+@import '../../sassStyles/animations.scss';
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
+.slide-blog-container {
+  margin-top: 20px;
+}
+.blog-slide {
+  padding: 15px;
+  & > a {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    .img-blog {
+      padding-top: 73%;
+      @include background-img;
+      transition: transform 1.25s cubic-bezier(0, 0, 0.44, 1.18);
+      &:before {
+        content: '';
+        width: 2px;
+        height: 1px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.411);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+      }
+      &:hover:before {
+        animation: fadeIn 0.6s ease-in-out;
+      }
+    }
+    &:hover .img-blog {
+      @include transform(scale(1.1));
+    }
+  }
+}

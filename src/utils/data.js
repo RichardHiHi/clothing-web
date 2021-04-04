@@ -7,6 +7,34 @@ import { FaFacebookF, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
 import { AiOutlineTwitter, AiOutlineInstagram } from 'react-icons/ai';
 import banner_1 from '../assets/banner/banner_1.jpg';
 import banner_2 from '../assets/banner/banner_2.jpg';
+import blog_1 from '../assets/blog/blog_1.jpeg';
+import blog_2 from '../assets/blog/blog_2.jpg';
+import blog_3 from '../assets/blog/blog_3.jpg';
+
+export const blogs = [
+  {
+    img: blog_1,
+    postTitle: 'Spring – Summer Trending 2020',
+    author: 'Henrry',
+    content:
+      'Typography is the work of typesetters, compositors,typographers, graphic designers, art directors, mangartists, ...',
+  },
+  {
+    img: blog_2,
+    postTitle: 'The Easiest Way to Break Out on Top',
+    author: 'john',
+    content:
+      'Typography is the work of typesetters, compositors,typographers, graphic designers, art directors, mangartists, ...',
+  },
+  {
+    img: blog_3,
+    postTitle: 'Style for couple in Weeding season',
+    author: 'nam',
+    content:
+      'Typography is the work of typesetters, compositors,typographers, graphic designers, art directors, mangartists, ...',
+  },
+];
+
 export const banners = [
   { img: banner_1, smallText: 'LOOKBOOK 2020', bigText: 'MAKE LOVE THIS LOOK' },
   { img: banner_2, smallText: 'SUMMER SALE', bigText: 'UP TO 70%' },

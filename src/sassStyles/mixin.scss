@@ -75,3 +75,39 @@
     }
   }
 }
+//background image
+@mixin background-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+///keyFrames
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+//use
+// @mixin keyframes($name) {
+//   @-webkit-keyframes #{$name} {
+//     @content;
+//   }
+//   @-moz-keyframes #{$name} {
+//     @content;
+//   }
+//   @-ms-keyframes #{$name} {
+//     @content;
+//   }
+//   @keyframes #{$name} {
+//     @content;
+//   }
+// }
