@@ -46,7 +46,7 @@
       a {
         color: $lightLetterColor;
         text-decoration: none;
-        transition: color 0.3s;
+        @include transition(color 0.3s);
         &:hover {
           color: $hoverColor;
         }
@@ -76,7 +76,7 @@
         color: $lightLetterColor;
         text-decoration: none;
         line-height: 1.25;
-        transition: color 0.3s;
+        @include transition(color 0.3s);
         &:hover {
           color: $hoverColor;
         }
@@ -99,7 +99,7 @@
   display: inline-block;
   position: relative;
   svg {
-    transition: all 0.3s;
+    @include transition(all 0.3s);
   }
   .text-icon {
     @include font-size-weight(1.3rem, 400);
@@ -115,7 +115,7 @@
     opacity: 0;
     visibility: hidden;
     @include transform(translateY(40%));
-    transition: all 0.3s;
+    @include transition(all 0.3s);
     &:after {
       content: '';
       display: block;
@@ -233,7 +233,7 @@
   a {
     text-decoration: none;
     color: $lightLetterColor;
-    transition: color 0.3s;
+    @include transition(color 0.3s);
     &:hover {
       color: $hoverColor;
     }
@@ -251,7 +251,7 @@
       text-decoration: none;
       @include font-size-weight(1.4rem, 400);
       color: $lightLetterColor;
-      transition: color 0.3s;
+      @include transition(color 0.3s);
       &:hover {
         color: $hoverColor;
       }

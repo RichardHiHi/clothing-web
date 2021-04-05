@@ -63,7 +63,7 @@
       outline: none;
       background-color: transparent;
       position: absolute;
-      transition: all 0.3s ease-in-out;
+      @include transition(all 0.3s ease-in-out);
       padding: 0;
       svg {
         font-size: 2.3rem;
@@ -119,11 +119,11 @@
           display: flex;
           width: 100%;
           height: 100%;
-          transition: all 0.3s;
+          @include transition(all 0.3s);
           img {
             width: 95px;
             height: 95px;
-            transition: all 0.3s;
+            @include transition(all 0.3s);
           }
           .product-title {
             flex: 1 1 auto;
@@ -135,7 +135,7 @@
               font-size: 1.5rem;
               font-weight: 500;
               margin-bottom: 10px;
-              transition: all 0.3s;
+              @include transition(all 0.3s);
             }
             .price-title {
               color: $lightLetterColor;
@@ -206,11 +206,11 @@
     color: $letterColor;
     font-size: 1.4rem;
     font-weight: 600;
-    transition: color 0.3s ease-in-out;
+    @include transition(color 0.3s ease-in-out);
   }
   .arrow-icon {
     margin-left: 3px;
-    transition: all 0.3s ease-in-out;
+    @include transition(all 0.3s ease-in-out);
     svg {
       font-size: 1.7rem;
     }
