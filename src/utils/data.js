@@ -4,12 +4,159 @@ import anh_5 from '../assets/backGround/anh_5.jpg';
 import anh_6 from '../assets/backGround/anh_6.jpg';
 import anh_8 from '../assets/backGround/anh_8.jpg';
 import { FaFacebookF, FaLinkedinIn, FaPinterestP } from 'react-icons/fa';
-import { AiOutlineTwitter, AiOutlineInstagram } from 'react-icons/ai';
+import {
+  AiOutlineTwitter,
+  AiOutlineInstagram,
+  AiOutlineCar,
+} from 'react-icons/ai';
+import { BiSupport } from 'react-icons/bi';
+import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
+import Forward30OutlinedIcon from '@material-ui/icons/Forward30Outlined';
 import banner_1 from '../assets/banner/banner_1.jpg';
 import banner_2 from '../assets/banner/banner_2.jpg';
 import blog_1 from '../assets/blog/blog_1.jpeg';
 import blog_2 from '../assets/blog/blog_2.jpg';
 import blog_3 from '../assets/blog/blog_3.jpg';
+import insta_1 from '../assets/insta/insta_1.jpg';
+import insta_2 from '../assets/insta/insta_2.jpg';
+import insta_3 from '../assets/insta/insta_3.jpg';
+import insta_4 from '../assets/insta/insta_4.jpg';
+import insta_5 from '../assets/insta/insta_5.jpg';
+import insta_6 from '../assets/insta/insta_6.jpg';
+import insta_7 from '../assets/insta/insta_7.jpg';
+import insta_8 from '../assets/insta/insta_8.jpg';
+import insta_9 from '../assets/insta/insta_9.jpg';
+
+export const secShippings = [
+  {
+    icon: <AiOutlineCar />,
+    title: 'FREE SHIPPING',
+    content: 'Free shipping on all US order or order above $100',
+  },
+  {
+    icon: <BiSupport />,
+    title: 'SUPPORT 24/7',
+    content: 'Contact us 24 hours a day, 7 days a week',
+  },
+  {
+    icon: <Forward30OutlinedIcon />,
+    title: '30 DAYS RETURN',
+    content: 'Simply return it within 30 days for an exchange.',
+  },
+  {
+    icon: <HttpsOutlinedIcon />,
+    title: '100% PAYMENT SECURE',
+    content: 'We ensure secure payment with PEV',
+  },
+];
+
+export const instas = [
+  {
+    img: insta_1,
+    links: [
+      {
+        id: '',
+        top: '34',
+        left: '68',
+      },
+    ],
+  },
+  {
+    img: insta_2,
+    links: [
+      {
+        id: '',
+        top: '69',
+        left: '45',
+      },
+      {
+        id: '',
+        top: '8',
+        left: '50',
+      },
+    ],
+  },
+  {
+    img: insta_3,
+    links: [
+      {
+        id: '',
+        top: '57',
+        left: '11',
+      },
+    ],
+  },
+  {
+    img: insta_4,
+    links: [
+      {
+        id: '',
+        top: '80',
+        left: '50',
+      },
+    ],
+  },
+  {
+    img: insta_5,
+    links: [
+      {
+        id: '',
+        top: '60',
+        left: '50',
+      },
+      {
+        id: '',
+        top: '8',
+        left: '40',
+      },
+    ],
+  },
+  {
+    img: insta_6,
+    links: [
+      {
+        id: '',
+        top: '60',
+        left: '50',
+      },
+    ],
+  },
+  {
+    img: insta_7,
+    links: [
+      {
+        id: '',
+        top: '60',
+        left: '20',
+      },
+    ],
+  },
+  {
+    img: insta_8,
+    links: [
+      {
+        id: '',
+        top: '50',
+        left: '60',
+      },
+    ],
+  },
+  {
+    img: insta_9,
+    links: [
+      {
+        id: '',
+        top: '80',
+        left: '60',
+      },
+      {
+        id: '',
+        top: '90',
+        left: '30',
+      },
+    ],
+  },
+];
 
 export const blogs = [
   {

@@ -67,35 +67,13 @@
   color: $lightLetterColor;
   line-height: 1.7;
 }
-///arrow
-.slick-slider {
-  position: relative;
-  .next-arrow,
-  .prev-arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-    background-color: #808283b6;
-    color: rgba(255, 255, 255, 0.5);
-    position: absolute;
-    top: 30%;
-    z-index: 2;
-    font-size: 4rem;
-    @include transition(all 0.5s);
-    &:hover {
-      cursor: pointer;
-      background-color: $hoverColor;
-      color: rgba(255, 255, 255, 0.637);
+
+.slide-blog-container {
+  .slick-slider {
+    .next-arrow,
+    .prev-arrow {
+      top: 30%;
     }
-  }
-  .next-arrow {
-    right: 10px;
-  }
-  .prev-arrow {
-    left: 10px;
   }
 }
 @media (max-width: 960px) {
@@ -103,3 +81,4 @@
     padding: 5px;
   }
 }
+//instagram

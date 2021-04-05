@@ -9,9 +9,9 @@ import women from '../../assets/collect/women.jpg';
 const CollectionList = () => {
   return (
     <div className='section-collection-list'>
-      <div className='collection-list-container'>
-        <div className='collection-list'>
-          <Grid container>
+      <div className='collection-list-container section-container'>
+        <div className='collection-list '>
+          <Grid container className='section-grid-content-wrapper '>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='item-collection-content'>
                 <a href='#' className='item-collection-link'>

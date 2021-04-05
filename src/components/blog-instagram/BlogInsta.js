@@ -1,9 +1,10 @@
 import React from 'react';
 import './blogInsta.scss';
 import Slider from 'react-slick';
-import { blogs } from '../../utils/data';
+import { blogs, instas } from '../../utils/data';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 const BlogInsta = () => {
+  console.log(instas[0].img);
   const NextArrow = ({ onClick }) => {
     return (
       <div className='next-arrow' onClick={onClick}>
@@ -18,7 +19,7 @@ const BlogInsta = () => {
       </div>
     );
   };
-  var settings = {
+  var settingsBlog = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -39,10 +40,11 @@ const BlogInsta = () => {
       },
     ],
   };
+
   return (
-    <>
-      <div className='blog-section'>
-        <div className='blog-container section-container'>
+    <div className='blog-section'>
+      <div className='blog-container section-container'>
+        <div className='section-content-wrapper'>
           <div className='section-title-container'>
             <h3>
               <span>LATES FROM BLOG</span>
@@ -50,7 +52,7 @@ const BlogInsta = () => {
             <span>The freshest and most exciting news</span>
           </div>
           <div className='slide-blog-container'>
-            <Slider {...settings}>
+            <Slider {...settingsBlog}>
               {blogs.map((blog) => {
                 return (
                   <article className='blog-slide'>
@@ -86,12 +88,7 @@ const BlogInsta = () => {
           </div>
         </div>
       </div>
-      {/* <div className='insta-section'>
-        <div className='insta-container .section-container'>
-          <div className='section-title'></div>
-        </div>
-      </div> */}
-    </>
+    </div>
   );
 };
 

@@ -103,8 +103,27 @@ p {
   margin: 0 auto;
   max-width: 1200px;
 }
+//.section-content-wrapper
+.section-content-wrapper {
+  margin-bottom: 30px;
+}
+// responsive padding of grid
+.section-grid-content-wrapper {
+  & > .MuiGrid-root {
+    padding: 5px;
+  }
+}
+@media (min-width: 960px) {
+  .section-grid-content-wrapper {
+    & > .MuiGrid-root {
+      padding: 15px;
+    }
+  }
+}
+
 //title of section
 .section-title-container {
+  margin-top: 40px;
   text-align: center;
   h3 {
     margin-bottom: 10px;
@@ -146,6 +165,40 @@ p {
         width: 30px;
       }
     }
+  }
+}
+
+//next and prev button
+///arrow
+.slick-slider {
+  position: relative;
+  .next-arrow,
+  .prev-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    background-color: #808283b6;
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+    z-index: 2;
+    font-size: 4rem;
+    @include transition(all 0.5s);
+    &:hover {
+      cursor: pointer;
+      background-color: $hoverColor;
+      color: rgba(255, 255, 255, 0.637);
+    }
+  }
+  .next-arrow {
+    right: 10px;
+  }
+  .prev-arrow {
+    left: 10px;
   }
 }
 

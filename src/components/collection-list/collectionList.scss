@@ -1,9 +1,6 @@
 @import '../../sassStyles/mixin.scss';
 @import '../../sassStyles/variables.scss';
 .collection-list {
-  max-width: 1200px;
-  margin: 40px auto 80px auto;
-  padding: 0 15px;
   .MuiGrid-item {
     padding: 5px;
   }
