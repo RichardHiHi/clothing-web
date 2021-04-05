@@ -29,7 +29,7 @@ const Instagram = () => {
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 960,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -37,7 +37,7 @@ const Instagram = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 765,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -83,8 +83,8 @@ const Instagram = () => {
       </div>
       <div className='shipping-section'>
         <div className='shipping-container section-container'>
-          <div className='shipping-content-wrapper section-content-wrapper'>
-            <Grid container className='section-content-wrapper'>
+          <div className='shipping-content-wrapper '>
+            <Grid container className='section-grid-content-wrapper'>
               {secShippings.map((secShipping) => {
                 return (
                   <Grid item sx={12} sm={6} md={3}>

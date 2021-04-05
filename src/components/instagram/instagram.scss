@@ -7,21 +7,7 @@
   .section-title-container {
     margin-bottom: 30px;
   }
-  .slick-slider {
-    .next-arrow,
-    .prev-arrow {
-      opacity: 0;
-      visibility: hidden;
-      width: 50px;
-      height: 50px;
-    }
-    .next-arrow {
-      right: 20px;
-    }
-    .prev-arrow {
-      left: 20px;
-    }
-  }
+
   .slick-slide {
     position: relative;
     .insta-content {
@@ -90,6 +76,25 @@
       color: $lightLetterColor;
       @include font-size-weight(1.4rem, 500);
       line-height: 1.5;
+    }
+  }
+}
+@media (min-width: 900px) {
+  .insta-container {
+    .slick-slider {
+      .next-arrow,
+      .prev-arrow {
+        opacity: 0;
+        visibility: hidden;
+        width: 50px;
+        height: 50px;
+      }
+      .next-arrow {
+        right: 20px;
+      }
+      .prev-arrow {
+        left: 20px;
+      }
     }
   }
 }
