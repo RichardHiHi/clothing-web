@@ -130,6 +130,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    line-height: 1.2;
     span {
       display: inline-block;
       @include font-size-weight(2.45rem, 514);
