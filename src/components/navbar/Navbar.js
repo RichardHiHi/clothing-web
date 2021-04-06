@@ -10,12 +10,12 @@ const Navbar = () => {
   useEffect(() => {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
-      console.log(123);
       var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.querySelector('.nav').classList.remove('nav-hidden');
-      } else {
+      console.log(currentScrollPos);
+      if (prevScrollpos < currentScrollPos && currentScrollPos > 75) {
         document.querySelector('.nav').classList.add('nav-hidden');
+      } else {
+        document.querySelector('.nav').classList.remove('nav-hidden');
       }
       prevScrollpos = currentScrollPos;
     };
