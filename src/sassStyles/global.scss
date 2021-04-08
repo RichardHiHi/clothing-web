@@ -202,6 +202,9 @@ p {
     left: 10px;
   }
 }
+.img-loading {
+  @include animation(scale 1s infinite);
+}
 
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {

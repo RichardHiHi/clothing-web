@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import { db } from '../../firebase';
+import blur from '../../assets/blur.jpeg';
 
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
@@ -21,7 +22,30 @@ const BannerBlog = () => {
   }, []);
 
   if (banners.length === 0) {
-    return <h2>loadding</h2>;
+    return (
+      <div className='banner-section'>
+        <div className='banner-container'>
+          <div className='section-content-wrapper'>
+            <Grid container className='section-grid-content-wrapper'>
+              {Array.from({ length: 2 }, (_, i) => i).map((a) => {
+                return (
+                  <Grid item sx={12} sm={6} md={6} lg={6}>
+                    <div className='banner-content'>
+                      <a href=''>
+                        <div
+                          className='banner-img img-loading'
+                          style={{ backgroundImage: `url(${blur})` }}
+                        ></div>
+                      </a>
+                    </div>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </div>
+        </div>
+      </div>
+    );
   }
   return (
     <div className='banner-section'>
@@ -29,7 +53,6 @@ const BannerBlog = () => {
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
             {banners.map((banner, index) => {
-              console.log(banner);
               return (
                 <Grid item sx={12} sm={6} md={6} lg={6}>
                   <div className='banner-content'>

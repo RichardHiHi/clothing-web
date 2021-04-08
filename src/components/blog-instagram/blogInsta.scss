@@ -37,7 +37,7 @@
     @include transform(scale(1.1));
   }
   &:hover .img-blog::before {
-    animation: fadeIn 0.5s ease-in-out;
+    @include animation(fadeIn 0.5s ease-in-out);
   }
 }
 //info and content

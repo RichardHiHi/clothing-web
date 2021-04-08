@@ -120,4 +120,10 @@
   -o-transition: $args;
   transition: $args;
 }
-//
+//aniamtion
+@mixin animation($args...) {
+  -o-animation: $args;
+  -moz-animation: $args;
+  -webkit-animation: $args;
+  animation: $args;
+}
