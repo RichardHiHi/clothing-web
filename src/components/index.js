@@ -11,6 +11,7 @@ import Footer from './footer/Footer';
 import Banner from './banner/Banner';
 import BlogInsta from './blog-instagram/BlogInsta';
 import Instagram from './instagram/Instagram';
+import Trending from './trending/Trending';
 export {
   Navbar,
   NavButton,
@@ -25,4 +26,5 @@ export {
   Banner,
   BlogInsta,
   Instagram,
+  Trending,
 };

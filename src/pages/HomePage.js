@@ -1,12 +1,19 @@
 import React from 'react';
-import { SlideShow } from '../components';
-import { CollectionList, Banner, BlogInsta, Instagram } from '../components';
+import {
+  CollectionList,
+  Banner,
+  BlogInsta,
+  Instagram,
+  Trending,
+  SlideShow,
+} from '../components';
 
 const HomePage = () => {
   return (
     <div className='content'>
       <SlideShow />
       <CollectionList />
+      <Trending />
       <BlogInsta />
       <Banner />
       <Instagram />
