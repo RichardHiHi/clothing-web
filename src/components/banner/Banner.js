@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './banner.scss';
 import Grid from '@material-ui/core/Grid';
-import { banners } from '../../utils/data';
+import { db } from '../../firebase';
 
 const BannerBlog = () => {
+  const [banners, setBanners] = useState([]);
+  useEffect(() => {
+    db.collection('banner').onSnapshot((snapshot) => {
+      setBanners(
+        snapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            img: doc.data().img,
+            smallText: doc.data().smallText,
+            bigText: doc.data().bigText,
+          };
+        })
+      );
+    });
+  }, []);
+
+  if (banners.length === 0) {
+    return <h2>loadding</h2>;
+  }
   return (
     <div className='banner-section'>
       <div className='banner-container'>
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
             {banners.map((banner, index) => {
+              console.log(banner);
               return (
                 <Grid item sx={12} sm={6} md={6} lg={6}>
                   <div className='banner-content'>

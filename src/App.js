@@ -1,6 +1,7 @@
 import React from 'react';
 import './sassStyles/global.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import firebase from './firebase';
 import {
   Navbar,
   SideBar,
