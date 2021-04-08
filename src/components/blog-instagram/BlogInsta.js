@@ -9,19 +9,16 @@ import Loadding from '../loadding-img/LoaddingImg';
 const BlogInsta = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    db.collection('blog').onSnapshot((snapshot) => {
-      setBlogs(
-        snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            img: doc.data().img,
-            content: doc.data().content,
-            postTitle: doc.data().postTitle,
-            author: doc.data().author,
-          };
-        })
-      );
-    });
+    const fetchData = async () => {
+      const data = await db.collection('blog').get();
+      setBlogs(data.docs.map((doc) => doc.data()));
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+    const addData = async () => {
+      const data = await db.collection('slideShow').add({});
+    };
   });
   const NextArrow = ({ onClick }) => {
     return (

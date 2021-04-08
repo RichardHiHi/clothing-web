@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './instagram.scss';
 import Slider from 'react-slick';
 import { instas, secShippings } from '../../utils/data';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import Grid from '@material-ui/core/Grid';
-
+import { db } from '../../firebase';
+import Loadding from '../loadding-img/LoaddingImg';
 const Instagram = () => {
+  const [instas, setInsta] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await db.collection('instagram').get();
+      setInsta(data.docs.map((doc) => doc.data()));
+    };
+    fetchData();
+  }, []);
   const NextArrow = ({ onClick }) => {
     return (
       <div className='next-arrow' onClick={onClick}>
@@ -46,6 +55,55 @@ const Instagram = () => {
       },
     ],
   };
+  if (instas.length === 0) {
+    return (
+      <>
+        <div className='insta-section'>
+          <div className='insta-container section-content-wrapper'>
+            <div className='section-title-container'>
+              <h3>
+                <span>@ FOLLOW US ON INSTAGRAM</span>
+              </h3>
+            </div>
+            <Slider {...settingsInsta}>
+              {Array.from({ length: 4 }, (_, i) => i).map((insta, index) => {
+                return (
+                  <div className='insta-content' key={index}>
+                    <Loadding classImg={'insta-img'} />
+                  </div>
+                );
+              })}
+            </Slider>
+          </div>
+        </div>
+        <div className='shipping-section'>
+          <div className='shipping-container section-container'>
+            <div className='shipping-content-wrapper '>
+              <Grid container className='section-grid-content-wrapper'>
+                {secShippings.map((secShipping) => {
+                  return (
+                    <Grid item sx={12} sm={6} md={3}>
+                      <div className='shipping-content'>
+                        <div className='shipping-icon'>{secShipping.icon}</div>
+                        <div className='shipping-info'>
+                          <h3 className='shipping-title'>
+                            {secShipping.title}
+                          </h3>
+                          <span className='shipping-content'>
+                            {secShipping.content}
+                          </span>
+                        </div>
+                      </div>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className='insta-section'>

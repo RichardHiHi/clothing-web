@@ -3,21 +3,21 @@ import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import { db } from '../../firebase';
 import LoaddingImg from '../loadding-img/LoaddingImg';
+import { instas } from '../../utils/data';
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
+  const addData = () => {
+    // instas.forEach((a) => {
+    //   db.collection('instagram').add(a);
+    // });
+  };
   useEffect(() => {
-    db.collection('banner').onSnapshot((snapshot) => {
-      setBanners(
-        snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            img: doc.data().img,
-            smallText: doc.data().smallText,
-            bigText: doc.data().bigText,
-          };
-        })
-      );
-    });
+    addData();
+    const fetchData = async () => {
+      const data = await db.collection('banner').get();
+      setBanners(data.docs.map((doc) => doc.data()));
+    };
+    fetchData();
   }, []);
 
   if (banners.length > 0) {

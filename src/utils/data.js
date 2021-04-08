@@ -55,7 +55,7 @@ export const instas = [
     img: insta_1,
     links: [
       {
-        id: '',
+        link: '',
         top: '34',
         left: '68',
       },
@@ -65,12 +65,12 @@ export const instas = [
     img: insta_2,
     links: [
       {
-        id: '',
+        link: '',
         top: '69',
         left: '45',
       },
       {
-        id: '',
+        link: '',
         top: '8',
         left: '50',
       },
@@ -80,7 +80,7 @@ export const instas = [
     img: insta_3,
     links: [
       {
-        id: '',
+        link: '',
         top: '57',
         left: '11',
       },
@@ -90,7 +90,7 @@ export const instas = [
     img: insta_4,
     links: [
       {
-        id: '',
+        link: '',
         top: '80',
         left: '50',
       },
@@ -100,12 +100,12 @@ export const instas = [
     img: insta_5,
     links: [
       {
-        id: '',
+        link: '',
         top: '60',
         left: '50',
       },
       {
-        id: '',
+        link: '',
         top: '8',
         left: '40',
       },
@@ -115,7 +115,7 @@ export const instas = [
     img: insta_6,
     links: [
       {
-        id: '',
+        link: '',
         top: '60',
         left: '50',
       },
@@ -125,7 +125,7 @@ export const instas = [
     img: insta_7,
     links: [
       {
-        id: '',
+        link: '',
         top: '60',
         left: '20',
       },
@@ -135,7 +135,7 @@ export const instas = [
     img: insta_8,
     links: [
       {
-        id: '',
+        link: '',
         top: '50',
         left: '60',
       },
@@ -145,12 +145,12 @@ export const instas = [
     img: insta_9,
     links: [
       {
-        id: '',
+        link: '',
         top: '80',
         left: '60',
       },
       {
-        id: '',
+        link: '',
         top: '90',
         left: '30',
       },
