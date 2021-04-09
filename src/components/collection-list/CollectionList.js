@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './collectionList.scss';
 import Grid from '@material-ui/core/Grid';
-import bag from '../../assets/collect/bag.jpg';
-import shoes from '../../assets/collect/shoes.jpeg';
-import watch from '../../assets/collect/watch.jpg';
-import women from '../../assets/collect/women.jpg';
+import { db } from '../../firebase';
+import Loading from '../loadding-img/LoaddingImg';
 
 const CollectionList = () => {
+  const [colls, setColl] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await db.collection('collection').get();
+      setColl(
+        data.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
+    };
+    fetchData();
+  });
+  const find = (position, imgTitle) => {
+    return colls.find((coll) => coll.id === position)[imgTitle];
+  };
   return (
     <div className='section-collection-list'>
       <div className='collection-list-container section-container'>
@@ -15,53 +28,88 @@ const CollectionList = () => {
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='item-collection-content'>
                 <a href='#' className='item-collection-link'>
-                  <div
-                    className='item-collection-img'
-                    style={{ backgroundImage: `url(${women})` }}
-                  ></div>
+                  {colls.length > 0 ? (
+                    <div
+                      className='item-collection-img'
+                      style={{
+                        backgroundImage: `url(${find('left', 'img')})`,
+                      }}
+                    ></div>
+                  ) : (
+                    <Loading classImg={'item-collection-img'} />
+                  )}
                 </a>
-                <div className='item-collection-title'>
-                  <h3>Women</h3>
-                </div>
+                {colls.length > 0 && (
+                  <div className='item-collection-title'>
+                    <h3>{find('left', 'title')}</h3>
+                  </div>
+                )}
               </div>
             </Grid>
             <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='row'>
                 <div className='item-collection-content '>
                   <a href='#' className='item-collection-link'>
-                    <div
-                      className='item-collection-img'
-                      style={{ backgroundImage: `url(${shoes})` }}
-                    ></div>
+                    {colls.length > 0 ? (
+                      <div
+                        className='item-collection-img'
+                        style={{
+                          backgroundImage: `url(${find('center-top', 'img')})`,
+                        }}
+                      ></div>
+                    ) : (
+                      <Loading classImg={'item-collection-img'} />
+                    )}
                   </a>
-                  <div className='item-collection-title'>
-                    <h3>Acessories</h3>
-                  </div>
+                  {colls.length > 0 && (
+                    <div className='item-collection-title'>
+                      <h3>{find('center-top', 'title')}</h3>
+                    </div>
+                  )}
                 </div>
                 <div className='item-collection-content'>
                   <a href='#' className='item-collection-link'>
-                    <div
-                      className='item-collection-img'
-                      style={{ backgroundImage: `url(${bag})` }}
-                    ></div>
+                    {colls.length > 0 ? (
+                      <div
+                        className='item-collection-img'
+                        style={{
+                          backgroundImage: `url(${find(
+                            'center-bottom',
+                            'img'
+                          )})`,
+                        }}
+                      ></div>
+                    ) : (
+                      <Loading classImg={'item-collection-img'} />
+                    )}
                   </a>
-                  <div className='item-collection-title'>
-                    <h3>Footwear</h3>
-                  </div>
+                  {colls.length > 0 && (
+                    <div className='item-collection-title'>
+                      <h3>{find('center-bottom', 'title')}</h3>
+                    </div>
+                  )}
                 </div>
               </div>
             </Grid>
             <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='item-collection-content'>
                 <a href='#' className='item-collection-link'>
-                  <div
-                    className='item-collection-img'
-                    style={{ backgroundImage: `url(${watch})` }}
-                  ></div>
+                  {colls.length > 0 ? (
+                    <div
+                      className='item-collection-img'
+                      style={{
+                        backgroundImage: `url(${find('right', 'img')})`,
+                      }}
+                    ></div>
+                  ) : (
+                    <Loading classImg={'item-collection-img'} />
+                  )}
                 </a>
-                <div className='item-collection-title'>
-                  <h3>Watch</h3>
-                </div>
+                {colls.length > 0 && (
+                  <div className='item-collection-title'>
+                    <h3>{find('right', 'title')}</h3>
+                  </div>
+                )}
               </div>
             </Grid>
           </Grid>
