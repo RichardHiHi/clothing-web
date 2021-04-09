@@ -11,7 +11,6 @@ const Navbar = () => {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
       var currentScrollPos = window.pageYOffset;
-      console.log(currentScrollPos);
       if (prevScrollpos < currentScrollPos && currentScrollPos > 75) {
         document.querySelector('.nav').classList.add('nav-hidden');
       } else {
