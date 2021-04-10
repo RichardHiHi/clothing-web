@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './collectionList.scss';
 import Grid from '@material-ui/core/Grid';
-import { db } from '../../firebase';
 import Loading from '../loadding-img/LoaddingImg';
+import { fetchData } from '../../utils/helper';
 
 const CollectionList = () => {
-  const [colls, setColl] = useState([]);
+  const [colls, setColls] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await db.collection('collection').get();
-      setColl(
-        data.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
-        })
-      );
-    };
-    fetchData();
+    fetchData('collection', setColls);
   });
   const find = (position, imgTitle) => {
-    return colls.find((coll) => coll.id === position)[imgTitle];
+    return colls.find((coll) => coll.position === position)[imgTitle];
   };
   return (
     <div className='section-collection-list'>

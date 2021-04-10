@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
 import blur from '../../assets/blur.jpeg';
-import { getLinkApi } from '../../utils/helper';
+import { fetchData } from '../../utils/helper';
 
 // import { slide } from '../../utils/data';
 const SlideShow = () => {
@@ -10,22 +10,7 @@ const SlideShow = () => {
   const [mouseUp, setMouseUp] = useState(0);
   const [slides, setSlides] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(getLinkApi('slide'));
-      const data = await res.json();
-      setSlides(
-        data.records.map((record) => {
-          console.log(record.fields);
-          return {
-            ...record.fields,
-            img: record.fields.img[0].url,
-            id: record.id,
-          };
-        })
-      );
-    };
-
-    fetchData();
+    fetchData('slide', setSlides);
   }, []);
 
   useEffect(() => {

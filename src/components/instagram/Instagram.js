@@ -4,14 +4,30 @@ import Slider from 'react-slick';
 import { instas, secShippings } from '../../utils/data';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import Grid from '@material-ui/core/Grid';
-import { db } from '../../firebase';
 import Loadding from '../loadding-img/LoaddingImg';
+import { getLinkApi } from '../../utils/helper';
 const Instagram = () => {
-  const [instas, setInsta] = useState([]);
+  const [instas, setInstas] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await db.collection('instagram').get();
-      setInsta(data.docs.map((doc) => doc.data()));
+      const res = await fetch(getLinkApi('instagram'));
+      const resLink = await fetch(getLinkApi('instagramLinking'));
+      const data = await res.json();
+      const dataLink = await resLink.json();
+      console.log(dataLink.records);
+
+      const newInstas = data.records.map((record) => {
+        const link = record.fields.instagramLinking.map((id) => {
+          return dataLink.records.find((link) => link.id === id).fields;
+        });
+        return {
+          ...record.fields,
+          instagramLinking: link,
+          img: record.fields.img[0].url,
+        };
+      });
+      // newInstas;
+      setInstas(newInstas);
     };
     fetchData();
   }, []);
@@ -116,13 +132,12 @@ const Instagram = () => {
           <Slider {...settingsInsta}>
             {instas.map((insta, index) => {
               return (
-                <div className='insta-content'>
+                <div className='insta-content' key={index}>
                   <div
-                    key={index}
                     className='insta-img'
                     style={{ backgroundImage: `url(${insta.img})` }}
                   ></div>
-                  {insta.links.map((link, index) => {
+                  {insta.instagramLinking.map((link, index) => {
                     return (
                       <a
                         href='#'

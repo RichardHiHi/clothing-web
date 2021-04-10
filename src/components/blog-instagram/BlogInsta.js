@@ -3,23 +3,14 @@ import './blogInsta.scss';
 import Slider from 'react-slick';
 import { blogs, instas } from '../../utils/data';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
-import { db } from '../../firebase';
 import Loadding from '../loadding-img/LoaddingImg';
+import { fetchData } from '../../utils/helper';
 
 const BlogInsta = () => {
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await db.collection('blog').get();
-      setBlogs(data.docs.map((doc) => doc.data()));
-    };
-    fetchData();
+    fetchData('blog', setBlogs);
   }, []);
-  useEffect(() => {
-    const addData = async () => {
-      const data = await db.collection('slideShow').add({});
-    };
-  });
   const NextArrow = ({ onClick }) => {
     return (
       <div className='next-arrow' onClick={onClick}>
@@ -122,7 +113,7 @@ const BlogInsta = () => {
             <Slider {...settingsBlog}>
               {blogs.map((blog) => {
                 return (
-                  <article className='blog-slide'>
+                  <article className='blog-slide' key={blog.id}>
                     <a href='#'>
                       <div
                         className='img-blog'

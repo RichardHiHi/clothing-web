@@ -2,25 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import LoaddingImg from '../loadding-img/LoaddingImg';
-import { getLinkApi } from '../../utils/helper';
+import { fetchData } from '../../utils/helper';
 
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(getLinkApi('banner'));
-      const data = await res.json();
-      setBanners(
-        data.records.map((record) => {
-          return {
-            ...record.fields,
-            img: record.fields.img[0].url,
-            id: record.id,
-          };
-        })
-      );
-    };
-    fetchData();
+    fetchData('banner', setBanners);
   }, []);
   if (banners.length > 0) {
     return (
