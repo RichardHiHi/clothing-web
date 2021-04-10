@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
-import { db } from '../../firebase';
-import Loading from '../loadding-img/LoaddingImg';
 import blur from '../../assets/blur.jpeg';
+import { getLinkApi } from '../../utils/helper';
 
 // import { slide } from '../../utils/data';
 const SlideShow = () => {
@@ -12,13 +11,20 @@ const SlideShow = () => {
   const [slides, setSlides] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const data = await db.collection('slideShow').get();
+      const res = await fetch(getLinkApi('slide'));
+      const data = await res.json();
       setSlides(
-        data.docs.map((doc) => {
-          return { ...doc.data(), id: doc.id };
+        data.records.map((record) => {
+          console.log(record.fields);
+          return {
+            ...record.fields,
+            img: record.fields.img[0].url,
+            id: record.id,
+          };
         })
       );
     };
+
     fetchData();
   }, []);
 
@@ -87,7 +93,7 @@ const SlideShow = () => {
     <div className='section-slide-show-inner'>
       <div className='slides'>
         {slides.map((slide, index) => {
-          const { image, position, title, text } = slide;
+          const { img, position, title, text } = slide;
           let classa;
           if (index === slideIdex) {
             classa = 'slide-actived';
@@ -122,7 +128,7 @@ const SlideShow = () => {
               </div>
               <div className='img-container'>
                 <div className='overlay-img'>
-                  <img class='slide-img' src={image} alt='' />
+                  <img class='slide-img' src={img} alt='' />
                 </div>
               </div>
             </div>

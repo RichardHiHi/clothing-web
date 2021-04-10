@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './banner.scss';
 import Grid from '@material-ui/core/Grid';
-import { db } from '../../firebase';
 import LoaddingImg from '../loadding-img/LoaddingImg';
-import { instas } from '../../utils/data';
+import { getLinkApi } from '../../utils/helper';
+
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
-  const addData = () => {
-    instas.forEach((a) => {
-      db.collection('instagram').add(a);
-    });
-  };
   useEffect(() => {
-    addData();
     const fetchData = async () => {
-      const data = await db.collection('banner').get();
-      setBanners(data.docs.map((doc) => doc.data()));
+      const res = await fetch(getLinkApi('banner'));
+      const data = await res.json();
+      setBanners(
+        data.records.map((record) => {
+          return {
+            ...record.fields,
+            img: record.fields.img[0].url,
+            id: record.id,
+          };
+        })
+      );
     };
     fetchData();
   }, []);
-
   if (banners.length > 0) {
     return (
       <div className='banner-section'>
@@ -33,7 +35,9 @@ const BannerBlog = () => {
                       <a href=''>
                         <div
                           className='banner-img'
-                          style={{ backgroundImage: `url(${banner.img})` }}
+                          style={{
+                            backgroundImage: `url(${banner.img})`,
+                          }}
                         ></div>
                       </a>
                       {/* change h3 h4 */}
