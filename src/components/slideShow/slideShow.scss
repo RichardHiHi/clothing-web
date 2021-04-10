@@ -1,5 +1,15 @@
 @import '../../sassStyles/mixin.scss';
 .section-slide-show-inner {
+  .section-slide-show-inner-loadding {
+    overflow: hidden;
+    // width: 100%;
+    // height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   margin-top: 70px;
   width: 100vw;
   height: 38vw;

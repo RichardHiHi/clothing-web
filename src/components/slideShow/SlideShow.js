@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
+import { db } from '../../firebase';
+import Loading from '../loadding-img/LoaddingImg';
+import blur from '../../assets/blur.jpeg';
 
-import { slide } from '../../utils/data';
+// import { slide } from '../../utils/data';
 const SlideShow = () => {
   const [slideIdex, setSlideIndex] = useState(0);
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
-  const fn = () => {};
+  const [slides, setSlides] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await db.collection('slideShow').get();
+      setSlides(
+        data.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        })
+      );
+    };
+    fetchData();
+  }, []);
+
   useEffect(() => {
     document
       .querySelector('.section-slide-show-inner')
@@ -58,11 +73,21 @@ const SlideShow = () => {
     setMouseDown(0);
     setMouseUp(0);
   }, [mouseUp]);
+
+  if (slides.length === 0) {
+    return (
+      <div className='section-slide-show-inner  '>
+        <div className='section-slide-show-inner-loadding '>
+          <img src={blur} alt='' className='img-loading' />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className='section-slide-show-inner'>
       <div className='slides'>
-        {slide.map((a, index) => {
-          const { image, position, title, text } = a;
+        {slides.map((slide, index) => {
+          const { image, position, title, text } = slide;
           let classa;
           if (index === slideIdex) {
             classa = 'slide-actived';
@@ -105,7 +130,7 @@ const SlideShow = () => {
         })}
       </div>
       <div className='slide-dot-button-container'>
-        {slide.map((a, index) => {
+        {slides.map((a, index) => {
           return (
             <button
               className={slideIdex === index ? 'slide-dot-btn-actived' : null}

@@ -7,9 +7,9 @@ import { instas } from '../../utils/data';
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
   const addData = () => {
-    // instas.forEach((a) => {
-    //   db.collection('instagram').add(a);
-    // });
+    instas.forEach((a) => {
+      db.collection('instagram').add(a);
+    });
   };
   useEffect(() => {
     addData();
