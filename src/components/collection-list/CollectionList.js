@@ -7,7 +7,7 @@ import { fetchData } from '../../utils/helper';
 const CollectionList = () => {
   const [colls, setColls] = useState([]);
   useEffect(() => {
-    fetchData('collection', setColls);
+    fetchData('collection', setColls, 'full');
   }, []);
   const find = (position, imgTitle) => {
     return colls.find((coll) => coll.position === position)[imgTitle];

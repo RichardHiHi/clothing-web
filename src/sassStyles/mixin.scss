@@ -127,3 +127,32 @@
   -webkit-animation: $args;
   animation: $args;
 }
+@mixin hoverText() {
+  @include font-size-weight(1.3rem, 400);
+  position: absolute;
+  white-space: nowrap;
+  background: #383838;
+  color: $whiteColor;
+  padding: 8px 10px;
+  position: absolute;
+  bottom: 50%;
+  left: 100%;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  @include transform(translateY(40%));
+  @include transition(all 0.3s);
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    @include transform(translateY(-50%));
+    width: 0;
+    height: 0;
+    border-color: transparent #383838 transparent transparent;
+    border-width: 5px 5px 5px 5px;
+    border-style: solid;
+  }
+}

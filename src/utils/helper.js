@@ -3,11 +3,20 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
   process.env.REACT_APP_BASIC_KEY
 );
 
-export const test = async () => {
+export const getProduct = async (set) => {
   const res = await base('product').select({}).firstPage();
   const resColor = await base('productColorImg').select({}).firstPage();
   console.log(resColor.map((color) => color.fields));
+
   console.log(
+    res.map((e) => {
+      const newColorImg = e.fields.colorImg.map((color) => {
+        return resColor.find((colorin) => colorin.id === color).fields;
+      });
+      return { ...e.fields, colorImg: newColorImg, id: e.id };
+    })
+  );
+  set(
     res.map((e) => {
       const newColorImg = e.fields.colorImg.map((color) => {
         return resColor.find((colorin) => colorin.id === color).fields;
