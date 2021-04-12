@@ -14,7 +14,6 @@ const Instagram = () => {
       const resLink = await fetch(getLinkApi('instagramLinking'));
       const data = await res.json();
       const dataLink = await resLink.json();
-      console.log(dataLink.records);
 
       const newInstas = data.records.map((record) => {
         const link = record.fields.instagramLinking.map((id) => {
@@ -23,7 +22,7 @@ const Instagram = () => {
         return {
           ...record.fields,
           instagramLinking: link,
-          img: record.fields.img[0].url,
+          img: record.fields.img[0].thumbnails.large.url,
         };
       });
       // newInstas;

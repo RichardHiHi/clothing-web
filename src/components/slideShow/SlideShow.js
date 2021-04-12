@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
 import blur from '../../assets/blur.jpeg';
-import { fetchData } from '../../utils/helper';
+import { fetchData, test } from '../../utils/helper';
 
 // import { slide } from '../../utils/data';
 const SlideShow = () => {
@@ -10,7 +10,8 @@ const SlideShow = () => {
   const [mouseUp, setMouseUp] = useState(0);
   const [slides, setSlides] = useState([]);
   useEffect(() => {
-    fetchData('slide', setSlides);
+    test();
+    fetchData('slide', setSlides, 'full');
   }, []);
 
   useEffect(() => {

@@ -8,7 +8,7 @@ const CollectionList = () => {
   const [colls, setColls] = useState([]);
   useEffect(() => {
     fetchData('collection', setColls);
-  });
+  }, []);
   const find = (position, imgTitle) => {
     return colls.find((coll) => coll.position === position)[imgTitle];
   };
