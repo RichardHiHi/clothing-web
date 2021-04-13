@@ -127,7 +127,7 @@
   -webkit-animation: $args;
   animation: $args;
 }
-@mixin hoverText() {
+@mixin hoverText {
   @include font-size-weight(1.3rem, 400);
   position: absolute;
   white-space: nowrap;

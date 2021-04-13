@@ -1,41 +1,33 @@
 @import '../../sassStyles/variables.scss';
 @import '../../sassStyles/mixin.scss';
 
-.product-item {
+.mini-product-item {
   position: relative;
-  .product-img-container {
+  .mini-product-img-container {
     overflow: hidden;
   }
-  &:hover .product-img {
-    @include transform(scale(1.2));
+  &:hover .mini-product-img {
+    &.lock-scale {
+      @include transform(scale(1));
+    }
+    @include transform(scale(1.15));
   }
-  &:hover .product-img_hover {
+  &:hover .mini-product-img_hover {
     opacity: 0;
     visibility: hidden;
   }
 }
-.product-img-container {
-  &:hover .product-img-wrapper_hover::after {
+.mini-product-img-container {
+  &:hover .mini-product-img-wrapper::after {
     opacity: 1;
     visibility: visible;
   }
-  &:hover .product-size-contain {
+  &:hover .mini-product-size-contain {
     opacity: 1;
     visibility: visible;
   }
 }
-.product-img-wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  display: block;
-  .product-img {
-    padding-top: 131%;
-    @include background-img;
-    @include transition(all 4s);
-  }
-}
-.product-img-wrapper_hover {
+.mini-product-img-wrapper {
   &:after {
     content: '';
     position: absolute;
@@ -44,24 +36,33 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    @include transition(opacity 0.5s);
-    background-color: rgba(0, 0, 0, 0.171);
+    @include transition(opacity 0.2s);
+    background-color: rgba(0, 0, 0, 0.178);
   }
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  .mini-product-img {
+    padding-top: 131%;
+    @include background-img;
+    @include transition(transform 2s);
+  }
+}
+.mini-product-img-wrapper_hover {
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
   pointer-events: none;
-  .product-img_hover {
-    @include transition(all 0.4s ease-in-out);
+  .mini-product-img_hover {
+    @include transition(all 0.5s);
     padding-top: 131%;
     @include background-img;
   }
 }
-///product-size
-.product-size-contain {
+///mini-product-size
+.mini-product-size-contain {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -74,8 +75,8 @@
     @include font-size-weight(1.4rem, 500);
   }
 }
-//product-wish
-.product-wishlist-container {
+//mini-product-wish
+.mini-product-wishlist-container {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -130,7 +131,8 @@
   }
 }
 //new and sale label
-.label-product-container {
+.label-mini-product-container {
+  pointer-events: none;
   position: absolute;
   top: 15px;
   right: 15px;
@@ -153,14 +155,93 @@
   }
 }
 @media (max-width: 1025px) {
-  .label-product-container {
+  .label-mini-product-container {
     top: 10px;
     right: 10px;
     .onNew-lable,
     .onSale-lable {
-      @include font-size-weight(0.8rem, 350);
+      @include font-size-weight(0.8rem, 450);
       height: 30px;
       width: 30px;
     }
+  }
+}
+//watch list
+.product-mini-watch-list {
+  display: flex;
+  min-height: 20px;
+  .watch-list-color {
+    &.watch-list-color-activated {
+      border: 1px solid #000000;
+      padding: 7px;
+      box-shadow: 0 0 0px 2px #1a1919c5;
+    }
+    display: block;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    position: relative;
+    &:after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 100%;
+      height: 100%;
+      padding: 1px;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a88;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover .watch-list-hover-text {
+      opacity: 1;
+      visibility: visible;
+      @include transform(translateY(0));
+    }
+  }
+}
+.mini-product-info {
+  margin-top: 10px;
+  .mini-product-title {
+    a {
+      text-decoration: none;
+      color: $letterColor;
+      @include font-size-weight(1.2rem, 500);
+      @include transition(color 0.3s);
+      &:hover {
+        color: $hoverColor;
+      }
+    }
+  }
+  .mini-product-price {
+    ins {
+      padding-left: 8px;
+      text-decoration: none;
+      .money {
+        color: red;
+      }
+    }
+    display: block;
+    margin: 2px 0 7px 0;
+    .money {
+      color: $lightLetterColor;
+      @include font-size-weight(1.2rem, 400);
+    }
+  }
+}
+.watch-list-hover-text {
+  pointer-events: none;
+  @include hoverText;
+  bottom: 170%;
+  left: -10%;
+  @include transform(translateY(50%));
+  &:after {
+    top: 100%;
+    left: 0%;
+    @include transform(translateX(50%));
+    border-color: #383838 transparent transparent transparent;
   }
 }

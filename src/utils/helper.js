@@ -6,7 +6,6 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 export const getProduct = async (set) => {
   const res = await base('product').select({}).firstPage();
   const resColor = await base('productColorImg').select({}).firstPage();
-  console.log(resColor.map((color) => color.fields));
 
   console.log(
     res.map((e) => {
@@ -43,4 +42,12 @@ export const fetchData = async (table, set, sizeImg = 'large') => {
       };
     })
   );
+};
+
+//format price
+export const formatPrice = (number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(number / 100);
 };
