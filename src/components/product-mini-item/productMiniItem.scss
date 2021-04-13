@@ -102,21 +102,65 @@
     }
     .hoverText {
       @include hoverText;
+      bottom: 50%;
+      left: 100%;
+      @include transform(translateY(40%));
+      &:after {
+        top: 50%;
+        right: 100%;
+        @include transform(translateY(-50%));
+        border-color: transparent #383838 transparent transparent;
+      }
     }
     &:hover .hoverText {
       left: 160%;
       opacity: 1;
       visibility: visible;
     }
+    &:hover svg {
+      color: $hoverColor;
+      font-size: 2rem;
+      @include transform(scale(1.1));
+    }
     svg {
       color: $whiteColor;
       font-size: 1.8rem;
       @include transition(all 0.5s);
-      &:hover {
-        color: $hoverColor;
-        font-size: 2rem;
-        @include transform(scale(1.1));
-      }
+    }
+  }
+}
+//new and sale label
+.label-product-container {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  .onNew-lable,
+  .onSale-lable {
+    color: $whiteColor;
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include font-size-weight(1.4rem, 400);
+  }
+  .onNew-lable {
+    background-color: #109533;
+  }
+  .onSale-lable {
+    background-color: #ff4e00;
+  }
+}
+@media (max-width: 1025px) {
+  .label-product-container {
+    top: 10px;
+    right: 10px;
+    .onNew-lable,
+    .onSale-lable {
+      @include font-size-weight(0.8rem, 350);
+      height: 30px;
+      width: 30px;
     }
   }
 }

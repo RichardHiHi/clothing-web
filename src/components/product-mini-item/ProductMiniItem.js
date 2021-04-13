@@ -1,12 +1,10 @@
 import React from 'react';
 import './productMiniItem.scss';
-import { GrFavorite } from 'react-icons/gr';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const ProductMiniItem = ({ product }) => {
-  const { colorImg, size } = product;
-
+  const { colorImg, size, onNew, onSale } = product;
   return (
     <div className='product-item'>
       <div className='product-img-container'>
@@ -27,10 +25,14 @@ const ProductMiniItem = ({ product }) => {
           ></div>
         </div>
         <div className='product-size-contain'>
-          <p>{size.join()}</p>
+          {size && <p>{size.join()}</p>}
         </div>
         <div className='product-wishlist-container'>
-          <a href='#' className='wishList-link wishList-link-activated'>
+          <a href='#' className='wishList-link'>
+            {/*
+              wish list is activated
+             wishList-link-activated 
+             */}
             <div className='wish-list'>
               <FavoriteBorderIcon />
               <span className='hoverText'>Add to Wishlist</span>
@@ -42,6 +44,18 @@ const ProductMiniItem = ({ product }) => {
           </a>
         </div>
       </div>
+      <span className='label-product-container'>
+        {onNew && (
+          <span className='onNew-lable'>
+            <span>New</span>
+          </span>
+        )}
+        {onSale && (
+          <span className='onSale-lable'>
+            <span>-{onSale * 100}%</span>
+          </span>
+        )}
+      </span>
 
       <div className='product-info'></div>
     </div>

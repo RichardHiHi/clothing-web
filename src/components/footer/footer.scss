@@ -185,32 +185,15 @@
     @include transition(all 0.3s);
   }
   .text-icon {
-    @include font-size-weight(1.3rem, 400);
-    position: absolute;
-    white-space: nowrap;
-    background: #383838;
-    color: $whiteColor;
-    padding: 8px 10px;
-    position: absolute;
+    @include hoverText;
     bottom: 209%;
     right: -328%;
-    border-radius: 4px;
-    opacity: 0;
-    visibility: hidden;
     @include transform(translateY(40%));
-    @include transition(all 0.3s);
     &:after {
-      content: '';
-      display: block;
-      position: absolute;
       top: 100%;
       left: 50%;
       @include transform(translateX(-50%));
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid #383838;
+      border-color: #383838 transparent transparent transparent;
     }
   }
   &.facebook {
