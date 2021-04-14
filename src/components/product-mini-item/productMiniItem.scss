@@ -17,13 +17,6 @@
     opacity: 0;
     visibility: hidden;
   }
-  &:hover .mini-product-btn-container {
-    button {
-      opacity: 1;
-      visibility: visible;
-      @include transform(translateY(0));
-    }
-  }
 }
 .mini-product-img-container {
   &:hover .mini-product-img-wrapper::after {
@@ -33,6 +26,13 @@
   &:hover .mini-product-size-contain {
     opacity: 1;
     visibility: visible;
+  }
+  &:hover .mini-product-btn-container {
+    button {
+      opacity: 1;
+      visibility: visible;
+      @include transform(translateY(0));
+    }
   }
 }
 .mini-product-img-wrapper {
@@ -45,7 +45,7 @@
     height: 100%;
     opacity: 0;
     @include transition(opacity 0.2s);
-    background-color: rgba(0, 0, 0, 0.178);
+    background-color: rgba(0, 0, 0, 0.11);
   }
   position: relative;
   width: 100%;
@@ -54,7 +54,7 @@
   .mini-product-img {
     padding-top: 131%;
     @include background-img;
-    @include transition(transform 2s);
+    @include transition(transform 3s);
   }
 }
 .mini-product-img-wrapper_hover {
@@ -275,11 +275,11 @@
       width: 150px;
       border-radius: 40px;
       position: relative;
-      @include transition(all 0.2s);
+      @include transition(all 0.3s);
       overflow: hidden;
       span {
         display: block;
-        @include font-size-weight(1.3rem, 400);
+        @include font-size-weight(1.4rem, 450);
         color: $letterColor;
         @include transition(all 0.2s);
       }
@@ -293,7 +293,6 @@
         visibility: hidden;
         @include transform(translate(-50%, -50%));
         @include transition(all 0.2s);
-        overflow: hidden;
       }
       &:hover {
         span {
@@ -321,6 +320,9 @@
     outline: none;
     border: none;
     position: relative;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 @media (max-width: 1024.99px) {

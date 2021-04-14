@@ -9,7 +9,7 @@ const CollectionList = () => {
   useEffect(() => {
     fetchData('collection', setColls, 'full');
   }, []);
-  const find = (position, imgTitle) => {
+  const findImg = (position, imgTitle) => {
     return colls.find((coll) => coll.position === position)[imgTitle];
   };
   return (
@@ -24,7 +24,7 @@ const CollectionList = () => {
                     <div
                       className='item-collection-img'
                       style={{
-                        backgroundImage: `url(${find('left', 'img')})`,
+                        backgroundImage: `url(${findImg('left', 'img')})`,
                       }}
                     ></div>
                   ) : (
@@ -33,7 +33,7 @@ const CollectionList = () => {
                 </a>
                 {colls.length > 0 && (
                   <div className='item-collection-title'>
-                    <h3>{find('left', 'title')}</h3>
+                    <h3>{findImg('left', 'title')}</h3>
                   </div>
                 )}
               </div>
@@ -46,7 +46,10 @@ const CollectionList = () => {
                       <div
                         className='item-collection-img'
                         style={{
-                          backgroundImage: `url(${find('center-top', 'img')})`,
+                          backgroundImage: `url(${findImg(
+                            'center-top',
+                            'img'
+                          )})`,
                         }}
                       ></div>
                     ) : (
@@ -55,7 +58,7 @@ const CollectionList = () => {
                   </a>
                   {colls.length > 0 && (
                     <div className='item-collection-title'>
-                      <h3>{find('center-top', 'title')}</h3>
+                      <h3>{findImg('center-top', 'title')}</h3>
                     </div>
                   )}
                 </div>
@@ -65,7 +68,7 @@ const CollectionList = () => {
                       <div
                         className='item-collection-img'
                         style={{
-                          backgroundImage: `url(${find(
+                          backgroundImage: `url(${findImg(
                             'center-bottom',
                             'img'
                           )})`,
@@ -77,7 +80,7 @@ const CollectionList = () => {
                   </a>
                   {colls.length > 0 && (
                     <div className='item-collection-title'>
-                      <h3>{find('center-bottom', 'title')}</h3>
+                      <h3>{findImg('center-bottom', 'title')}</h3>
                     </div>
                   )}
                 </div>
@@ -90,7 +93,7 @@ const CollectionList = () => {
                     <div
                       className='item-collection-img'
                       style={{
-                        backgroundImage: `url(${find('right', 'img')})`,
+                        backgroundImage: `url(${findImg('right', 'img')})`,
                       }}
                     ></div>
                   ) : (
@@ -99,7 +102,7 @@ const CollectionList = () => {
                 </a>
                 {colls.length > 0 && (
                   <div className='item-collection-title'>
-                    <h3>{find('right', 'title')}</h3>
+                    <h3>{findImg('right', 'title')}</h3>
                   </div>
                 )}
               </div>
