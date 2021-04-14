@@ -45,7 +45,6 @@ const SlideShow = () => {
       if (mouseDown > mouseUp) {
         setSlideIndex((oldTest) => {
           let newTest = oldTest + 1;
-          console.log(newTest);
           if (newTest > 3) {
             newTest = 0;
           }
