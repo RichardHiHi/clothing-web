@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './trending.scss';
 import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import { instas } from '../../utils/data';
+import { getProduct } from '../../utils/helper';
 const Trending = () => {
+  const [trending, setTrending] = useState([]);
+  useEffect(() => {
+    // setTrending(getProduct());
+    getProduct(setTrending);
+  }, []);
   return (
     <div className='trending-section'>
       <div className='trending-container section-container'>
@@ -16,10 +22,10 @@ const Trending = () => {
           </div>
           <div className='trending-product-wrapper'>
             <Grid container className='section-grid-content-wrapper'>
-              {instas.map((insta) => {
+              {trending.map((product) => {
                 return (
                   <Grid item xs={6} sm={3}>
-                    <ProductMiniItem img={insta.img} />
+                    <ProductMiniItem product={product} />
                   </Grid>
                 );
               })}

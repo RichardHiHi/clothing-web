@@ -127,3 +127,36 @@
   -webkit-animation: $args;
   animation: $args;
 }
+@mixin hoverText {
+  @include font-size-weight(1.3rem, 400);
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+  background: #383838;
+  color: $whiteColor;
+  padding: 8px 10px;
+  position: absolute;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  @include transition(all 0.3s);
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: 5px 5px 5px 5px;
+    border-style: solid;
+  }
+  //////////////custom position hoverText/////////////
+  // bottom: 50%;
+  // left: 100%;
+  // @include transform(translateY(40%));
+  // &:after {
+  //   top: 50%;
+  //   right: 100%;
+  //   @include transform(translateY(-50%));
+  //   border-color: transparent transparent #383838 transparent;
+  // }
+}

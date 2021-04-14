@@ -3,34 +3,26 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
   process.env.REACT_APP_BASIC_KEY
 );
 
-// export const test = async () => {
-//   const res = await base('product').select({}).firstPage();
-//   const resColor = await base('productColorImg').select({}).firstPage();
-//   console.log(resColor.map((color) => color.fields));
-//   console.log(
-//     res.map((e) => {
-//       const newColorImg = e.fields.colorImg.map((color) => {
-//         return resColor.find((colorin) => colorin.id === color).fields;
-//       });
-//       return { ...e.fields, colorImg: newColorImg, id: e.id };
-//     })
-//   );
-// };
+export const getProduct = async (set) => {
+  const res = await base('product').select({}).firstPage();
+  const resColor = await base('productColorImg').select({}).firstPage();
 
-export const test = async () => {
-  const res = await base('test').create([
-    {
-      fields: {
-        Name: 'a',
-        Status: true,
-      },
-    },
-    {
-      fields: {
-        Name: 's',
-      },
-    },
-  ]);
+  console.log(
+    res.map((e) => {
+      const newColorImg = e.fields.colorImg.map((color) => {
+        return resColor.find((colorin) => colorin.id === color).fields;
+      });
+      return { ...e.fields, colorImg: newColorImg, id: e.id };
+    })
+  );
+  set(
+    res.map((e) => {
+      const newColorImg = e.fields.colorImg.map((color) => {
+        return resColor.find((colorin) => colorin.id === color).fields;
+      });
+      return { ...e.fields, colorImg: newColorImg, id: e.id };
+    })
+  );
 };
 
 export const getLinkApi = (table) => {
@@ -50,4 +42,12 @@ export const fetchData = async (table, set, sizeImg = 'large') => {
       };
     })
   );
+};
+
+//format price
+export const formatPrice = (number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(number / 100);
 };
