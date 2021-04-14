@@ -6,6 +6,7 @@ import { getProduct } from '../../utils/helper';
 import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
 const Trending = () => {
   const [trending, setTrending] = useState([]);
+  const [number, setNumber] = useState(8);
   useEffect(() => {
     // setTrending(getProduct());
     getProduct(setTrending);
@@ -35,7 +36,7 @@ const Trending = () => {
               </Grid>
             ) : (
               <Grid container className='section-grid-content-wrapper'>
-                {trending.map((product, index) => {
+                {trending.slice(0, number).map((product, index) => {
                   return (
                     <Grid item xs={6} sm={3}>
                       <ProductMiniItem product={product} key={index} />
@@ -44,6 +45,20 @@ const Trending = () => {
                 })}
               </Grid>
             )}
+          </div>
+          <div
+            className={
+              number === 16
+                ? 'trending-load-more-wrapper none'
+                : 'trending-load-more-wrapper'
+            }
+          >
+            <button
+              className='trending-load-more'
+              onClick={() => setNumber(16)}
+            >
+              Load More
+            </button>
           </div>
         </div>
       </div>
