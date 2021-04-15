@@ -6,6 +6,7 @@ import {
   Instagram,
   Trending,
   SlideShow,
+  Sale,
 } from '../components';
 
 const HomePage = () => {
@@ -14,8 +15,9 @@ const HomePage = () => {
       <SlideShow />
       <CollectionList />
       <Trending />
-      <BlogInsta />
       <Banner />
+      <Sale />
+      <BlogInsta />
       <Instagram />
     </div>
   );

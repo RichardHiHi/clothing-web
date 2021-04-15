@@ -1,28 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import './trending.scss';
+import { getProduct } from '../../utils/helper';
+import './sale.scss';
 import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
-import { getProduct } from '../../utils/helper';
 import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
-const Trending = () => {
-  const [trending, setTrending] = useState([]);
-  const [number, setNumber] = useState(8);
+
+const Sale = () => {
+  const [sale, setSale] = useState([]);
   useEffect(() => {
-    // setTrending(getProduct());
-    getProduct(setTrending, 'trending');
-  }, []);
+    getProduct(setSale, 'onSale');
+  });
   return (
-    <div className='trending-section'>
-      <div className='trending-container section-container'>
-        <div className='trending-wrapper section-content-wrapper'>
+    <div className='sale-section'>
+      <div className='sale-container section-container'>
+        <div className='sale-wrapper section-content-wrapper'>
           <div className='section-title-container'>
             <h3>
-              <span>TRENDING</span>
+              <span>BEST SELLER</span>
             </h3>
-            <span>Top view in this week</span>
+            <span>Top sale in this week</span>
           </div>
-          <div className='trending-product-wrapper'>
-            {trending.length === 0 ? (
+          <div className='sale-product-wrapper'>
+            {sale.length === 0 ? (
               <Grid container className='section-grid-content-wrapper'>
                 {Array.from({ length: 4 }, (_, i) => i).map(
                   (product, index) => {
@@ -36,7 +35,7 @@ const Trending = () => {
               </Grid>
             ) : (
               <Grid container className='section-grid-content-wrapper'>
-                {trending.slice(0, number).map((product, index) => {
+                {sale.slice(0, 8).map((product, index) => {
                   return (
                     <Grid item xs={6} sm={3}>
                       <ProductMiniItem product={product} key={index} />
@@ -46,24 +45,10 @@ const Trending = () => {
               </Grid>
             )}
           </div>
-          <div
-            className={
-              number === 16
-                ? 'trending-load-more-wrapper none'
-                : 'trending-load-more-wrapper'
-            }
-          >
-            <button
-              className='trending-load-more'
-              onClick={() => setNumber(16)}
-            >
-              Load More
-            </button>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Trending;
+export default Sale;

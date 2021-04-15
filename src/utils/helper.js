@@ -3,7 +3,7 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
   process.env.REACT_APP_BASIC_KEY
 );
 
-export const getProduct = async (set) => {
+export const getProduct = async (set, filter) => {
   const res = await base('product').select({}).firstPage();
   const resColor = await base('productColorImg').select({}).firstPage();
   console.log(res);
@@ -16,14 +16,13 @@ export const getProduct = async (set) => {
   //     return { ...e.fields, colorImg: newColorImg, id: e.id };
   //   })
   // );
-  set(
-    res.map((e) => {
-      const newColorImg = e.fields.colorImg.map((color) => {
-        return resColor.find((colorin) => colorin.id === color).fields;
-      });
-      return { ...e.fields, colorImg: newColorImg, id: e.id };
-    })
-  );
+  const productList = res.map((e) => {
+    const newColorImg = e.fields.colorImg.map((color) => {
+      return resColor.find((colorin) => colorin.id === color).fields;
+    });
+    return { ...e.fields, colorImg: newColorImg, id: e.id };
+  });
+  set(productList.filter((product) => product[filter]));
 };
 
 export const getLinkApi = (table) => {

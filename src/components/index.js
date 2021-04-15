@@ -12,6 +12,7 @@ import Banner from './banner/Banner';
 import BlogInsta from './blog-instagram/BlogInsta';
 import Instagram from './instagram/Instagram';
 import Trending from './trending/Trending';
+import Sale from './sale/Sale';
 export {
   Navbar,
   NavButton,
@@ -27,4 +28,5 @@ export {
   BlogInsta,
   Instagram,
   Trending,
+  Sale,
 };
