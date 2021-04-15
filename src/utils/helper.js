@@ -1,3 +1,6 @@
+import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
+import React from 'react';
+
 var Airtable = require('airtable');
 var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
   process.env.REACT_APP_BASIC_KEY
@@ -50,4 +53,20 @@ export const formatPrice = (number) => {
     style: 'currency',
     currency: 'USD',
   }).format(number / 100);
+};
+//button next and prev
+
+export const NextArrow = ({ onClick }) => {
+  return (
+    <div className='next-arrow' onClick={onClick}>
+      <BiChevronRight />
+    </div>
+  );
+};
+export const PrevArrow = ({ onClick }) => {
+  return (
+    <div className='prev-arrow' onClick={onClick}>
+      <BiChevronLeft />
+    </div>
+  );
 };

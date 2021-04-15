@@ -11,7 +11,7 @@ import {
   CartMini,
   Footer,
 } from './components';
-import { HomePage } from './pages';
+import { HomePage, BlogPage } from './pages';
 
 function App() {
   return (
@@ -24,7 +24,8 @@ function App() {
       <CartMini />
       <Switch>
         <Route path='/'>
-          <HomePage />
+          <BlogPage />
+          {/* <HomePage /> */}
         </Route>
       </Switch>
       <Footer />

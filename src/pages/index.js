@@ -1,3 +1,3 @@
 import HomePage from './HomePage';
-
-export { HomePage };
+import BlogPage from './blog-page/BlogPage';
+export { HomePage, BlogPage };

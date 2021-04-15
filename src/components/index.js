@@ -13,6 +13,7 @@ import BlogInsta from './blog-instagram/BlogInsta';
 import Instagram from './instagram/Instagram';
 import Trending from './trending/Trending';
 import Sale from './sale/Sale';
+import BlogItem from '../components/blog-item/BlogItem';
 export {
   Navbar,
   NavButton,
@@ -29,4 +30,5 @@ export {
   Instagram,
   Trending,
   Sale,
+  BlogItem,
 };

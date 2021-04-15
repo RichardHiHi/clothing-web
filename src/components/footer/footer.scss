@@ -22,6 +22,9 @@
     display: flex;
     justify-content: space-between;
     .menu-footer-title {
+      &.none {
+        display: none;
+      }
       pointer-events: none;
       color: $letterColor;
       @include font-size-weight(1.6rem, 410);
@@ -69,6 +72,9 @@
     .menu-footer-title-wrapper {
       margin-bottom: 8px;
       .menu-footer-title {
+        &.none {
+          display: block;
+        }
         margin-bottom: 5px;
       }
       &:hover {
@@ -343,6 +349,9 @@
 @media (max-width: 960px) {
   .menu-footer-wrapper {
     .menu-footer-title {
+      &.none {
+        display: block;
+      }
       margin-bottom: 25px;
     }
   }

@@ -9,7 +9,9 @@
   margin-top: 20px;
 }
 .blog-slide {
-  padding: 15px;
+  &.padding {
+    padding: 15px;
+  }
   outline: none;
   & > a {
     overflow: hidden;
@@ -78,7 +80,9 @@
 }
 @media (max-width: 960px) {
   .blog-slide {
-    padding: 5px;
+    &.padding {
+      padding: 5px;
+    }
   }
 }
 //instagram

@@ -24,7 +24,7 @@ const Footer = () => {
             <Grid item xs={12} sm={6} md={3} lg={3}>
               <aside className='menu-footer-wrapper'>
                 <div className='menu-footer-title-wrapper' onClick={openClose}>
-                  <h3 className='menu-footer-title'>Get in touch</h3>
+                  <h3 className='menu-footer-title none'>Get in touch</h3>
                   <div className='footer-btn-wrapper'>
                     <div className='footer-btn'>
                       <div className='line-1'>
