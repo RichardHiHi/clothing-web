@@ -7,9 +7,25 @@ import Grid from '@material-ui/core/Grid';
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [blogPerPage, setBlogPerpage] = useState(4);
+  const [pageNumbers, setPageNumbers] = useState(0);
+
   useEffect(() => {
-    fetchData('blog', setBlogs);
-  });
+    const get = async () => {
+      const length = await fetchData('blog', setBlogs);
+      setPageNumbers(Math.round(length / blogPerPage));
+    };
+    get();
+  }, []);
+  const switchPage = (value) => {
+    if (value === 'inc') {
+      setCurrentPage((oldpage) => oldpage + 1);
+    } else {
+      setCurrentPage((oldpage) => oldpage - 1);
+    }
+  };
+
   var settingsBlog = {
     speed: 500,
     slidesToShow: 3,
@@ -34,9 +50,9 @@ const BlogPage = () => {
   return (
     <>
       <div className='insta-section margin'>
-        <div className='insta-container section-content-wrapper'>
+        <div className='insta-container section-content-wrapper none-margin'>
           <Slider {...settingsBlog}>
-            {blogs.map((blog) => {
+            {blogs.slice(0, 4).map((blog) => {
               return (
                 <article className='blog-slide position' key={blog.id}>
                   <a href='#'>
@@ -74,16 +90,63 @@ const BlogPage = () => {
                 <h2>LOADIING</h2>
               ) : (
                 <Grid container className='section-grid-content-wrapper'>
-                  {blogs.map((blog, index) => {
-                    return (
-                      <Grid item xs={12} sm={6}>
-                        <BlogItem blog={blog} />
-                      </Grid>
-                    );
-                  })}
+                  {blogs
+                    .slice(
+                      currentPage * blogPerPage,
+                      currentPage * blogPerPage + blogPerPage
+                    )
+                    .map((blog, index) => {
+                      return (
+                        <Grid item xs={12} sm={6}>
+                          <BlogItem blog={blog} />
+                        </Grid>
+                      );
+                    })}
                 </Grid>
               )}
             </div>
+          </div>
+        </div>
+      </div>
+      <div className='pagination'>
+        <div className='section-container'>
+          <div className='section-content-wrapper bottom margin'>
+            <button
+              className={
+                currentPage === 0 ? 'pagination-btn none' : 'pagination-btn'
+              }
+              onClick={() => switchPage('dec')}
+            >
+              Prev
+            </button>
+            {Array.from({ length: pageNumbers }, (_, i) => i).map(
+              (a, index) => {
+                return (
+                  <button
+                    className={
+                      index === currentPage
+                        ? 'number-pagination-btn actived'
+                        : 'number-pagination-btn'
+                    }
+                    onClick={() => setCurrentPage(index)}
+                  >
+                    {index + 1}
+                  </button>
+                );
+              }
+            )}
+            <button
+              className={
+                currentPage === pageNumbers - 1
+                  ? 'pagination-btn none'
+                  : 'pagination-btn'
+              }
+              onClick={() => {
+                switchPage('inc');
+              }}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>

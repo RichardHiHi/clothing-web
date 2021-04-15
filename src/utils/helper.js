@@ -9,8 +9,6 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 export const getProduct = async (set, filter) => {
   const res = await base('product').select({}).firstPage();
   const resColor = await base('productColorImg').select({}).firstPage();
-  console.log(res);
-
   // console.log(
   //   res.map((e) => {
   //     const newColorImg = e.fields.colorImg.map((color) => {
@@ -32,12 +30,9 @@ export const getLinkApi = (table) => {
   return `https://api.airtable.com/v0/${process.env.REACT_APP_BASIC_KEY}/${table}?api_key=${process.env.REACT_APP_PERSON_KEY}`;
 };
 export const fetchData = async (table, set, sizeImg = 'large') => {
-  const res = await fetch(
-    `https://api.airtable.com/v0/${process.env.REACT_APP_BASIC_KEY}/${table}?api_key=${process.env.REACT_APP_PERSON_KEY}`
-  );
-  const data = await res.json();
+  const res = await base(table).select({}).firstPage();
   set(
-    data.records.map((record) => {
+    res.map((record) => {
       return {
         ...record.fields,
         img: record.fields.img[0].thumbnails[sizeImg].url,
@@ -45,6 +40,7 @@ export const fetchData = async (table, set, sizeImg = 'large') => {
       };
     })
   );
+  return res.length;
 };
 
 //format price
