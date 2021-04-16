@@ -4,7 +4,6 @@ import { fetchData, NextArrow, PrevArrow } from '../../utils/helper';
 import Slider from 'react-slick';
 import './blogPage.scss';
 import Grid from '@material-ui/core/Grid';
-import { Pagination } from '../../components';
 import LoadingImg from '../../components/loadding-img/LoaddingImg';
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -139,7 +138,7 @@ const BlogPage = () => {
                     .map((blog, index) => {
                       return (
                         <Grid item xs={12} sm={6}>
-                          <BlogItem blog={blog} />
+                          <BlogItem blog={blog} hideContent={true} />
                         </Grid>
                       );
                     })}

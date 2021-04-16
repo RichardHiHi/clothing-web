@@ -1,7 +1,7 @@
 import React from 'react';
 import './blogItem.scss';
 import LoadingImg from '../loadding-img/LoaddingImg';
-const BlogItem = ({ blog }) => {
+const BlogItem = ({ blog, hideContent }) => {
   if (blog) {
     return (
       <article className='blog-slide padding' key={blog.id}>
@@ -25,9 +25,11 @@ const BlogItem = ({ blog }) => {
             </span>
           </span>
         </div>
-        <div className='post-content'>
-          <span>{blog.content}</span>
-        </div>
+        {!hideContent && (
+          <div className='post-content'>
+            <span>{blog.content}</span>
+          </div>
+        )}
       </article>
     );
   }

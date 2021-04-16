@@ -4,13 +4,21 @@ import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import { getProduct } from '../../utils/helper';
 import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
+import { useProductContext } from '../../context/product_context';
+
 const Trending = () => {
-  const [trending, setTrending] = useState([]);
+  const {
+    trendingProducts: trending,
+    productsLoading: loading,
+  } = useProductContext();
+  console.log(loading);
+
+  // const [trending, setTrending] = useState([]);
   const [number, setNumber] = useState(8);
-  useEffect(() => {
-    // setTrending(getProduct());
-    getProduct(setTrending, 'trending');
-  }, []);
+  // useEffect(() => {
+  //   // setTrending(getProduct());
+  //   getProduct(setTrending, 'trending');
+  // }, []);
   return (
     <div className='trending-section'>
       <div className='trending-container section-container'>
@@ -22,7 +30,7 @@ const Trending = () => {
             <span>Top view in this week</span>
           </div>
           <div className='trending-product-wrapper'>
-            {trending.length === 0 ? (
+            {loading ? (
               <Grid container className='section-grid-content-wrapper'>
                 {Array.from({ length: 4 }, (_, i) => i).map(
                   (product, index) => {
