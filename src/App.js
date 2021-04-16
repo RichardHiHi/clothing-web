@@ -1,7 +1,6 @@
 import React from 'react';
 import './sassStyles/global.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-// import firebase from './firebase';
 import {
   Navbar,
   SideBar,
@@ -23,9 +22,11 @@ function App() {
       <LoginMini />
       <CartMini />
       <Switch>
-        <Route path='/'>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
+        <Route path='/blog'>
           <BlogPage />
-          {/* <HomePage /> */}
         </Route>
       </Switch>
       <Footer />

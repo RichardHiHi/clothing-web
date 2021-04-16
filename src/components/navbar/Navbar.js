@@ -5,6 +5,7 @@ import logo from '../../assets/logo.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
 import SearchMini from '../searchMini/SearchMini';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   const { miniAction } = useButtonContext();
   useEffect(() => {
@@ -29,17 +30,17 @@ const Navbar = () => {
           >
             <ReorderIcon style={{ fontSize: 30 }} />
           </button>
-          <a href='#' className='nav-logo'>
+          <Link to='/' className='nav-logo'>
             <img src={logo} alt='' />
-          </a>
+          </Link>
         </div>
         <div className='nav-links-wrapper'>
-          <a href='#' className='nav-logo'>
+          <Link to='/' className='nav-logo'>
             <img src={logo} alt='' />
-          </a>
+          </Link>
           <ul className='nav-links'>
             <li>
-              <a href='#'>Home</a>
+              <Link to='/'>Home</Link>
             </li>
             <li>
               <a href='#'>Products</a>
@@ -62,7 +63,7 @@ const Navbar = () => {
               <a href='#'>About</a>
             </li>
             <li>
-              <a href='#'>Blog</a>
+              <Link to='/blog'>Blog</Link>
             </li>
           </ul>
         </div>

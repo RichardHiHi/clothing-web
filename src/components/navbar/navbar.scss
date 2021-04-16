@@ -45,7 +45,7 @@
 }
 .nav-links {
   margin: 0px;
-  height: 100%;
+  // height: 100%;
   display: flex;
   justify-content: center;
   & > li {
@@ -54,44 +54,45 @@
     line-height: 74px;
     list-style: none;
     & > a {
-      padding: 0 17.5px;
+      position: relative;
+      padding: 28px 17.5px;
       font-size: 1.8rem;
       font-weight: 400;
       color: $letterColor;
-    }
-    &:hover {
+      &:hover {
+        color: $lightLetterColor;
+      }
+      &:hover {
+        &::after,
+        &::before {
+          opacity: 1;
+          width: 50%;
+        }
+        cursor: pointer;
+      }
+      &::before {
+        right: 50%;
+      }
+      &::after {
+        left: 50%;
+      }
       &::after,
       &::before {
-        opacity: 1;
-        width: 50%;
+        content: '';
+        position: absolute;
+        bottom: 20px;
+        width: 0;
+        margin: 5px 0 0;
+        height: 2px;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        background-color: $lightLetterColor;
       }
-      cursor: pointer;
     }
-    &:hover > a {
-      color: $hoverColor;
-    }
-    &:hover > ul {
+    &:hover .sub-menu {
       opacity: 1;
       visibility: visible;
       @include transform(translateY(0));
-    }
-    &::before {
-      right: 50%;
-    }
-    &::after {
-      left: 50%;
-    }
-    &::after,
-    &::before {
-      content: '';
-      bottom: 20px;
-      width: 0;
-      margin: 5px 0 0;
-      height: 2px;
-      position: absolute;
-      transition: all 0.3s ease-in-out;
-      opacity: 0;
-      background-color: $lightLetterColor;
     }
   }
   a {
@@ -100,18 +101,18 @@
   }
 }
 .sub-menu {
+  opacity: 0;
   visibility: hidden;
-  top: 100%;
+  top: 97%;
   left: 0;
   padding: 10px 0px;
   max-height: 75vh;
   overflow-y: auto;
   background-color: $whiteColor;
   position: absolute;
-  box-shadow: 0px 0px 10px rgb(146, 144, 144);
+  box-shadow: inset 0 0 0 1px #eaeaea, 0 5px 20px rgba(0, 0, 0, 0.179);
   min-width: 260px;
   @include transform(translateY(15px));
-  opacity: 0;
   transition: all 0.3s ease-in-out;
   padding: 0;
   li {

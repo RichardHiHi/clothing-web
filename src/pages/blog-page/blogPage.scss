@@ -45,36 +45,39 @@
 }
 .section-container {
   .section-content-wrapper {
-    display: flex;
-    justify-content: center;
-    &.bottom {
-      border-top: $borderBottomColor;
-    }
-    padding-top: 30px;
-    &.margin {
-      margin-bottom: 150px;
-    }
-    button {
-      outline: none;
-      border: none;
-      margin-left: 12px;
-      background-color: $whiteColor;
-      @include font-size-weight(1.7rem, 300);
-      @include transition(color 0.3s);
-      &:hover {
-        cursor: pointer;
-        color: red;
+    &.center {
+      display: flex;
+      justify-content: center;
+      &.bottom {
+        border-top: $borderColordark;
       }
-    }
-    .pagination-btn {
-      &.none {
-        display: none;
+      padding-top: 40px;
+      &.margin {
+        margin-bottom: 150px;
       }
-    }
-    .number-pagination-btn {
-      &.actived {
-        color: red;
-        pointer-events: none;
+      button {
+        outline: none;
+        border: none;
+        margin-left: 20px;
+        background-color: $whiteColor;
+        @include font-size-weight(1.7rem, 300);
+        @include transition(color 0.3s);
+        color: darken($lightLetterColor, 30%);
+        &:hover {
+          cursor: pointer;
+          color: red;
+        }
+      }
+      .pagination-btn {
+        &.none {
+          display: none;
+        }
+      }
+      .number-pagination-btn {
+        &.actived {
+          color: red;
+          pointer-events: none;
+        }
       }
     }
   }

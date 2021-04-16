@@ -4,7 +4,8 @@ import { fetchData, NextArrow, PrevArrow } from '../../utils/helper';
 import Slider from 'react-slick';
 import './blogPage.scss';
 import Grid from '@material-ui/core/Grid';
-
+import { Pagination } from '../../components';
+import LoadingImg from '../../components/loadding-img/LoaddingImg';
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -47,6 +48,46 @@ const BlogPage = () => {
       },
     ],
   };
+  if (blogs.length === 0) {
+    return (
+      <>
+        <div className='insta-section margin'>
+          <div className='insta-container section-content-wrapper none-margin'>
+            <Slider {...settingsBlog}>
+              {Array.from({ length: 3 }, (_, i) => i).map((blog) => {
+                return (
+                  <article className='blog-slide position' key={blog.id}>
+                    <a href='#'>
+                      <LoadingImg classImg={'img-blog'} />
+                    </a>
+                  </article>
+                );
+              })}
+            </Slider>
+          </div>
+        </div>
+        <div className='sale-section'>
+          <div className='sale-container section-container'>
+            <div className='sale-wrapper section-content-wrapper'>
+              <div className='sale-product-wrapper'>
+                <Grid container className='section-grid-content-wrapper'>
+                  {Array.from({ length: blogPerPage }, (_, i) => i).map(
+                    (blog, index) => {
+                      return (
+                        <Grid item xs={12} sm={6}>
+                          <BlogItem />
+                        </Grid>
+                      );
+                    }
+                  )}
+                </Grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div className='insta-section margin'>
@@ -110,7 +151,7 @@ const BlogPage = () => {
       </div>
       <div className='pagination'>
         <div className='section-container'>
-          <div className='section-content-wrapper bottom margin'>
+          <div className='section-content-wrapper bottom margin center'>
             <button
               className={
                 currentPage === 0 ? 'pagination-btn none' : 'pagination-btn'
@@ -137,7 +178,7 @@ const BlogPage = () => {
             )}
             <button
               className={
-                currentPage === pageNumbers - 1
+                currentPage === pageNumbers - 1 || blogs.length === 0
                   ? 'pagination-btn none'
                   : 'pagination-btn'
               }
