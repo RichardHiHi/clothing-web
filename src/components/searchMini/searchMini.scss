@@ -95,7 +95,7 @@
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  @include scroll-bar;
+  @include scroll-bar(12px);
   .result-content {
     @include animationTransform(0.6s);
     top: 0;

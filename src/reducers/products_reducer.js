@@ -7,20 +7,26 @@ import {
 const products_reducer = (state, action) => {
   if (action.type === GET_PRODUCTS_SUCCESS) {
     const products = action.payload.products;
-    const trendingProduct = products.filter((product) => product.trending);
+    const trendingProducts = products.filter((product) => product.trending);
+    const sale = products.filter((product) => product.onSale);
+    const category = products.reduce((acc, cur) => {
+      return acc.concat(cur.category);
+    }, []);
+    const uniqueCategory = [...new Set(category)];
     return {
       ...state,
       productsError: false,
       productsLoading: false,
       products: action.payload.products,
-      trendingProducts: trendingProduct,
+      trendingProducts: trendingProducts,
+      saleProducts: sale,
+      category: uniqueCategory,
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {
     return { ...state, productsError: true };
   }
   if (action.type === GET_PRODUCTS_BEGIN) {
-    console.log(123);
     return { ...state, productsLoading: true };
   }
 

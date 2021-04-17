@@ -11,14 +11,9 @@ const Trending = () => {
     trendingProducts: trending,
     productsLoading: loading,
   } = useProductContext();
-  console.log(loading);
 
-  // const [trending, setTrending] = useState([]);
   const [number, setNumber] = useState(8);
-  // useEffect(() => {
-  //   // setTrending(getProduct());
-  //   getProduct(setTrending, 'trending');
-  // }, []);
+
   return (
     <div className='trending-section'>
       <div className='trending-container section-container'>

@@ -4,12 +4,10 @@ import './sale.scss';
 import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
+import { useProductContext } from '../../context/product_context';
 
 const Sale = () => {
-  const [sale, setSale] = useState([]);
-  useEffect(() => {
-    getProduct(setSale, 'onSale');
-  });
+  const { saleProducts: sale, productsLoading: loading } = useProductContext();
   return (
     <div className='sale-section'>
       <div className='sale-container section-container'>
@@ -21,7 +19,7 @@ const Sale = () => {
             <span>Top sale in this week</span>
           </div>
           <div className='sale-product-wrapper'>
-            {sale.length === 0 ? (
+            {loading ? (
               <Grid container className='section-grid-content-wrapper'>
                 {Array.from({ length: 4 }, (_, i) => i).map(
                   (product, index) => {

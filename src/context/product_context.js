@@ -12,6 +12,7 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 );
 
 const initialState = {
+  category: [],
   products: [],
   productsLoading: false,
   productsError: false,
@@ -22,7 +23,6 @@ const initialState = {
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const getProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {

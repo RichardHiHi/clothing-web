@@ -4,11 +4,26 @@ import NavButton from '../navButton/Navbutton';
 import logo from '../../assets/logo.svg';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
-import SearchMini from '../searchMini/SearchMini';
 import { Link } from 'react-router-dom';
+import { useProductContext } from '../../context/product_context';
+import Grid from '@material-ui/core/Grid';
+import wowmen2 from '../../assets/wowmen2.jpg';
+import men from '../../assets/men.jpg';
+import Slider from 'react-slick';
+import { NextArrow, PrevArrow } from '../../utils/helper';
+import ProductMiniItem from '../product-mini-item/ProductMiniItem';
+
 const Navbar = () => {
   const { miniAction } = useButtonContext();
+  const { category } = useProductContext();
+  const { saleProducts: sale } = useProductContext();
+
   useEffect(() => {
+    document
+      .querySelector('.sub-menu-slider-wrapper')
+      .addEventListener('mousedown', (e) => {
+        e.preventDefault();
+      });
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
       var currentScrollPos = window.pageYOffset;
@@ -20,6 +35,25 @@ const Navbar = () => {
       prevScrollpos = currentScrollPos;
     };
   });
+  var settingSlide = {
+    speed: 600,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    infinite: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 0,
+        },
+      },
+    ],
+  };
   return (
     <div className='nav'>
       <div className='navbar'>
@@ -44,20 +78,81 @@ const Navbar = () => {
             </li>
             <li>
               <a href='#'>Products</a>
-              <ul className='sub-menu'>
-                <li>
-                  <a href='#'>quần áo</a>
-                </li>
-                <li>
-                  <a href='#'>giày</a>
-                </li>
-                <li>
-                  <a href='#'>nhẫn</a>
-                </li>
-              </ul>
+              <div className='sub-menu-wrapper'>
+                <Grid container>
+                  <Grid item sm={4}>
+                    <a href='#' className='submenu-img-wrapper margin-left'>
+                      <div
+                        className='submenu-img'
+                        style={{
+                          backgroundImage: `url(${wowmen2})`,
+                        }}
+                      ></div>
+                      <button className='submenu-img-btn'>Wowmen</button>
+                    </a>
+                  </Grid>
+                  <Grid item sm={4}>
+                    <a href='#' className='submenu-img-wrapper'>
+                      <div
+                        className='submenu-img'
+                        style={{
+                          backgroundImage: `url(${men})`,
+                        }}
+                      ></div>
+                      <button className='submenu-img-btn'>Men</button>
+                    </a>
+                  </Grid>
+                  <Grid container item sm={4}>
+                    <Grid item sm={12}>
+                      <div className='sub-menu-title-wrapper'>
+                        <h3 className='sub-menu-title'>Category</h3>
+                      </div>
+                    </Grid>
+                    <Grid item sm={12}>
+                      <ul className='sub-menu small-width '>
+                        {category.map((category) => {
+                          return (
+                            <li>
+                              <a href='#'>{category}</a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </div>
             </li>
             <li>
-              <a href='#'>Sale</a>
+              <a href='#' style={{ color: 'red' }}>
+                Sale
+              </a>
+              <div className='sub-menu-wrapper submenu-slide'>
+                <Grid container>
+                  <Grid item sm={2}>
+                    <div className='sub-menu-slider-menu-wrapper'>
+                      <ul className='sub-menu text-align '>
+                        {category.slice(0, 5).map((category) => {
+                          return (
+                            <li>
+                              <a href='#'>{category}</a>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </Grid>
+                  <Grid item sm={10}>
+                    <div className='sub-menu-slider-wrapper '>
+                      <Slider {...settingSlide}>
+                        {sale.map((product) => {
+                          return <ProductMiniItem product={product} />;
+                        })}
+                      </Slider>
+                    </div>
+                  </Grid>
+                </Grid>
+              </div>
             </li>
             <li>
               <a href='#'>About</a>
