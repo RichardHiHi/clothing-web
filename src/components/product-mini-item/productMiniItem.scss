@@ -221,6 +221,7 @@
   margin-top: 10px;
   .mini-product-title {
     a {
+      text-decoration: none;
       @include user-select(none);
       color: $letterColor;
       @include font-size-weight(1.2rem, 500);

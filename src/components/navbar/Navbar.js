@@ -77,7 +77,7 @@ const Navbar = () => {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <a href='#'>Products</a>
+              <a href='/products'>Products</a>
               <div className='sub-menu-wrapper'>
                 <Grid container>
                   <Grid item sm={4}>

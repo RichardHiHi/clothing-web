@@ -10,7 +10,7 @@ import {
   CartMini,
   Footer,
 } from './components';
-import { HomePage, BlogPage, AboutPage } from './pages';
+import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
 
 function App() {
   return (
@@ -30,6 +30,9 @@ function App() {
         </Route>
         <Route path='/about'>
           <AboutPage />
+        </Route>
+        <Route path='/products'>
+          <ProductsPage />
         </Route>
       </Switch>
       <Footer />

@@ -14,6 +14,8 @@ import Instagram from './instagram/Instagram';
 import Trending from './trending/Trending';
 import Sale from './sale/Sale';
 import BlogItem from '../components/blog-item/BlogItem';
+import ProductsCategory from './products-category/ProductsCategory';
+import FilterProduct from './filter-products/FilterProduct';
 export {
   Navbar,
   NavButton,
@@ -31,4 +33,6 @@ export {
   Trending,
   Sale,
   BlogItem,
+  ProductsCategory,
+  FilterProduct,
 };
