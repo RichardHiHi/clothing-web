@@ -7,7 +7,7 @@ import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 
 const ProductMiniItem = ({ product }) => {
-  const { colorImg, size, onNew, onSale, name, price } = product;
+  const { colorImg, size, onNew, onSale, name, price, stock } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
 
@@ -73,6 +73,11 @@ const ProductMiniItem = ({ product }) => {
         {onSale && (
           <span className='onSale-lable'>
             <span>-{onSale * 100}%</span>
+          </span>
+        )}
+        {stock === 0 && (
+          <span className='out-of-stock-lable'>
+            <span>Sold out</span>
           </span>
         )}
       </span>
