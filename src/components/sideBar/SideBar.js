@@ -4,10 +4,11 @@ import { useButtonContext } from '../../context/button_context';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-
+import { useProductContext } from '../../context/product_context';
 const SideBar = () => {
   const [test, setTest] = useState('menu');
   const { isSideBarOpen, miniAction } = useButtonContext();
+  const { category } = useProductContext();
   return (
     <div className={isSideBarOpen ? 'sidebar sidebar-openned' : 'sidebar '}>
       <div
@@ -27,6 +28,36 @@ const SideBar = () => {
       </div>
 
       <ul className={test === 'menu' ? 'sidebar-list' : 'sidebar-list active'}>
+        {category.map((item, index) => {
+          return (
+            <li key={index}>
+              <a href='#'>{item}</a>
+            </li>
+          );
+        })}
+
+        <li>
+          <a href=''>
+            <FavoriteBorderOutlinedIcon />
+            Wishst
+          </a>
+        </li>
+        <li>
+          <a href=''>
+            <SearchOutlinedIcon />
+            Sech
+          </a>
+        </li>
+        <li>
+          <a href=''>
+            <PersonOutlineOutlinedIcon />
+            Logiregister
+          </a>
+        </li>
+      </ul>
+      <ul
+        className={test === 'category' ? 'sidebar-list' : 'sidebar-list active'}
+      >
         <li>
           <a href=''>Home</a>
         </li>
@@ -37,10 +68,10 @@ const SideBar = () => {
           <a href=''>Sale</a>
         </li>
         <li>
-          <a href=''>About</a>
+          <a href='/about'>About</a>
         </li>
         <li>
-          <a href=''>Blog</a>
+          <a href='/blog'>Blog</a>
         </li>
         <li>
           <a href=''>
@@ -58,37 +89,6 @@ const SideBar = () => {
           <a href=''>
             <PersonOutlineOutlinedIcon />
             Login/register
-          </a>
-        </li>
-      </ul>
-      <ul
-        className={test === 'category' ? 'sidebar-list' : 'sidebar-list active'}
-      >
-        <li>
-          <a href=''>Bgfsfasd</a>
-        </li>
-        <li>
-          <a href=''>Bgfsfasd</a>
-        </li>
-        <li>
-          <a href=''>Bgfsfasd</a>
-        </li>
-        <li>
-          <a href=''>
-            <FavoriteBorderOutlinedIcon />
-            Wishst
-          </a>
-        </li>
-        <li>
-          <a href=''>
-            <SearchOutlinedIcon />
-            Sech
-          </a>
-        </li>
-        <li>
-          <a href=''>
-            <PersonOutlineOutlinedIcon />
-            Logiregister
           </a>
         </li>
       </ul>

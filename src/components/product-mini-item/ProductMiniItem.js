@@ -10,6 +10,7 @@ const ProductMiniItem = ({ product }) => {
   const { colorImg, size, onNew, onSale, name, price } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
+
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>

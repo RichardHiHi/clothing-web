@@ -102,23 +102,16 @@ const Navbar = () => {
                       <button className='submenu-img-btn'>Men</button>
                     </a>
                   </Grid>
-                  <Grid container item sm={4}>
-                    <Grid item sm={12}>
-                      <div className='sub-menu-title-wrapper'>
-                        <h3 className='sub-menu-title'>Category</h3>
-                      </div>
-                    </Grid>
-                    <Grid item sm={12}>
-                      <ul className='sub-menu small-width '>
-                        {category.map((category) => {
-                          return (
-                            <li>
-                              <a href='#'>{category}</a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </Grid>
+                  <Grid item sm={4}>
+                    <ul className='sub-menu small-width '>
+                      {category.map((category) => {
+                        return (
+                          <li>
+                            <a href='#'>{category}</a>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </Grid>
                 </Grid>
               </div>

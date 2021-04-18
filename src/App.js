@@ -10,7 +10,7 @@ import {
   CartMini,
   Footer,
 } from './components';
-import { HomePage, BlogPage } from './pages';
+import { HomePage, BlogPage, AboutPage } from './pages';
 
 function App() {
   return (
@@ -27,6 +27,9 @@ function App() {
         </Route>
         <Route path='/blog'>
           <BlogPage />
+        </Route>
+        <Route path='/about'>
+          <AboutPage />
         </Route>
       </Switch>
       <Footer />

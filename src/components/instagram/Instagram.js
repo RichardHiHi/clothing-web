@@ -9,6 +9,11 @@ import { getLinkApi } from '../../utils/helper';
 const Instagram = () => {
   const [instas, setInstas] = useState([]);
   useEffect(() => {
+    document
+      .querySelector('.insta-section')
+      .addEventListener('mousedown', (e) => {
+        e.preventDefault();
+      });
     const fetchData = async () => {
       const res = await fetch(getLinkApi('instagram'));
       const resLink = await fetch(getLinkApi('instagramLinking'));
