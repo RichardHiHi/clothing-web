@@ -30,10 +30,10 @@ const FilterProduct = () => {
             </div>
           </div>
           <Grid container>
-            <Grid item lg={4}>
+            <Grid item lg={2}>
               <Filter />
             </Grid>
-            <Grid item md={12} lg={8}>
+            <Grid item lg={10}>
               2
             </Grid>
           </Grid>

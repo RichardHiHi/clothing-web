@@ -3,7 +3,7 @@
 
 .filter-wrapper {
   .filter-title {
-    h3 {
+    h5 {
       @include font-size-weight(1.9rem, 500);
       color: $letterColor;
       position: relative;
@@ -17,7 +17,54 @@
         left: 0;
       }
     }
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+  margin-bottom: 50px;
+}
+//list items
+.filter-list {
+  padding: 0;
+  list-style: none;
+  .filter-item {
+  }
+}
+//btn color
+.filter-color-btn {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  .filter-color {
+    margin-right: 5px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    position: relative;
+    &:after {
+      content: '';
+      background-image: url('../../assets/check1.png');
+      @include background-img;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      border-radius: 20px;
+      height: 20px;
+    }
+  }
+  .filter-color-name {
+    @include font-size-weight(1.5rem, 500);
+    color: $letterColor;
+    @include transition(all 0.3s);
+  }
+  &:hover {
+    cursor: pointer;
+    .filter-color-name {
+      color: $hoverColor;
+    }
   }
 }
 
