@@ -14,6 +14,8 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 const initialState = {
   category: [],
   products: [],
+  color: [],
+  size: [],
   productsLoading: false,
   productsError: false,
   singleProduct: {},
@@ -34,7 +36,6 @@ export const ProductProvider = ({ children }) => {
         });
         return { ...e.fields, colorImg: newColorImg, id: e.id };
       });
-
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });

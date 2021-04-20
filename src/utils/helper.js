@@ -66,3 +66,18 @@ export const PrevArrow = ({ onClick }) => {
     </div>
   );
 };
+// get unique array
+export const getUnique = (products, value) => {
+  // value is that you want to filter
+  return [
+    ...new Set(
+      products.reduce((acc, cur) => {
+        return acc.concat(cur[value]);
+      }, [])
+    ),
+  ];
+};
+// get unique obj in array
+export const getUniqueObj = (array, value) => {
+  return [...new Map(array.map((item) => [item[value], item])).values()];
+};

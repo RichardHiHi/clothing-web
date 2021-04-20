@@ -25,11 +25,25 @@
 .filter-list {
   padding: 0;
   list-style: none;
+  height: 200px;
+  overflow-y: auto;
+  @include scroll-bar(2px);
   .filter-item {
+    margin-bottom: 18px;
   }
 }
 //btn color
 .filter-color-btn {
+  &.actived {
+    .filter-color {
+      &:after {
+        display: block;
+      }
+      &::before {
+        border: 1px solid rgba(103, 102, 102, 0.509);
+      }
+    }
+  }
   border: none;
   outline: none;
   background-color: transparent;
@@ -37,28 +51,43 @@
   display: flex;
   align-items: center;
   .filter-color {
-    margin-right: 5px;
+    margin-right: 10px;
     display: block;
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
+    width: 23px;
+    height: 23px;
+    border-radius: 23px;
     position: relative;
+    border: $borderColor;
     &:after {
+      display: none;
       content: '';
-      background-image: url('../../assets/check1.png');
+      background-image: url('../../assets/check3.png');
       @include background-img;
       position: absolute;
       top: 0;
-      left: 0;
-      width: 20px;
-      border-radius: 20px;
-      height: 20px;
+      left: -1px;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      padding: 2px;
+      border-radius: 100px;
     }
   }
   .filter-color-name {
     @include font-size-weight(1.5rem, 500);
     color: $letterColor;
     @include transition(all 0.3s);
+  }
+  &:hover .filter-color::before {
+    border: 1px solid rgba(103, 102, 102, 0.509);
   }
   &:hover {
     cursor: pointer;
@@ -67,7 +96,6 @@
     }
   }
 }
-
 .search-filter-wrapper {
   input {
     border-radius: 20px;
@@ -81,5 +109,62 @@
     &::placeholder {
       color: $letterColor;
     }
+  }
+}
+//checkfilter
+.filter-size-btn {
+  &.actived {
+    .filter-size-title {
+      color: $hoverColor;
+    }
+    .filter-size-check {
+      background-color: $hoverColor;
+      border: none;
+      &:after {
+        display: block;
+      }
+    }
+  }
+  background-color: transparent;
+  outline: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  .filter-size-check {
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(36, 36, 36, 0.365);
+    position: relative;
+    &:after {
+      display: none;
+      content: '';
+      background-image: url('../../assets/check3.png');
+      @include background-img;
+      position: absolute;
+      top: 0;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+    }
+  }
+  .filter-size-title {
+    color: $letterColor;
+    @include font-size-weight(1.4rem, 500);
+    @include transition(color 0.3s);
+  }
+  &:hover {
+    cursor: pointer;
+    .filter-size-title {
+      color: $hoverColor;
+    }
+  }
+}
+.price-filter-wrapper {
+  .filter-price {
+    color: $letterColor;
+    @include font-size-weight(1.4rem, 400);
+    margin-bottom: 5px;
   }
 }

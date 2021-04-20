@@ -1,6 +1,8 @@
 import React from 'react';
 import './filter.scss';
+import { useProductContext } from '../../context/product_context';
 const Filter = () => {
+  const { color, size } = useProductContext();
   return (
     <form>
       <div className='search-filter-wrapper filter-wrapper'>
@@ -26,15 +28,40 @@ const Filter = () => {
           <h5>Filter by color</h5>
         </div>
         <ul className='filter-list'>
-          <li className='filter-item'>
-            <button className='filter-color-btn'>
-              <span
-                className='filter-color'
-                style={{ backgroundColor: `#000000` }}
-              ></span>
-              <span className='filter-color-name'>black</span>
-            </button>
-          </li>
+          {color.map((item, index) => {
+            return (
+              <li className='filter-item' key={index}>
+                <button className='filter-color-btn'>
+                  {/* '.actived' for active */}
+                  <span
+                    className='filter-color'
+                    style={{ backgroundColor: `${item.colorCode}` }}
+                  ></span>
+                  <span className='filter-color-name'>{item.colorName}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      <div className='search-filter-wrapper filter-wrapper'>
+        <div className='filter-title'>
+          <h5>Filter by size</h5>
+        </div>
+        <ul className='filter-list'>
+          {size.map((item, index) => {
+            if (item) {
+              return (
+                <li className='filter-item'>
+                  <button className='filter-size-btn '>
+                    {/* '.actived' for active */}
+                    <span className='filter-size-check'></span>
+                    <span className='filter-size-title'>{item}</span>
+                  </button>
+                </li>
+              );
+            }
+          })}
         </ul>
       </div>
     </form>
