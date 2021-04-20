@@ -9,6 +9,8 @@ import {
   LoginMini,
   CartMini,
   Footer,
+  FilterMini,
+  SortMini,
 } from './components';
 import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
 
@@ -21,6 +23,8 @@ function App() {
       <SearchMini />
       <LoginMini />
       <CartMini />
+      <FilterMini />
+      <SortMini />
       <Switch>
         <Route exact path='/'>
           <HomePage />

@@ -17,6 +17,12 @@
   visibility: visible;
 }
 .btn-close {
+  &.left-of-filter-mini {
+    left: 300px;
+  }
+  &.left-of-sort-mini {
+    right: 310px;
+  }
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   outline: none;

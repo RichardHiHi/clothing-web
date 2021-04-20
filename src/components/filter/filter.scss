@@ -2,6 +2,9 @@
 @import '../../sassStyles/mixin.scss';
 
 .filter-wrapper {
+  &.margin {
+    margin-bottom: 10px;
+  }
   .filter-title {
     h5 {
       @include font-size-weight(1.9rem, 500);
@@ -98,16 +101,20 @@
 }
 .search-filter-wrapper {
   input {
-    border-radius: 20px;
+    // border-radius: 20px;
     outline: none;
     border: $borderColordark;
     padding: 0 30px 0 15px;
     width: 100%;
     height: 40px;
-    border: $borderColor;
+    border: 1px solid $lightLetterColor;
     font-size: 1.5rem;
+    @include transform(translateX(-5px));
     &::placeholder {
       color: $letterColor;
+    }
+    &:focus {
+      border: 1px solid $letterColor;
     }
   }
 }

@@ -62,7 +62,7 @@ const SideBar = () => {
           <a href=''>Home</a>
         </li>
         <li>
-          <a href=''>Product</a>
+          <a href='/Products'>Products</a>
         </li>
         <li>
           <a href=''>Sale</a>

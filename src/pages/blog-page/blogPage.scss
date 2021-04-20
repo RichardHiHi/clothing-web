@@ -59,7 +59,7 @@
       button {
         outline: none;
         border: none;
-        margin-left: 20px;
+        margin: 0 10px;
         background-color: $whiteColor;
         @include font-size-weight(1.7rem, 300);
         @include transition(color 0.3s);

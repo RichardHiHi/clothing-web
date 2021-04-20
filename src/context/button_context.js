@@ -7,6 +7,8 @@ const initialState = {
   isMiniSearchOpen: false,
   isMiniLoginOpen: false,
   isMiniCartOpen: false,
+  isFilterMiniOpen: false,
+  isSortMiniOpen: false,
 };
 
 export const ButtonProvider = ({ children }) => {

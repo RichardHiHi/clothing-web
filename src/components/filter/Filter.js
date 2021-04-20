@@ -5,16 +5,8 @@ const Filter = () => {
   const { color, size } = useProductContext();
   return (
     <form>
-      <div className='search-filter-wrapper filter-wrapper'>
-        <div className='filter-title'>
-          <h5>Filter by name</h5>
-        </div>
-        <input
-          class='input'
-          type='text'
-          name='q'
-          placeholder='Search for products'
-        />
+      <div className='search-filter-wrapper filter-wrapper margin'>
+        <input class='input' type='text' name='q' placeholder='Search...' />
       </div>
       <div className='price-filter-wrapper filter-wrapper'>
         <div className='filter-title'>

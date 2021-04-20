@@ -5,14 +5,24 @@ import Filter from '../filter/Filter';
 import { useProductContext } from '../../context/product_context';
 import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
+import { useButtonContext } from '../../context/button_context';
+import SortIcon from '@material-ui/icons/Sort';
+
 const FilterProduct = () => {
   const { products } = useProductContext();
+
   const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [productPerPage, setProductPerpage] = useState(8);
-  const [pageNumbers, setPageNumbers] = useState(
-    Math.round(products.length / productPerPage)
-  );
+  const [pageNumbers, setPageNumbers] = useState(0);
+
+  const { miniAction } = useButtonContext();
+  const actionOpenFilterMini = () => {
+    miniAction('open', 'FilterMini');
+  };
+  const actionOpenSortMini = () => {
+    miniAction('open', 'SortMini');
+  };
   const switchPage = (value) => {
     if (value === 'inc') {
       setCurrentPage((oldpage) => oldpage + 1);
@@ -20,12 +30,15 @@ const FilterProduct = () => {
       setCurrentPage((oldpage) => oldpage - 1);
     }
   };
+  useEffect(() => {
+    setPageNumbers(Math.round(products.length / productPerPage));
+  }, [products]);
   return (
     <div className='filter-and-product-section'>
       <div className='filter-and-product-container section-container'>
         <div className='filter-and-product-wrapper section-content-wrapper'>
           <div className='filter-and-product-header'>
-            <div className='filter-btn'>
+            <div className='filter-btn' onClick={actionOpenFilterMini}>
               <FilterListOutlinedIcon />
               <span>Filter</span>
             </div>
@@ -42,7 +55,11 @@ const FilterProduct = () => {
               })}
             </div>
             <div className='sort-btn-wrapper'>
-              <select name='product_type'>
+              <div className='filter-btn' onClick={actionOpenSortMini}>
+                <SortIcon />
+                <span>Sort</span>
+              </div>
+              <select className='filter-select' name='product_type'>
                 <option value='*'>Sort</option>
                 <option value='Acessories'>Best selling</option>
                 <option value='Bag'>Alphabetically, A-Z</option>
@@ -53,12 +70,17 @@ const FilterProduct = () => {
             </div>
           </div>
           <Grid container>
-            <Grid item lg={2}>
-              <Filter />
+            <Grid item xs={0} sm={0} md={2} lg={2}>
+              <div className='wrapper-filter'>
+                <Filter />
+              </div>
             </Grid>
             <Grid
               container
               item
+              xs={12}
+              sm={12}
+              md={10}
               lg={10}
               className='section-grid-content-wrapper'
             >
@@ -68,11 +90,17 @@ const FilterProduct = () => {
                   currentPage * productPerPage + productPerPage
                 )
                 .map((product) => (
-                  <Grid item lg={12 / (numberGrid + 2)}>
+                  <Grid
+                    item
+                    xs={12 / (numberGrid + 2)}
+                    sm={12 / (numberGrid + 2)}
+                    md={12 / (numberGrid + 2)}
+                    lg={12 / (numberGrid + 2)}
+                  >
                     <ProductMiniItem product={product} />
                   </Grid>
                 ))}
-              <Grid item lg={12}>
+              <Grid item xs={12} sm={12} md={12} lg={12}>
                 <div className='pagination'>
                   <div className='section-container'>
                     <div className='section-content-wrapper bottom margin center'>

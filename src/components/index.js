@@ -16,6 +16,8 @@ import Sale from './sale/Sale';
 import BlogItem from '../components/blog-item/BlogItem';
 import ProductsCategory from './products-category/ProductsCategory';
 import FilterProduct from './filter-products/FilterProduct';
+import FilterMini from './filter-mini/FilterMini';
+import SortMini from './sort-mini/SortMini';
 export {
   Navbar,
   NavButton,
@@ -35,4 +37,6 @@ export {
   BlogItem,
   ProductsCategory,
   FilterProduct,
+  FilterMini,
+  SortMini,
 };

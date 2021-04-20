@@ -17,6 +17,11 @@
   span {
     @include font-size-weight(1.5rem, 400);
   }
+  @include transition(all 0.3s);
+  &:hover {
+    color: $hoverColor;
+    cursor: pointer;
+  }
 }
 .product-view {
   display: flex;
@@ -115,6 +120,9 @@
 }
 
 .sort-btn-wrapper {
+  .filter-btn {
+    display: none;
+  }
   select {
     width: 190px;
     height: 40px;
@@ -127,6 +135,31 @@
     background-color: $whiteColor;
     &:hover {
       cursor: pointer;
+    }
+  }
+}
+@media (max-width: 960px) {
+  .product-view {
+    padding-left: 0px;
+  }
+  .wrapper-filter {
+    display: none;
+  }
+  .filter-and-product-header {
+    .sort-btn-wrapper {
+      .filter-btn {
+        display: block;
+      }
+      select {
+        display: none;
+      }
+    }
+  }
+}
+@media (min-width: 960.999px) {
+  .filter-and-product-header {
+    .filter-btn {
+      opacity: 0;
     }
   }
 }
