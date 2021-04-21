@@ -5,6 +5,7 @@ import {
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BEGIN,
 } from '../actions';
+import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
 var Airtable = require('airtable');
 var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
@@ -43,6 +44,7 @@ export const ProductProvider = ({ children }) => {
   };
   useEffect(() => {
     getProducts();
+    console.log('123');
   }, []);
   return (
     <ProductContext.Provider value={{ ...state }}>

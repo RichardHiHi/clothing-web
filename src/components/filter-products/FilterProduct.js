@@ -70,7 +70,7 @@ const FilterProduct = () => {
             </div>
           </div>
           <Grid container>
-            <Grid item xs={0} sm={0} md={2} lg={2}>
+            <Grid item xs={0} sm={0} md={3} lg={3}>
               <div className='wrapper-filter'>
                 <Filter />
               </div>
@@ -80,8 +80,8 @@ const FilterProduct = () => {
               item
               xs={12}
               sm={12}
-              md={10}
-              lg={10}
+              md={9}
+              lg={9}
               className='section-grid-content-wrapper'
             >
               {products

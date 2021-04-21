@@ -6,7 +6,7 @@
     opacity: 0;
     visibility: hidden;
   }
-  @include transition;
+  @include transition(all 0.4s);
   visibility: visible;
   opacity: 1;
   width: 100%;
