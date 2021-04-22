@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { ButtonProvider } from './context/button_context';
 import { ProductProvider } from './context/product_context';
+import { FilterProvider } from './context/filter_context';
 ReactDOM.render(
   <ProductProvider>
-    <ButtonProvider>
-      <App />
-    </ButtonProvider>
+    <FilterProvider>
+      <ButtonProvider>
+        <App />
+      </ButtonProvider>
+    </FilterProvider>
   </ProductProvider>,
   document.getElementById('root')
 );

@@ -6,16 +6,15 @@ import { useProductContext } from '../../context/product_context';
 import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import { useButtonContext } from '../../context/button_context';
+import { useFilterContext } from '../../context/filter_context';
 import SortIcon from '@material-ui/icons/Sort';
 
 const FilterProduct = () => {
-  const { products } = useProductContext();
-
+  const { filteredProducts: products, sortUpdate } = useFilterContext();
   const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [productPerPage, setProductPerpage] = useState(8);
   const [pageNumbers, setPageNumbers] = useState(0);
-
   const { miniAction } = useButtonContext();
   const actionOpenFilterMini = () => {
     miniAction('open', 'FilterMini');
@@ -31,8 +30,13 @@ const FilterProduct = () => {
     }
   };
   useEffect(() => {
-    setPageNumbers(Math.round(products.length / productPerPage));
+    if (products) {
+      setPageNumbers(Math.round(products.length / productPerPage));
+    }
   }, [products]);
+  if (!products) {
+    return <h2>Sorry, no products matched your search.</h2>;
+  }
   return (
     <div className='filter-and-product-section'>
       <div className='filter-and-product-container section-container'>
@@ -59,13 +63,15 @@ const FilterProduct = () => {
                 <SortIcon />
                 <span>Sort</span>
               </div>
-              <select className='filter-select' name='product_type'>
-                <option value='*'>Sort</option>
-                <option value='Acessories'>Best selling</option>
-                <option value='Bag'>Alphabetically, A-Z</option>
-                <option value='Camera'>Alphabetically, Z-A</option>
-                <option value='Decor'>Price, low to high</option>
-                <option value='Earphones'>Price, high to low</option>
+              <select
+                className='filter-select'
+                name='product_type'
+                onChange={sortUpdate}
+              >
+                <option value='lowest'>Price (lowest)</option>
+                <option value='highest'>Price (highest)</option>
+                <option value='A-Z'>name (A-Z)</option>
+                <option value='Z-A'>name (Z-A)</option>
               </select>
             </div>
           </div>

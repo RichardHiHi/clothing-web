@@ -77,11 +77,11 @@ const Navbar = () => {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <a href='/products'>Products</a>
+              <Link to='/products'>Products</Link>
               <div className='sub-menu-wrapper'>
                 <Grid container>
                   <Grid item sm={4}>
-                    <a href='#' className='submenu-img-wrapper margin-left'>
+                    <Link href='#' className='submenu-img-wrapper margin-left'>
                       <div
                         className='submenu-img'
                         style={{
@@ -89,7 +89,7 @@ const Navbar = () => {
                         }}
                       ></div>
                       <button className='submenu-img-btn'>Wowmen</button>
-                    </a>
+                    </Link>
                   </Grid>
                   <Grid item sm={4}>
                     <a href='#' className='submenu-img-wrapper'>
