@@ -58,6 +58,7 @@
   display: flex;
   align-items: center;
   .filter-color {
+    pointer-events: none;
     margin-right: 10px;
     display: block;
     width: 23px;
@@ -89,6 +90,7 @@
     }
   }
   .filter-color-name {
+    pointer-events: none;
     @include font-size-weight(1.5rem, 500);
     color: $letterColor;
     @include transition(all 0.3s);
@@ -184,17 +186,27 @@
   }
 }
 .category-filter-item {
-  @include font-size-weight(1.4rem, 400);
-  color: $letterColor;
-  @include transition(all 0.3s);
-  display: flex;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-    color: $hoverColor;
-  }
-  svg {
-    margin-right: 8px;
+  .category-filter-item-btn {
+    &.active {
+      cursor: pointer;
+      color: $hoverColor;
+    }
+    border: none;
+    outline: none;
+    background-color: transparent;
+    @include font-size-weight(1.5rem, 400);
+    color: $letterColor;
+    @include transition(all 0.3s);
+    display: flex;
+    align-items: center;
+    &:hover {
+      cursor: pointer;
+      color: $hoverColor;
+    }
+    svg {
+      pointer-events: none;
+      margin-right: 8px;
+    }
   }
 }
 //input range two slide

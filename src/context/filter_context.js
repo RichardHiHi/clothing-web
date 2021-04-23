@@ -21,7 +21,7 @@ const initialState = {
   filteredProducts: [],
   sortOption: 'lowest',
   filter: {
-    filterCategory: 'All',
+    category: 'All',
     search: '',
     minPrice: 0,
     maxPrice: 0,
@@ -60,12 +60,18 @@ export const FilterProvider = ({ children }) => {
   };
 
   const filterUpdate = (e) => {
-    const filterName = e;
-    console.log(filterName);
+    const filterName = e.target.name;
+    console.log(e);
     if (filterName === 'search') {
       dispatch({
         type: UPDATE_FILTER,
         payload: { name: filterName, value: e.target.value },
+      });
+    }
+    if (filterName === 'category') {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: filterName, value: e.target.dataset.category },
       });
     }
   };

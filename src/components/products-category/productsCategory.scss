@@ -14,16 +14,21 @@
     list-style: none;
     display: flex;
     .category-item {
-      &.active {
-        color: $hoverColor;
-      }
-      @include font-size-weight(1.45rem, 400);
-      padding: 14px 18px;
-      color: lighten($letterColor, 20%);
-      @include transition(color 0.3s);
-      &:hover {
-        color: $hoverColor;
-        cursor: pointer;
+      .category-item-btn {
+        &.active {
+          color: $hoverColor;
+        }
+        border: none;
+        outline: none;
+        background-color: transparent;
+        @include font-size-weight(1.45rem, 400);
+        padding: 14px 18px;
+        color: lighten($letterColor, 20%);
+        @include transition(color 0.3s);
+        &:hover {
+          color: $hoverColor;
+          cursor: pointer;
+        }
       }
     }
   }

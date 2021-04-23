@@ -10,7 +10,8 @@ const ProductCategory = () => {
     e.target.parentElement.classList.toggle('active');
   };
   const {
-    filter: { filterCategory },
+    filterUpdate,
+    filter: { category: filterCategory },
   } = useFilterContext();
   return (
     <>
@@ -20,26 +21,36 @@ const ProductCategory = () => {
           <ExpandLessIcon />
         </div>
         <ul className='category-list'>
-          <li
-            className={
-              filterCategory === 'All'
-                ? 'category-item active'
-                : 'category-item '
-            }
-          >
-            All
+          <li className='category-item'>
+            <button
+              className={
+                filterCategory === 'All'
+                  ? 'category-item-btn active'
+                  : 'category-item-btn '
+              }
+              name='category'
+              data-category='All'
+              onClick={filterUpdate}
+            >
+              All
+            </button>
           </li>
           {category.map((item, index) => {
             return (
-              <li
-                className={
-                  filterCategory === item
-                    ? 'category-item active'
-                    : 'category-item '
-                }
-                key={index}
-              >
-                {item}
+              <li className='category-item'>
+                <button
+                  className={
+                    filterCategory === item
+                      ? 'category-item-btn active'
+                      : 'category-item-btn '
+                  }
+                  name='category'
+                  key={index}
+                  data-category={item}
+                  onClick={filterUpdate}
+                >
+                  {item}
+                </button>
               </li>
             );
           })}

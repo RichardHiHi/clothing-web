@@ -109,11 +109,13 @@ const button_reducer = (state, action) => {
         return product.name.toLowerCase().startsWith(search);
       });
     }
-    // if (category !== 'All') {
-    //   tempfilterProduct = tempfilterProduct.filter((product) => {
-    //     product.category.some((item) => item === category);
-    //   });
-    // }
+    if (category !== 'All') {
+      tempfilterProduct = tempfilterProduct.filter((product) => {
+        return product.category.find((item) => {
+          return item === category;
+        });
+      });
+    }
     return {
       ...state,
       filteredProducts: tempfilterProduct,

@@ -8,13 +8,19 @@ const Filter = () => {
     color,
     size,
     category,
-    filter: { minPrice, maxPrice, currentMinPrice, currentMaxPrice },
+    filter: {
+      minPrice,
+      maxPrice,
+      currentMinPrice,
+      currentMaxPrice,
+      category: filteredCategory,
+    },
     setCurrentMinPrice,
     setCurrentMaxPrice,
     filterUpdate,
+    filteredProducts,
   } = useFilterContext();
   // const [currentMinPrice, setCurrentMinPrice] = useState(minPrice);
-  console.log(currentMinPrice);
   // const [currentMaxPrice, setCurrentMaxPrice] = useState(maxPrice);
 
   const changeCurrentMinPrice = (e) => {
@@ -105,18 +111,37 @@ const Filter = () => {
         </div>
         {category && (
           <ul className='filter-list'>
-            <li className='category-filter-item filter-item' name='category'>
-              <AddIcon /> All
-            </li>
-            {category.map((item, index) => {
-              return (
-                <li
-                  className='category-filter-item filter-item'
+            {filteredProducts.length > 0 && (
+              <li className='category-filter-item filter-item'>
+                <button
+                  className={
+                    filteredCategory === 'All'
+                      ? 'category-filter-item-btn active'
+                      : 'category-filter-item-btn'
+                  }
                   name='category'
-                  key={index}
+                  data-category='All'
                   onClick={filterUpdate}
                 >
-                  <AddIcon /> {item}
+                  <AddIcon /> All
+                </button>
+              </li>
+            )}
+            {category.map((item, index) => {
+              return (
+                <li className='category-filter-item filter-item' key={index}>
+                  <button
+                    className={
+                      item === filteredCategory
+                        ? 'category-filter-item-btn active'
+                        : 'category-filter-item-btn'
+                    }
+                    name='category'
+                    data-category={item}
+                    onClick={filterUpdate}
+                  >
+                    <AddIcon /> {item}
+                  </button>
                 </li>
               );
             })}
@@ -132,11 +157,7 @@ const Filter = () => {
             {color.map((item, index) => {
               return (
                 <li className='filter-item' key={index}>
-                  <button
-                    className='filter-color-btn'
-                    name='color'
-                    onClick={filterUpdate}
-                  >
+                  <button className='filter-color-btn' onClick={filterUpdate}>
                     {/* '.actived' for active */}
                     <span
                       className='filter-color'
