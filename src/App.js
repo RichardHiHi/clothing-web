@@ -29,13 +29,13 @@ function App() {
         <Route exact path='/'>
           <HomePage />
         </Route>
-        <Route path='/blog'>
+        <Route exact path='/blog'>
           <BlogPage />
         </Route>
-        <Route path='/about'>
+        <Route exact path='/about'>
           <AboutPage />
         </Route>
-        <Route path='/products'>
+        <Route exact path='/products'>
           <ProductsPage />
         </Route>
       </Switch>
