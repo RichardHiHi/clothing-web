@@ -9,11 +9,13 @@ const Filter = () => {
     size,
     category,
     filter: {
+      color: filteredColor,
       minPrice,
       maxPrice,
       currentMinPrice,
       currentMaxPrice,
       category: filteredCategory,
+      size: filteredSize,
     },
     setCurrentMinPrice,
     setCurrentMaxPrice,
@@ -154,10 +156,37 @@ const Filter = () => {
         </div>
         {color && (
           <ul className='filter-list'>
+            {filteredProducts.length > 0 && (
+              <li className='filter-item'>
+                <button
+                  className={
+                    filteredColor === 'All'
+                      ? 'filter-color-btn active'
+                      : 'filter-color-btn'
+                  }
+                  name='color'
+                  data-color='All'
+                  onClick={filterUpdate}
+                >
+                  {/* '.actived' for active */}
+                  <span className='filter-color'></span>
+                  <span className='filter-color-name'>All</span>
+                </button>
+              </li>
+            )}
             {color.map((item, index) => {
               return (
                 <li className='filter-item' key={index}>
-                  <button className='filter-color-btn' onClick={filterUpdate}>
+                  <button
+                    className={
+                      filteredColor === item.colorCode
+                        ? 'filter-color-btn active'
+                        : 'filter-color-btn'
+                    }
+                    name='color'
+                    data-color={item.colorCode}
+                    onClick={filterUpdate}
+                  >
                     {/* '.actived' for active */}
                     <span
                       className='filter-color'
@@ -177,11 +206,38 @@ const Filter = () => {
         </div>
         {category && (
           <ul className='filter-list height-150'>
+            {filteredProducts.length > 0 && (
+              <li className='filter-item'>
+                <button
+                  className={
+                    filteredSize === 'All'
+                      ? 'filter-size-btn active'
+                      : 'filter-size-btn'
+                  }
+                  name='size'
+                  data-size='All'
+                  onClick={filterUpdate}
+                >
+                  {/* '.actived' for active */}
+                  <span className='filter-size-check'></span>
+                  <span className='filter-size-title'>All</span>
+                </button>
+              </li>
+            )}
             {size.map((item, index) => {
               if (item) {
                 return (
-                  <li className='filter-item'>
-                    <button className='filter-size-btn '>
+                  <li className='filter-item' key={index}>
+                    <button
+                      className={
+                        item === filteredSize
+                          ? 'filter-size-btn active'
+                          : 'filter-size-btn'
+                      }
+                      name='size'
+                      data-size={item}
+                      onClick={filterUpdate}
+                    >
                       {/* '.actived' for active */}
                       <span className='filter-size-check'></span>
                       <span className='filter-size-title'>{item}</span>

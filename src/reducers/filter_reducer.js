@@ -97,6 +97,8 @@ const button_reducer = (state, action) => {
       currentMaxPrice,
       maxPrice,
       category,
+      color,
+      size,
     } = state.filter;
     if (currentMinPrice > 0 || currentMaxPrice < maxPrice) {
       tempfilterProduct = tempfilterProduct.filter(
@@ -114,6 +116,16 @@ const button_reducer = (state, action) => {
         return product.category.find((item) => {
           return item === category;
         });
+      });
+    }
+    if (color !== 'All') {
+      tempfilterProduct = tempfilterProduct.filter((product) => {
+        return product.colorImg.some((item) => item.colorCode === color);
+      });
+    }
+    if (size !== 'All') {
+      tempfilterProduct = tempfilterProduct.filter((product) => {
+        return product.size.some((item) => item === size);
       });
     }
     return {

@@ -27,8 +27,8 @@ const initialState = {
     maxPrice: 0,
     currentMinPrice: 0,
     currentMaxPrice: 0,
-    // color: '',
-    // size: '',
+    color: 'All',
+    size: 'All',
   },
 };
 
@@ -61,7 +61,7 @@ export const FilterProvider = ({ children }) => {
 
   const filterUpdate = (e) => {
     const filterName = e.target.name;
-    console.log(e);
+    // console.log(e.target.dataset.size);
     if (filterName === 'search') {
       dispatch({
         type: UPDATE_FILTER,
@@ -72,6 +72,18 @@ export const FilterProvider = ({ children }) => {
       dispatch({
         type: UPDATE_FILTER,
         payload: { name: filterName, value: e.target.dataset.category },
+      });
+    }
+    if (filterName === 'color') {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: filterName, value: e.target.dataset.color },
+      });
+    }
+    if (filterName === 'size') {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: filterName, value: e.target.dataset.size },
       });
     }
   };

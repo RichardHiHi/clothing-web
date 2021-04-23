@@ -41,9 +41,9 @@
 }
 //btn color
 .filter-color-btn {
-  &.actived {
+  &.active {
     .filter-color {
-      &:after {
+      &::after {
         display: block;
       }
       &::before {
@@ -51,6 +51,7 @@
       }
     }
   }
+  margin: 3px 0 0 3px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -61,8 +62,8 @@
     pointer-events: none;
     margin-right: 10px;
     display: block;
-    width: 23px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
     border-radius: 23px;
     position: relative;
     border: $borderColor;
@@ -81,11 +82,11 @@
     &::before {
       content: '';
       position: absolute;
-      top: -3px;
-      left: -3px;
+      top: -4px;
+      left: -4px;
       width: 100%;
       height: 100%;
-      padding: 2px;
+      padding: 3px;
       border-radius: 100px;
     }
   }
@@ -126,7 +127,7 @@
 }
 //checkfilter
 .filter-size-btn {
-  &.actived {
+  &.active {
     .filter-size-title {
       color: $hoverColor;
     }
@@ -144,6 +145,8 @@
   display: flex;
   align-items: center;
   .filter-size-check {
+    pointer-events: none;
+
     margin-right: 10px;
     width: 15px;
     height: 15px;
@@ -163,6 +166,8 @@
     }
   }
   .filter-size-title {
+    pointer-events: none;
+
     color: $letterColor;
     @include font-size-weight(1.4rem, 500);
     @include transition(color 0.3s);
