@@ -8,18 +8,9 @@ import { getUnique, getUniqueObj } from '../utils/helper';
 const products_reducer = (state, action) => {
   if (action.type === GET_PRODUCTS_SUCCESS) {
     const products = action.payload.products;
-    console.log(products);
     const trendingProducts = products.filter((product) => product.trending);
     const sale = products.filter((product) => product.onSale);
-    const objColor = products
-      .reduce((acc, cur) => {
-        return acc.concat(cur.colorImg);
-      }, [])
-      .map((color) => {
-        return { colorName: color.colorName, colorCode: color.colorCode };
-      });
 
-    console.log(getUnique(products, 'size'));
     return {
       ...state,
       productsError: false,
@@ -28,7 +19,7 @@ const products_reducer = (state, action) => {
       trendingProducts: trendingProducts,
       saleProducts: sale,
       category: getUnique(products, 'category'),
-      color: getUniqueObj(objColor, 'colorName'),
+      color: getUniqueObj(products, 'colorName'),
       size: getUnique(products, 'size'),
     };
   }

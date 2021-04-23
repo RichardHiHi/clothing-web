@@ -51,7 +51,6 @@ export const formatPrice = (number) => {
   }).format(number / 100);
 };
 //button next and prev
-
 export const NextArrow = ({ onClick }) => {
   return (
     <div className='next-arrow' onClick={onClick}>
@@ -78,6 +77,13 @@ export const getUnique = (products, value) => {
   ];
 };
 // get unique obj in array
-export const getUniqueObj = (array, value) => {
+export const getUniqueObj = (products, value) => {
+  const array = products
+    .reduce((acc, cur) => {
+      return acc.concat(cur.colorImg);
+    }, [])
+    .map((color) => {
+      return { colorName: color.colorName, colorCode: color.colorCode };
+    });
   return [...new Map(array.map((item) => [item[value], item])).values()];
 };

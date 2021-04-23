@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './filter.scss';
-import { useProductContext } from '../../context/product_context';
 import AddIcon from '@material-ui/icons/Add';
 import { formatPrice } from '../../utils/helper';
+import { useFilterContext } from '../../context/filter_context';
 const Filter = () => {
-  const { color, size, category } = useProductContext();
+  const { color, size, category } = useFilterContext();
   const [currentMinPrice, setCurrentMinPrice] = useState(0);
   const [currentMaxPrice, setCurrentMaxPrice] = useState(900);
   const [maxPrice, setMaxPrice] = useState(900);
   const [minPrice, setMinPrice] = useState(0);
+  const { filterUpdate } = useFilterContext();
+
   const changeCurrentMinPrice = (e) => {
     const value = parseInt(e.target.value);
     if (value > currentMaxPrice) {
@@ -30,7 +32,13 @@ const Filter = () => {
   return (
     <form>
       <div className='search-filter-wrapper filter-wrapper margin'>
-        <input class='input' type='text' name='q' placeholder='Search...' />
+        <input
+          class='input'
+          type='text'
+          name='search'
+          placeholder='Search...'
+          onChange={filterUpdate}
+        />
       </div>
       <div className='price-filter-wrapper filter-wrapper'>
         <div className='filter-title'>
@@ -90,56 +98,62 @@ const Filter = () => {
         <div className='filter-title'>
           <h5>Filter by categories</h5>
         </div>
-        <ul className='filter-list'>
-          {category.map((item, index) => {
-            return (
-              <li className='category-filter-item filter-item' key={index}>
-                <AddIcon /> {item}
-              </li>
-            );
-          })}
-        </ul>
+        {category && (
+          <ul className='filter-list'>
+            {category.map((item, index) => {
+              return (
+                <li className='category-filter-item filter-item' key={index}>
+                  <AddIcon /> {item}
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
       <div className='search-filter-wrapper filter-wrapper'>
         <div className='filter-title'>
           <h5>Filter by color</h5>
         </div>
-        <ul className='filter-list'>
-          {color.map((item, index) => {
-            return (
-              <li className='filter-item' key={index}>
-                <button className='filter-color-btn'>
-                  {/* '.actived' for active */}
-                  <span
-                    className='filter-color'
-                    style={{ backgroundColor: `${item.colorCode}` }}
-                  ></span>
-                  <span className='filter-color-name'>{item.colorName}</span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        {color && (
+          <ul className='filter-list'>
+            {color.map((item, index) => {
+              return (
+                <li className='filter-item' key={index}>
+                  <button className='filter-color-btn'>
+                    {/* '.actived' for active */}
+                    <span
+                      className='filter-color'
+                      style={{ backgroundColor: `${item.colorCode}` }}
+                    ></span>
+                    <span className='filter-color-name'>{item.colorName}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
       <div className='search-filter-wrapper filter-wrapper margin'>
         <div className='filter-title'>
           <h5>Filter by size</h5>
         </div>
-        <ul className='filter-list height-150'>
-          {size.map((item, index) => {
-            if (item) {
-              return (
-                <li className='filter-item'>
-                  <button className='filter-size-btn '>
-                    {/* '.actived' for active */}
-                    <span className='filter-size-check'></span>
-                    <span className='filter-size-title'>{item}</span>
-                  </button>
-                </li>
-              );
-            }
-          })}
-        </ul>
+        {category && (
+          <ul className='filter-list height-150'>
+            {size.map((item, index) => {
+              if (item) {
+                return (
+                  <li className='filter-item'>
+                    <button className='filter-size-btn '>
+                      {/* '.actived' for active */}
+                      <span className='filter-size-check'></span>
+                      <span className='filter-size-title'>{item}</span>
+                    </button>
+                  </li>
+                );
+              }
+            })}
+          </ul>
+        )}
       </div>
     </form>
   );

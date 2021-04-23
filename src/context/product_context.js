@@ -44,7 +44,6 @@ export const ProductProvider = ({ children }) => {
   };
   useEffect(() => {
     getProducts();
-    console.log('123');
   }, []);
   return (
     <ProductContext.Provider value={{ ...state }}>
