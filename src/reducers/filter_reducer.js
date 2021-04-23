@@ -8,10 +8,16 @@ import {
   UPDATE_FILTER,
   FILTER_PRODUCTS,
   UPDATE_FILTER_MENU,
+  SET_CURRENT_MIN_PRICE,
+  SET_CURRENT_MAX_PRICE,
 } from '../actions';
 
 const button_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
+    const arrayPrice = action.payload.products.reduce((acc, cur) => {
+      return acc.concat(cur.price);
+    }, []);
+
     return {
       ...state,
       products: [...action.payload.products],
@@ -19,6 +25,11 @@ const button_reducer = (state, action) => {
       category: [...action.payload.category],
       color: [...action.payload.color],
       size: [...action.payload.size],
+      filter: {
+        ...state.filter,
+        maxPrice: Math.max(...arrayPrice),
+        currentMaxPrice: Math.max(...arrayPrice),
+      },
     };
   }
   if (action.type === UPDATE_SORT_OPTION) {
@@ -80,16 +91,29 @@ const button_reducer = (state, action) => {
   if (action.type === FILTER_PRODUCTS) {
     const { products } = state;
     let tempfilterProduct = [...products];
-    const { search } = state.filter;
-    // console.log(state.filter.search);
-
-    if (search.length > 0) {
-      // console.log(123);
+    const {
+      search,
+      currentMinPrice,
+      currentMaxPrice,
+      maxPrice,
+      category,
+    } = state.filter;
+    if (currentMinPrice > 0 || currentMaxPrice < maxPrice) {
+      tempfilterProduct = tempfilterProduct.filter(
+        (product) =>
+          product.price > currentMinPrice && product.price < currentMaxPrice
+      );
+    }
+    if (search) {
       tempfilterProduct = tempfilterProduct.filter((product) => {
         return product.name.toLowerCase().startsWith(search);
       });
     }
-
+    // if (category !== 'All') {
+    //   tempfilterProduct = tempfilterProduct.filter((product) => {
+    //     product.category.some((item) => item === category);
+    //   });
+    // }
     return {
       ...state,
       filteredProducts: tempfilterProduct,
@@ -102,6 +126,18 @@ const button_reducer = (state, action) => {
       category: getUnique(filteredProducts, 'category'),
       color: getUniqueObj(filteredProducts, 'colorName'),
       size: getUnique(filteredProducts, 'size'),
+    };
+  }
+  if (action.type === SET_CURRENT_MIN_PRICE) {
+    return {
+      ...state,
+      filter: { ...state.filter, currentMinPrice: action.payload.value },
+    };
+  }
+  if (action.type === SET_CURRENT_MAX_PRICE) {
+    return {
+      ...state,
+      filter: { ...state.filter, currentMaxPrice: action.payload.value },
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

@@ -8,6 +8,8 @@ import {
   UPDATE_FILTER,
   FILTER_PRODUCTS,
   UPDATE_FILTER_MENU,
+  SET_CURRENT_MIN_PRICE,
+  SET_CURRENT_MAX_PRICE,
 } from '../actions';
 
 const FilterContext = React.createContext();
@@ -19,9 +21,12 @@ const initialState = {
   filteredProducts: [],
   sortOption: 'lowest',
   filter: {
-    // category: 'lowest',
+    filterCategory: 'All',
     search: '',
-    // price: '',
+    minPrice: 0,
+    maxPrice: 0,
+    currentMinPrice: 0,
+    currentMaxPrice: 0,
     // color: '',
     // size: '',
   },
@@ -55,7 +60,8 @@ export const FilterProvider = ({ children }) => {
   };
 
   const filterUpdate = (e) => {
-    const filterName = e.target.name;
+    const filterName = e;
+    console.log(filterName);
     if (filterName === 'search') {
       dispatch({
         type: UPDATE_FILTER,
@@ -63,8 +69,22 @@ export const FilterProvider = ({ children }) => {
       });
     }
   };
+  const setCurrentMinPrice = (value) => {
+    dispatch({ type: SET_CURRENT_MIN_PRICE, payload: { value: value } });
+  };
+  const setCurrentMaxPrice = (value) => {
+    dispatch({ type: SET_CURRENT_MAX_PRICE, payload: { value: value } });
+  };
   return (
-    <FilterContext.Provider value={{ ...state, sortUpdate, filterUpdate }}>
+    <FilterContext.Provider
+      value={{
+        ...state,
+        sortUpdate,
+        filterUpdate,
+        setCurrentMinPrice,
+        setCurrentMaxPrice,
+      }}
+    >
       {children}
     </FilterContext.Provider>
   );

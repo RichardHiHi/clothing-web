@@ -4,12 +4,18 @@ import AddIcon from '@material-ui/icons/Add';
 import { formatPrice } from '../../utils/helper';
 import { useFilterContext } from '../../context/filter_context';
 const Filter = () => {
-  const { color, size, category } = useFilterContext();
-  const [currentMinPrice, setCurrentMinPrice] = useState(0);
-  const [currentMaxPrice, setCurrentMaxPrice] = useState(900);
-  const [maxPrice, setMaxPrice] = useState(900);
-  const [minPrice, setMinPrice] = useState(0);
-  const { filterUpdate } = useFilterContext();
+  const {
+    color,
+    size,
+    category,
+    filter: { minPrice, maxPrice, currentMinPrice, currentMaxPrice },
+    setCurrentMinPrice,
+    setCurrentMaxPrice,
+    filterUpdate,
+  } = useFilterContext();
+  // const [currentMinPrice, setCurrentMinPrice] = useState(minPrice);
+  console.log(currentMinPrice);
+  // const [currentMaxPrice, setCurrentMaxPrice] = useState(maxPrice);
 
   const changeCurrentMinPrice = (e) => {
     const value = parseInt(e.target.value);
@@ -21,7 +27,6 @@ const Filter = () => {
   };
   const changeCurrentMaxPrice = (e) => {
     const value = parseInt(e.target.value);
-    console.log(typeof value);
     if (value < currentMinPrice) {
       setCurrentMaxPrice(currentMinPrice);
     } else {
@@ -30,7 +35,7 @@ const Filter = () => {
   };
 
   return (
-    <form>
+    <>
       <div className='search-filter-wrapper filter-wrapper margin'>
         <input
           class='input'
@@ -100,9 +105,17 @@ const Filter = () => {
         </div>
         {category && (
           <ul className='filter-list'>
+            <li className='category-filter-item filter-item' name='category'>
+              <AddIcon /> All
+            </li>
             {category.map((item, index) => {
               return (
-                <li className='category-filter-item filter-item' key={index}>
+                <li
+                  className='category-filter-item filter-item'
+                  name='category'
+                  key={index}
+                  onClick={filterUpdate}
+                >
                   <AddIcon /> {item}
                 </li>
               );
@@ -119,7 +132,11 @@ const Filter = () => {
             {color.map((item, index) => {
               return (
                 <li className='filter-item' key={index}>
-                  <button className='filter-color-btn'>
+                  <button
+                    className='filter-color-btn'
+                    name='color'
+                    onClick={filterUpdate}
+                  >
                     {/* '.actived' for active */}
                     <span
                       className='filter-color'
@@ -155,7 +172,7 @@ const Filter = () => {
           </ul>
         )}
       </div>
-    </form>
+    </>
   );
 };
 
