@@ -4,6 +4,7 @@ import {
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BEGIN,
+  ADD_BLOG,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -13,6 +14,7 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 );
 
 const initialState = {
+  blogs: [],
   category: [],
   products: [],
   color: [],
@@ -47,8 +49,20 @@ export const ProductProvider = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
+  const getBlog = async (table) => {
+    const res = await base(table).select({}).firstPage();
+    const blogs = res.map((record) => {
+      return {
+        ...record.fields,
+        img: record.fields.img[0].thumbnails.large.url,
+        id: record.id,
+      };
+    });
+    dispatch({ type: ADD_BLOG, payload: { blogs } });
+  };
   useEffect(() => {
     getProducts();
+    getBlog('blog');
   }, []);
   return (
     <ProductContext.Provider value={{ ...state }}>

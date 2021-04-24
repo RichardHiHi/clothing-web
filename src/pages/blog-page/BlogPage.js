@@ -5,19 +5,20 @@ import Slider from 'react-slick';
 import './blogPage.scss';
 import Grid from '@material-ui/core/Grid';
 import LoadingImg from '../../components/loadding-img/LoaddingImg';
+import { useProductContext } from '../../context/product_context';
+import { scrollToTop } from '../../utils/helper';
 const BlogPage = () => {
-  const [blogs, setBlogs] = useState([]);
+  const { blogs } = useProductContext();
   const [currentPage, setCurrentPage] = useState(0);
   const [blogPerPage, setBlogPerpage] = useState(4);
-  const [pageNumbers, setPageNumbers] = useState(0);
+  const [pageNumbers, setPageNumbers] = useState(
+    Math.round(blogs.length / blogPerPage)
+  );
 
   // useEffect(() => {
-  //   const get = async () => {
-  //     const length = await fetchData('blog', setBlogs);
-  //     setPageNumbers(Math.round(length / blogPerPage));
-  //   };
-  //   get();
+  //   setPageNumbers(Math.round(blogs.length / blogPerPage));
   // }, []);
+
   const switchPage = (value) => {
     if (value === 'inc') {
       setCurrentPage((oldpage) => oldpage + 1);
@@ -155,7 +156,10 @@ const BlogPage = () => {
               className={
                 currentPage === 0 ? 'pagination-btn none' : 'pagination-btn'
               }
-              onClick={() => switchPage('dec')}
+              onClick={() => {
+                switchPage('dec');
+                scrollToTop(300);
+              }}
             >
               Prev
             </button>
@@ -168,7 +172,10 @@ const BlogPage = () => {
                         ? 'number-pagination-btn actived'
                         : 'number-pagination-btn'
                     }
-                    onClick={() => setCurrentPage(index)}
+                    onClick={() => {
+                      setCurrentPage(index);
+                      scrollToTop(300);
+                    }}
                   >
                     {index + 1}
                   </button>
@@ -183,6 +190,7 @@ const BlogPage = () => {
               }
               onClick={() => {
                 switchPage('inc');
+                scrollToTop(300);
               }}
             >
               Next

@@ -7,6 +7,7 @@ import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import { useButtonContext } from '../../context/button_context';
 import { useFilterContext } from '../../context/filter_context';
 import SortIcon from '@material-ui/icons/Sort';
+import { scrollToTop } from '../../utils/helper';
 
 const FilterProduct = () => {
   const {
@@ -120,7 +121,10 @@ const FilterProduct = () => {
                               ? 'pagination-btn none'
                               : 'pagination-btn'
                           }
-                          onClick={() => switchPage('dec')}
+                          onClick={() => {
+                            switchPage('dec');
+                            scrollToTop(200);
+                          }}
                         >
                           Prev
                         </button>
@@ -133,7 +137,10 @@ const FilterProduct = () => {
                                     ? 'number-pagination-btn actived'
                                     : 'number-pagination-btn'
                                 }
-                                onClick={() => setCurrentPage(index)}
+                                onClick={() => {
+                                  setCurrentPage(index);
+                                  scrollToTop(200);
+                                }}
                               >
                                 {index + 1}
                               </button>
@@ -149,6 +156,7 @@ const FilterProduct = () => {
                           }
                           onClick={() => {
                             switchPage('inc');
+                            scrollToTop(200);
                           }}
                         >
                           Next

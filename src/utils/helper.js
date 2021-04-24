@@ -87,3 +87,10 @@ export const getUniqueObj = (products, value) => {
     });
   return [...new Map(array.map((item) => [item[value], item])).values()];
 };
+//scroll to spetical position top of page
+export const scrollToTop = (top) => {
+  window.scrollTo({
+    top: top,
+    behavior: 'smooth',
+  });
+};
