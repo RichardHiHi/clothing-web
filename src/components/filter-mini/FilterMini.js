@@ -1,12 +1,11 @@
 import React from 'react';
 import Filter from '../filter/Filter';
 import './filterMini.scss';
-import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 import { useButtonContext } from '../../context/button_context';
 
 const FilterMini = () => {
   const { isFilterMiniOpen, miniAction } = useButtonContext();
-  console.log(isFilterMiniOpen);
+
   const action = () => {
     miniAction('close', 'FilterMini');
   };
@@ -17,9 +16,11 @@ const FilterMini = () => {
       </div>
       <div className='filter-wrapper'>
         <Filter />
-        <button onClick={action} className='filter-mini-btn button_primary'>
-          Filter
-        </button>
+        <div className='clear-filter-btn-wrapper margin-top-10'>
+          <button onClick={action} className='clear-filter-btn '>
+            Filter
+          </button>
+        </div>
       </div>
     </div>
   );

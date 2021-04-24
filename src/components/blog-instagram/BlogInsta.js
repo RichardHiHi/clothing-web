@@ -9,9 +9,9 @@ import { NextArrow, PrevArrow } from '../../utils/helper';
 import BlogItem from '../blog-item/BlogItem';
 const BlogInsta = () => {
   const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    fetchData('blog', setBlogs);
-  }, []);
+  // useEffect(() => {
+  //   fetchData('blog', setBlogs);
+  // }, []);
 
   var settingsBlog = {
     speed: 500,

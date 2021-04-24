@@ -264,3 +264,9 @@ export const icons = [
   },
   { icon: <FaPinterestP />, text: 'Follow on Pinterest', name: 'pinterest' },
 ];
+export const sortMini = [
+  { name: 'Price, Low To High', data: 'lowest' },
+  { name: 'Price, High To Low', data: 'highest' },
+  { name: 'Alphabetically, Z-A', data: 'Z-A' },
+  { name: 'Alphabetically, A-Z', data: 'A-Z' },
+];

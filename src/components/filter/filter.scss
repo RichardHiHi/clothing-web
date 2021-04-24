@@ -280,3 +280,30 @@
     }
   }
 }
+.clear-filter-btn-wrapper {
+  &.margin-top-10 {
+    margin-top: 10px;
+  }
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  .clear-filter-btn {
+    display: block;
+    width: 100%;
+    background-color: darken($whiteColor, 3%);
+    color: $letterColor;
+    border-radius: 30px;
+    border: $borderColordark;
+    // border: none;
+    outline: none;
+    @include font-size-weight(1.5rem, 300);
+    // background-color: transparent;
+    padding: 10px 30px;
+    @include transition(all 0.3s);
+    &:hover {
+      background-color: darken($whiteColor, 10%);
+      cursor: pointer;
+    }
+  }
+}

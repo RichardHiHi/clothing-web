@@ -10,6 +10,7 @@ import {
   UPDATE_FILTER_MENU,
   SET_CURRENT_MIN_PRICE,
   SET_CURRENT_MAX_PRICE,
+  CLEAR_ALL_FILTERS,
 } from '../actions';
 
 const button_reducer = (state, action) => {
@@ -17,7 +18,6 @@ const button_reducer = (state, action) => {
     const arrayPrice = action.payload.products.reduce((acc, cur) => {
       return acc.concat(cur.price);
     }, []);
-
     return {
       ...state,
       products: [...action.payload.products],
@@ -99,6 +99,7 @@ const button_reducer = (state, action) => {
       category,
       color,
       size,
+      sale,
     } = state.filter;
     if (currentMinPrice > 0 || currentMaxPrice < maxPrice) {
       tempfilterProduct = tempfilterProduct.filter(
@@ -128,6 +129,10 @@ const button_reducer = (state, action) => {
         return product.size.some((item) => item === size);
       });
     }
+    if (sale) {
+      tempfilterProduct = tempfilterProduct.filter((product) => product.onSale);
+    }
+
     return {
       ...state,
       filteredProducts: tempfilterProduct,
@@ -152,6 +157,26 @@ const button_reducer = (state, action) => {
     return {
       ...state,
       filter: { ...state.filter, currentMaxPrice: action.payload.value },
+    };
+  }
+  if (action.type === CLEAR_ALL_FILTERS) {
+    const arrayPrice = state.products.reduce((acc, cur) => {
+      return acc.concat(cur.price);
+    }, []);
+    return {
+      ...state,
+      sortOption: 'lowest',
+      filter: {
+        category: 'All',
+        search: '',
+        minPrice: 0,
+        currentMinPrice: 0,
+        maxPrice: Math.max(...arrayPrice),
+        currentMaxPrice: Math.max(...arrayPrice),
+        color: 'All',
+        size: 'All',
+        sale: false,
+      },
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);

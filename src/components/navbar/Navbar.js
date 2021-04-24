@@ -6,6 +6,7 @@ import ReorderIcon from '@material-ui/icons/Reorder';
 import { useButtonContext } from '../../context/button_context';
 import { Link } from 'react-router-dom';
 import { useProductContext } from '../../context/product_context';
+import { useFilterContext } from '../../context/filter_context';
 import Grid from '@material-ui/core/Grid';
 import wowmen2 from '../../assets/wowmen2.jpg';
 import men from '../../assets/men.jpg';
@@ -17,6 +18,7 @@ const Navbar = () => {
   const { miniAction } = useButtonContext();
   const { category } = useProductContext();
   const { saleProducts: sale } = useProductContext();
+  const { filterCategoryUpdate, clearAllFilter } = useFilterContext();
 
   useEffect(() => {
     document
@@ -77,11 +79,17 @@ const Navbar = () => {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to='/products'>Products</Link>
+              <Link to='/products' onClick={clearAllFilter}>
+                Products
+              </Link>
               <div className='sub-menu-wrapper'>
                 <Grid container>
                   <Grid item sm={4}>
-                    <Link href='#' className='submenu-img-wrapper margin-left'>
+                    <Link
+                      to='/products'
+                      onClick={() => filterCategoryUpdate('Women')}
+                      className='submenu-img-wrapper margin-left'
+                    >
                       <div
                         className='submenu-img'
                         style={{
@@ -92,7 +100,11 @@ const Navbar = () => {
                     </Link>
                   </Grid>
                   <Grid item sm={4}>
-                    <a href='#' className='submenu-img-wrapper'>
+                    <Link
+                      to='/products'
+                      onClick={() => filterCategoryUpdate('Men')}
+                      className='submenu-img-wrapper'
+                    >
                       <div
                         className='submenu-img'
                         style={{
@@ -100,14 +112,19 @@ const Navbar = () => {
                         }}
                       ></div>
                       <button className='submenu-img-btn'>Men</button>
-                    </a>
+                    </Link>
                   </Grid>
                   <Grid item sm={4}>
                     <ul className='sub-menu small-width '>
                       {category.map((category) => {
                         return (
                           <li>
-                            <a href='#'>{category}</a>
+                            <Link
+                              to='/products'
+                              onClick={() => filterCategoryUpdate(category)}
+                            >
+                              {category}
+                            </Link>
                           </li>
                         );
                       })}
@@ -117,9 +134,13 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <a href='#' style={{ color: 'red' }}>
+              <Link
+                to='/products'
+                onClick={() => filterCategoryUpdate('All', true)}
+                style={{ color: 'red' }}
+              >
                 Sale
-              </a>
+              </Link>
               <div className='sub-menu-wrapper submenu-slide'>
                 <Grid container>
                   <Grid item sm={2}>
@@ -128,7 +149,14 @@ const Navbar = () => {
                         {category.slice(0, 5).map((category) => {
                           return (
                             <li>
-                              <a href='#'>{category}</a>
+                              <Link
+                                to='/products'
+                                onClick={() =>
+                                  filterCategoryUpdate(category, true)
+                                }
+                              >
+                                {category}
+                              </Link>
                             </li>
                           );
                         })}

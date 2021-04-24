@@ -13,16 +13,22 @@
   padding: 0;
   list-style: none;
   .sort-item {
-    &.active {
-      color: $hoverColor;
+    .sort-item-btn {
+      &.active {
+        color: $hoverColor;
+      }
+      @include transition(all 0.3s);
+      &:hover {
+        cursor: pointer;
+        color: $hoverColor;
+      }
+      @include font-size-weight(1.5rem, 400);
+      color: $letterColor;
+      margin-bottom: 18px;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      padding: 0;
     }
-    @include transition(all 0.3s);
-    &:hover {
-      cursor: pointer;
-      color: $hoverColor;
-    }
-    @include font-size-weight(1.5rem, 400);
-    color: $letterColor;
-    margin-bottom: 18px;
   }
 }

@@ -13,33 +13,35 @@ import {
   SortMini,
 } from './components';
 import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
-
+import ScrollToTop from 'react-router-scroll-top';
 function App() {
   return (
     <Router>
-      <Navbar />
-      <SideBar />
-      <MaskOverlay />
-      <SearchMini />
-      <LoginMini />
-      <CartMini />
-      <FilterMini />
-      <SortMini />
-      <Switch>
-        <Route exact path='/'>
-          <HomePage />
-        </Route>
-        <Route exact path='/blog'>
-          <BlogPage />
-        </Route>
-        <Route exact path='/about'>
-          <AboutPage />
-        </Route>
-        <Route exact path='/products'>
-          <ProductsPage />
-        </Route>
-      </Switch>
-      <Footer />
+      <ScrollToTop>
+        <Navbar />
+        <SideBar />
+        <MaskOverlay />
+        <SearchMini />
+        <LoginMini />
+        <CartMini />
+        <FilterMini />
+        <SortMini />
+        <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+          <Route exact path='/blog'>
+            <BlogPage />
+          </Route>
+          <Route exact path='/about'>
+            <AboutPage />
+          </Route>
+          <Route exact path='/products'>
+            <ProductsPage />
+          </Route>
+        </Switch>
+        <Footer />
+      </ScrollToTop>
     </Router>
   );
 }

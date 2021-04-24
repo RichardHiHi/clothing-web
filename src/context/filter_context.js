@@ -10,6 +10,7 @@ import {
   UPDATE_FILTER_MENU,
   SET_CURRENT_MIN_PRICE,
   SET_CURRENT_MAX_PRICE,
+  CLEAR_ALL_FILTERS,
 } from '../actions';
 
 const FilterContext = React.createContext();
@@ -29,6 +30,7 @@ const initialState = {
     currentMaxPrice: 0,
     color: 'All',
     size: 'All',
+    sale: false,
   },
 };
 
@@ -56,6 +58,12 @@ export const FilterProvider = ({ children }) => {
     dispatch({
       type: UPDATE_SORT_OPTION,
       payload: { sortOption: e.target.value },
+    });
+  };
+  const sortUpdateMini = (e) => {
+    dispatch({
+      type: UPDATE_SORT_OPTION,
+      payload: { sortOption: e.target.dataset.sort },
     });
   };
 
@@ -87,20 +95,39 @@ export const FilterProvider = ({ children }) => {
       });
     }
   };
+  const filterCategoryUpdate = (filterValue, anotherFilterValue = null) => {
+    clearAllFilter();
+    dispatch({
+      type: UPDATE_FILTER,
+      payload: { name: 'category', value: filterValue },
+    });
+    if (anotherFilterValue) {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: 'sale', value: true },
+      });
+    }
+  };
   const setCurrentMinPrice = (value) => {
     dispatch({ type: SET_CURRENT_MIN_PRICE, payload: { value: value } });
   };
   const setCurrentMaxPrice = (value) => {
     dispatch({ type: SET_CURRENT_MAX_PRICE, payload: { value: value } });
   };
+  const clearAllFilter = () => {
+    dispatch({ type: CLEAR_ALL_FILTERS });
+  };
   return (
     <FilterContext.Provider
       value={{
         ...state,
         sortUpdate,
+        sortUpdateMini,
         filterUpdate,
+        clearAllFilter,
         setCurrentMinPrice,
         setCurrentMaxPrice,
+        filterCategoryUpdate,
       }}
     >
       {children}

@@ -32,7 +32,7 @@ const ProductCategory = () => {
               data-category='All'
               onClick={filterUpdate}
             >
-              All
+              All Products
             </button>
           </li>
           {category.map((item, index) => {
@@ -58,7 +58,9 @@ const ProductCategory = () => {
       </div>
       <div className='hero-section'>
         <div className='hero-img' style={{ backgroundImage: `url(${hero})` }}>
-          <span>{filterCategory}</span>
+          <span>
+            {filterCategory === 'All' ? 'All Products' : filterCategory}
+          </span>
         </div>
       </div>
     </>

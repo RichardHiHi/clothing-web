@@ -156,6 +156,18 @@
     }
   }
 }
+.no-match-product {
+  width: 100%;
+  margin: 0px;
+  text-align: center;
+  span {
+    color: $hoverColor;
+    &:hover {
+      cursor: pointer;
+      color: darken($hoverColor, 30%);
+    }
+  }
+}
 @media (min-width: 960.999px) {
   .filter-and-product-header {
     .filter-btn {

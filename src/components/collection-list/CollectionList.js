@@ -3,14 +3,18 @@ import './collectionList.scss';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../loadding-img/LoaddingImg';
 import { fetchData } from '../../utils/helper';
+import { Link } from 'react-router-dom';
+import { useFilterContext } from '../../context/filter_context';
 
 const CollectionList = () => {
   const [colls, setColls] = useState([]);
-  useEffect(() => {
-    fetchData('collection', setColls, 'full');
-  }, []);
-  const findImg = (position, imgTitle) => {
-    return colls.find((coll) => coll.position === position)[imgTitle];
+  const { filterCategoryUpdate } = useFilterContext();
+  // useEffect(() => {
+  //   fetchData('collection', setColls, 'full');
+  // }, []);
+
+  const find = (position, imgTitleLink) => {
+    return colls.find((coll) => coll.position === position)[imgTitleLink];
   };
   return (
     <div className='section-collection-list'>
@@ -19,21 +23,27 @@ const CollectionList = () => {
           <Grid container className='section-grid-content-wrapper '>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='item-collection-content'>
-                <a href='#' className='item-collection-link'>
+                <Link
+                  to='/products'
+                  onClick={() =>
+                    filterCategoryUpdate(`${find('left', 'link')}`)
+                  }
+                  className='item-collection-link'
+                >
                   {colls.length > 0 ? (
                     <div
                       className='item-collection-img'
                       style={{
-                        backgroundImage: `url(${findImg('left', 'img')})`,
+                        backgroundImage: `url(${find('left', 'img')})`,
                       }}
                     ></div>
                   ) : (
                     <Loading classImg={'item-collection-img'} />
                   )}
-                </a>
+                </Link>
                 {colls.length > 0 && (
                   <div className='item-collection-title'>
-                    <h3>{findImg('left', 'title')}</h3>
+                    <h3>{find('left', 'title')}</h3>
                   </div>
                 )}
               </div>
@@ -41,34 +51,43 @@ const CollectionList = () => {
             <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='row'>
                 <div className='item-collection-content '>
-                  <a href='#' className='item-collection-link'>
+                  <Link
+                    to='/products'
+                    onClick={() =>
+                      filterCategoryUpdate(`${find('center-top', 'link')}`)
+                    }
+                    className='item-collection-link'
+                  >
                     {colls.length > 0 ? (
                       <div
                         className='item-collection-img'
                         style={{
-                          backgroundImage: `url(${findImg(
-                            'center-top',
-                            'img'
-                          )})`,
+                          backgroundImage: `url(${find('center-top', 'img')})`,
                         }}
                       ></div>
                     ) : (
                       <Loading classImg={'item-collection-img'} />
                     )}
-                  </a>
+                  </Link>
                   {colls.length > 0 && (
                     <div className='item-collection-title'>
-                      <h3>{findImg('center-top', 'title')}</h3>
+                      <h3>{find('center-top', 'title')}</h3>
                     </div>
                   )}
                 </div>
                 <div className='item-collection-content'>
-                  <a href='#' className='item-collection-link'>
+                  <Link
+                    to='/products'
+                    onClick={() =>
+                      filterCategoryUpdate(`${find('center-bottom', 'link')}`)
+                    }
+                    className='item-collection-link'
+                  >
                     {colls.length > 0 ? (
                       <div
                         className='item-collection-img'
                         style={{
-                          backgroundImage: `url(${findImg(
+                          backgroundImage: `url(${find(
                             'center-bottom',
                             'img'
                           )})`,
@@ -77,10 +96,10 @@ const CollectionList = () => {
                     ) : (
                       <Loading classImg={'item-collection-img'} />
                     )}
-                  </a>
+                  </Link>
                   {colls.length > 0 && (
                     <div className='item-collection-title'>
-                      <h3>{findImg('center-bottom', 'title')}</h3>
+                      <h3>{find('center-bottom', 'title')}</h3>
                     </div>
                   )}
                 </div>
@@ -88,21 +107,27 @@ const CollectionList = () => {
             </Grid>
             <Grid item xs={6} sm={3} md={3} lg={3}>
               <div className='item-collection-content'>
-                <a href='#' className='item-collection-link'>
+                <Link
+                  to='/products'
+                  onClick={() =>
+                    filterCategoryUpdate(`${find('right', 'link')}`)
+                  }
+                  className='item-collection-link'
+                >
                   {colls.length > 0 ? (
                     <div
                       className='item-collection-img'
                       style={{
-                        backgroundImage: `url(${findImg('right', 'img')})`,
+                        backgroundImage: `url(${find('right', 'img')})`,
                       }}
                     ></div>
                   ) : (
                     <Loading classImg={'item-collection-img'} />
                   )}
-                </a>
+                </Link>
                 {colls.length > 0 && (
                   <div className='item-collection-title'>
-                    <h3>{findImg('right', 'title')}</h3>
+                    <h3>{find('right', 'title')}</h3>
                   </div>
                 )}
               </div>

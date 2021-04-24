@@ -2,10 +2,11 @@ import React from 'react';
 import './sortMini.scss';
 import { useButtonContext } from '../../context/button_context';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
-
+import { sortMini } from '../../utils/data';
+import { useFilterContext } from '../../context/filter_context';
 const SortMini = () => {
   const { isSortMiniOpen, miniAction } = useButtonContext();
-
+  const { sortUpdateMini, sortOption } = useFilterContext();
   const action = () => {
     miniAction('close', 'SortMini');
   };
@@ -21,14 +22,23 @@ const SortMini = () => {
           <h5>Sort by</h5>
         </div>
         <ul className='sort-list'>
-          <li className='sort-item active'>Featured</li>
-          <li className='sort-item'>Best Selling</li>
-          <li className='sort-item'>Alphabetically, A-Z</li>
-          <li className='sort-item'>Alphabetically, Z-A</li>
-          <li className='sort-item'>Price, Low To High</li>
-          <li className='sort-item'>Price, High To Low</li>
-          <li className='sort-item'>Date, Old To New</li>
-          <li className='sort-item'>Date, New To Old</li>
+          {sortMini.map((item, index) => {
+            return (
+              <li className='sort-item' key={index}>
+                <button
+                  className={
+                    item.data === sortOption
+                      ? 'sort-item-btn active'
+                      : 'sort-item-btn'
+                  }
+                  data-sort={item.data}
+                  onClick={sortUpdateMini}
+                >
+                  {item.name}
+                </button>
+              </li>
+            );
+          })}
         </ul>
         <button onClick={action} className='filter-mini-btn button_primary'>
           Sort

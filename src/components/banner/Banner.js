@@ -3,12 +3,14 @@ import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import LoaddingImg from '../loadding-img/LoaddingImg';
 import { fetchData } from '../../utils/helper';
-
+import { Link } from 'react-router-dom';
+import { useFilterContext } from '../../context/filter_context';
 const BannerBlog = () => {
   const [banners, setBanners] = useState([]);
-  useEffect(() => {
-    fetchData('banner', setBanners);
-  }, []);
+  // useEffect(() => {
+  //   fetchData('banner', setBanners);
+  // }, []);
+  const { filterCategoryUpdate } = useFilterContext();
   if (banners.length > 0) {
     return (
       <div className='banner-section'>
@@ -19,14 +21,17 @@ const BannerBlog = () => {
                 return (
                   <Grid item sx={12} sm={6} md={6} lg={6} key={banner.id}>
                     <div className='banner-content'>
-                      <a href=''>
+                      <Link
+                        to={banner.link}
+                        onClick={() => filterCategoryUpdate('All', true)}
+                      >
                         <div
                           className='banner-img'
                           style={{
                             backgroundImage: `url(${banner.img})`,
                           }}
                         ></div>
-                      </a>
+                      </Link>
                       {/* change h3 h4 */}
                       {index % 2 == 0 ? (
                         <div className='banner-title'>

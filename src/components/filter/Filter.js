@@ -21,6 +21,7 @@ const Filter = () => {
     setCurrentMaxPrice,
     filterUpdate,
     filteredProducts,
+    clearAllFilter,
   } = useFilterContext();
   // const [currentMinPrice, setCurrentMinPrice] = useState(minPrice);
   // const [currentMaxPrice, setCurrentMaxPrice] = useState(maxPrice);
@@ -57,7 +58,6 @@ const Filter = () => {
         <div className='filter-title'>
           <h5>Filter by price</h5>
         </div>
-
         <div className='input-price-filter-wrapper'>
           <input
             type='range'
@@ -248,6 +248,11 @@ const Filter = () => {
             })}
           </ul>
         )}
+      </div>
+      <div className='clear-filter-btn-wrapper'>
+        <button onClick={clearAllFilter} className='clear-filter-btn'>
+          Clear Filters
+        </button>
       </div>
     </>
   );

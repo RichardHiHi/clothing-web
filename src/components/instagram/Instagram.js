@@ -8,33 +8,33 @@ import Loadding from '../loadding-img/LoaddingImg';
 import { getLinkApi } from '../../utils/helper';
 const Instagram = () => {
   const [instas, setInstas] = useState([]);
-  useEffect(() => {
-    document
-      .querySelector('.insta-section')
-      .addEventListener('mousedown', (e) => {
-        e.preventDefault();
-      });
-    const fetchData = async () => {
-      const res = await fetch(getLinkApi('instagram'));
-      const resLink = await fetch(getLinkApi('instagramLinking'));
-      const data = await res.json();
-      const dataLink = await resLink.json();
+  // useEffect(() => {
+  //   document
+  //     .querySelector('.insta-section')
+  //     .addEventListener('mousedown', (e) => {
+  //       e.preventDefault();
+  //     });
+  //   const fetchData = async () => {
+  //     const res = await fetch(getLinkApi('instagram'));
+  //     const resLink = await fetch(getLinkApi('instagramLinking'));
+  //     const data = await res.json();
+  //     const dataLink = await resLink.json();
 
-      const newInstas = data.records.map((record) => {
-        const link = record.fields.instagramLinking.map((id) => {
-          return dataLink.records.find((link) => link.id === id).fields;
-        });
-        return {
-          ...record.fields,
-          instagramLinking: link,
-          img: record.fields.img[0].thumbnails.large.url,
-        };
-      });
-      // newInstas;
-      setInstas(newInstas);
-    };
-    fetchData();
-  }, []);
+  //     const newInstas = data.records.map((record) => {
+  //       const link = record.fields.instagramLinking.map((id) => {
+  //         return dataLink.records.find((link) => link.id === id).fields;
+  //       });
+  //       return {
+  //         ...record.fields,
+  //         instagramLinking: link,
+  //         img: record.fields.img[0].thumbnails.large.url,
+  //       };
+  //     });
+  //     // newInstas;
+  //     setInstas(newInstas);
+  //   };
+  //   fetchData();
+  // }, []);
   const NextArrow = ({ onClick }) => {
     return (
       <div className='next-arrow' onClick={onClick}>

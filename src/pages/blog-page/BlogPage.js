@@ -11,13 +11,13 @@ const BlogPage = () => {
   const [blogPerPage, setBlogPerpage] = useState(4);
   const [pageNumbers, setPageNumbers] = useState(0);
 
-  useEffect(() => {
-    const get = async () => {
-      const length = await fetchData('blog', setBlogs);
-      setPageNumbers(Math.round(length / blogPerPage));
-    };
-    get();
-  }, []);
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const length = await fetchData('blog', setBlogs);
+  //     setPageNumbers(Math.round(length / blogPerPage));
+  //   };
+  //   get();
+  // }, []);
   const switchPage = (value) => {
     if (value === 'inc') {
       setCurrentPage((oldpage) => oldpage + 1);

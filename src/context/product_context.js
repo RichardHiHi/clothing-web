@@ -26,17 +26,22 @@ const initialState = {
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const getProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const res = await base('product').select({}).firstPage();
-      const resColor = await base('productColorImg').select({}).firstPage();
+      const [res, resColor] = await Promise.all([
+        base('product').select({}).firstPage(),
+        base('productColorImg').select({}).firstPage(),
+      ]);
       const products = res.map((e) => {
         const newColorImg = e.fields.colorImg.map((color) => {
           return resColor.find((colorin) => colorin.id === color).fields;
         });
         return { ...e.fields, colorImg: newColorImg, id: e.id };
       });
+      console.log(products);
+
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });

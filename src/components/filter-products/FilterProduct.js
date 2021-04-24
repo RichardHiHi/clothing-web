@@ -9,7 +9,11 @@ import { useFilterContext } from '../../context/filter_context';
 import SortIcon from '@material-ui/icons/Sort';
 
 const FilterProduct = () => {
-  const { filteredProducts: products, sortUpdate } = useFilterContext();
+  const {
+    filteredProducts: products,
+    sortUpdate,
+    clearAllFilter,
+  } = useFilterContext();
   const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [productPerPage, setProductPerpage] = useState(8);
@@ -164,7 +168,11 @@ const FilterProduct = () => {
                 lg={9}
                 className='section-grid-content-wrapper'
               >
-                <h2>Sorry, no products matched your search.</h2>
+                <h2 className='no-match-product'>
+                  Sorry, no products matched your search.
+                  <br />
+                  <span onClick={clearAllFilter}>Clear Filters</span>
+                </h2>
               </Grid>
             )}
           </Grid>
