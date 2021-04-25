@@ -14,5 +14,6 @@ export const CLEAR_ALL_FILTERS = 'CLEAR_ALL_FILTERS';
 export const ADD_BLOG = 'ADD_BLOG';
 export const ADD_COLLECTION = 'ADD_COLLECTION';
 // export const  = '';
+export const ADD_SLIDESHOW = 'ADD_SLIDESHOW';
 export const ADD_BLOG_HOME = 'ADD_BLOG_HOME';
 export const ADD_BANNER = 'ADD_BANNER';

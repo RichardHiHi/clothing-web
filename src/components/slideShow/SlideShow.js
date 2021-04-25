@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
 import blur from '../../assets/blur.jpeg';
 import { fetchData } from '../../utils/helper';
-
+import { useProductContext } from '../../context/product_context';
+import { useFilterContext } from '../../context/filter_context';
+import { Link } from 'react-router-dom';
 // import { slide } from '../../utils/data';
 const SlideShow = () => {
+  const { slideShows: slides } = useProductContext();
+  const { filterCategoryUpdate } = useFilterContext();
   const [slideIdex, setSlideIndex] = useState(0);
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
-  const [slides, setSlides] = useState([]);
-  useEffect(() => {
-    fetchData('slide', setSlides, 'full');
-  }, []);
 
   useEffect(() => {
     document
@@ -77,7 +77,7 @@ const SlideShow = () => {
     <div className='section-slide-show-inner'>
       <div className='slides'>
         {slides.map((slide, index) => {
-          const { img, position, title, text } = slide;
+          const { img, position, title, text, link, filter } = slide;
           let classa;
           if (index === slideIdex) {
             classa = 'slide-actived';
@@ -105,9 +105,13 @@ const SlideShow = () => {
                   <div className='slide-content-text'>
                     <p>{text}</p>
                   </div>
-                  <a href='#' className='slide-link-btn'>
+                  <Link
+                    to={link}
+                    onClick={() => filterCategoryUpdate('All', filter)}
+                    className='slide-link-btn'
+                  >
                     Explore Now
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className='img-container'>

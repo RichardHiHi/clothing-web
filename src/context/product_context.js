@@ -8,6 +8,7 @@ import {
   ADD_COLLECTION,
   ADD_BANNER,
   ADD_BLOG_HOME,
+  ADD_SLIDESHOW,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -17,6 +18,7 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 );
 
 const initialState = {
+  slideShows: [],
   blogHomes: [],
   banners: [],
   blogs: [],
@@ -71,6 +73,7 @@ export const ProductProvider = ({ children }) => {
     getInfoOfHome('collection', ADD_COLLECTION, 'full');
     getInfoOfHome('banner', ADD_BANNER);
     getInfoOfHome('blog', ADD_BLOG_HOME);
+    getInfoOfHome('slide', ADD_SLIDESHOW, 'full');
   }, []);
   return (
     <ProductContext.Provider value={{ ...state }}>

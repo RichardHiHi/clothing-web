@@ -6,6 +6,7 @@ import {
   ADD_COLLECTION,
   ADD_BANNER,
   ADD_BLOG_HOME,
+  ADD_SLIDESHOW,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -44,6 +45,9 @@ const products_reducer = (state, action) => {
   }
   if (action.type === ADD_BLOG_HOME) {
     return { ...state, blogHomes: action.payload.value };
+  }
+  if (action.type === ADD_SLIDESHOW) {
+    return { ...state, slideShows: action.payload.value };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

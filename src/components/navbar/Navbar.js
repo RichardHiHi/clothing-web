@@ -30,9 +30,9 @@ const Navbar = () => {
     window.onscroll = function () {
       var currentScrollPos = window.pageYOffset;
       if (prevScrollpos < currentScrollPos && currentScrollPos > 75) {
-        document.querySelector('.nav').classList.add('nav-hidden');
+        document.querySelector('.nav').classList.add('hidden');
       } else {
-        document.querySelector('.nav').classList.remove('nav-hidden');
+        document.querySelector('.nav').classList.remove('hidden');
       }
       prevScrollpos = currentScrollPos;
     };
