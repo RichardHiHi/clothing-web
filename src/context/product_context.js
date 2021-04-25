@@ -5,6 +5,9 @@ import {
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BEGIN,
   ADD_BLOG,
+  ADD_COLLECTION,
+  ADD_BANNER,
+  ADD_BLOG_HOME,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -14,7 +17,10 @@ var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
 );
 
 const initialState = {
+  blogHomes: [],
+  banners: [],
   blogs: [],
+  collections: [],
   category: [],
   products: [],
   color: [],
@@ -42,27 +48,29 @@ export const ProductProvider = ({ children }) => {
         });
         return { ...e.fields, colorImg: newColorImg, id: e.id };
       });
-      console.log(products);
 
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
-  const getBlog = async (table) => {
+  const getInfoOfHome = async (table, type, size = 'large') => {
     const res = await base(table).select({}).firstPage();
-    const blogs = res.map((record) => {
+    const value = res.map((record) => {
       return {
         ...record.fields,
-        img: record.fields.img[0].thumbnails.large.url,
+        img: record.fields.img[0].thumbnails[size].url,
         id: record.id,
       };
     });
-    dispatch({ type: ADD_BLOG, payload: { blogs } });
+    dispatch({ type: type, payload: { value } });
   };
   useEffect(() => {
     getProducts();
-    getBlog('blog');
+    getInfoOfHome('blog', ADD_BLOG);
+    getInfoOfHome('collection', ADD_COLLECTION, 'full');
+    getInfoOfHome('banner', ADD_BANNER);
+    getInfoOfHome('blog', ADD_BLOG_HOME);
   }, []);
   return (
     <ProductContext.Provider value={{ ...state }}>

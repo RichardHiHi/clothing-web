@@ -7,8 +7,9 @@ import Loadding from '../loadding-img/LoaddingImg';
 import { fetchData } from '../../utils/helper';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import BlogItem from '../blog-item/BlogItem';
+import { useProductContext } from '../../context/product_context';
 const BlogInsta = () => {
-  const [blogs, setBlogs] = useState([]);
+  const { blogHomes: blogs } = useProductContext();
   // useEffect(() => {
   //   fetchData('blog', setBlogs);
   // }, []);

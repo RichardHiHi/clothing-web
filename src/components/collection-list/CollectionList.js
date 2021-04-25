@@ -5,9 +5,10 @@ import Loading from '../loadding-img/LoaddingImg';
 import { fetchData } from '../../utils/helper';
 import { Link } from 'react-router-dom';
 import { useFilterContext } from '../../context/filter_context';
+import { useProductContext } from '../../context/product_context';
 
 const CollectionList = () => {
-  const [colls, setColls] = useState([]);
+  const { collections: colls } = useProductContext();
   const { filterCategoryUpdate } = useFilterContext();
   // useEffect(() => {
   //   fetchData('collection', setColls, 'full');

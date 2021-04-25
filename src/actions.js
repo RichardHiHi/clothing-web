@@ -12,3 +12,7 @@ export const SET_CURRENT_MIN_PRICE = 'SET_CURRENT_MIN_PRICE';
 export const SET_CURRENT_MAX_PRICE = 'SET_CURRENT_MAX_PRICE';
 export const CLEAR_ALL_FILTERS = 'CLEAR_ALL_FILTERS';
 export const ADD_BLOG = 'ADD_BLOG';
+export const ADD_COLLECTION = 'ADD_COLLECTION';
+// export const  = '';
+export const ADD_BLOG_HOME = 'ADD_BLOG_HOME';
+export const ADD_BANNER = 'ADD_BANNER';

@@ -5,8 +5,9 @@ import LoaddingImg from '../loadding-img/LoaddingImg';
 import { fetchData } from '../../utils/helper';
 import { Link } from 'react-router-dom';
 import { useFilterContext } from '../../context/filter_context';
+import { useProductContext } from '../../context/product_context';
 const BannerBlog = () => {
-  const [banners, setBanners] = useState([]);
+  const { banners } = useProductContext();
   // useEffect(() => {
   //   fetchData('banner', setBanners);
   // }, []);

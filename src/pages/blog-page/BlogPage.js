@@ -11,13 +11,11 @@ const BlogPage = () => {
   const { blogs } = useProductContext();
   const [currentPage, setCurrentPage] = useState(0);
   const [blogPerPage, setBlogPerpage] = useState(4);
-  const [pageNumbers, setPageNumbers] = useState(
-    Math.round(blogs.length / blogPerPage)
-  );
+  const [pageNumbers, setPageNumbers] = useState(0);
 
-  // useEffect(() => {
-  //   setPageNumbers(Math.round(blogs.length / blogPerPage));
-  // }, []);
+  useEffect(() => {
+    setPageNumbers(Math.round(blogs.length / blogPerPage));
+  }, []);
 
   const switchPage = (value) => {
     if (value === 'inc') {
