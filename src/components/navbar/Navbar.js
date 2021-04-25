@@ -13,6 +13,8 @@ import men from '../../assets/men.jpg';
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import { scrollToTop } from '../../utils/helper';
 
 const Navbar = () => {
   const { miniAction } = useButtonContext();
@@ -34,6 +36,13 @@ const Navbar = () => {
       } else {
         document.querySelector('.nav').classList.remove('hidden');
       }
+
+      if (currentScrollPos > 75) {
+        document.querySelector('.back-to-top-btn').classList.add('hidden');
+      } else {
+        document.querySelector('.back-to-top-btn').classList.remove('hidden');
+      }
+
       prevScrollpos = currentScrollPos;
     };
   });
@@ -57,103 +66,72 @@ const Navbar = () => {
     ],
   };
   return (
-    <div className='nav'>
-      <div className='navbar'>
-        <div className='logo-wrapper'>
-          <button
-            className='nav-toggle-btn'
-            onClick={() => miniAction('open', 'SideBar')}
-          >
-            <ReorderIcon style={{ fontSize: 30 }} />
-          </button>
-          <Link to='/' className='nav-logo'>
-            <img src={logo} alt='' />
-          </Link>
-        </div>
-        <div className='nav-links-wrapper'>
-          <Link to='/' className='nav-logo'>
-            <img src={logo} alt='' />
-          </Link>
-          <ul className='nav-links'>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to='/products' onClick={clearAllFilter}>
-                Products
-              </Link>
-              <div className='sub-menu-wrapper'>
-                <Grid container>
-                  <Grid item sm={4}>
-                    <Link
-                      to='/products'
-                      onClick={() => filterCategoryUpdate('Women')}
-                      className='submenu-img-wrapper margin-left'
-                    >
-                      <div
-                        className='submenu-img'
-                        style={{
-                          backgroundImage: `url(${wowmen2})`,
-                        }}
-                      ></div>
-                      <button className='submenu-img-btn'>Wowmen</button>
-                    </Link>
-                  </Grid>
-                  <Grid item sm={4}>
-                    <Link
-                      to='/products'
-                      onClick={() => filterCategoryUpdate('Men')}
-                      className='submenu-img-wrapper'
-                    >
-                      <div
-                        className='submenu-img'
-                        style={{
-                          backgroundImage: `url(${men})`,
-                        }}
-                      ></div>
-                      <button className='submenu-img-btn'>Men</button>
-                    </Link>
-                  </Grid>
-                  <Grid item sm={4}>
-                    <ul className='sub-menu small-width '>
-                      {category.map((category) => {
-                        return (
-                          <li>
-                            <Link
-                              to='/products'
-                              onClick={() => filterCategoryUpdate(category)}
-                            >
-                              {category}
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </Grid>
-                </Grid>
-              </div>
-            </li>
-            <li>
-              <Link
-                to='/products'
-                onClick={() => filterCategoryUpdate('All', true)}
-                style={{ color: 'red' }}
-              >
-                Sale
-              </Link>
-              <div className='sub-menu-wrapper submenu-slide'>
-                <Grid container>
-                  <Grid item sm={2}>
-                    <div className='sub-menu-slider-menu-wrapper'>
-                      <ul className='sub-menu text-align '>
-                        {category.slice(0, 5).map((category) => {
+    <>
+      <div className='nav'>
+        <div className='navbar'>
+          <div className='logo-wrapper'>
+            <button
+              className='nav-toggle-btn'
+              onClick={() => miniAction('open', 'SideBar')}
+            >
+              <ReorderIcon style={{ fontSize: 30 }} />
+            </button>
+            <Link to='/' className='nav-logo'>
+              <img src={logo} alt='' />
+            </Link>
+          </div>
+          <div className='nav-links-wrapper'>
+            <Link to='/' className='nav-logo'>
+              <img src={logo} alt='' />
+            </Link>
+            <ul className='nav-links'>
+              <li>
+                <Link to='/'>Home</Link>
+              </li>
+              <li>
+                <Link to='/products' onClick={clearAllFilter}>
+                  Products
+                </Link>
+                <div className='sub-menu-wrapper'>
+                  <Grid container>
+                    <Grid item sm={4}>
+                      <Link
+                        to='/products'
+                        onClick={() => filterCategoryUpdate('Women')}
+                        className='submenu-img-wrapper margin-left'
+                      >
+                        <div
+                          className='submenu-img'
+                          style={{
+                            backgroundImage: `url(${wowmen2})`,
+                          }}
+                        ></div>
+                        <button className='submenu-img-btn'>Wowmen</button>
+                      </Link>
+                    </Grid>
+                    <Grid item sm={4}>
+                      <Link
+                        to='/products'
+                        onClick={() => filterCategoryUpdate('Men')}
+                        className='submenu-img-wrapper'
+                      >
+                        <div
+                          className='submenu-img'
+                          style={{
+                            backgroundImage: `url(${men})`,
+                          }}
+                        ></div>
+                        <button className='submenu-img-btn'>Men</button>
+                      </Link>
+                    </Grid>
+                    <Grid item sm={4}>
+                      <ul className='sub-menu small-width '>
+                        {category.map((category) => {
                           return (
                             <li>
                               <Link
                                 to='/products'
-                                onClick={() =>
-                                  filterCategoryUpdate(category, true)
-                                }
+                                onClick={() => filterCategoryUpdate(category)}
                               >
                                 {category}
                               </Link>
@@ -161,31 +139,67 @@ const Navbar = () => {
                           );
                         })}
                       </ul>
-                    </div>
+                    </Grid>
                   </Grid>
-                  <Grid item sm={10}>
-                    <div className='sub-menu-slider-wrapper '>
-                      <Slider {...settingSlide}>
-                        {sale.map((product) => {
-                          return <ProductMiniItem product={product} />;
-                        })}
-                      </Slider>
-                    </div>
+                </div>
+              </li>
+              <li>
+                <Link
+                  to='/products'
+                  onClick={() => filterCategoryUpdate('All', true)}
+                  style={{ color: 'red' }}
+                >
+                  Sale
+                </Link>
+                <div className='sub-menu-wrapper submenu-slide'>
+                  <Grid container>
+                    <Grid item sm={2}>
+                      <div className='sub-menu-slider-menu-wrapper'>
+                        <ul className='sub-menu text-align '>
+                          {category.slice(0, 5).map((category) => {
+                            return (
+                              <li>
+                                <Link
+                                  to='/products'
+                                  onClick={() =>
+                                    filterCategoryUpdate(category, true)
+                                  }
+                                >
+                                  {category}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </Grid>
+                    <Grid item sm={10}>
+                      <div className='sub-menu-slider-wrapper '>
+                        <Slider {...settingSlide}>
+                          {sale.map((product) => {
+                            return <ProductMiniItem product={product} />;
+                          })}
+                        </Slider>
+                      </div>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </div>
-            </li>
-            <li>
-              <a href='#'>About</a>
-            </li>
-            <li>
-              <Link to='/blog'>Blog</Link>
-            </li>
-          </ul>
+                </div>
+              </li>
+              <li>
+                <a href='#'>About</a>
+              </li>
+              <li>
+                <Link to='/blog'>Blog</Link>
+              </li>
+            </ul>
+          </div>
+          <NavButton />
         </div>
-        <NavButton />
       </div>
-    </div>
+      <button onClick={scrollToTop} className='back-to-top-btn'>
+        <ExpandLessIcon />
+      </button>
+    </>
   );
 };
 
