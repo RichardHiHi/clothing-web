@@ -6,6 +6,8 @@ import { useProductContext } from '../../context/product_context';
 import { useFilterContext } from '../../context/filter_context';
 import { Link } from 'react-router-dom';
 // import { slide } from '../../utils/data';
+import { Skeleton } from '@material-ui/lab';
+
 const SlideShow = () => {
   const { slideShows: slides } = useProductContext();
   const { filterCategoryUpdate } = useFilterContext();
@@ -66,9 +68,14 @@ const SlideShow = () => {
 
   if (slides.length === 0) {
     return (
-      <div className='section-slide-show-inner  '>
+      <div className='section-slide-show-inner'>
         <div className='section-slide-show-inner-loadding '>
           <img src={blur} alt='' className='img-loading' />
+        </div>
+        <div className='slide-dot-button-container'>
+          {Array.from({ length: 4 }, (_, i) => i).map((a, index) => {
+            return <button className='slide-dot-btn'></button>;
+          })}
         </div>
       </div>
     );

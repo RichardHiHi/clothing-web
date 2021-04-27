@@ -27,7 +27,7 @@ const Trending = () => {
           <div className='trending-product-wrapper'>
             {loading ? (
               <Grid container className='section-grid-content-wrapper'>
-                {Array.from({ length: 4 }, (_, i) => i).map(
+                {Array.from({ length: 8 }, (_, i) => i).map(
                   (product, index) => {
                     return (
                       <Grid item xs={6} sm={3}>

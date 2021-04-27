@@ -3,6 +3,9 @@ import './filter.scss';
 import AddIcon from '@material-ui/icons/Add';
 import { formatPrice } from '../../utils/helper';
 import { useFilterContext } from '../../context/filter_context';
+import { useProductContext } from '../../context/product_context';
+import FilterSeketon from '../../components/filter-seketon/FilterSeketon';
+
 const Filter = () => {
   const {
     color,
@@ -23,8 +26,7 @@ const Filter = () => {
     filteredProducts,
     clearAllFilter,
   } = useFilterContext();
-  // const [currentMinPrice, setCurrentMinPrice] = useState(minPrice);
-  // const [currentMaxPrice, setCurrentMaxPrice] = useState(maxPrice);
+  const { productsLoading } = useProductContext();
 
   const changeCurrentMinPrice = (e) => {
     const value = parseInt(e.target.value);
@@ -68,6 +70,7 @@ const Filter = () => {
             value={currentMinPrice}
             onChange={changeCurrentMinPrice}
           />
+
           <input
             type='range'
             id='input-price-filter-right'
@@ -102,16 +105,24 @@ const Filter = () => {
         </div>
         <p class='filter-price'>
           Price:{' '}
-          <span>
-            {formatPrice(currentMinPrice)} — {formatPrice(currentMaxPrice)}
-          </span>
+          {currentMaxPrice >= 0 ? (
+            <span>
+              {formatPrice(currentMinPrice)} — {formatPrice(currentMaxPrice)}
+            </span>
+          ) : (
+            <span>
+              {formatPrice(currentMinPrice)} — {formatPrice(0)}
+            </span>
+          )}
         </p>
       </div>
       <div className='search-filter-wrapper filter-wrapper'>
         <div className='filter-title'>
           <h5>Filter by categories</h5>
         </div>
-        {category && (
+        {productsLoading ? (
+          <FilterSeketon />
+        ) : (
           <ul className='filter-list'>
             {filteredProducts.length > 0 && (
               <li className='category-filter-item filter-item'>
@@ -154,7 +165,9 @@ const Filter = () => {
         <div className='filter-title'>
           <h5>Filter by color</h5>
         </div>
-        {color && (
+        {productsLoading ? (
+          <FilterSeketon />
+        ) : (
           <ul className='filter-list'>
             {filteredProducts.length > 0 && (
               <li className='filter-item'>
@@ -204,7 +217,9 @@ const Filter = () => {
         <div className='filter-title'>
           <h5>Filter by size</h5>
         </div>
-        {category && (
+        {productsLoading ? (
+          <FilterSeketon />
+        ) : (
           <ul className='filter-list height-150'>
             {filteredProducts.length > 0 && (
               <li className='filter-item'>

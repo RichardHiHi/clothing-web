@@ -18,7 +18,7 @@ import ProductsCategory from './products-category/ProductsCategory';
 import FilterProduct from './filter-products/FilterProduct';
 import FilterMini from './filter-mini/FilterMini';
 import SortMini from './sort-mini/SortMini';
-import BackToTop from './backTopBTN/BackToTop';
+
 export {
   Navbar,
   NavButton,
@@ -40,5 +40,4 @@ export {
   FilterProduct,
   FilterMini,
   SortMini,
-  BackToTop,
 };

@@ -1,15 +1,17 @@
 @import '../../sassStyles/mixin.scss';
 .section-slide-show-inner {
   .section-slide-show-inner-loadding {
+    position: relative;
     overflow: hidden;
-    // width: 100%;
-    // height: 100%;
+    width: 100%;
+    height: 100%;
     img {
+      @include transform(scale(1.3));
+      @include transition(transform 2s);
       width: 100%;
       height: 100%;
     }
   }
-
   margin-top: 70px;
   width: 100vw;
   height: 38vw;
@@ -76,6 +78,9 @@
   }
 }
 .slide-content-caption {
+  &.opacity {
+    opacity: 1;
+  }
   opacity: 0;
   @include transition(all 2s ease-in-out);
   .slide-content-title {

@@ -11,7 +11,6 @@ import {
   Footer,
   FilterMini,
   SortMini,
-  BackToTop,
 } from './components';
 import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
 import ScrollToTop from 'react-router-scroll-top';
@@ -27,7 +26,6 @@ function App() {
         <CartMini />
         <FilterMini />
         <SortMini />
-        <BackToTop />
         <Switch>
           <Route exact path='/'>
             <HomePage />

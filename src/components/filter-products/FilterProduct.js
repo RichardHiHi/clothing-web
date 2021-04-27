@@ -6,8 +6,10 @@ import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import { useButtonContext } from '../../context/button_context';
 import { useFilterContext } from '../../context/filter_context';
+import { useProductContext } from '../../context/product_context';
 import SortIcon from '@material-ui/icons/Sort';
 import { scrollToTop } from '../../utils/helper';
+import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
 
 const FilterProduct = () => {
   const {
@@ -15,11 +17,13 @@ const FilterProduct = () => {
     sortUpdate,
     clearAllFilter,
   } = useFilterContext();
-  const [numberGrid, setNumberGrid] = useState(0);
+  const [numberGrid, setNumberGrid] = useState(1);
   const [currentPage, setCurrentPage] = useState(0);
   const [productPerPage, setProductPerpage] = useState(8);
   const [pageNumbers, setPageNumbers] = useState(0);
   const { miniAction } = useButtonContext();
+  const { productsLoading } = useProductContext();
+
   const actionOpenFilterMini = () => {
     miniAction('open', 'FilterMini');
   };
@@ -85,6 +89,31 @@ const FilterProduct = () => {
                 <Filter />
               </div>
             </Grid>
+            {productsLoading && (
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={9}
+                lg={9}
+                className='section-grid-content-wrapper'
+              >
+                {Array.from({ length: 6 }, (_, i) => i).map((item, index) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12 / (numberGrid + 2)}
+                      sm={12 / (numberGrid + 2)}
+                      md={12 / (numberGrid + 2)}
+                      lg={12 / (numberGrid + 2)}
+                    >
+                      <ProductMiniLoading />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            )}
             {products.length > 0 ? (
               <Grid
                 container

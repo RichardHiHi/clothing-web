@@ -2,6 +2,7 @@ import React from 'react';
 import './productMiniLoading.scss';
 import { formatPrice } from '../../utils/helper';
 import LoaddingImg from '../loadding-img/LoaddingImg';
+import { Skeleton } from '@material-ui/lab';
 const ProductMiniLoading = () => {
   return (
     <div className='mini-product-item'>
@@ -12,15 +13,18 @@ const ProductMiniLoading = () => {
       </div>
       <div className='mini-product-info'>
         <h3 className='mini-product-title'>
-          <a href='#'>Ultraboost DNA</a>{' '}
+          <Skeleton width={140} />
+          {/* <a href='#'>Ultraboost DNA</a>{' '} */}
         </h3>
         <span className='mini-product-price'>
-          <del>
+          <Skeleton width={80} />
+          <Skeleton width={40} />
+          {/* <del>
             <span className='money'>{formatPrice(3333333)} </span>
           </del>
           <ins>
             <span className='money'>{formatPrice(3333333)} </span>
-          </ins>
+          </ins> */}
         </span>
       </div>
     </div>
