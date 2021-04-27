@@ -15,7 +15,6 @@ const Navbutton = () => {
       >
         <BsSearch />
       </a>
-
       <a
         href='javascript:void(0)'
         className='nav-icon-user'
@@ -27,7 +26,7 @@ const Navbutton = () => {
       </a>
       <a href='javascript:void(0)' className='nav-icon-wishlist'>
         <BsHeart />
-        <span>1</span>
+        <span className='nav-icon-number'>1</span>
       </a>
       <a
         href='javascript:void(0)'
@@ -35,7 +34,7 @@ const Navbutton = () => {
         onClick={() => miniAction('open', 'MiniCart')}
       >
         <FiShoppingCart />
-        <span>1</span>
+        <span className='nav-icon-number'>1</span>
       </a>
     </div>
   );

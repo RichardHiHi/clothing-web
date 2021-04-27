@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductsCategory, FilterProduct } from '../components';
+
 const ProductsPage = () => {
   return (
     <>

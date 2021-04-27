@@ -13,6 +13,12 @@ const ProductCategory = () => {
     filterUpdate,
     filter: { category: filterCategory },
   } = useFilterContext();
+  const openCloseClick = (e) => {
+    e.target.parentElement.parentElement.parentElement.classList.toggle(
+      'active'
+    );
+    filterUpdate(e);
+  };
   return (
     <>
       <div className='category-section active'>
@@ -30,7 +36,7 @@ const ProductCategory = () => {
               }
               name='category'
               data-category='All'
-              onClick={filterUpdate}
+              onClick={openCloseClick}
             >
               All Products
             </button>
@@ -47,7 +53,7 @@ const ProductCategory = () => {
                   name='category'
                   key={index}
                   data-category={item}
-                  onClick={filterUpdate}
+                  onClick={openCloseClick}
                 >
                   {item}
                 </button>

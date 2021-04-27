@@ -9,7 +9,7 @@
 }
 //position is left or right
 @mixin mini-close($position, $transform) {
-  z-index: 11;
+  z-index: 102;
   position: fixed;
   overflow-y: auto;
   overflow-x: hidden;

@@ -13,7 +13,7 @@
       font-size: 2.2rem;
       font-weight: 400;
     }
-    span {
+    .nav-icon-number {
       line-height: 1.5;
       text-align: center;
       position: absolute;
@@ -28,7 +28,6 @@
       font-size: 1rem;
       box-shadow: 1px 1px 3px 0 rgb(146, 144, 144);
     }
-
     &:hover {
       color: $hoverColor;
     }
@@ -36,13 +35,6 @@
 }
 
 @media (max-width: 576px) {
-  // .nav-icons {
-  //   a{
-  //     svg{
-
-  //     }
-  //   }
-  // }
   .nav-icon-user {
     display: none;
   }
