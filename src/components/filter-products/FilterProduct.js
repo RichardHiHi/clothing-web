@@ -17,7 +17,7 @@ const FilterProduct = () => {
     sortUpdate,
     clearAllFilter,
   } = useFilterContext();
-  const [numberGrid, setNumberGrid] = useState(1);
+  const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [productPerPage, setProductPerpage] = useState(8);
   const [pageNumbers, setPageNumbers] = useState(0);
@@ -114,7 +114,23 @@ const FilterProduct = () => {
                 })}
               </Grid>
             )}
-            {products.length > 0 ? (
+            {products.length < 0 ? (
+              <Grid
+                container
+                item
+                xs={12}
+                sm={12}
+                md={9}
+                lg={9}
+                className='section-grid-content-wrapper'
+              >
+                <h2 className='no-match-product'>
+                  Sorry, no products matched your search.
+                  <br />
+                  <span onClick={clearAllFilter}>Clear Filters</span>
+                </h2>
+              </Grid>
+            ) : (
               <Grid
                 container
                 item
@@ -194,22 +210,6 @@ const FilterProduct = () => {
                     </div>
                   </div>
                 </Grid>
-              </Grid>
-            ) : (
-              <Grid
-                container
-                item
-                xs={12}
-                sm={12}
-                md={9}
-                lg={9}
-                className='section-grid-content-wrapper'
-              >
-                <h2 className='no-match-product'>
-                  Sorry, no products matched your search.
-                  <br />
-                  <span onClick={clearAllFilter}>Clear Filters</span>
-                </h2>
               </Grid>
             )}
           </Grid>

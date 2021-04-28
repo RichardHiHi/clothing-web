@@ -20,11 +20,15 @@ import {
 } from './components';
 import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
 import ScrollToTop from 'react-router-scroll-top';
-
+import { useButtonContext } from './context/button_context';
 function App() {
+  const { setIsInProductPage } = useButtonContext();
   let location = useLocation();
   React.useEffect(() => {
-    if (location.pathname) {
+    if (location.pathname === '/products') {
+      setIsInProductPage(true);
+    } else {
+      setIsInProductPage(false);
     }
   }, [location]);
   return (

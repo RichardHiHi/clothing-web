@@ -21,6 +21,7 @@
     .img-blog {
       padding-top: 73%;
       @include background-img;
+      background-position: top center;
       @include transition(transform 1.25s cubic-bezier(0, 0, 0.44, 1.18));
       &:before {
         content: '';

@@ -175,3 +175,12 @@
     }
   }
 }
+@media (max-width: 768px) {
+  .product-view {
+    .product-view-btn {
+      &.column4 {
+        display: none;
+      }
+    }
+  }
+}

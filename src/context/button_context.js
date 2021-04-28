@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from 'react';
 import reducer from '../reducers/button_reducer';
-import { MINI_ACTION } from '../actions';
+import { MINI_ACTION, SET_IS_IN_PRODUCT_PAGE } from '../actions';
 const ButtonContext = React.createContext();
 const initialState = {
   isSideBarOpen: false,
@@ -9,6 +9,7 @@ const initialState = {
   isMiniCartOpen: false,
   isFilterMiniOpen: false,
   isSortMiniOpen: false,
+  isInProductPage: false,
 };
 
 export const ButtonProvider = ({ children }) => {
@@ -17,8 +18,13 @@ export const ButtonProvider = ({ children }) => {
   const miniAction = (action, name) => {
     dispatch({ type: MINI_ACTION, payload: { name, action } });
   };
+  const setIsInProductPage = (value) => {
+    dispatch({ type: SET_IS_IN_PRODUCT_PAGE, payload: { value } });
+  };
   return (
-    <ButtonContext.Provider value={{ ...state, miniAction }}>
+    <ButtonContext.Provider
+      value={{ ...state, miniAction, setIsInProductPage }}
+    >
       {children}
     </ButtonContext.Provider>
   );

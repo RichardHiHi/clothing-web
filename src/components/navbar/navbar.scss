@@ -278,7 +278,7 @@
   visibility: hidden;
   position: fixed;
   bottom: 65px;
-  right: 35px;
+  right: 10px;
   width: 45px;
   height: 45px;
   z-index: 100;
@@ -308,7 +308,7 @@
 }
 @media (min-width: 768px) {
   .back-to-top-btn {
-    right: 10px;
+    right: 35px;
     &:hover {
       cursor: pointer;
       @include transform(scale(1.3));
