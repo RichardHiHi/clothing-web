@@ -5,6 +5,7 @@
 }
 .page-hero-container {
   margin-top: 70px;
+  padding: 0 45px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,5 +67,10 @@
     opacity: 1;
     visibility: visible;
     @include transform(translateY(0));
+  }
+}
+@media (max-width: 1025px) {
+  .page-hero-container {
+    padding: 0 25px;
   }
 }

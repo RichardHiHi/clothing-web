@@ -17,7 +17,14 @@ var Airtable = require('airtable');
 var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
   process.env.REACT_APP_BASIC_KEY
 );
-
+const getLocalStorage = () => {
+  let singleProduct = localStorage.getItem('singleProduct');
+  if (singleProduct) {
+    return JSON.parse(localStorage.getItem('singleProduct'));
+  } else {
+    return {};
+  }
+};
 const initialState = {
   slideShows: [],
   blogHomes: [],
@@ -33,7 +40,7 @@ const initialState = {
   singleProduct: {},
   trendingProducts: [],
   saleProducts: [],
-  singleProduct: {},
+  singleProduct: getLocalStorage(),
 };
 
 export const ProductProvider = ({ children }) => {
@@ -80,6 +87,9 @@ export const ProductProvider = ({ children }) => {
   const getSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id } });
   };
+  useEffect(() => {
+    localStorage.setItem('singleProduct', JSON.stringify(state.singleProduct));
+  }, [state.singleProduct]);
   useEffect(() => {
     getProducts();
     getInfoOfHome('slide', ADD_SLIDESHOW, 'full');
