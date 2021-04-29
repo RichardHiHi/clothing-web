@@ -9,6 +9,7 @@ import {
   ADD_BANNER,
   ADD_BLOG_HOME,
   ADD_SLIDESHOW,
+  GET_SINGLE_PRODUCT,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -32,6 +33,7 @@ const initialState = {
   singleProduct: {},
   trendingProducts: [],
   saleProducts: [],
+  singleProduct: {},
 };
 
 export const ProductProvider = ({ children }) => {
@@ -44,11 +46,19 @@ export const ProductProvider = ({ children }) => {
         base('product').select({}).firstPage(),
         base('productColorImg').select({}).firstPage(),
       ]);
-      const products = res.map((e) => {
-        const newColorImg = e.fields.colorImg.map((color) => {
+      const products = res.map((item) => {
+        const newColorImg = item.fields.colorImg.map((color) => {
           return resColor.find((colorin) => colorin.id === color).fields;
         });
-        return { ...e.fields, colorImg: newColorImg, id: e.id };
+        let check = 0;
+        const a = newColorImg.map((item) => {
+          const indexImg = Array.from({ length: item.img.length }, (_, i) => {
+            check = check + 1;
+            return check;
+          });
+          return { ...item, indexImg: indexImg };
+        });
+        return { ...item.fields, colorImg: a, id: item.id };
       });
 
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
@@ -67,16 +77,19 @@ export const ProductProvider = ({ children }) => {
     });
     dispatch({ type: type, payload: { value } });
   };
+  const getSingleProduct = async (id) => {
+    dispatch({ type: GET_SINGLE_PRODUCT, payload: { id } });
+  };
   useEffect(() => {
     getProducts();
-    getInfoOfHome('blog', ADD_BLOG);
+    getInfoOfHome('slide', ADD_SLIDESHOW, 'full');
     getInfoOfHome('collection', ADD_COLLECTION, 'full');
+    getInfoOfHome('blog', ADD_BLOG);
     getInfoOfHome('banner', ADD_BANNER);
     getInfoOfHome('blog', ADD_BLOG_HOME);
-    getInfoOfHome('slide', ADD_SLIDESHOW, 'full');
   }, []);
   return (
-    <ProductContext.Provider value={{ ...state }}>
+    <ProductContext.Provider value={{ ...state, getSingleProduct }}>
       {children}
     </ProductContext.Provider>
   );

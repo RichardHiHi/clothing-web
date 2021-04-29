@@ -5,12 +5,13 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { formatPrice } from '../../utils/helper';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import { useProductContext } from '../../context/product_context';
 
 const ProductMiniItem = ({ product }) => {
-  const { colorImg, size, onNew, onSale, name, price, stock } = product;
+  const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
-
+  const { getSingleProduct } = useProductContext();
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>
@@ -54,7 +55,7 @@ const ProductMiniItem = ({ product }) => {
           </a>
         </div>
         <div className='mini-product-btn-container'>
-          <button>
+          <button onClick={() => getSingleProduct(id)}>
             <span>Quick View</span>
             <VisibilityOutlinedIcon />
           </button>
