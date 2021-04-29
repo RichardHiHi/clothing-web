@@ -19,7 +19,7 @@ import FilterProduct from './filter-products/FilterProduct';
 import FilterMini from './filter-mini/FilterMini';
 import SortMini from './sort-mini/SortMini';
 import Toolbar from './toolbar/Toolbar';
-
+import SingleProductHero from './single-product-hero/SingleProductHero';
 export {
   Navbar,
   NavButton,
@@ -42,4 +42,5 @@ export {
   FilterMini,
   SortMini,
   Toolbar,
+  SingleProductHero,
 };

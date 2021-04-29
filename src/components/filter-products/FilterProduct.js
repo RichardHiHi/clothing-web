@@ -16,6 +16,7 @@ const FilterProduct = () => {
     filteredProducts: products,
     sortUpdate,
     clearAllFilter,
+    filter: { category },
   } = useFilterContext();
   const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -153,7 +154,11 @@ const FilterProduct = () => {
                       md={12 / (numberGrid + 2)}
                       lg={12 / (numberGrid + 2)}
                     >
-                      <ProductMiniItem product={product} />
+                      <ProductMiniItem
+                        product={product}
+                        page={'products'}
+                        category={category}
+                      />
                     </Grid>
                   ))}
                 <Grid item xs={12} sm={12} md={12} lg={12}>

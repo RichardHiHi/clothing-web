@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import LoadingImg from '../../components/loadding-img/LoaddingImg';
 import { useProductContext } from '../../context/product_context';
 import { scrollToTop } from '../../utils/helper';
+
 const BlogPage = () => {
   const { blogs } = useProductContext();
   const [currentPage, setCurrentPage] = useState(0);
@@ -87,7 +88,7 @@ const BlogPage = () => {
     );
   }
   return (
-    <>
+    <div className='content'>
       <div className='insta-section margin'>
         <div className='insta-container section-content-wrapper none-margin'>
           <Slider {...settingsBlog}>
@@ -156,6 +157,7 @@ const BlogPage = () => {
               }
               onClick={() => {
                 switchPage('dec');
+
                 scrollToTop(300);
               }}
             >
@@ -196,7 +198,7 @@ const BlogPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

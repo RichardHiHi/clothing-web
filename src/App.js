@@ -18,7 +18,13 @@ import {
   SortMini,
   Toolbar,
 } from './components';
-import { HomePage, BlogPage, AboutPage, ProductsPage } from './pages';
+import {
+  HomePage,
+  BlogPage,
+  AboutPage,
+  ProductsPage,
+  SingleProductPage,
+} from './pages';
 import ScrollToTop from 'react-router-scroll-top';
 import { useButtonContext } from './context/button_context';
 function App() {
@@ -55,6 +61,11 @@ function App() {
         <Route exact path='/products'>
           <ProductsPage />
         </Route>
+        <Route
+          exact
+          path='/singleProduct/:page?/:category?'
+          children={<SingleProductPage />}
+        />
       </Switch>
       <Footer />
     </ScrollToTop>

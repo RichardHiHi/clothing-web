@@ -6,8 +6,9 @@ import { formatPrice } from '../../utils/helper';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { useProductContext } from '../../context/product_context';
+import { Link } from 'react-router-dom';
 
-const ProductMiniItem = ({ product }) => {
+const ProductMiniItem = ({ product, page, category }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
@@ -15,7 +16,11 @@ const ProductMiniItem = ({ product }) => {
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>
-        <a href='#' className='mini-product-img-wrapper'>
+        <Link
+          to={`/singleProduct/${page}/${category}`}
+          className='mini-product-img-wrapper'
+          onClick={() => getSingleProduct(id)}
+        >
           <div
             className={
               lockImgHover ? `mini-product-img` : `mini-product-img lock-scale`
@@ -24,7 +29,7 @@ const ProductMiniItem = ({ product }) => {
               backgroundImage: `url(${colorImg[indexImg].img[1].thumbnails.large.url})`,
             }}
           ></div>
-        </a>
+        </Link>
         <div className='mini-product-img-wrapper_hover'>
           {lockImgHover && (
             <div
@@ -84,7 +89,12 @@ const ProductMiniItem = ({ product }) => {
       </span>
       <div className='mini-product-info'>
         <h3 className='mini-product-title'>
-          <a href='#'>{name}</a>{' '}
+          <Link
+            to={`/singleProduct/${page}/${category}`}
+            onClick={() => getSingleProduct(id)}
+          >
+            {name}
+          </Link>{' '}
         </h3>
         <span className='mini-product-price'>
           {!onSale && <span className='money'>{formatPrice(price)}</span>}

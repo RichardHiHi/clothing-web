@@ -42,7 +42,12 @@ const Trending = () => {
                 {trending.slice(0, number).map((product, index) => {
                   return (
                     <Grid item xs={6} sm={3}>
-                      <ProductMiniItem product={product} key={index} />
+                      <ProductMiniItem
+                        product={product}
+                        key={index}
+                        page={'home'}
+                        category={''}
+                      />
                     </Grid>
                   );
                 })}
