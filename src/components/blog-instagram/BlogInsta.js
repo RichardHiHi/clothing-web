@@ -10,10 +10,6 @@ import BlogItem from '../blog-item/BlogItem';
 import { useProductContext } from '../../context/product_context';
 const BlogInsta = () => {
   const { blogHomes: blogs } = useProductContext();
-  // useEffect(() => {
-  //   fetchData('blog', setBlogs);
-  // }, []);
-
   var settingsBlog = {
     speed: 500,
     slidesToShow: 3,
