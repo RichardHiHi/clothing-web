@@ -8,9 +8,7 @@ import { useFilterContext } from '../../context/filter_context';
 import { useProductContext } from '../../context/product_context';
 const BannerBlog = () => {
   const { banners } = useProductContext();
-  // useEffect(() => {
-  //   fetchData('banner', setBanners);
-  // }, []);
+
   const { filterCategoryUpdate } = useFilterContext();
   if (banners.length > 0) {
     return (

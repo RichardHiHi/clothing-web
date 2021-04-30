@@ -2,9 +2,10 @@
 @import '../../sassStyles/mixin.scss';
 .page-hero-section {
   background-color: #f6f6f8;
+  padding: 20px 0;
+  margin-top: 70px;
 }
 .page-hero-container {
-  margin-top: 70px;
   padding: 0 45px;
   display: flex;
   justify-content: space-between;
