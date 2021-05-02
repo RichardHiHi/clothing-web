@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './singleProductContent.scss';
 import Grid from '@material-ui/core/Grid';
 import { formatPrice } from '../../utils/helper';
@@ -13,8 +13,11 @@ import { logo } from '../../assets/logo.svg';
 import payment from '../../assets/payment.png';
 import { Link } from 'react-router-dom';
 import { icons } from '../../utils/data';
-
+import Slider from 'react-slick';
+import { NextArrow, PrevArrow } from '../../utils/helper';
+import { useFilterContext } from '../../context/filter_context';
 const SingleProductContent = ({ product }) => {
+  const { filterBrandUpdate } = useFilterContext();
   const {
     name,
     price,
@@ -25,14 +28,100 @@ const SingleProductContent = ({ product }) => {
     id,
     rate,
     description,
+    stock,
+    brand,
+    imgAmount,
+    AllOfImg,
   } = product;
+  const [indexIMG, setIndexImg] = useState(0);
+  const switchPage = (value) => {
+    if (value === 'inc') {
+      setIndexImg((oldindexIMG) => {
+        let newindexIMG = oldindexIMG + 1;
+        if (newindexIMG > AllOfImg.length - 1) {
+          newindexIMG = AllOfImg.length - 1;
+        }
+        return newindexIMG;
+      });
+    } else {
+      setIndexImg((oldindexIMG) => {
+        let newindexIMG = oldindexIMG - 1;
+        if (newindexIMG < 0) {
+          newindexIMG = 0;
+        }
+        return newindexIMG;
+      });
+    }
+  };
+
+  var settingsSingleProduct = {
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          // fade: true,
+          lazyLoad: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <div className='single-product-section'>
       <div className='single-product-container section-container'>
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
             <Grid item sm={6} md={6} lg={6}>
-              <div className='single-product-img'></div>
+              <div className='single-product-img'>
+                <div
+                  className='single-product-img__img'
+                  style={{
+                    backgroundImage: `url(${AllOfImg[indexIMG].thumbnails.large.url})`,
+                  }}
+                ></div>
+                <NextArrow onClick={() => switchPage('inc')} />
+                <PrevArrow onClick={() => switchPage('dec')} />
+              </div>
+              <div className='single-product-thumbnails-list'>
+                <Slider {...settingsSingleProduct}>
+                  {AllOfImg.map((img, index) => {
+                    return (
+                      <div className='single-product-thumbnails'>
+                        <div
+                          className={
+                            index === indexIMG
+                              ? 'single-product-thumbnails__img active'
+                              : 'single-product-thumbnails__img'
+                          }
+                          style={{
+                            backgroundImage: `url(${img.thumbnails.large.url})`,
+                          }}
+                          onClick={() => setIndexImg(index)}
+                        ></div>
+                      </div>
+                    );
+                  })}
+                  {imgAmount < 3 &&
+                    Array.from({ length: 4 - imgAmount }, (_, i) => i).map(
+                      (item) => {
+                        return (
+                          <div className='single-product-thumbnails '>
+                            <div className='single-product-thumbnails__img nopointer'></div>
+                          </div>
+                        );
+                      }
+                    )}
+                </Slider>
+              </div>
             </Grid>
             <Grid item sm={6} md={6} lg={6}>
               <div className='single-product-info'>
@@ -60,11 +149,11 @@ const SingleProductContent = ({ product }) => {
                 <div className='single-product-decription-wrapper'>
                   <p>{description}</p>
                 </div>
-                <div className='single-product-color-wrapper'>
-                  <div className='single-product-color-title'>
-                    <h4>COLOR: WHITE CREAM</h4>
-                  </div>
-                  {colorImg.length > 1 && (
+                {colorImg.length > 1 && (
+                  <div className='single-product-color-wrapper'>
+                    <div className='single-product-color-title'>
+                      <h4>COLOR: WHITE CREAM</h4>
+                    </div>
                     <div className='product-mini-watch-list'>
                       {colorImg.map((color, index) => {
                         return (
@@ -89,8 +178,8 @@ const SingleProductContent = ({ product }) => {
                         );
                       })}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
                 <div className='single-product-size-wrapper'>
                   <div className='single-product-size-title'>
                     <h4>SIZE: S</h4>
@@ -111,21 +200,27 @@ const SingleProductContent = ({ product }) => {
                     })}
                   </div>
                 </div>
+
                 <div className='single-product-cart-wrapper'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                      inputmode='numeric'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
+                  {stock > 0 && (
+                    <div className='mini-cart-quantity'>
+                      <input
+                        type='number'
+                        className='mini-cart-quantity-input'
+                        value='1'
+                        inputmode='numeric'
+                      />
+                      <button className='mini-cart-minus-btn'>
+                        <RemoveIcon />
+                      </button>
+                      <button className='mini-cart-plus-btn'>
+                        <AddIcon />
+                      </button>
+                    </div>
+                  )}
+                  {stock === 0 && (
+                    <div className='out-of-stock-btn-wrapper'>Out Of Stock</div>
+                  )}
                   <div className='single-product-wishList-wrapper'>
                     <span className='single-product-wishList'>
                       <FavoriteBorderIcon />
@@ -134,19 +229,37 @@ const SingleProductContent = ({ product }) => {
                       </span>
                     </span>
                   </div>
-                  <div className='add-to-cart-btn-wrapper'>
-                    <button className='add-to-cart-btn button_primary'>
-                      ADD TO CART
-                    </button>
-                  </div>
+                  {stock > 0 && (
+                    <div className='add-to-cart-btn-wrapper'>
+                      <button className='add-to-cart-btn button_primary'>
+                        ADD TO CART
+                      </button>
+                    </div>
+                  )}
                 </div>
                 <div className='single-product-payment-wrapper'>
                   <img src={payment} alt='' />
                 </div>
                 <div class='single-product-meta'>
+                  <span class='simple-product-stock category-tag'>
+                    Vendor:
+                    <Link
+                      to='/products'
+                      onClick={() => filterBrandUpdate(brand)}
+                      title=''
+                    >
+                      {brand}
+                    </Link>
+                  </span>
                   <span class='sku-wrapper'>
                     SKU:
                     <span class='sku'>{id}</span>
+                  </span>
+                  <span class='simple-product-stock sku-wrapper'>
+                    Availability:
+                    <span class='sku--blod'>
+                      {stock > 0 ? 'In Stock' : 'Out Of Stock'}
+                    </span>
                   </span>
                   <span class='category-tag'>
                     Categories:

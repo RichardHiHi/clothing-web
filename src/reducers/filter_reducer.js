@@ -25,6 +25,7 @@ const button_reducer = (state, action) => {
       category: [...action.payload.category],
       color: [...action.payload.color],
       size: [...action.payload.size],
+      brand: [...action.payload.brand],
       filter: {
         ...state.filter,
         maxPrice: Math.max(...arrayPrice),
@@ -100,6 +101,7 @@ const button_reducer = (state, action) => {
       color,
       size,
       sale,
+      brand,
     } = state.filter;
     if (currentMinPrice > 0 || currentMaxPrice < maxPrice) {
       tempfilterProduct = tempfilterProduct.filter(
@@ -117,6 +119,11 @@ const button_reducer = (state, action) => {
         return product.category.find((item) => {
           return item === category;
         });
+      });
+    }
+    if (brand !== 'All') {
+      tempfilterProduct = tempfilterProduct.filter((product) => {
+        return product.brand === brand;
       });
     }
     if (color !== 'All') {
@@ -175,6 +182,7 @@ const button_reducer = (state, action) => {
         currentMaxPrice: Math.max(...arrayPrice),
         color: 'All',
         size: 'All',
+        brand: 'All',
         sale: false,
       },
     };

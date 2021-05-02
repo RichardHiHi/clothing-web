@@ -16,6 +16,8 @@ const products_reducer = (state, action) => {
     const products = action.payload.products;
     const trendingProducts = products.filter((product) => product.trending);
     const sale = products.filter((product) => product.onSale);
+    const brand = [...new Set(products.map((product) => product.brand))];
+    console.log();
 
     return {
       ...state,
@@ -27,6 +29,7 @@ const products_reducer = (state, action) => {
       category: getUnique(products, 'category'),
       color: getUniqueObj(products, 'colorName'),
       size: getUnique(products, 'size'),
+      brand: brand,
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {

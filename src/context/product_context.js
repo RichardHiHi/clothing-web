@@ -32,6 +32,7 @@ const initialState = {
   blogs: [],
   collections: [],
   category: [],
+  brand: [],
   products: [],
   color: [],
   size: [],
@@ -57,17 +58,43 @@ export const ProductProvider = ({ children }) => {
         const newColorImg = item.fields.colorImg.map((color) => {
           return resColor.find((colorin) => colorin.id === color).fields;
         });
-        let check = 0;
+        //create array indexImg
+        let check = -1;
+        let check1 = -1;
         const a = newColorImg.map((item) => {
-          const indexImg = Array.from({ length: item.img.length }, (_, i) => {
-            check = check + 1;
-            return check;
-          });
-          return { ...item, indexImg: indexImg };
-        });
-        return { ...item.fields, colorImg: a, id: item.id };
-      });
+          const indexImgArray = Array.from(
+            { length: item.img.length },
+            (_, i) => {
+              check = check + 1;
 
+              return check;
+            }
+          );
+          const newImg = item.img.map((imgItem, index) => {
+            check1 = check1 + 1;
+            return { ...imgItem, indexImgItem: check1 };
+          });
+          return { ...item, indexImg: indexImgArray, img: newImg };
+        });
+        //create indexImg for each img
+        // const b = newColorImg.map((item) => {
+        //   console.log(item);
+
+        //   return { ...item };
+        // });
+
+        const AllOfImg = newColorImg.reduce((acc, cur) => {
+          return acc.concat(cur.img);
+        }, []);
+
+        return {
+          ...item.fields,
+          colorImg: a,
+          id: item.id,
+          imgAmount: check,
+          AllOfImg: AllOfImg,
+        };
+      });
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });

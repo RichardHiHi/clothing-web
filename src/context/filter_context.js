@@ -31,17 +31,18 @@ const initialState = {
     color: 'All',
     size: 'All',
     sale: false,
+    brand: 'All',
   },
 };
 
 export const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { products, category, color, size } = useProductContext();
+  const { products, category, color, size, brand } = useProductContext();
 
   useEffect(() => {
     dispatch({
       type: 'LOAD_PRODUCTS',
-      payload: { products, category, color, size },
+      payload: { products, category, color, size, brand },
     });
   }, [products]);
   useEffect(() => {
@@ -82,6 +83,12 @@ export const FilterProvider = ({ children }) => {
         payload: { name: filterName, value: e.target.dataset.category },
       });
     }
+    if (filterName === 'brand') {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: filterName, value: e.target.dataset.brand },
+      });
+    }
     if (filterName === 'color') {
       dispatch({
         type: UPDATE_FILTER,
@@ -108,6 +115,13 @@ export const FilterProvider = ({ children }) => {
       });
     }
   };
+  const filterBrandUpdate = (filterValue) => {
+    clearAllFilter();
+    dispatch({
+      type: UPDATE_FILTER,
+      payload: { name: 'brand', value: filterValue },
+    });
+  };
   const setCurrentMinPrice = (value) => {
     dispatch({ type: SET_CURRENT_MIN_PRICE, payload: { value: value } });
   };
@@ -128,6 +142,7 @@ export const FilterProvider = ({ children }) => {
         setCurrentMinPrice,
         setCurrentMaxPrice,
         filterCategoryUpdate,
+        filterBrandUpdate,
       }}
     >
       {children}

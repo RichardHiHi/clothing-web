@@ -11,6 +11,7 @@ const Filter = () => {
     color,
     size,
     category,
+    brand,
     filter: {
       color: filteredColor,
       minPrice,
@@ -19,6 +20,7 @@ const Filter = () => {
       currentMaxPrice,
       category: filteredCategory,
       size: filteredSize,
+      brand: filteredBrand,
     },
     setCurrentMinPrice,
     setCurrentMaxPrice,
@@ -161,6 +163,37 @@ const Filter = () => {
           </ul>
         )}
       </div>
+      <div className='search-filter-wrapper filter-wrapper margin'>
+        <div className='filter-title'>
+          <h5>Filter by Brand</h5>
+        </div>
+        {productsLoading || !brand ? (
+          <FilterSeketon />
+        ) : (
+          <ul className='filter-list height-150'>
+            {brand.map((item, index) => {
+              return (
+                <li className='filter-item' key={index}>
+                  <button
+                    className={
+                      item === filteredBrand
+                        ? 'filter-size-btn active'
+                        : 'filter-size-btn'
+                    }
+                    name='brand'
+                    data-brand={item}
+                    onClick={filterUpdate}
+                  >
+                    {/* '.actived' for active */}
+                    <span className='filter-size-check'></span>
+                    <span className='filter-size-title'>{item}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
       <div className='search-filter-wrapper filter-wrapper'>
         <div className='filter-title'>
           <h5>Filter by color</h5>
@@ -264,6 +297,7 @@ const Filter = () => {
           </ul>
         )}
       </div>
+
       <div className='clear-filter-btn-wrapper'>
         <button onClick={clearAllFilter} className='clear-filter-btn'>
           Clear Filters
