@@ -34,12 +34,23 @@ const SingleProductContent = ({ product }) => {
     AllOfImg,
   } = product;
   const [indexIMG, setIndexImg] = useState(0);
+  const sliderRef = useRef();
+
+  const handleOnClick = (index) => {
+    sliderRef.current.slickGoTo(index);
+  };
+
+  useEffect(() => {
+    handleOnClick(indexIMG - 2);
+    console.log(indexIMG);
+  }, [indexIMG]);
+
   const switchPage = (value) => {
     if (value === 'inc') {
       setIndexImg((oldindexIMG) => {
         let newindexIMG = oldindexIMG + 1;
         if (newindexIMG > AllOfImg.length - 1) {
-          newindexIMG = AllOfImg.length - 1;
+          newindexIMG = 0;
         }
         return newindexIMG;
       });
@@ -47,7 +58,7 @@ const SingleProductContent = ({ product }) => {
       setIndexImg((oldindexIMG) => {
         let newindexIMG = oldindexIMG - 1;
         if (newindexIMG < 0) {
-          newindexIMG = 0;
+          newindexIMG = AllOfImg.length - 1;
         }
         return newindexIMG;
       });
@@ -64,8 +75,8 @@ const SingleProductContent = ({ product }) => {
   };
   var settingsSingleProduct = {
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     initialSlide: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -107,21 +118,11 @@ const SingleProductContent = ({ product }) => {
                   );
                 })}
 
-                <NextArrow
-                  onClick={() => {
-                    switchPage('inc');
-                    next();
-                  }}
-                />
-                <PrevArrow
-                  onClick={() => {
-                    switchPage('dec');
-                    previous();
-                  }}
-                />
+                <NextArrow onClick={() => switchPage('inc')} />
+                <PrevArrow onClick={() => switchPage('dec')} />
               </div>
               <div className='single-product-thumbnails-list'>
-                <Slider ref={ref} {...settingsSingleProduct}>
+                <Slider ref={sliderRef} {...settingsSingleProduct}>
                   {AllOfImg.map((img, index) => {
                     return (
                       <div className='single-product-thumbnails'>
@@ -134,21 +135,15 @@ const SingleProductContent = ({ product }) => {
                           style={{
                             backgroundImage: `url(${img.thumbnails.large.url})`,
                           }}
-                          onClick={() => setIndexImg(index)}
+                          onClick={() =>
+                            setIndexImg(() => {
+                              return index;
+                            })
+                          }
                         ></div>
                       </div>
                     );
                   })}
-                  {imgAmount < 3 &&
-                    Array.from({ length: 4 - imgAmount }, (_, i) => i).map(
-                      (item) => {
-                        return (
-                          <div className='single-product-thumbnails '>
-                            <div className='single-product-thumbnails__img nopointer'></div>
-                          </div>
-                        );
-                      }
-                    )}
                 </Slider>
               </div>
             </Grid>
@@ -229,7 +224,6 @@ const SingleProductContent = ({ product }) => {
                     })}
                   </div>
                 </div>
-
                 <div className='single-product-cart-wrapper'>
                   {stock > 0 && (
                     <div className='mini-cart-quantity'>

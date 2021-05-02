@@ -21,6 +21,7 @@
     display: flex;
     align-items: center;
     .single-product-count-review {
+      margin-left: 5px;
       @include font-size-weight(1.3rem, 400);
     }
   }
@@ -194,21 +195,27 @@
 
 ////img and zoom////
 .single-product-thumbnails-list {
-  margin: 0 -4px;
+  margin: 0 -5px;
   .single-product-thumbnails {
     margin: 10px 0;
     .single-product-thumbnails__img {
+      @include transition(all 0.7s);
       &.nopointer {
         pointer-events: none;
       }
       &.active {
         filter: opacity(100%);
+        background-position: bottom;
       }
-      @include background-img;
-      padding-top: 80%;
+      background-repeat: no-repeat;
+      background-size: 107% 107%;
+      padding-top: 100%;
+      background-position: top;
       margin: 0 5px;
       &:hover {
+        background-position: bottom;
         cursor: pointer;
+        filter: opacity(100%);
       }
       filter: opacity(30%);
     }
