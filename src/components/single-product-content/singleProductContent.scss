@@ -232,9 +232,22 @@
 }
 .single-product-img {
   position: relative;
+  padding-top: 100%;
   .single-product-img__img {
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     padding-top: 100%;
     @include background-img;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(all 0.7s);
   }
   .prev-arrow,
   .next-arrow {

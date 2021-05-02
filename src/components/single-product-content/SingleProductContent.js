@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './singleProductContent.scss';
 import Grid from '@material-ui/core/Grid';
 import { formatPrice } from '../../utils/helper';
@@ -53,14 +53,23 @@ const SingleProductContent = ({ product }) => {
       });
     }
   };
+  const ref = useRef({});
 
+  const next = () => {
+    ref.current.slickNext();
+  };
+
+  const previous = () => {
+    ref.current.slickPrev();
+  };
   var settingsSingleProduct = {
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    infinite: false,
     responsive: [
       {
         breakpoint: 600,
@@ -82,17 +91,37 @@ const SingleProductContent = ({ product }) => {
           <Grid container className='section-grid-content-wrapper'>
             <Grid item sm={6} md={6} lg={6}>
               <div className='single-product-img'>
-                <div
-                  className='single-product-img__img'
-                  style={{
-                    backgroundImage: `url(${AllOfImg[indexIMG].thumbnails.large.url})`,
+                {AllOfImg.map((img, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        indexIMG === index
+                          ? 'single-product-img__img active'
+                          : 'single-product-img__img'
+                      }
+                      style={{
+                        backgroundImage: `url(${img.thumbnails.large.url})`,
+                      }}
+                    ></div>
+                  );
+                })}
+
+                <NextArrow
+                  onClick={() => {
+                    switchPage('inc');
+                    next();
                   }}
-                ></div>
-                <NextArrow onClick={() => switchPage('inc')} />
-                <PrevArrow onClick={() => switchPage('dec')} />
+                />
+                <PrevArrow
+                  onClick={() => {
+                    switchPage('dec');
+                    previous();
+                  }}
+                />
               </div>
               <div className='single-product-thumbnails-list'>
-                <Slider {...settingsSingleProduct}>
+                <Slider ref={ref} {...settingsSingleProduct}>
                   {AllOfImg.map((img, index) => {
                     return (
                       <div className='single-product-thumbnails'>
