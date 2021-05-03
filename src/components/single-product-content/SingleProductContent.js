@@ -64,15 +64,7 @@ const SingleProductContent = ({ product }) => {
       });
     }
   };
-  const ref = useRef({});
 
-  const next = () => {
-    ref.current.slickNext();
-  };
-
-  const previous = () => {
-    ref.current.slickPrev();
-  };
   var settingsSingleProduct = {
     speed: 500,
     slidesToShow: 5,
