@@ -83,6 +83,12 @@ export const FilterProvider = ({ children }) => {
         payload: { name: filterName, value: e.target.dataset.category },
       });
     }
+    if (filterName === 'MINIcategory') {
+      dispatch({
+        type: UPDATE_FILTER,
+        payload: { name: 'category', value: e.target.value },
+      });
+    }
     if (filterName === 'brand') {
       dispatch({
         type: UPDATE_FILTER,

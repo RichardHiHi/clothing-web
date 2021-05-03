@@ -85,7 +85,7 @@ const SingleProductContent = ({ product }) => {
     const color = colorImg.find((color) => {
       return color.indexImg.some((item) => item === indexIMG);
     }).colorName;
-    console.log(color);
+
     setColorIndex(color);
   };
   useEffect(() => {

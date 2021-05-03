@@ -138,6 +138,11 @@
               @include transition(all 0.3s);
             }
             .price-title {
+              &.none-decoration {
+                del {
+                  text-decoration: none;
+                }
+              }
               color: $lightLetterColor;
               display: flex;
               flex-basis: 0;

@@ -312,7 +312,6 @@
       opacity: 1;
       @include transform(translateY(-50%) scale(1));
       visibility: visible;
-      z-index: 100;
       &:hover {
         cursor: pointer;
         color: #000;
