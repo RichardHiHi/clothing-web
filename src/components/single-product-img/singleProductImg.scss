@@ -1,0 +1,71 @@
+@import '../../sassStyles/variables.scss';
+@import '../../sassStyles/mixin.scss';
+
+.single-product-img {
+  position: relative;
+  padding-top: 120%;
+  .single-product-img_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .single-product-img__img {
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding-top: 120%;
+    @include background-img;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(all 0.7s);
+  }
+  .prev-arrow,
+  .next-arrow {
+    opacity: 0;
+    visibility: hidden;
+    @include transform(translateY(-50%) scale(0.3));
+  }
+  &:hover {
+    .prev-arrow,
+    .next-arrow {
+      opacity: 1;
+      @include transform(translateY(-50%) scale(1));
+      visibility: visible;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .single-product-img {
+    .prev-arrow,
+    .next-arrow {
+      opacity: 1;
+      @include transform(translateY(-50%) scale(1));
+      visibility: visible;
+      &:hover {
+        cursor: pointer;
+        color: #000;
+        background-color: transparent;
+        border: 1px solid #000;
+      }
+      &:active {
+        color: rgba(255, 255, 255, 0.637);
+        background-color: $hoverColor;
+        @include transform(translateY(-50%) scale(1.2));
+      }
+    }
+    .next-arrow {
+      right: 0px;
+    }
+    .prev-arrow {
+      left: 0px;
+    }
+  }
+}
