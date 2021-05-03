@@ -1,5 +1,10 @@
 @import '../../sassStyles/variables.scss';
 @import '../../sassStyles/mixin.scss';
+.single-product-section {
+  .section-container {
+    padding: 5px;
+  }
+}
 .single-product-name-wrapper {
   .single-product-name {
     @include font-size-weight(1.5rem, 600);
@@ -41,6 +46,27 @@
     margin-bottom: 10px;
   }
   margin-bottom: 10px;
+  .product-mini-watch-list {
+    .watch-list-color {
+      &.active {
+        &:after {
+          border: 2px solid $letterColor;
+        }
+      }
+      margin-right: 15px;
+      width: 22px;
+      height: 22px;
+      border-radius: 22px;
+      &:after {
+        top: -4px;
+        left: -4px;
+        padding: 2px;
+        border-radius: 22px;
+        border: 2px solid #ddd;
+        @include transition(all 0.3s);
+      }
+    }
+  }
 }
 .single-product-size-wrapper {
   .single-product-size-title {
@@ -63,9 +89,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 24px;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
       border: $borderColor;
       color: $lightLetterColor;
       margin-right: 5px;
@@ -239,7 +265,14 @@
 }
 .single-product-img {
   position: relative;
-  padding-top: 100%;
+  padding-top: 120%;
+  .single-product-img_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
   .single-product-img__img {
     &.active {
       opacity: 1;
@@ -250,7 +283,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding-top: 100%;
+    padding-top: 120%;
     @include background-img;
     opacity: 0;
     visibility: hidden;
@@ -260,7 +293,6 @@
   .next-arrow {
     opacity: 0;
     visibility: hidden;
-
     @include transform(translateY(-50%) scale(0.3));
   }
   &:hover {
@@ -268,8 +300,36 @@
     .next-arrow {
       opacity: 1;
       @include transform(translateY(-50%) scale(1));
-
       visibility: visible;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .single-product-img {
+    .prev-arrow,
+    .next-arrow {
+      opacity: 1;
+      @include transform(translateY(-50%) scale(1));
+      visibility: visible;
+      z-index: 100;
+      &:hover {
+        cursor: pointer;
+        color: #000;
+        background-color: transparent;
+        border: 1px solid #000;
+      }
+      &:active {
+        color: rgba(255, 255, 255, 0.637);
+        background-color: $hoverColor;
+        @include transform(translateY(-50%) scale(1.2));
+      }
+    }
+    .next-arrow {
+      right: 0px;
+    }
+    .prev-arrow {
+      left: 0px;
     }
   }
 }

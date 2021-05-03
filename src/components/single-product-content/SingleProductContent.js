@@ -30,19 +30,67 @@ const SingleProductContent = ({ product }) => {
     description,
     stock,
     brand,
-    imgAmount,
+
     AllOfImg,
   } = product;
   const [indexIMG, setIndexImg] = useState(0);
   const sliderRef = useRef();
+  const [mouseDown, setMouseDown] = useState(0);
+  const [mouseUp, setMouseUp] = useState(0);
+  const [colorindex, setColorIndex] = useState('');
 
+  useEffect(() => {
+    document
+      .querySelector('.single-product-img')
+      .addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        setMouseDown(e.x);
+      });
+    document
+      .querySelector('.single-product-img')
+      .addEventListener('mouseup', (e) => {
+        setMouseUp(e.x);
+      });
+  }, []);
+  useEffect(() => {
+    if (mouseDown !== mouseUp) {
+      if (mouseDown > mouseUp) {
+        setIndexImg((oldindexIMG) => {
+          let newindexIMG = oldindexIMG + 1;
+          if (newindexIMG > AllOfImg.length - 1) {
+            newindexIMG = 0;
+          }
+          return newindexIMG;
+        });
+      }
+      if (mouseDown < mouseUp) {
+        setIndexImg((oldindexIMG) => {
+          let newindexIMG = oldindexIMG - 1;
+          if (newindexIMG < 0) {
+            newindexIMG = AllOfImg.length - 1;
+          }
+          return newindexIMG;
+        });
+      }
+    }
+    setMouseDown(0);
+    setMouseUp(0);
+  }, [mouseUp]);
+  //set position of slider
   const handleOnClick = (index) => {
     sliderRef.current.slickGoTo(index);
   };
-
+  //set color follow index
+  const setColorFollowIndex = () => {
+    const color = colorImg.find((color) => {
+      return color.indexImg.some((item) => item === indexIMG);
+    }).colorName;
+    console.log(color);
+    setColorIndex(color);
+  };
   useEffect(() => {
     handleOnClick(indexIMG - 2);
-    console.log(indexIMG);
+    setColorFollowIndex();
   }, [indexIMG]);
 
   const switchPage = (value) => {
@@ -81,18 +129,6 @@ const SingleProductContent = ({ product }) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     infinite: false,
-    responsive: [
-      {
-        breakpoint: 600,
-        settings: {
-          // fade: true,
-          lazyLoad: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          initialSlide: 1,
-        },
-      },
-    ],
   };
 
   return (
@@ -100,7 +136,7 @@ const SingleProductContent = ({ product }) => {
       <div className='single-product-container section-container'>
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
-            <Grid item sm={6} md={6} lg={6}>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='single-product-img'>
                 {AllOfImg.map((img, index) => {
                   return (
@@ -117,7 +153,6 @@ const SingleProductContent = ({ product }) => {
                     ></div>
                   );
                 })}
-
                 <NextArrow onClick={() => switchPage('inc')} />
                 <PrevArrow onClick={() => switchPage('dec')} />
               </div>
@@ -147,7 +182,7 @@ const SingleProductContent = ({ product }) => {
                 </Slider>
               </div>
             </Grid>
-            <Grid item sm={6} md={6} lg={6}>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
               <div className='single-product-info'>
                 <div className='single-product-name-wrapper'>
                   <h3 className='single-product-name'>{name}</h3>
@@ -182,12 +217,12 @@ const SingleProductContent = ({ product }) => {
                       {colorImg.map((color, index) => {
                         return (
                           <span
-                            className='watch-list-color'
-                            // className={
-                            //   index === indexImg
-                            //     ? `watch-list-color watch-list-color-activated`
-                            //     : `watch-list-color `
-                            // }
+                            className={
+                              color.colorName === colorindex
+                                ? `watch-list-color active`
+                                : `watch-list-color `
+                            }
+                            onClick={() => setIndexImg(color.indexImg[0])}
                             style={{ backgroundColor: `${color.colorCode}` }}
                             // onMouseOver={() => {
                             //   setLockImgHover(false);
