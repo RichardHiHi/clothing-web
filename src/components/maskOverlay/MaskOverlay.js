@@ -12,6 +12,7 @@ const MaskOverlay = () => {
     isMiniCartOpen,
     isFilterMiniOpen,
     isSortMiniOpen,
+    isSingleProductModalOpen,
   } = useButtonContext();
   const action = () => {
     miniAction('close', 'SideBar');
@@ -20,6 +21,7 @@ const MaskOverlay = () => {
     miniAction('close', 'MiniCart');
     miniAction('close', 'FilterMini');
     miniAction('close', 'SortMini');
+    miniAction('close', 'SingleProductModal');
   };
   return (
     <div
@@ -29,7 +31,8 @@ const MaskOverlay = () => {
         isMiniLoginOpen ||
         isMiniCartOpen ||
         isFilterMiniOpen ||
-        isSortMiniOpen
+        isSortMiniOpen ||
+        isSingleProductModalOpen
           ? 'mask-overlay mask-overlay-openned'
           : 'mask-overlay'
       }

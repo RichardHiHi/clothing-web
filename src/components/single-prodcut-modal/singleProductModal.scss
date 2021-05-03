@@ -1,0 +1,48 @@
+@import '../../sassStyles/mixin.scss';
+.sp-modal-section {
+  opacity: 0;
+  visibility: hidden;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    @include transform(scale(1) translateY(0));
+  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 102;
+  pointer-events: none;
+  @include transition(all 0.4s);
+  @include transform(scale(0) translateY(100%));
+  .sp-modal-content {
+    pointer-events: auto;
+    flex-basis: 950px;
+    max-width: auto;
+    background-color: white;
+    position: relative;
+    .sp-modal-btn--close {
+      position: absolute;
+      right: 10px;
+      z-index: 103;
+    }
+  }
+}
+.sp-info-wrapper {
+  position: relative;
+  .sp-info-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 20px;
+    overflow: auto;
+    overflow-x: hidden;
+    @include scroll-bar(3px);
+  }
+}

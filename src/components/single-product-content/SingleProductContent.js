@@ -7,26 +7,12 @@ import { NextArrow, PrevArrow } from '../../utils/helper';
 import SingleProductImg from '../single-product-img/SingleProductImg';
 import SingleProductInfo from '../single-product-info/SingleProductInfo';
 const SingleProductContent = ({ product }) => {
-  const {
-    name,
-    price,
-    review,
-    colorImg,
-    size,
-    category,
-    id,
-    rate,
-    description,
-    stock,
-    brand,
-
-    AllOfImg,
-  } = product;
+  const { colorImg, AllOfImg } = product;
   const [indexIMG, setIndexImg] = useState(0);
+  const [colorindex, setColorIndex] = useState('');
   const sliderRef = useRef();
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
-  const [colorindex, setColorIndex] = useState('');
 
   useEffect(() => {
     document
@@ -118,7 +104,7 @@ const SingleProductContent = ({ product }) => {
           <Grid container className='section-grid-content-wrapper'>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <SingleProductImg
-                AllOfImg={AllOfImg}
+                {...product}
                 indexIMG={indexIMG}
                 switchPage={switchPage}
               />

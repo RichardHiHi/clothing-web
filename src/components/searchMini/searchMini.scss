@@ -187,37 +187,3 @@
     }
   }
 }
-.mini-search-footer {
-  display: flex;
-  align-items: center;
-  padding-top: 20px;
-  margin: 20px 0;
-  border-top: 1px solid rgba(129, 129, 129, 0.2);
-  &:hover .link-to-all-product-btn {
-    color: $hoverColor;
-  }
-  &:hover {
-    color: $hoverColor;
-    cursor: pointer;
-  }
-  &:hover .arrow-icon {
-    transform: translateX(6px);
-  }
-  .mini-search-footer {
-  }
-  .link-to-all-product-btn {
-    display: block;
-    text-decoration: none;
-    color: $letterColor;
-    font-size: 1.4rem;
-    font-weight: 600;
-    @include transition(color 0.3s ease-in-out);
-  }
-  .arrow-icon {
-    margin-left: 3px;
-    @include transition(all 0.3s ease-in-out);
-    svg {
-      font-size: 1.7rem;
-    }
-  }
-}

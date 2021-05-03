@@ -108,45 +108,6 @@
     background-color: lighten($letterColor, 15%);
   }
 }
-.slide-dot-button-container {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  button {
-    &.slide-dot-btn-actived {
-      &::after {
-        height: 100%;
-      }
-    }
-    overflow: hidden;
-    height: 12px;
-    width: 12px;
-    padding: 0;
-    margin-right: 10px;
-    border-radius: 50px;
-    border: none;
-    outline: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: relative;
-    @include transition(all 0.3s ease-in-out);
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      height: 0;
-      width: 100%;
-      @include transition(height 0.3s);
-      box-shadow: 0 0 1px #fff;
-      background-color: #000;
-    }
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  @include transform(translateX(-50%));
-}
 
 @media (max-width: 576px) {
   @include contentSlide(2.3rem, 1.2rem);
@@ -158,12 +119,6 @@
   .slide-link-btn {
     padding: 5px 18px;
     font-size: 1rem;
-  }
-  .slide-dot-button-container {
-    button {
-      height: 8px;
-      width: 8px;
-    }
   }
 }
 

@@ -11,6 +11,7 @@ const initialState = {
   isFilterMiniOpen: false,
   isSortMiniOpen: false,
   isInProductPage: false,
+  isSingleProductModalOpen: false,
 };
 
 export const ButtonProvider = ({ children }) => {

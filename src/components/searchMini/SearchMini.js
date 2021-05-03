@@ -3,7 +3,6 @@ import './searchMini.scss';
 import { useButtonContext } from '../../context/button_context';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
-import prch20_2 from '../../assets/prch20_2.jpg';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { useFilterContext } from '../../context/filter_context';
 import { formatPrice } from '../../utils/helper';
@@ -15,27 +14,7 @@ const SearchMini = () => {
     miniAction('close', 'MiniSearch');
   };
   const { getSingleProduct } = useProductContext();
-  const {
-    color,
-    size,
-    category,
-    brand,
-    filter: {
-      color: filteredColor,
-      minPrice,
-      maxPrice,
-      currentMinPrice,
-      currentMaxPrice,
-      category: filteredCategory,
-      size: filteredSize,
-      brand: filteredBrand,
-    },
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
-    filterUpdate,
-    filteredProducts,
-    clearAllFilter,
-  } = useFilterContext();
+  const { category, filterUpdate, filteredProducts } = useFilterContext();
 
   return (
     <div
@@ -126,9 +105,13 @@ const SearchMini = () => {
 
                 <div className='mini-search-footer'>
                   <div>
-                    <a href='#' className='link-to-all-product-btn'>
+                    <Link
+                      to='/products'
+                      className='link-to-all-product-btn'
+                      onClick={() => miniAction('close', 'MiniSearch')}
+                    >
                       View All
-                    </a>
+                    </Link>
                   </div>
                   <div className='arrow-icon'>
                     <ArrowForwardIcon />
