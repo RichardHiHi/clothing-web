@@ -12,7 +12,11 @@ const SingleProductPage = () => {
   return (
     <div className='content'>
       <SingleProductHero page={page} category={category} />
-      <SingleProductContent product={singleProduct} />
+      {Object.keys(singleProduct).length > 0 ? (
+        <SingleProductContent product={singleProduct} />
+      ) : (
+        <h2>Sorry,there is not singleProduct</h2>
+      )}
       <SingleProductRecommend />
     </div>
   );

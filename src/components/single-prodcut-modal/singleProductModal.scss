@@ -37,17 +37,39 @@
     pointer-events: auto;
   }
 }
+.sp-modal_IMG {
+  position: relative;
+}
 .sp-info-wrapper {
   position: relative;
   .sp-info-content {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    background-color: aliceblue;
+    width: 100%;
+    height: 100%;
     padding: 20px;
     overflow: auto;
     overflow-x: hidden;
     @include scroll-bar(3px);
+  }
+}
+@media (max-width: 600px) {
+  .sp-modal-section {
+    align-items: flex-start;
+    padding: 0 5px;
+  }
+  .sp-modal_IMG {
+    position: relative;
+    .single-product-img {
+      padding-top: 50vh;
+      .single-product-img__img {
+        padding-top: 50vh;
+      }
+    }
+  }
+  .sp-info-wrapper {
+    .sp-info-content {
+      height: 50vh;
+    }
   }
 }

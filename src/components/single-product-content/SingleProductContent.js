@@ -6,20 +6,37 @@ import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import SingleProductImg from '../single-product-img/SingleProductImg';
 import SingleProductInfo from '../single-product-info/SingleProductInfo';
-const SingleProductContent = ({ product }) => {
-  const { colorImg, AllOfImg } = product;
+import { useProductContext } from '../../context/product_context';
+
+const SingleProductContent = () => {
+  const { singleProduct: product, getSingleProduct } = useProductContext();
+  const {
+    name,
+    price,
+    review,
+    colorImg,
+    size,
+    category,
+    id,
+    rate,
+    description,
+    stock,
+    brand,
+
+    AllOfImg,
+  } = product;
   const [indexIMG, setIndexImg] = useState(0);
-  const [colorindex, setColorIndex] = useState('');
   const sliderRef = useRef();
+  const [colorindex, setColorIndex] = useState('');
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
-
   useEffect(() => {
     document
       .querySelector('.single-product-img')
       .addEventListener('mousedown', (e) => {
         e.preventDefault();
         setMouseDown(e.x);
+        console.log(123);
       });
     document
       .querySelector('.single-product-img')
@@ -103,11 +120,26 @@ const SingleProductContent = ({ product }) => {
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
             <Grid item xs={12} sm={6} md={6} lg={6}>
-              <SingleProductImg
-                {...product}
-                indexIMG={indexIMG}
-                switchPage={switchPage}
-              />
+              <div className='single-product-img'>
+                {AllOfImg &&
+                  AllOfImg.map((img, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={
+                          indexIMG === index
+                            ? 'single-product-img__img active'
+                            : 'single-product-img__img'
+                        }
+                        style={{
+                          backgroundImage: `url(${img.thumbnails.large.url})`,
+                        }}
+                      ></div>
+                    );
+                  })}
+                <NextArrow onClick={() => switchPage('inc')} />
+                <PrevArrow onClick={() => switchPage('dec')} />
+              </div>
               <div className='single-product-thumbnails-list'>
                 <Slider ref={sliderRef} {...settingsSingleProduct}>
                   {AllOfImg.map((img, index) => {
