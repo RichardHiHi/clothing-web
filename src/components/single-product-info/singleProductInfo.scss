@@ -3,7 +3,16 @@
 .single-product-name-wrapper {
   .single-product-name {
     @include font-size-weight(1.5rem, 600);
+    color: $letterColor;
+    @include transition(color 0.3s);
+    &:hover {
+      color: $hoverColor;
+    }
   }
+  a {
+    text-decoration: none;
+  }
+  pointer-events: none;
   margin-bottom: 10px;
 }
 .single-product-price-wrapper {

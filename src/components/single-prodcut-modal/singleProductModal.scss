@@ -17,6 +17,8 @@
   align-items: center;
   z-index: 102;
   pointer-events: none;
+  overflow: auto;
+  overflow-x: hidden;
   @include transition(all 0.4s);
   @include transform(scale(0) translateY(100%));
   .sp-modal-content {
@@ -30,6 +32,9 @@
       right: 10px;
       z-index: 103;
     }
+  }
+  .single-product-name-wrapper {
+    pointer-events: auto;
   }
 }
 .sp-info-wrapper {

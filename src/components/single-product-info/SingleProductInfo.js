@@ -11,6 +11,8 @@ import payment from '../../assets/payment.png';
 import { Link } from 'react-router-dom';
 import { icons } from '../../utils/data';
 import { useFilterContext } from '../../context/filter_context';
+import { useProductContext } from '../../context/product_context';
+import { useButtonContext } from '../../context/button_context';
 
 const SingleProductInfo = ({
   name,
@@ -27,12 +29,21 @@ const SingleProductInfo = ({
   colorindex,
   setIndexImg,
 }) => {
+  const { getSingleProduct } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
-
+  const { miniAction } = useButtonContext();
   return (
     <div className='single-product-info'>
       <div className='single-product-name-wrapper'>
-        <h3 className='single-product-name'>{name}</h3>
+        <Link
+          to='/singleProduct'
+          onClick={() => {
+            getSingleProduct(id);
+            miniAction('close', 'SingleProductModal');
+          }}
+        >
+          <h3 className='single-product-name'>{name}</h3>
+        </Link>
       </div>
       <div className='single-product-price-wrapper'>
         <span className='single-product-price'>{formatPrice(price)}</span>
