@@ -53,7 +53,7 @@
     visibility: hidden;
     background-color: rgba(255, 255, 255, 0.434);
     @include transform(scale(0.7));
-    @include transition(opacity 0.3s, transform 0.2s);
+    @include transition(background-position 0.1s, opacity 0.3s, transform 0.3s);
   }
   .single-product-img__img__zoom {
     &.hidden {
@@ -71,11 +71,11 @@
     z-index: 104;
     box-shadow: 0 0 30px rgba(84, 84, 84, 0.22);
     // @include transform(scale(0.5));
-    // @include background-img;
+    @include background-img;
     opacity: 0;
     visibility: hidden;
     @include transform(scale(0.7));
-    @include transition(opacity 0.3s, transform 0.2s);
+    @include transition(background-position 0.2s, opacity 0.3s, transform 0.3s);
   }
   .prev-arrow,
   .next-arrow {
