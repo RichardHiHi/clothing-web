@@ -27,27 +27,55 @@
     visibility: hidden;
     @include transition(all 0.7s);
   }
+  &:hover {
+    .zoom_len,
+    .single-product-img__img__zoom {
+      opacity: 1;
+      visibility: visible;
+      @include transform(scale(1));
+    }
+  }
   .zoom_len {
+    &.hidden {
+      opacity: 0;
+      @include transition(opacity 0.3s, transform 0.2s);
+      @include transform(scale(0.7));
+      visibility: hidden;
+    }
     position: absolute;
-    border: 1px solid #d4d4d4;
+    border: 1px solid #393838;
     /*set the size of the lens:*/
     // top: 0;
     // left: 0;
     width: 200px;
     height: 200px;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.434);
+    @include transform(scale(0.7));
+    @include transition(opacity 0.3s, transform 0.2s);
   }
   .single-product-img__img__zoom {
+    &.hidden {
+      opacity: 0;
+      @include transition(opacity 0.3s, transform 0.2s);
+      @include transform(scale(0.7));
+      visibility: hidden;
+    }
     position: absolute;
     top: 0;
     left: 103%;
-    height: 600px;
-    width: 600px;
+    height: 80%;
+    width: 100%;
     background-color: white;
     z-index: 104;
     box-shadow: 0 0 30px rgba(84, 84, 84, 0.22);
     // @include transform(scale(0.5));
-    background-size: 12000px 12000px;
-    // @include background-img;
+    @include background-img;
+    opacity: 0;
+    visibility: hidden;
+    @include transform(scale(0.7));
+    @include transition(opacity 0.3s, transform 0.2s);
   }
   .prev-arrow,
   .next-arrow {

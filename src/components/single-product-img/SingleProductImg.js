@@ -7,7 +7,19 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
   const lenSize = 200;
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
+  const [ratioHeight, setRatioHeight] = useState(0);
+  const [ratioWidth, setRatioWidth] = useState(0);
+  const [hiddenZoom, setHiddenZoom] = useState(true);
   const moveEvent = (e) => {
+    if (
+      e.target.className === 'next-arrow' ||
+      e.target.className === 'prev-arrow'
+    ) {
+      setHiddenZoom(true);
+    } else {
+      setHiddenZoom(false);
+    }
+
     const imgEl = document.querySelector('.single-product-img');
     const imgResultEl = document.querySelector(
       '.single-product-img__img__zoom'
@@ -27,9 +39,11 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     setHeight(imgHeight);
     imgWidth = imgEl.getBoundingClientRect().width;
     setWidth(imgWidth);
+    /*calculate the ratio between result DIV and lens: len 200x200*/
     imgResultHeight = imgResultEl.getBoundingClientRect().height;
     imgResultWidth = imgResultEl.getBoundingClientRect().width;
-
+    setRatioHeight(imgResultHeight / 200);
+    setRatioWidth(imgResultWidth / 200);
     e.preventDefault();
     /*calculate the cursor's x and y coordinates, relative to the image:*/
     cx = e.pageX - imgLeft;
@@ -37,6 +51,7 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     /*consider any page scrolling:*/
     cx = cx - window.pageXOffset - lenSize / 2;
     cy = cy - window.pageYOffset - lenSize / 2;
+    /*prevent the lens from being positioned outside the image:*/
     if (cy < lenSize / 2 - 100) {
       cy = 0;
     }
@@ -52,25 +67,6 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     setLenTop(cy);
     setLenLeft(cx);
   };
-  // useEffect(() => {
-  //   const imgEl = document.querySelector('.single-product-img');
-  //   const lenEl = document.querySelector('.single-product-img');
-  //   let imgTop, imgLeft, cx, cy;
-  //   if (imgEl) {
-  //     //   imgTop = imgEl.getBoundingClientRect().top;
-  //     //   imgLeft = imgEl.getBoundingClientRect().left;
-  //     const moveEvent = (e) => {
-  //       e.preventDefault();
-  //       cx = e.offsetX;
-  //       cy = e.offsetY;
-  //       setLenTop(cy - 20);
-  //       setLenLeft(cx - 20);
-  //     };
-  //     imgEl.addEventListener('mousemove', moveEvent);
-  //     lenEl.addEventListener('mousemove', moveEvent);
-  //   }
-  // }, []);
-
   return (
     <div className='single-product-img' onMouseMove={moveEvent}>
       {AllOfImg &&
@@ -88,16 +84,24 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
               }}
             >
               <div
-                className='zoom_len'
+                className={hiddenZoom ? 'zoom_len hidden' : 'zoom_len'}
                 style={{ top: `${lenTop}px`, left: `${lenLeft}px` }}
                 onMouseMove={moveEvent}
               ></div>
               <div
-                className='single-product-img__img__zoom'
+                className={
+                  hiddenZoom
+                    ? 'single-product-img__img__zoom hidden'
+                    : 'single-product-img__img__zoom'
+                }
                 style={{
-                  backgroundImage: `url(${img.thumbnails.large.url}) `,
-                  backgroundPosition: `${lenLeft * 3}px ${lenTop * 3}px`,
-                  backgroundSize: `${width * 3}px ${height * 3}px `,
+                  backgroundImage: `url(${img.thumbnails.full.url}) `,
+                  backgroundPosition: `-${lenLeft * ratioWidth + 150}px -${
+                    lenTop * ratioHeight
+                  }px`,
+                  backgroundSize: `${width * ratioWidth + 250}px ${
+                    height * ratioHeight
+                  }px `,
                 }}
               ></div>
             </div>
