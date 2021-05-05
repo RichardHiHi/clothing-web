@@ -41,8 +41,8 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     /*calculate the ratio between result DIV and lens: len 200x200*/
     imgResultHeight = imgResultEl.getBoundingClientRect().height;
     imgResultWidth = imgResultEl.getBoundingClientRect().width;
-    setRatioHeight(imgResultHeight / 200);
-    setRatioWidth(imgResultWidth / 200);
+    setRatioHeight(imgResultHeight / lenSize);
+    setRatioWidth(imgResultWidth / lenSize);
     e.preventDefault();
     /*calculate the cursor's x and y coordinates, relative to the image:*/
     cx = e.pageX - imgLeft;
@@ -51,10 +51,10 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     cx = cx - window.pageXOffset - lenSize / 2;
     cy = cy - window.pageYOffset - lenSize / 2;
     /*prevent the lens from being positioned outside the image:*/
-    if (cy < lenSize / 2 - 100) {
+    if (cy < 0) {
       cy = 0;
     }
-    if (cx < lenSize / 2 - 100) {
+    if (cx < 0) {
       cx = 0;
     }
     if (imgHeight - cy < lenSize) {
@@ -95,10 +95,10 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
                 }
                 style={{
                   backgroundImage: `url(${img.thumbnails.full.url}) `,
-                  backgroundPosition: `-${lenLeft * ratioWidth + 150}px -${
+                  backgroundPosition: `-${lenLeft * ratioWidth + 100}px -${
                     lenTop * ratioHeight
                   }px`,
-                  backgroundSize: `${width * ratioWidth + 250}px ${
+                  backgroundSize: `${width * ratioWidth + 140}px ${
                     height * ratioHeight
                   }px `,
                 }}

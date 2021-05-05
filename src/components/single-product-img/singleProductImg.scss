@@ -71,7 +71,7 @@
     z-index: 104;
     box-shadow: 0 0 30px rgba(84, 84, 84, 0.22);
     // @include transform(scale(0.5));
-    @include background-img;
+    // @include background-img;
     opacity: 0;
     visibility: hidden;
     @include transform(scale(0.7));
