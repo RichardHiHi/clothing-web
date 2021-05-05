@@ -92,6 +92,18 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .single-product-img {
+    &:hover {
+      .zoom_len,
+      .single-product-img__img__zoom {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+}
 @media (max-width: 600px) {
   .single-product-img {
     .prev-arrow,

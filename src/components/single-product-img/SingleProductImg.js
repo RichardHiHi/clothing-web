@@ -19,7 +19,6 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     } else {
       setHiddenZoom(false);
     }
-
     const imgEl = document.querySelector('.single-product-img');
     const imgResultEl = document.querySelector(
       '.single-product-img__img__zoom'
