@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './singleProductModal.scss';
 import { useButtonContext } from '../../context/button_context';
 import Grid from '@material-ui/core/Grid';
-// import SingleProductImg from '../single-product-img/SingleProductImg';
+import SingleProductImg from '../single-product-img/SingleProductImg';
 import { useProductContext } from '../../context/product_context';
-// import SingleProductInfo from '../single-product-info/SingleProductInfo';
+import SingleProductInfo from '../single-product-info/SingleProductInfo';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -144,7 +144,7 @@ const SingleProductModal = () => {
               )}
             </Grid>
             <Grid className='sp-info-wrapper' item xs={12} sm={6} md={6} lg={6}>
-              {/* <div className='sp-info-content'>
+              <div className='sp-info-content'>
                 {product && (
                   <SingleProductInfo
                     colorindex={colorindex}
@@ -169,7 +169,7 @@ const SingleProductModal = () => {
                     <ArrowForwardIcon />
                   </div>
                 </div>
-              </div> */}
+              </div>
             </Grid>
           </Grid>
         </div>

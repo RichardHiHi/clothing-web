@@ -17,6 +17,7 @@ import {
   FilterMini,
   SortMini,
   Toolbar,
+  SingleProductModal,
 } from './components';
 import {
   HomePage,
@@ -48,6 +49,7 @@ function App() {
       <FilterMini />
       <Toolbar />
       <SortMini />
+      <SingleProductModal />
       <Switch>
         <Route exact path='/'>
           <HomePage />

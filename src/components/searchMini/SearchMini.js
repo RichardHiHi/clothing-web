@@ -3,14 +3,18 @@ import './searchMini.scss';
 import { useButtonContext } from '../../context/button_context';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
-import prch20_2 from '../../assets/prch20_2.jpg';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
+import { useFilterContext } from '../../context/filter_context';
+import { formatPrice } from '../../utils/helper';
+import { useProductContext } from '../../context/product_context';
+import { Link } from 'react-router-dom';
 const SearchMini = () => {
   const { isMiniSearchOpen, miniAction } = useButtonContext();
   const action = () => {
     miniAction('close', 'MiniSearch');
   };
+  const { getSingleProduct } = useProductContext();
+  const { category, filterUpdate, filteredProducts } = useFilterContext();
 
   return (
     <div
@@ -28,21 +32,11 @@ const SearchMini = () => {
             <div
               className={isMiniSearchOpen ? 'cat-search openned' : 'cat-search'}
             >
-              <select name='product_type'>
-                <option value='*'>All Categories</option>
-                <option value='Acessories'>Acessories</option>
-                <option value='Bag'>Bag</option>
-                <option value='Camera'>Camera</option>
-                <option value='Decor'>Decor</option>
-                <option value='Earphones'>Earphones</option>
-                <option value='Electric'>Electric</option>
-                <option value='Furniture'>Furniture</option>
-                <option value='Headphone'>Headphone</option>
-                <option value='Men'>Men</option>
-                <option value='Shoes'>Shoes</option>
-                <option value='Speaker'>Speaker</option>
-                <option value='Watch'>Watch</option>
-                <option value='Women'>Women</option>
+              <select name='MINIcategory' onChange={filterUpdate}>
+                <option value='All'>All Categories</option>
+                {category.map((item) => {
+                  return <option value={item}>{item}</option>;
+                })}
               </select>
             </div>
             <div
@@ -53,8 +47,9 @@ const SearchMini = () => {
               <input
                 class='input'
                 type='text'
-                name='q'
+                name='search'
                 placeholder='Search for products'
+                onChange={filterUpdate}
               />
               <button class='input-submit-btn' type='submit'>
                 <SearchOutlinedIcon />
@@ -71,113 +66,52 @@ const SearchMini = () => {
               }
             >
               <ul className='result-list'>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <span className='price'>$28.00</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href='#'>
-                    <img src={prch20_2} alt='' />
-                    <div className='product-title'>
-                      <span className='product-name'>Combat Hoodie</span>
-                      <div className='price-title'>
-                        <del>$60.00</del>
-                        <ins>$45.00</ins>
-                        <span class='onsale-label'>-25%</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+                {filteredProducts.map((product) => {
+                  return (
+                    <li>
+                      <Link
+                        to={`/singleProduct/miniSearch/${category}`}
+                        onClick={() => {
+                          getSingleProduct(product.id);
+                          miniAction('close', 'MiniSearch');
+                        }}
+                      >
+                        <img
+                          src={product.colorImg[0].img[0].thumbnails.large.url}
+                          alt=''
+                        />
+                        <div className='product-title'>
+                          <span className='product-name'>{product.name}</span>
+                          {product.onSale ? (
+                            <div className='price-title'>
+                              <del>{formatPrice(product.price)}</del>
+                              <ins>
+                                {formatPrice(
+                                  product.price * (1 - product.onSale)
+                                )}
+                              </ins>
+                              <span class='onsale-label'>-25%</span>
+                            </div>
+                          ) : (
+                            <div className='price-title none-decoration'>
+                              <del>{formatPrice(product.price)}</del>
+                            </div>
+                          )}
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
+
                 <div className='mini-search-footer'>
                   <div>
-                    <a href='#' className='link-to-all-product-btn'>
+                    <Link
+                      to='/products'
+                      className='link-to-all-product-btn'
+                      onClick={() => miniAction('close', 'MiniSearch')}
+                    >
                       View All
-                    </a>
+                    </Link>
                   </div>
                   <div className='arrow-icon'>
                     <ArrowForwardIcon />

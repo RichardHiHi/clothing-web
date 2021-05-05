@@ -21,6 +21,8 @@ import SortMini from './sort-mini/SortMini';
 import Toolbar from './toolbar/Toolbar';
 import SingleProductHero from './single-product-hero/SingleProductHero';
 import SingleProductContent from './single-product-content/SingleProductContent';
+import SingleProductRecommend from './singleProductRecommend/SingleProductRecommend';
+import SingleProductModal from './single-prodcut-modal/SingleProductModal';
 export {
   Navbar,
   NavButton,
@@ -45,4 +47,6 @@ export {
   Toolbar,
   SingleProductHero,
   SingleProductContent,
+  SingleProductRecommend,
+  SingleProductModal,
 };

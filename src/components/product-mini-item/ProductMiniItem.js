@@ -7,19 +7,23 @@ import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { useProductContext } from '../../context/product_context';
 import { Link } from 'react-router-dom';
+import { useButtonContext } from '../../context/button_context';
 
 const ProductMiniItem = ({ product, page, category }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
   const { getSingleProduct } = useProductContext();
+  const { miniAction } = useButtonContext();
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>
         <Link
           to={`/singleProduct/${page}/${category}`}
           className='mini-product-img-wrapper'
-          onClick={() => getSingleProduct(id)}
+          onClick={() => {
+            getSingleProduct(id);
+          }}
         >
           <div
             className={
@@ -60,7 +64,12 @@ const ProductMiniItem = ({ product, page, category }) => {
           </a>
         </div>
         <div className='mini-product-btn-container'>
-          <button onClick={() => getSingleProduct(id)}>
+          <button
+            onClick={() => {
+              getSingleProduct(id);
+              miniAction('open', 'SingleProductModal');
+            }}
+          >
             <span>Quick View</span>
             <VisibilityOutlinedIcon />
           </button>

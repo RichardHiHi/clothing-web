@@ -58,18 +58,18 @@
     align-items: flex-start;
     padding: 0 5px;
   }
-  // .sp-modal_IMG {
-  //   position: relative;
-  //   .single-product-img {
-  //     padding-top: 50vh;
-  //     .single-product-img__img {
-  //       padding-top: 50vh;
-  //     }
-  //   }
-  // }
-  // .sp-info-wrapper {
-  //   .sp-info-content {
-  //     height: 50vh;
-  //   }
-  // }
+  .sp-modal_IMG {
+    position: relative;
+    .single-product-img {
+      padding-top: 50vh;
+      .single-product-img__img {
+        padding-top: 50vh;
+      }
+    }
+  }
+  .sp-info-wrapper {
+    .sp-info-content {
+      height: 50vh;
+    }
+  }
 }

@@ -216,6 +216,89 @@ p {
   @include animation(scale 1s infinite);
 }
 
+//dot button under slide and singleproduct img
+.slide-dot-button-container {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  button {
+    &.slide-dot-btn-actived {
+      &::after {
+        height: 100%;
+      }
+    }
+    overflow: hidden;
+    height: 12px;
+    width: 12px;
+    padding: 0;
+    margin-right: 10px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    @include transition(all 0.3s ease-in-out);
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      height: 0;
+      width: 100%;
+      @include transition(height 0.3s);
+      box-shadow: 0 0 1px #fff;
+      background-color: #000;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @include transform(translateX(-50%));
+}
+@media (max-width: 576px) {
+  .slide-dot-button-container {
+    button {
+      height: 8px;
+      width: 8px;
+    }
+  }
+}
+//mini-search-footer and single product info modal
+.mini-search-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  margin: 20px 0;
+  border-top: 1px solid rgba(129, 129, 129, 0.2);
+  &:hover .link-to-all-product-btn {
+    color: $hoverColor;
+  }
+  &:hover {
+    color: $hoverColor;
+    cursor: pointer;
+  }
+  &:hover .arrow-icon {
+    transform: translateX(6px);
+  }
+  .mini-search-footer {
+  }
+  .link-to-all-product-btn {
+    display: block;
+    text-decoration: none;
+    color: $letterColor;
+    font-size: 1.4rem;
+    font-weight: 600;
+    @include transition(color 0.3s ease-in-out);
+  }
+  .arrow-icon {
+    margin-left: 3px;
+    @include transition(all 0.3s ease-in-out);
+    svg {
+      font-size: 1.7rem;
+    }
+  }
+}
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {
   html {
