@@ -9,25 +9,14 @@ import SingleProductInfo from '../single-product-info/SingleProductInfo';
 import { useProductContext } from '../../context/product_context';
 
 const SingleProductContent = () => {
-  const { singleProduct: product, getSingleProduct } = useProductContext();
   const {
-    name,
-    price,
-    review,
-    colorImg,
-    size,
-    category,
-    id,
-    rate,
-    description,
-    stock,
-    brand,
-
-    AllOfImg,
-  } = product;
-  const [indexIMG, setIndexImg] = useState(0);
+    singleProduct: product,
+    getSingleProduct,
+    singleProductAction: { indexIMG, colorIndex },
+    switchIMG,
+  } = useProductContext();
+  const { AllOfImg } = product;
   const sliderRef = useRef();
-  const [colorindex, setColorIndex] = useState('');
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
   useEffect(() => {
@@ -36,7 +25,6 @@ const SingleProductContent = () => {
       .addEventListener('mousedown', (e) => {
         e.preventDefault();
         setMouseDown(e.x);
-        console.log(123);
       });
     document
       .querySelector('.single-product-img')
@@ -47,22 +35,10 @@ const SingleProductContent = () => {
   useEffect(() => {
     if (mouseDown !== mouseUp) {
       if (mouseDown > mouseUp) {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG + 1;
-          if (newindexIMG > AllOfImg.length - 1) {
-            newindexIMG = 0;
-          }
-          return newindexIMG;
-        });
+        switchIMG('inc');
       }
       if (mouseDown < mouseUp) {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG - 1;
-          if (newindexIMG < 0) {
-            newindexIMG = AllOfImg.length - 1;
-          }
-          return newindexIMG;
-        });
+        switchIMG('dec');
       }
     }
     setMouseDown(0);
@@ -73,36 +49,9 @@ const SingleProductContent = () => {
     sliderRef.current.slickGoTo(index);
   };
   //set color follow index
-  const setColorFollowIndex = () => {
-    const color = colorImg.find((color) => {
-      return color.indexImg.some((item) => item === indexIMG);
-    }).colorName;
-    setColorIndex(color);
-  };
   useEffect(() => {
     handleOnClick(indexIMG - 2);
-    setColorFollowIndex();
   }, [indexIMG]);
-
-  const switchPage = (value) => {
-    if (value === 'inc') {
-      setIndexImg((oldindexIMG) => {
-        let newindexIMG = oldindexIMG + 1;
-        if (newindexIMG > AllOfImg.length - 1) {
-          newindexIMG = 0;
-        }
-        return newindexIMG;
-      });
-    } else {
-      setIndexImg((oldindexIMG) => {
-        let newindexIMG = oldindexIMG - 1;
-        if (newindexIMG < 0) {
-          newindexIMG = AllOfImg.length - 1;
-        }
-        return newindexIMG;
-      });
-    }
-  };
 
   var settingsSingleProduct = {
     speed: 500,
@@ -120,26 +69,11 @@ const SingleProductContent = () => {
         <div className='section-content-wrapper'>
           <Grid container className='section-grid-content-wrapper'>
             <Grid item xs={12} sm={6} md={6} lg={6}>
-              <div className='single-product-img'>
-                {AllOfImg &&
-                  AllOfImg.map((img, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={
-                          indexIMG === index
-                            ? 'single-product-img__img active'
-                            : 'single-product-img__img'
-                        }
-                        style={{
-                          backgroundImage: `url(${img.thumbnails.large.url})`,
-                        }}
-                      ></div>
-                    );
-                  })}
-                <NextArrow onClick={() => switchPage('inc')} />
-                <PrevArrow onClick={() => switchPage('dec')} />
-              </div>
+              <SingleProductImg
+                AllOfImg={AllOfImg}
+                indexIMG={indexIMG}
+                switchIMG={switchIMG}
+              />
               <div className='single-product-thumbnails-list'>
                 <Slider ref={sliderRef} {...settingsSingleProduct}>
                   {AllOfImg.map((img, index) => {
@@ -154,11 +88,7 @@ const SingleProductContent = () => {
                           style={{
                             backgroundImage: `url(${img.thumbnails.large.url})`,
                           }}
-                          onClick={() =>
-                            setIndexImg(() => {
-                              return index;
-                            })
-                          }
+                          onClick={() => switchIMG(index)}
                         ></div>
                       </div>
                     );
@@ -168,8 +98,8 @@ const SingleProductContent = () => {
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <SingleProductInfo
-                colorindex={colorindex}
-                setIndexImg={setIndexImg}
+                colorIndex={colorIndex}
+                switchIMG={switchIMG}
                 {...product}
               />
             </Grid>

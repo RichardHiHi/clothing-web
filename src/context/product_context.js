@@ -10,6 +10,11 @@ import {
   ADD_BLOG_HOME,
   ADD_SLIDESHOW,
   GET_SINGLE_PRODUCT,
+  INCREASE_INDEX_IMG,
+  DECREASE_INDEX_IMG,
+  SET_INDEX_IMG,
+  SET_COLOR_INDEX,
+  CLEAR_SINGLE_ACTION,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -42,6 +47,7 @@ const initialState = {
   trendingProducts: [],
   saleProducts: [],
   singleProduct: getLocalStorage(),
+  singleProductAction: { colorIndex: '', indexIMG: 0 },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -114,6 +120,28 @@ export const ProductProvider = ({ children }) => {
   const getSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id } });
   };
+
+  const switchIMG = (value) => {
+    if (Object.keys(state.singleProduct).length > 0) {
+      if (value === 'inc') {
+        dispatch({ type: INCREASE_INDEX_IMG });
+      } else if (value === 'dec') {
+        dispatch({ type: DECREASE_INDEX_IMG });
+      } else {
+        dispatch({ type: SET_INDEX_IMG, payload: { value } });
+      }
+    }
+  };
+  const setColorFollowIndex = () => {
+    dispatch({ type: SET_COLOR_INDEX });
+  };
+  const cleartSingleProductAction = () => {
+    dispatch({ type: CLEAR_SINGLE_ACTION });
+  };
+  useEffect(() => {
+    //when indexIMG change , find color follow product
+    setColorFollowIndex();
+  }, [state.singleProductAction.indexIMG]);
   useEffect(() => {
     localStorage.setItem('singleProduct', JSON.stringify(state.singleProduct));
   }, [state.singleProduct]);
@@ -126,7 +154,14 @@ export const ProductProvider = ({ children }) => {
     getInfoOfHome('blog', ADD_BLOG_HOME);
   }, []);
   return (
-    <ProductContext.Provider value={{ ...state, getSingleProduct }}>
+    <ProductContext.Provider
+      value={{
+        ...state,
+        getSingleProduct,
+        switchIMG,
+        cleartSingleProductAction,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   );

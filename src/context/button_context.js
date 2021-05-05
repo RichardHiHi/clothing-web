@@ -12,6 +12,7 @@ const initialState = {
   isSortMiniOpen: false,
   isInProductPage: false,
   isSingleProductModalOpen: false,
+  singProductAction: { colorIndex: '', indexIMG: 0 },
 };
 
 export const ButtonProvider = ({ children }) => {

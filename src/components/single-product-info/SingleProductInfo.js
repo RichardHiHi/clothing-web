@@ -26,8 +26,8 @@ const SingleProductInfo = ({
   description,
   stock,
   brand,
-  colorindex,
-  setIndexImg,
+  colorIndex,
+  switchIMG,
 }) => {
   const { getSingleProduct } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
@@ -69,11 +69,11 @@ const SingleProductInfo = ({
               return (
                 <span
                   className={
-                    color.colorName === colorindex
+                    color.colorName === colorIndex
                       ? `watch-list-color active`
                       : `watch-list-color `
                   }
-                  onClick={() => setIndexImg(color.indexImg[0])}
+                  onClick={() => switchIMG(color.indexImg[0])}
                   style={{ backgroundColor: `${color.colorCode}` }}
                   // onMouseOver={() => {
                   //   setLockImgHover(false);

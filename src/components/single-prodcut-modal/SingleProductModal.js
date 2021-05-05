@@ -12,22 +12,25 @@ import { NextArrow, PrevArrow } from '../../utils/helper';
 
 const SingleProductModal = () => {
   const { miniAction, isSingleProductModalOpen } = useButtonContext();
-  const { singleProduct: product, getSingleProduct } = useProductContext();
+  const {
+    singleProduct: product,
+    getSingleProduct,
+    singleProductAction: { indexIMG, colorIndex },
+    switchIMG,
+  } = useProductContext();
   const { AllOfImg, colorImg } = product;
-  const [indexIMG, setIndexImg] = useState(0);
-  const [colorindex, setColorIndex] = useState('');
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
 
   useEffect(() => {
     document
-      .querySelector('.single-product-img')
+      .querySelector('.single-product-img-modal')
       .addEventListener('mousedown', (e) => {
         e.preventDefault();
         setMouseDown(e.x);
       });
     document
-      .querySelector('.single-product-img')
+      .querySelector('.single-product-img-modal')
       .addEventListener('mouseup', (e) => {
         setMouseUp(e.x);
       });
@@ -35,62 +38,19 @@ const SingleProductModal = () => {
   useEffect(() => {
     if (mouseDown !== mouseUp) {
       if (mouseDown > mouseUp) {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG + 1;
-          if (newindexIMG > AllOfImg.length - 1) {
-            newindexIMG = 0;
-          }
-          return newindexIMG;
-        });
+        switchIMG('inc');
       }
       if (mouseDown < mouseUp) {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG - 1;
-          if (newindexIMG < 0) {
-            newindexIMG = AllOfImg.length - 1;
-          }
-          return newindexIMG;
-        });
+        switchIMG('dec');
       }
     }
     setMouseDown(0);
     setMouseUp(0);
   }, [mouseUp]);
-  const switchPage = (value) => {
-    if (Object.keys(product).length > 0) {
-      if (value === 'inc') {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG + 1;
-          if (newindexIMG > AllOfImg.length - 1) {
-            newindexIMG = 0;
-          }
-          return newindexIMG;
-        });
-      } else {
-        setIndexImg((oldindexIMG) => {
-          let newindexIMG = oldindexIMG - 1;
-          if (newindexIMG < 0) {
-            newindexIMG = AllOfImg.length - 1;
-          }
-          return newindexIMG;
-        });
-      }
-    }
-  };
+
   const actiona = () => {
     miniAction('close', 'SingleProductModal');
   };
-  const setColorFollowIndex = () => {
-    if (Object.keys(product).length > 0) {
-      const color = colorImg.find((color) => {
-        return color.indexImg.some((item) => item === indexIMG);
-      }).colorName;
-      setColorIndex(color);
-    }
-  };
-  useEffect(() => {
-    setColorFollowIndex();
-  }, [indexIMG]);
 
   return (
     //sp is single product
@@ -108,7 +68,7 @@ const SingleProductModal = () => {
           </div>
           <Grid container>
             <Grid item xs={12} sm={6} md={6} lg={6} className='sp-modal_IMG'>
-              <div className='single-product-img'>
+              <div className='single-product-img-modal'>
                 {AllOfImg &&
                   AllOfImg.map((img, index) => {
                     return (
@@ -116,8 +76,8 @@ const SingleProductModal = () => {
                         key={index}
                         className={
                           indexIMG === index
-                            ? 'single-product-img__img active'
-                            : 'single-product-img__img'
+                            ? 'single-product-img-modal__img active'
+                            : 'single-product-img-modal__img'
                         }
                         style={{
                           backgroundImage: `url(${img.thumbnails.large.url})`,
@@ -125,8 +85,8 @@ const SingleProductModal = () => {
                       ></div>
                     );
                   })}
-                <NextArrow onClick={() => switchPage('inc')} />
-                <PrevArrow onClick={() => switchPage('dec')} />
+                <NextArrow onClick={() => switchIMG('inc')} />
+                <PrevArrow onClick={() => switchIMG('dec')} />
               </div>
               {product.AllOfImg && (
                 <div className='slide-dot-button-container'>
@@ -136,7 +96,7 @@ const SingleProductModal = () => {
                         className={
                           indexIMG === index ? 'slide-dot-btn-actived' : null
                         }
-                        onClick={() => setIndexImg(index)}
+                        onClick={() => switchIMG(index)}
                       ></button>
                     );
                   })}
@@ -147,8 +107,8 @@ const SingleProductModal = () => {
               <div className='sp-info-content'>
                 {product && (
                   <SingleProductInfo
-                    colorindex={colorindex}
-                    setIndexImg={setIndexImg}
+                    colorIndex={colorIndex}
+                    switchIMG={switchIMG}
                     {...product}
                   />
                 )}

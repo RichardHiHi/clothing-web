@@ -13,7 +13,7 @@ const ProductMiniItem = ({ product, page, category }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
-  const { getSingleProduct } = useProductContext();
+  const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction } = useButtonContext();
   return (
     <div className='mini-product-item'>
@@ -68,6 +68,7 @@ const ProductMiniItem = ({ product, page, category }) => {
             onClick={() => {
               getSingleProduct(id);
               miniAction('open', 'SingleProductModal');
+              cleartSingleProductAction();
             }}
           >
             <span>Quick View</span>

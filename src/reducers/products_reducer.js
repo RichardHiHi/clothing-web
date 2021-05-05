@@ -8,6 +8,11 @@ import {
   ADD_BLOG_HOME,
   ADD_SLIDESHOW,
   GET_SINGLE_PRODUCT,
+  INCREASE_INDEX_IMG,
+  DECREASE_INDEX_IMG,
+  SET_INDEX_IMG,
+  SET_COLOR_INDEX,
+  CLEAR_SINGLE_ACTION,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -60,6 +65,64 @@ const products_reducer = (state, action) => {
     return {
       ...state,
       singleProduct: singleProduct,
+    };
+  }
+  if (action.type === INCREASE_INDEX_IMG) {
+    let newindexIMG = state.singleProductAction.indexIMG + 1;
+    if (newindexIMG > state.singleProduct.AllOfImg.length - 1) {
+      newindexIMG = 0;
+    }
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        indexIMG: newindexIMG,
+      },
+    };
+  }
+  if (action.type === DECREASE_INDEX_IMG) {
+    let newindexIMG = state.singleProductAction.indexIMG - 1;
+    if (newindexIMG < 0) {
+      newindexIMG = state.singleProduct.AllOfImg.length - 1;
+    }
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        indexIMG: newindexIMG,
+      },
+    };
+  }
+  if (action.type === SET_INDEX_IMG) {
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        indexIMG: action.payload.value,
+      },
+    };
+  }
+  if (action.type === SET_COLOR_INDEX) {
+    const color = state.singleProduct.colorImg.find((color) => {
+      return color.indexImg.some(
+        (item) => item === state.singleProductAction.indexIMG
+      );
+    }).colorName;
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        colorIndex: color,
+      },
+    };
+  }
+  if (action.type === CLEAR_SINGLE_ACTION) {
+    return {
+      ...state,
+      singleProductAction: {
+        colorIndex: '',
+        indexIMG: 0,
+      },
     };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
