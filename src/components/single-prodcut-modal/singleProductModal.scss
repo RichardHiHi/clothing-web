@@ -51,6 +51,11 @@
     overflow: auto;
     overflow-x: hidden;
     @include scroll-bar(3px);
+    .single-product-info {
+      &.hidden {
+        opacity: 1;
+      }
+    }
   }
 }
 

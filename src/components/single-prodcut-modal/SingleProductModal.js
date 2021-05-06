@@ -23,17 +23,19 @@ const SingleProductModal = () => {
   const [mouseUp, setMouseUp] = useState(0);
 
   useEffect(() => {
-    document
-      .querySelector('.single-product-img-modal')
-      .addEventListener('mousedown', (e) => {
-        e.preventDefault();
-        setMouseDown(e.x);
-      });
-    document
-      .querySelector('.single-product-img-modal')
-      .addEventListener('mouseup', (e) => {
-        setMouseUp(e.x);
-      });
+    if (document.querySelector('.single-product-img-modal')) {
+      document
+        .querySelector('.single-product-img-modal')
+        .addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          setMouseDown(e.x);
+        });
+      document
+        .querySelector('.single-product-img-modal')
+        .addEventListener('mouseup', (e) => {
+          setMouseUp(e.x);
+        });
+    }
   }, []);
   useEffect(() => {
     if (mouseDown !== mouseUp) {

@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import './singleProductImg.scss';
-const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
+const SingleProductImg = ({
+  AllOfImg,
+  onNew,
+  onSale,
+  stock,
+  indexIMG,
+  switchIMG,
+  setHiddenInfo,
+}) => {
   const [lenLeft, setLenLeft] = useState(0);
   const [lenTop, setLenTop] = useState(0);
   const lenSize = 200;
@@ -15,9 +23,11 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
       e.target.className === 'next-arrow' ||
       e.target.className === 'prev-arrow'
     ) {
+      setHiddenInfo(true);
       setHiddenZoom(true);
     } else {
       setHiddenZoom(false);
+      setHiddenInfo(false);
     }
     const imgEl = document.querySelector('.single-product-img');
     const imgResultEl = document.querySelector(
@@ -41,8 +51,8 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     /*calculate the ratio between result DIV and lens: len 200x200*/
     imgResultHeight = imgResultEl.getBoundingClientRect().height;
     imgResultWidth = imgResultEl.getBoundingClientRect().width;
-    setRatioHeight(imgResultHeight / 200);
-    setRatioWidth(imgResultWidth / 200);
+    setRatioHeight(imgResultHeight / lenSize);
+    setRatioWidth(imgResultWidth / lenSize);
     e.preventDefault();
     /*calculate the cursor's x and y coordinates, relative to the image:*/
     cx = e.pageX - imgLeft;
@@ -51,10 +61,10 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     cx = cx - window.pageXOffset - lenSize / 2;
     cy = cy - window.pageYOffset - lenSize / 2;
     /*prevent the lens from being positioned outside the image:*/
-    if (cy < lenSize / 2 - 100) {
+    if (cy < 0) {
       cy = 0;
     }
-    if (cx < lenSize / 2 - 100) {
+    if (cx < 0) {
       cx = 0;
     }
     if (imgHeight - cy < lenSize) {
@@ -67,7 +77,11 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
     setLenLeft(cx);
   };
   return (
-    <div className='single-product-img' onMouseMove={moveEvent}>
+    <div
+      className='single-product-img'
+      onMouseOut={() => setHiddenInfo(true)}
+      onMouseMove={moveEvent}
+    >
       {AllOfImg &&
         AllOfImg.map((img, index) => {
           return (
@@ -106,6 +120,23 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
             </div>
           );
         })}
+      <span className='label-mini-product-container'>
+        {onNew && (
+          <span className='onNew-lable'>
+            <span>New</span>
+          </span>
+        )}
+        {onSale && (
+          <span className='onSale-lable'>
+            <span>-{onSale * 100}%</span>
+          </span>
+        )}
+        {stock === 0 && (
+          <span className='out-of-stock-lable'>
+            <span>Sold out</span>
+          </span>
+        )}
+      </span>
       <NextArrow onClick={() => switchIMG('inc')} />
       <PrevArrow onClick={() => switchIMG('dec')} />
     </div>

@@ -13,6 +13,7 @@ import {
   SET_INDEX_IMG,
   SET_COLOR_INDEX,
   CLEAR_SINGLE_ACTION,
+  SET_SIZE_PRODUCT,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -103,17 +104,22 @@ const products_reducer = (state, action) => {
     };
   }
   if (action.type === SET_COLOR_INDEX) {
-    const color = state.singleProduct.colorImg.find((color) => {
-      return color.indexImg.some(
-        (item) => item === state.singleProductAction.indexIMG
-      );
-    }).colorName;
+    if (Object.keys(state.singleProduct).length > 0) {
+      const color = state.singleProduct.colorImg.find((color) => {
+        return color.indexImg.some(
+          (item) => item === state.singleProductAction.indexIMG
+        );
+      }).colorName;
+      return {
+        ...state,
+        singleProductAction: {
+          ...state.singleProductAction,
+          colorIndex: color,
+        },
+      };
+    }
     return {
       ...state,
-      singleProductAction: {
-        ...state.singleProductAction,
-        colorIndex: color,
-      },
     };
   }
   if (action.type === CLEAR_SINGLE_ACTION) {
@@ -122,6 +128,16 @@ const products_reducer = (state, action) => {
       singleProductAction: {
         colorIndex: '',
         indexIMG: 0,
+        size: state.singleProduct.size[0],
+      },
+    };
+  }
+  if (action.type === SET_SIZE_PRODUCT) {
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        size: action.payload.value,
       },
     };
   }

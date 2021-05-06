@@ -3,7 +3,6 @@ import './singleProductInfo.scss';
 import { formatPrice } from '../../utils/helper';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -28,12 +27,21 @@ const SingleProductInfo = ({
   brand,
   colorIndex,
   switchIMG,
+  hiddenInfo,
 }) => {
-  const { getSingleProduct } = useProductContext();
+  const {
+    getSingleProduct,
+    singleProductAction: { size: sizeAction },
+    setSizeSingleProduct,
+  } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
   return (
-    <div className='single-product-info'>
+    <div
+      className={
+        !hiddenInfo ? 'single-product-info hidden' : 'single-product-info'
+      }
+    >
       <div className='single-product-name-wrapper'>
         <Link
           to='/singleProduct'
@@ -92,17 +100,18 @@ const SingleProductInfo = ({
       )}
       <div className='single-product-size-wrapper'>
         <div className='single-product-size-title'>
-          <h4>SIZE: S</h4>
+          <h4>SIZE: {sizeAction}</h4>
         </div>
         <div className='single-product-size'>
           {size.map((item) => {
             return (
               <span
                 className={
-                  item === 'L'
+                  item === sizeAction
                     ? 'single-product-size-item active'
                     : 'single-product-size-item'
                 }
+                onClick={() => setSizeSingleProduct(item)}
               >
                 {item}
               </span>

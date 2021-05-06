@@ -15,6 +15,7 @@ import {
   SET_INDEX_IMG,
   SET_COLOR_INDEX,
   CLEAR_SINGLE_ACTION,
+  SET_SIZE_PRODUCT,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -43,11 +44,10 @@ const initialState = {
   size: [],
   productsLoading: false,
   productsError: false,
-  singleProduct: {},
   trendingProducts: [],
   saleProducts: [],
   singleProduct: getLocalStorage(),
-  singleProductAction: { colorIndex: '', indexIMG: 0 },
+  singleProductAction: { colorIndex: '', indexIMG: 0, size: '' },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -138,6 +138,10 @@ export const ProductProvider = ({ children }) => {
   const cleartSingleProductAction = () => {
     dispatch({ type: CLEAR_SINGLE_ACTION });
   };
+  const setSizeSingleProduct = (value) => {
+    console.log(value);
+    dispatch({ type: SET_SIZE_PRODUCT, payload: { value } });
+  };
   useEffect(() => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
@@ -160,6 +164,7 @@ export const ProductProvider = ({ children }) => {
         getSingleProduct,
         switchIMG,
         cleartSingleProductAction,
+        setSizeSingleProduct,
       }}
     >
       {children}
