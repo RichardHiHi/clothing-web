@@ -95,10 +95,10 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
                 }
                 style={{
                   backgroundImage: `url(${img.thumbnails.full.url}) `,
-                  backgroundPosition: `-${lenLeft * ratioWidth + 150}px -${
+                  backgroundPosition: `-${lenLeft * ratioWidth}px -${
                     lenTop * ratioHeight
                   }px`,
-                  backgroundSize: `${width * ratioWidth + 250}px ${
+                  backgroundSize: `${width * ratioWidth}px ${
                     height * ratioHeight
                   }px `,
                 }}
