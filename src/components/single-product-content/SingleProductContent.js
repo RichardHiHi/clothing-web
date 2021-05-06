@@ -70,7 +70,7 @@ const SingleProductContent = () => {
           <Grid container className='section-grid-content-wrapper'>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <SingleProductImg
-                AllOfImg={AllOfImg}
+                {...product}
                 indexIMG={indexIMG}
                 switchIMG={switchIMG}
               />

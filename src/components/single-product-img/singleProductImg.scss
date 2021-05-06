@@ -38,7 +38,7 @@
   .zoom_len {
     &.hidden {
       opacity: 0;
-      @include transition(opacity 0.3s, transform 0.2s);
+
       @include transform(scale(0.7));
       visibility: hidden;
     }
@@ -53,12 +53,12 @@
     visibility: hidden;
     background-color: rgba(255, 255, 255, 0.434);
     @include transform(scale(0.7));
-    @include transition(background-position 0.1s, opacity 0.3s, transform 0.3s);
+    @include transition(top 0.1s, left 0.1s, opacity 0.3s, transform 0.3s);
   }
   .single-product-img__img__zoom {
     &.hidden {
       opacity: 0;
-      @include transition(opacity 0.3s, transform 0.2s);
+
       @include transform(scale(0.7));
       visibility: hidden;
     }

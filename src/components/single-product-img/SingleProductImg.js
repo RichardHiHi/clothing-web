@@ -1,7 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import './singleProductImg.scss';
-const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
+const SingleProductImg = ({
+  AllOfImg,
+  onNew,
+  onSale,
+  stock,
+  indexIMG,
+  switchIMG,
+}) => {
   const [lenLeft, setLenLeft] = useState(0);
   const [lenTop, setLenTop] = useState(0);
   const lenSize = 200;
@@ -106,6 +113,23 @@ const SingleProductImg = ({ AllOfImg, indexIMG, switchIMG }) => {
             </div>
           );
         })}
+      <span className='label-mini-product-container'>
+        {onNew && (
+          <span className='onNew-lable'>
+            <span>New</span>
+          </span>
+        )}
+        {onSale && (
+          <span className='onSale-lable'>
+            <span>-{onSale * 100}%</span>
+          </span>
+        )}
+        {stock === 0 && (
+          <span className='out-of-stock-lable'>
+            <span>Sold out</span>
+          </span>
+        )}
+      </span>
       <NextArrow onClick={() => switchIMG('inc')} />
       <PrevArrow onClick={() => switchIMG('dec')} />
     </div>
