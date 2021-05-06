@@ -28,12 +28,17 @@ const SingleProductInfo = ({
   brand,
   colorIndex,
   switchIMG,
+  hiddenInfo,
 }) => {
   const { getSingleProduct } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
   return (
-    <div className='single-product-info'>
+    <div
+      className={
+        !hiddenInfo ? 'single-product-info hidden' : 'single-product-info'
+      }
+    >
       <div className='single-product-name-wrapper'>
         <Link
           to='/singleProduct'

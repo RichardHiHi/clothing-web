@@ -8,6 +8,7 @@ const SingleProductImg = ({
   stock,
   indexIMG,
   switchIMG,
+  setHiddenInfo,
 }) => {
   const [lenLeft, setLenLeft] = useState(0);
   const [lenTop, setLenTop] = useState(0);
@@ -22,9 +23,11 @@ const SingleProductImg = ({
       e.target.className === 'next-arrow' ||
       e.target.className === 'prev-arrow'
     ) {
+      setHiddenInfo(true);
       setHiddenZoom(true);
     } else {
       setHiddenZoom(false);
+      setHiddenInfo(false);
     }
     const imgEl = document.querySelector('.single-product-img');
     const imgResultEl = document.querySelector(
@@ -74,7 +77,11 @@ const SingleProductImg = ({
     setLenLeft(cx);
   };
   return (
-    <div className='single-product-img' onMouseMove={moveEvent}>
+    <div
+      className='single-product-img'
+      onMouseOut={() => setHiddenInfo(true)}
+      onMouseMove={moveEvent}
+    >
       {AllOfImg &&
         AllOfImg.map((img, index) => {
           return (

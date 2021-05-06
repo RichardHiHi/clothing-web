@@ -15,6 +15,7 @@ const SingleProductContent = () => {
     singleProductAction: { indexIMG, colorIndex },
     switchIMG,
   } = useProductContext();
+  const [hiddenInfo, setHiddenInfo] = useState(true);
   const { AllOfImg } = product;
   const sliderRef = useRef();
   const [mouseDown, setMouseDown] = useState(0);
@@ -73,6 +74,8 @@ const SingleProductContent = () => {
                 {...product}
                 indexIMG={indexIMG}
                 switchIMG={switchIMG}
+                setHiddenInfo={setHiddenInfo}
+                hiddenInfo={hiddenInfo}
               />
               <div className='single-product-thumbnails-list'>
                 <Slider ref={sliderRef} {...settingsSingleProduct}>
@@ -101,6 +104,7 @@ const SingleProductContent = () => {
                 colorIndex={colorIndex}
                 switchIMG={switchIMG}
                 {...product}
+                hiddenInfo={hiddenInfo}
               />
             </Grid>
           </Grid>
