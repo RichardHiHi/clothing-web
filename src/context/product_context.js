@@ -138,7 +138,7 @@ export const ProductProvider = ({ children }) => {
   const cleartSingleProductAction = () => {
     dispatch({ type: CLEAR_SINGLE_ACTION });
   };
-  const setSizeSingleProduct = (value) => {
+  const setSingleProductSize = (value) => {
     console.log(value);
     dispatch({ type: SET_SIZE_PRODUCT, payload: { value } });
   };
@@ -148,6 +148,9 @@ export const ProductProvider = ({ children }) => {
   }, [state.singleProductAction.indexIMG]);
   useEffect(() => {
     localStorage.setItem('singleProduct', JSON.stringify(state.singleProduct));
+    if (Object.keys(state.singleProduct).length > 0) {
+      setSingleProductSize(state.singleProduct.size[0]);
+    }
   }, [state.singleProduct]);
   useEffect(() => {
     getProducts();
@@ -164,7 +167,7 @@ export const ProductProvider = ({ children }) => {
         getSingleProduct,
         switchIMG,
         cleartSingleProductAction,
-        setSizeSingleProduct,
+        setSingleProductSize,
       }}
     >
       {children}

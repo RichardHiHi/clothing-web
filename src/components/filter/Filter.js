@@ -21,6 +21,7 @@ const Filter = () => {
       category: filteredCategory,
       size: filteredSize,
       brand: filteredBrand,
+      search,
     },
     setCurrentMinPrice,
     setCurrentMaxPrice,
@@ -54,6 +55,7 @@ const Filter = () => {
           class='input'
           type='text'
           name='search'
+          value={search}
           placeholder='Search...'
           onChange={filterUpdate}
         />

@@ -14,7 +14,12 @@ const SearchMini = () => {
     miniAction('close', 'MiniSearch');
   };
   const { getSingleProduct } = useProductContext();
-  const { category, filterUpdate, filteredProducts } = useFilterContext();
+  const {
+    category,
+    filterUpdate,
+    filteredProducts,
+    filter: { search },
+  } = useFilterContext();
 
   return (
     <div
@@ -48,6 +53,7 @@ const SearchMini = () => {
                 class='input'
                 type='text'
                 name='search'
+                value={search}
                 placeholder='Search for products'
                 onChange={filterUpdate}
               />

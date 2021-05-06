@@ -115,7 +115,7 @@ const FilterProduct = () => {
                 })}
               </Grid>
             )}
-            {products.length < 0 ? (
+            {products.length === 0 ? (
               <Grid
                 container
                 item

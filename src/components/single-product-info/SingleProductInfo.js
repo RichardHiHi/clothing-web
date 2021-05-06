@@ -32,7 +32,7 @@ const SingleProductInfo = ({
   const {
     getSingleProduct,
     singleProductAction: { size: sizeAction },
-    setSizeSingleProduct,
+    setSingleProductSize,
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
@@ -111,7 +111,7 @@ const SingleProductInfo = ({
                     ? 'single-product-size-item active'
                     : 'single-product-size-item'
                 }
-                onClick={() => setSizeSingleProduct(item)}
+                onClick={() => setSingleProductSize(item)}
               >
                 {item}
               </span>
