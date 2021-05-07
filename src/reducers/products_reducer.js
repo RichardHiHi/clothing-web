@@ -127,7 +127,7 @@ const products_reducer = (state, action) => {
     return {
       ...state,
       singleProductAction: {
-        colorIndex: '',
+        colorIndex: state.singleProduct.colorImg[0].colorName,
         indexIMG: 0,
         size: state.singleProduct.size[0],
       },

@@ -23,6 +23,7 @@ const ProductMiniItem = ({ product, page, category }) => {
           className='mini-product-img-wrapper'
           onClick={() => {
             getSingleProduct(id);
+            cleartSingleProductAction();
           }}
         >
           <div
