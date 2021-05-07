@@ -155,8 +155,8 @@ const products_reducer = (state, action) => {
     }
     if (value === 'dec') {
       newItemCount = state.singleProductAction.itemCount - 1;
-      if (newItemCount < 0) {
-        newItemCount = 0;
+      if (newItemCount < 1) {
+        newItemCount = 1;
       }
     }
     if (typeof value === 'number') {
@@ -164,8 +164,8 @@ const products_reducer = (state, action) => {
       if (newItemCount > stock) {
         newItemCount = stock;
       }
-      if (newItemCount < 0) {
-        newItemCount = 0;
+      if (newItemCount < 1) {
+        newItemCount = 1;
       }
     }
 

@@ -48,7 +48,7 @@ const initialState = {
   trendingProducts: [],
   saleProducts: [],
   singleProduct: getLocalStorage(),
-  singleProductAction: { colorIndex: '', indexIMG: 0, size: '', itemCount: 0 },
+  singleProductAction: { colorIndex: '', indexIMG: 0, size: '', itemCount: 1 },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -142,13 +142,13 @@ export const ProductProvider = ({ children }) => {
   const setSingleProductSize = (value) => {
     dispatch({ type: SET_SIZE_PRODUCT, payload: { value } });
   };
-  const setItemCount = (value, e) => {
-    //number in input
-    if (value) {
-      dispatch({ type: SET_ITEM_COUNT, payload: { value } });
-    } else {
-      dispatch({ type: SET_ITEM_COUNT, payload: { value: e.value } });
-    }
+  const setItemCount = (value) => {
+    dispatch({ type: SET_ITEM_COUNT, payload: { value } });
+  };
+  // no parameter can get e(enent)
+  const setItemCountByInput = (e) => {
+    const value = parseInt(e.target.value);
+    dispatch({ type: SET_ITEM_COUNT, payload: { value } });
   };
   useEffect(() => {
     //when indexIMG change , find color follow product
@@ -177,6 +177,7 @@ export const ProductProvider = ({ children }) => {
         cleartSingleProductAction,
         setSingleProductSize,
         setItemCount,
+        setItemCountByInput,
       }}
     >
       {children}

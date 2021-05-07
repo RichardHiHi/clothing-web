@@ -12,6 +12,7 @@ import { icons } from '../../utils/data';
 import { useFilterContext } from '../../context/filter_context';
 import { useProductContext } from '../../context/product_context';
 import { useButtonContext } from '../../context/button_context';
+import { useCartContext } from '../../context/cart_context';
 
 const SingleProductInfo = ({
   name,
@@ -29,11 +30,13 @@ const SingleProductInfo = ({
   switchIMG,
   hiddenInfo,
 }) => {
+  const { addToCart } = useCartContext();
   const {
     getSingleProduct,
     singleProductAction: { size: sizeAction, itemCount },
     setSingleProductSize,
     setItemCount,
+    setItemCountByInput,
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
@@ -128,7 +131,7 @@ const SingleProductInfo = ({
               className='mini-cart-quantity-input'
               value={itemCount}
               inputmode='numeric'
-              onChange={() => setItemCount()}
+              onChange={setItemCountByInput}
             />
             <button className='mini-cart-minus-btn'>
               <RemoveIcon onClick={() => setItemCount('dec')} />
@@ -154,7 +157,10 @@ const SingleProductInfo = ({
         </div>
         {stock > 0 && (
           <div className='add-to-cart-btn-wrapper'>
-            <button className='add-to-cart-btn button_primary'>
+            <button
+              className='add-to-cart-btn button_primary'
+              onClick={() => addToCart('koe3knhi.pnl')}
+            >
               ADD TO CART
             </button>
           </div>
