@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../actions';
+import { ADD_TO_CART, CLEAR_CART } from '../actions';
 const button_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     //id of edit product
@@ -6,11 +6,11 @@ const button_reducer = (state, action) => {
     const { productCart } = action.payload;
     let newCart = state.cart;
     //có id nhưng id không trùng vs idcart trong cart nên k thay đổi
-    if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
-      return { ...state };
-    }
     //xóa id cần edit
     if (id) {
+      if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
+        return { ...state };
+      }
       newCart = newCart.filter((itemCart) => itemCart.idCart !== id);
     }
     //ktra xem trong cart có cartproduct trùng không
@@ -43,6 +43,9 @@ const button_reducer = (state, action) => {
       return { ...state, cart: [...newCart, productCart] };
     }
     return { ...state, cart: [...state.cart, productCart] };
+  }
+  if (action.type === CLEAR_CART) {
+    return { ...state, cart: [] };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

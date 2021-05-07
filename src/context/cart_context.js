@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import reducer from '../reducers/Cart_reducer';
-import { ADD_TO_CART } from '../actions';
+import { ADD_TO_CART, CLEAR_CART } from '../actions';
 import { useProductContext } from '../context/product_context';
 const CartContext = React.createContext();
 const getLocalStorage = () => {
@@ -36,11 +36,14 @@ export const CartProvider = ({ children }) => {
       payload: { productCart, id },
     });
   };
+  const clearCart = () => {
+    dispatch({ type: CLEAR_CART });
+  };
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
   }, [state.cart]);
   return (
-    <CartContext.Provider value={{ ...state, addToCart }}>
+    <CartContext.Provider value={{ ...state, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

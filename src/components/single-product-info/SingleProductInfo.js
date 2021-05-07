@@ -30,7 +30,7 @@ const SingleProductInfo = ({
   switchIMG,
   hiddenInfo,
 }) => {
-  const { addToCart } = useCartContext();
+  const { addToCart, clearCart } = useCartContext();
   const {
     getSingleProduct,
     singleProductAction: { size: sizeAction, itemCount },
@@ -159,7 +159,7 @@ const SingleProductInfo = ({
           <div className='add-to-cart-btn-wrapper'>
             <button
               className='add-to-cart-btn button_primary'
-              onClick={() => addToCart('koe3knhi.pnl')}
+              onClick={() => addToCart()}
             >
               ADD TO CART
             </button>
@@ -201,7 +201,7 @@ const SingleProductInfo = ({
           })}
         </span>
       </div>
-      <div className='social-icon-wrapper'>
+      <div className='social-icon-wrapper' onClick={clearCart}>
         <div className='social-footer-container'>
           {icons.map((icon) => {
             return (
