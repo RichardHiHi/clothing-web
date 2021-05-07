@@ -14,6 +14,7 @@ import {
   SET_COLOR_INDEX,
   CLEAR_SINGLE_ACTION,
   SET_SIZE_PRODUCT,
+  SET_ITEM_COUNT,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -138,6 +139,41 @@ const products_reducer = (state, action) => {
       singleProductAction: {
         ...state.singleProductAction,
         size: action.payload.value,
+      },
+    };
+  }
+  if (action.type === SET_ITEM_COUNT) {
+    const value = action.payload.value;
+
+    const stock = state.singleProduct.stock;
+    let newItemCount;
+    if (value === 'inc') {
+      newItemCount = state.singleProductAction.itemCount + 1;
+      if (newItemCount > stock) {
+        newItemCount = stock;
+      }
+    }
+    if (value === 'dec') {
+      newItemCount = state.singleProductAction.itemCount - 1;
+      if (newItemCount < 0) {
+        newItemCount = 0;
+      }
+    }
+    if (typeof value === 'number') {
+      newItemCount = value;
+      if (newItemCount > stock) {
+        newItemCount = stock;
+      }
+      if (newItemCount < 0) {
+        newItemCount = 0;
+      }
+    }
+
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        itemCount: newItemCount,
       },
     };
   }

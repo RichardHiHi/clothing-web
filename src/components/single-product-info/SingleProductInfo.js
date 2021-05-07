@@ -31,8 +31,9 @@ const SingleProductInfo = ({
 }) => {
   const {
     getSingleProduct,
-    singleProductAction: { size: sizeAction },
+    singleProductAction: { size: sizeAction, itemCount },
     setSingleProductSize,
+    setItemCount,
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
@@ -125,13 +126,17 @@ const SingleProductInfo = ({
             <input
               type='number'
               className='mini-cart-quantity-input'
-              value='1'
+              value={itemCount}
               inputmode='numeric'
+              onChange={() => setItemCount()}
             />
             <button className='mini-cart-minus-btn'>
-              <RemoveIcon />
+              <RemoveIcon onClick={() => setItemCount('dec')} />
             </button>
-            <button className='mini-cart-plus-btn'>
+            <button
+              className='mini-cart-plus-btn'
+              onClick={() => setItemCount('inc')}
+            >
               <AddIcon />
             </button>
           </div>

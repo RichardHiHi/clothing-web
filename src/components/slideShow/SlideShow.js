@@ -5,8 +5,6 @@ import { fetchData } from '../../utils/helper';
 import { useProductContext } from '../../context/product_context';
 import { useFilterContext } from '../../context/filter_context';
 import { Link } from 'react-router-dom';
-// import { slide } from '../../utils/data';
-import { Skeleton } from '@material-ui/lab';
 
 const SlideShow = () => {
   const { slideShows: slides } = useProductContext();
