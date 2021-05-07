@@ -130,6 +130,7 @@ const products_reducer = (state, action) => {
         colorIndex: state.singleProduct.colorImg[0].colorName,
         indexIMG: 0,
         size: state.singleProduct.size[0],
+        itemCount: 1,
       },
     };
   }

@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CLEAR_CART } from '../actions';
+import { ADD_TO_CART, CLEAR_CART, CART_TOTAL } from '../actions';
 const button_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     //id of edit product
@@ -44,6 +44,21 @@ const button_reducer = (state, action) => {
     }
     return { ...state, cart: [...state.cart, productCart] };
   }
+  //caculate total cart
+  if (action.type === CART_TOTAL) {
+    const { amountTotal, totalItem } = state.cart.reduce(
+      (total, cartItem) => {
+        const { itemCount } = cartItem;
+        const { price } = cartItem.singleProduct;
+        total.amountTotal += price * itemCount;
+        total.totalItem += itemCount;
+        return total;
+      },
+      { amountTotal: 0, totalItem: 0 }
+    );
+    return { ...state, amountTotal, totalItem };
+  }
+  //clear cart
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
   }

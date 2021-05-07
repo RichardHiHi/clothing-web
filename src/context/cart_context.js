@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import reducer from '../reducers/Cart_reducer';
-import { ADD_TO_CART, CLEAR_CART } from '../actions';
+import { ADD_TO_CART, CLEAR_CART, CART_TOTAL } from '../actions';
 import { useProductContext } from '../context/product_context';
 const CartContext = React.createContext();
 const getLocalStorage = () => {
@@ -13,7 +13,7 @@ const getLocalStorage = () => {
 };
 const initialState = {
   cart: getLocalStorage(),
-  totalAmount: 0,
+  amountTotal: 0,
   totalItem: 0,
 };
 export const CartProvider = ({ children }) => {
@@ -31,6 +31,7 @@ export const CartProvider = ({ children }) => {
       //date.now là số milisecond , math.random phòng vc click 2 lần cùng nhau , chuyển sang hệ 36
       idCart: (Date.now() + Math.random()).toString(36),
     };
+
     dispatch({
       type: ADD_TO_CART,
       payload: { productCart, id },
@@ -39,8 +40,13 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => {
     dispatch({ type: CLEAR_CART });
   };
+  const totalCart = () => {
+    dispatch({ type: CART_TOTAL });
+  };
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
+    totalCart();
   }, [state.cart]);
   return (
     <CartContext.Provider value={{ ...state, addToCart, clearCart }}>

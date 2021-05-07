@@ -32,4 +32,4 @@ export const CLEAR_ALL_FILTERS = 'CLEAR_ALL_FILTERS';
 //cart
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const CLEAR_CART = ' CLEAR_CART';
-// export const  = '';
+export const CART_TOTAL = 'CART_TOTAL';
