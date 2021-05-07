@@ -30,8 +30,8 @@ const Trending = () => {
                 {Array.from({ length: 8 }, (_, i) => i).map(
                   (product, index) => {
                     return (
-                      <Grid item xs={6} sm={3}>
-                        <ProductMiniLoading key={index} />
+                      <Grid item xs={6} sm={3} key={index}>
+                        <ProductMiniLoading />
                       </Grid>
                     );
                   }
@@ -41,7 +41,7 @@ const Trending = () => {
               <Grid container className='section-grid-content-wrapper'>
                 {trending.slice(0, number).map((product, index) => {
                   return (
-                    <Grid item xs={6} sm={3}>
+                    <Grid item xs={6} sm={3} key={index}>
                       <ProductMiniItem
                         product={product}
                         key={index}

@@ -22,7 +22,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   cymbal
                 </a>
                 <div className='mini-cart-meta'>
-                  <p class='mini-cart-meta-color'>White Cream / S</p>
+                  <p className='mini-cart-meta-color'>White Cream / S</p>
                   <div className='mini-cart-meta-price'>
                     <del>$60.00</del>
                     <ins>$45.00</ins>
@@ -34,7 +34,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                       type='number'
                       className='mini-cart-quantity-input'
                       value='1'
-                      inputmode='numeric'
                     />
                     <button className='mini-cart-minus-btn'>
                       <RemoveIcon />
@@ -65,7 +64,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   cymbal
                 </a>
                 <div className='mini-cart-meta'>
-                  <p class='mini-cart-meta-color'>White Cream / S</p>
+                  <p className='mini-cart-meta-color'>White Cream / S</p>
                   <div className='mini-cart-meta-price'>
                     <del>$60.00</del>
                     <ins>$45.00</ins>
@@ -77,7 +76,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                       type='number'
                       className='mini-cart-quantity-input'
                       value='1'
-                      inputmode='numeric'
                     />
                     <button className='mini-cart-minus-btn'>
                       <RemoveIcon />
@@ -108,7 +106,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   cymbal
                 </a>
                 <div className='mini-cart-meta'>
-                  <p class='mini-cart-meta-color'>White Cream / S</p>
+                  <p className='mini-cart-meta-color'>White Cream / S</p>
                   <div className='mini-cart-meta-price'>
                     <del>$60.00</del>
                     <ins>$45.00</ins>
@@ -120,7 +118,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                       type='number'
                       className='mini-cart-quantity-input'
                       value='1'
-                      inputmode='numeric'
                     />
                     <button className='mini-cart-minus-btn'>
                       <RemoveIcon />
@@ -151,7 +148,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   cymbal
                 </a>
                 <div className='mini-cart-meta'>
-                  <p class='mini-cart-meta-color'>White Cream / S</p>
+                  <p className='mini-cart-meta-color'>White Cream / S</p>
                   <div className='mini-cart-meta-price'>
                     <del>$60.00</del>
                     <ins>$45.00</ins>
@@ -163,7 +160,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                       type='number'
                       className='mini-cart-quantity-input'
                       value='1'
-                      inputmode='numeric'
                     />
                     <button className='mini-cart-minus-btn'>
                       <RemoveIcon />
@@ -194,7 +190,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   cymbal
                 </a>
                 <div className='mini-cart-meta'>
-                  <p class='mini-cart-meta-color'>White Cream / S</p>
+                  <p className='mini-cart-meta-color'>White Cream / S</p>
                   <div className='mini-cart-meta-price'>
                     <del>$60.00</del>
                     <ins>$45.00</ins>
@@ -206,7 +202,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                       type='number'
                       className='mini-cart-quantity-input'
                       value='1'
-                      inputmode='numeric'
                     />
                     <button className='mini-cart-minus-btn'>
                       <RemoveIcon />

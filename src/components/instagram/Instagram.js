@@ -100,9 +100,9 @@ const Instagram = () => {
           <div className='shipping-container section-container'>
             <div className='shipping-content-wrapper '>
               <Grid container className='section-grid-content-wrapper'>
-                {secShippings.map((secShipping) => {
+                {secShippings.map((secShipping, index) => {
                   return (
-                    <Grid item sx={12} sm={6} md={3}>
+                    <Grid item sx={12} sm={6} md={3} index={index}>
                       <div className='shipping-content'>
                         <div className='shipping-icon'>{secShipping.icon}</div>
                         <div className='shipping-info'>
@@ -162,9 +162,9 @@ const Instagram = () => {
         <div className='shipping-container section-container'>
           <div className='shipping-content-wrapper '>
             <Grid container className='section-grid-content-wrapper'>
-              {secShippings.map((secShipping) => {
+              {secShippings.map((secShipping, index) => {
                 return (
-                  <Grid item sx={12} sm={6} md={3}>
+                  <Grid item sx={12} sm={6} md={3} key={index}>
                     <div className='shipping-content'>
                       <div className='shipping-icon'>{secShipping.icon}</div>
                       <div className='shipping-info'>

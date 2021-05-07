@@ -48,7 +48,7 @@ const SingleProductInfo = ({
     >
       <div className='single-product-name-wrapper'>
         <Link
-          to='/singleProduct'
+          to='/singleProduct/none/none'
           onClick={() => {
             getSingleProduct(id);
             miniAction('close', 'SingleProductModal');
@@ -107,9 +107,10 @@ const SingleProductInfo = ({
           <h4>SIZE: {sizeAction}</h4>
         </div>
         <div className='single-product-size'>
-          {size.map((item) => {
+          {size.map((item, index) => {
             return (
               <span
+                key={index}
                 className={
                   item === sizeAction
                     ? 'single-product-size-item active'
@@ -130,7 +131,6 @@ const SingleProductInfo = ({
               type='number'
               className='mini-cart-quantity-input'
               value={itemCount}
-              inputmode='numeric'
               onChange={setItemCountByInput}
             />
             <button className='mini-cart-minus-btn'>
@@ -169,8 +169,8 @@ const SingleProductInfo = ({
       <div className='single-product-payment-wrapper'>
         <img src={payment} alt='' />
       </div>
-      <div class='single-product-meta'>
-        <span class='simple-product-stock category-tag'>
+      <div className='single-product-meta'>
+        <span className='simple-product-stock category-tag'>
           Vendor:
           <Link
             to='/products'
@@ -180,21 +180,21 @@ const SingleProductInfo = ({
             {brand}
           </Link>
         </span>
-        <span class='sku-wrapper'>
+        <span className='sku-wrapper'>
           SKU:
-          <span class='sku'>{id}</span>
+          <span className='sku'>{id}</span>
         </span>
-        <span class='simple-product-stock sku-wrapper'>
+        <span className='simple-product-stock sku-wrapper'>
           Availability:
-          <span class='sku--blod'>
+          <span className='sku--blod'>
             {stock > 0 ? 'In Stock' : 'Out Of Stock'}
           </span>
         </span>
-        <span class='category-tag'>
+        <span className='category-tag'>
           Categories:
           {category.map((item, index) => {
             return (
-              <Link href='/products' title=''>
+              <Link to='/products' title='' key={index}>
                 {item}
               </Link>
             );
@@ -203,9 +203,9 @@ const SingleProductInfo = ({
       </div>
       <div className='social-icon-wrapper' onClick={clearCart}>
         <div className='social-footer-container'>
-          {icons.map((icon) => {
+          {icons.map((icon, index) => {
             return (
-              <a href='#' className={`social-icon ${icon.name}`}>
+              <a href='#' className={`social-icon ${icon.name}`} key={index}>
                 {icon.icon}
               </a>
             );

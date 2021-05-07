@@ -81,7 +81,7 @@ const SingleProductContent = () => {
                 <Slider ref={sliderRef} {...settingsSingleProduct}>
                   {AllOfImg.map((img, index) => {
                     return (
-                      <div className='single-product-thumbnails'>
+                      <div className='single-product-thumbnails' key={index}>
                         <div
                           className={
                             index === indexIMG

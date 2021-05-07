@@ -6,7 +6,7 @@ const FilterSeketon = () => {
     <ul className='filter-list'>
       {Array.from({ length: 7 }, (_, i) => i).map((product, index) => {
         return (
-          <li className='category-filter-item filter-item'>
+          <li className='category-filter-item filter-item' key={index}>
             <Skeleton
               variant='text'
               animation='wave'

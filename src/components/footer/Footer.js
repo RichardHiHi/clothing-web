@@ -33,7 +33,7 @@ const Footer = () => {
                     </div>
                   </div>
                 </div>
-                <div class='footer-contact menu-footer'>
+                <div className='footer-contact menu-footer'>
                   <div className='menu'>
                     <p>
                       <a href='#' className='footer-logo'>
@@ -66,10 +66,14 @@ const Footer = () => {
                       <span>+001 2233 456 </span>
                     </p>
                     <div className='social-footer-container'>
-                      {icons.map((icon) => {
+                      {icons.map((icon, index) => {
                         return (
-                          <a href='#' className={`social-icon ${icon.name}`}>
-                            <span class='text-icon'>{icon.text}</span>
+                          <a
+                            href='#'
+                            className={`social-icon ${icon.name}`}
+                            key={index}
+                          >
+                            <span className='text-icon'>{icon.text}</span>
                             {icon.icon}
                           </a>
                         );
@@ -79,9 +83,9 @@ const Footer = () => {
                 </div>
               </aside>
             </Grid>
-            {footers.map((footer) => {
+            {footers.map((footer, index) => {
               return (
-                <Grid item xs={12} sm={6} md={3} lg={2}>
+                <Grid item xs={12} sm={6} md={3} lg={2} key={index}>
                   <aside className='menu-footer-wrapper '>
                     <div
                       className='menu-footer-title-wrapper'
@@ -98,9 +102,9 @@ const Footer = () => {
                     </div>
                     <div className='menu-footer'>
                       <ul className='menu'>
-                        {footer.items.map((item) => {
+                        {footer.items.map((item, index) => {
                           return (
-                            <li className='item'>
+                            <li className='item' key={index}>
                               <a href={item.link}>{item.name}</a>
                             </li>
                           );
@@ -135,7 +139,7 @@ const Footer = () => {
                         name='contact[email]'
                         placeholder='Your email address'
                         value=''
-                        class='input-footer'
+                        className='input-footer'
                         required='required'
                       />
                       <button className='input-footer-btn'>Subscribe</button>
@@ -155,23 +159,23 @@ const Footer = () => {
           <div className='footer-bot-content'>
             <Grid container>
               <Grid item xs={12} sm={12} md={6} lg={6}>
-                <div class='footer-bot-store-name'>
+                <div className='footer-bot-store-name'>
                   Copyright © 2021 <span>Kalles</span> all rights reserved.
                   Powered by <a href='#'>The4</a>
                 </div>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <ul className='footer-bot-menu'>
-                  <li class='menu-item'>
+                  <li className='menu-item'>
                     <a href='#'>Shop</a>
                   </li>
-                  <li class='menu-item'>
+                  <li className='menu-item'>
                     <a href='#'>About Us</a>
                   </li>
-                  <li class='menu-item'>
+                  <li className='menu-item'>
                     <a href='#'>Contact</a>
                   </li>
-                  <li class='menu-item'>
+                  <li className='menu-item'>
                     <a href='#'>Blog</a>
                   </li>
                 </ul>

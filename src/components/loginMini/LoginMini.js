@@ -29,7 +29,7 @@ const LoginMini = () => {
                     : 'content-login-form-row userName'
                 }
               >
-                <label for='userName'>User name</label>
+                <label htmlFor='userName'>User name</label>
                 <input type='text' id='userName' />
               </div>
               <div
@@ -39,7 +39,7 @@ const LoginMini = () => {
                     : 'content-login-form-row password'
                 }
               >
-                <label for='password'>Password</label>
+                <label htmlFor='password'>Password</label>
                 <input type='text' id='password' />
               </div>
               <button
@@ -56,11 +56,11 @@ const LoginMini = () => {
                     : 'link-acc-wrapper'
                 }
               >
-                <p class='login-link-acc'>
+                <p className='login-link-acc'>
                   New customer?
                   <a href='#'>Create your account</a>
                 </p>
-                <p class='login-link-acc'>
+                <p className='login-link-acc'>
                   Lost password?
                   <a href='#'>Recover password</a>
                 </p>

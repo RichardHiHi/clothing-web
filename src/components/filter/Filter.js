@@ -52,7 +52,7 @@ const Filter = () => {
     <>
       <div className='search-filter-wrapper filter-wrapper margin'>
         <input
-          class='input'
+          className='input'
           type='text'
           name='search'
           value={search}
@@ -107,7 +107,7 @@ const Filter = () => {
             ></div>
           </div>
         </div>
-        <p class='filter-price'>
+        <p className='filter-price'>
           Price:{' '}
           {currentMaxPrice >= 0 ? (
             <span>

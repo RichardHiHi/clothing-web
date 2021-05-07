@@ -39,8 +39,12 @@ const SearchMini = () => {
             >
               <select name='MINIcategory' onChange={filterUpdate}>
                 <option value='All'>All Categories</option>
-                {category.map((item) => {
-                  return <option value={item}>{item}</option>;
+                {category.map((item, index) => {
+                  return (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -50,14 +54,14 @@ const SearchMini = () => {
               }
             >
               <input
-                class='input'
+                className='input'
                 type='text'
                 name='search'
                 value={search}
                 placeholder='Search for products'
                 onChange={filterUpdate}
               />
-              <button class='input-submit-btn' type='submit'>
+              <button className='input-submit-btn' type='submit'>
                 <SearchOutlinedIcon />
               </button>
             </div>
@@ -72,11 +76,12 @@ const SearchMini = () => {
               }
             >
               <ul className='result-list'>
-                {filteredProducts.map((product) => {
+                {filteredProducts.map((product, index) => {
                   return (
-                    <li>
+                    <li key={index}>
                       <Link
                         to={`/singleProduct/miniSearch/${category}`}
+                        key={index}
                         onClick={() => {
                           getSingleProduct(product.id);
                           miniAction('close', 'MiniSearch');
@@ -84,7 +89,6 @@ const SearchMini = () => {
                       >
                         <img
                           src={product.colorImg[0].img[0].thumbnails.large.url}
-                          alt=''
                         />
                         <div className='product-title'>
                           <span className='product-name'>{product.name}</span>
@@ -96,7 +100,7 @@ const SearchMini = () => {
                                   product.price * (1 - product.onSale)
                                 )}
                               </ins>
-                              <span class='onsale-label'>-25%</span>
+                              <span className='onsale-label'>-25%</span>
                             </div>
                           ) : (
                             <div className='price-title none-decoration'>

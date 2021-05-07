@@ -72,7 +72,7 @@ const SlideShow = () => {
         </div>
         <div className='slide-dot-button-container'>
           {Array.from({ length: 4 }, (_, i) => i).map((a, index) => {
-            return <button className='slide-dot-btn'></button>;
+            return <button className='slide-dot-btn' key={index}></button>;
           })}
         </div>
       </div>
@@ -101,7 +101,7 @@ const SlideShow = () => {
             classa = 'slide-right';
           }
           return (
-            <div className={`slide ${classa}`}>
+            <div className={`slide ${classa}`} key={index}>
               <div className={`slide-content slide-content-${position}`}>
                 <div className='slide-content-caption'>
                   <div className='slide-content-title'>
@@ -121,7 +121,7 @@ const SlideShow = () => {
               </div>
               <div className='img-container'>
                 <div className='overlay-img'>
-                  <img class='slide-img' src={img} alt='' />
+                  <img className='slide-img' src={img} alt='' />
                 </div>
               </div>
             </div>
@@ -132,6 +132,7 @@ const SlideShow = () => {
         {slides.map((a, index) => {
           return (
             <button
+              key={index}
               className={slideIdex === index ? 'slide-dot-btn-actived' : null}
               onClick={() => setSlideIndex(index)}
             ></button>

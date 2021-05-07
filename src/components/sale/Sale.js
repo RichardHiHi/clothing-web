@@ -24,8 +24,8 @@ const Sale = () => {
                 {Array.from({ length: 8 }, (_, i) => i).map(
                   (product, index) => {
                     return (
-                      <Grid item xs={6} sm={3}>
-                        <ProductMiniLoading key={index} />
+                      <Grid item xs={6} sm={3} key={index}>
+                        <ProductMiniLoading />
                       </Grid>
                     );
                   }
@@ -35,8 +35,8 @@ const Sale = () => {
               <Grid container className='section-grid-content-wrapper'>
                 {sale.slice(0, 8).map((product, index) => {
                   return (
-                    <Grid item xs={6} sm={3}>
-                      <ProductMiniItem product={product} key={index} />
+                    <Grid item xs={6} sm={3} key={index}>
+                      <ProductMiniItem product={product} />
                     </Grid>
                   );
                 })}

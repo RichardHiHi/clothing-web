@@ -45,9 +45,9 @@ const BlogInsta = () => {
             </div>
             <div className='slide-blog-container'>
               <Slider {...settingsBlog}>
-                {Array.from({ length: 3 }, (_, i) => i).map((blog) => {
+                {Array.from({ length: 3 }, (_, i) => i).map((blog, index) => {
                   return (
-                    <article className='blog-slide padding'>
+                    <article className='blog-slide padding' key={index}>
                       <a href='#'>
                         <Loadding classImg={'img-blog'} />
                       </a>
@@ -61,7 +61,7 @@ const BlogInsta = () => {
                         <span className='post-time'>
                           on{' '}
                           <span className='bold'>
-                            <time datetime='2020-04-06T02:17:00Z'>
+                            <time dateTime='2020-04-06T02:17:00Z'>
                               April 6, 2020
                             </time>
                           </span>
@@ -98,8 +98,8 @@ const BlogInsta = () => {
             <Slider {...settingsBlog}>
               {blogs
                 .filter((b) => b.showing)
-                .map((blog) => {
-                  return <BlogItem blog={blog} />;
+                .map((blog, index) => {
+                  return <BlogItem blog={blog} key={index} />;
                 })}
             </Slider>
           </div>

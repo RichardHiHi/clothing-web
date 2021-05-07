@@ -95,6 +95,7 @@ const SingleProductModal = () => {
                   {product.AllOfImg.map((a, index) => {
                     return (
                       <button
+                        key={index}
                         className={
                           indexIMG === index ? 'slide-dot-btn-actived' : null
                         }

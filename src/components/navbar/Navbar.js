@@ -126,9 +126,9 @@ const Navbar = () => {
                     </Grid>
                     <Grid item sm={4}>
                       <ul className='sub-menu small-width '>
-                        {category.map((category) => {
+                        {category.map((category, index) => {
                           return (
-                            <li>
+                            <li key={index}>
                               <Link
                                 to='/products'
                                 onClick={() => filterCategoryUpdate(category)}
@@ -156,9 +156,9 @@ const Navbar = () => {
                     <Grid item sm={2}>
                       <div className='sub-menu-slider-menu-wrapper'>
                         <ul className='sub-menu text-align '>
-                          {category.slice(0, 5).map((category) => {
+                          {category.slice(0, 5).map((category, index) => {
                             return (
-                              <li>
+                              <li key={index}>
                                 <Link
                                   to='/products'
                                   onClick={() =>
@@ -176,8 +176,10 @@ const Navbar = () => {
                     <Grid item sm={10}>
                       <div className='sub-menu-slider-wrapper '>
                         <Slider {...settingSlide}>
-                          {sale.map((product) => {
-                            return <ProductMiniItem product={product} />;
+                          {sale.map((product, index) => {
+                            return (
+                              <ProductMiniItem product={product} key={index} />
+                            );
                           })}
                         </Slider>
                       </div>

@@ -21,7 +21,7 @@ const BlogItem = ({ blog, hideContent }) => {
           <span className='post-time'>
             on{' '}
             <span className='bold'>
-              <time datetime='2020-04-06T02:17:00Z'>April 6, 2020</time>
+              <time dateTime='2020-04-06T02:17:00Z'>April 6, 2020</time>
             </span>
           </span>
         </div>

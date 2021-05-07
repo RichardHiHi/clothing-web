@@ -38,7 +38,7 @@ const SingleProductRecommend = () => {
             </div>
             <Slider {...settingsSingleProduct}>
               {products.slice(0, 5).map((product, index) => {
-                return <ProductMiniItem product={product} />;
+                return <ProductMiniItem product={product} key={index} />;
               })}
             </Slider>
           </div>
@@ -48,7 +48,7 @@ const SingleProductRecommend = () => {
             </div>
             <Slider {...settingsSingleProduct}>
               {products.slice(0, 5).map((product, index) => {
-                return <ProductMiniItem product={product} />;
+                return <ProductMiniItem product={product} key={index} />;
               })}
             </Slider>
           </div>
