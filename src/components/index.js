@@ -5,6 +5,7 @@ import SideBar from './sideBar/SideBar';
 import SearchMini from './searchMini/SearchMini';
 import LoginMini from './loginMini/LoginMini';
 import CartMini from './cartMini/CartMini';
+import CartMiniEmty from './cartMini-emty/CartMiniEmty';
 import SlideShow from './slideShow/SlideShow';
 import CollectionList from './collection-list/CollectionList';
 import Footer from './footer/Footer';
@@ -23,6 +24,7 @@ import SingleProductHero from './single-product-hero/SingleProductHero';
 import SingleProductContent from './single-product-content/SingleProductContent';
 import SingleProductRecommend from './singleProductRecommend/SingleProductRecommend';
 import SingleProductModal from './single-prodcut-modal/SingleProductModal';
+import CartPageItem from './cartPageItem/CartPageItem';
 export {
   Navbar,
   NavButton,
@@ -49,4 +51,6 @@ export {
   SingleProductContent,
   SingleProductRecommend,
   SingleProductModal,
+  CartPageItem,
+  CartMiniEmty,
 };
