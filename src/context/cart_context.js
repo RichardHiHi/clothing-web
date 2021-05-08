@@ -2,6 +2,7 @@ import React, { useContext, useReducer, useEffect } from 'react';
 import reducer from '../reducers/Cart_reducer';
 import { ADD_TO_CART, CLEAR_CART, CART_TOTAL } from '../actions';
 import { useProductContext } from '../context/product_context';
+
 const CartContext = React.createContext();
 const getLocalStorage = () => {
   let cart = localStorage.getItem('cart');

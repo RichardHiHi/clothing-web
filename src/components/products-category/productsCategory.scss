@@ -33,22 +33,7 @@
     }
   }
 }
-//hero
-.hero-section {
-  .hero-img {
-    padding-top: 125px;
-    @include background-img;
-    position: relative;
-    span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      @include transform(translate(-50%, -50%));
-      color: $whiteColor;
-      @include font-size-weight(2rem, 500);
-    }
-  }
-}
+
 @media (max-width: 1025px) {
   .category-section {
     &.active {

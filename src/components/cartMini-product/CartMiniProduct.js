@@ -6,8 +6,11 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { BsTrash } from 'react-icons/bs';
 import { AiOutlineEdit } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { useButtonContext } from '../../context/button_context';
 
 const CartMiniProduct = ({ isMiniCartOpen }) => {
+  const { miniAction } = useButtonContext();
   return (
     <div className='mini-wrap-2'>
       <div className='content-mini-cart'>
@@ -240,9 +243,13 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
           </div>
         </div>
         <p>Taxes, shipping and discounts codes calculated at checkout</p>
-        <a href='#' className='view-mini-cart-link'>
+        <Link
+          to='cart'
+          className='view-mini-cart-link'
+          onClick={() => miniAction('close', 'MiniCart')}
+        >
           view cart
-        </a>
+        </Link>
         <button className='button_primary'>check out</button>
         <img src={trust_img2_360x} alt='' />
       </div>
