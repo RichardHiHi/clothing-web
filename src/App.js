@@ -73,6 +73,9 @@ function App() {
         <Route exact path='/singleProduct/products/cart'>
           <CartPage />
         </Route>
+        <Route exact path='/singleProduct/home/cart'>
+          <CartPage />
+        </Route>
         <Route
           exact
           path='/singleProduct/:page?/:category?'
