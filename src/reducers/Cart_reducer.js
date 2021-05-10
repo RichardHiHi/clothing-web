@@ -91,14 +91,18 @@ const button_reducer = (state, action) => {
       }
       newProductCart = { ...newProductCart, itemCount: newItemCount };
     }
+    if (value === '') {
+      newItemCount = 0;
+      newProductCart = { ...newProductCart, itemCount: newItemCount };
+    }
     if (typeof value === 'number') {
       newItemCount = value;
       if (newItemCount > newProductCart.singleProduct.stock) {
         newItemCount = newProductCart.singleProduct.stock;
       }
-      if (newItemCount < 1) {
-        newItemCount = 1;
-      }
+      // if (newItemCount < 1) {
+      //   newItemCount = 1;
+      // }
       newProductCart = { ...newProductCart, itemCount: newItemCount };
     }
     //change new cart item

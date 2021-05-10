@@ -73,7 +73,6 @@ export const ProductProvider = ({ children }) => {
             { length: item.img.length },
             (_, i) => {
               check = check + 1;
-
               return check;
             }
           );

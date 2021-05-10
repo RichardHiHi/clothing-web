@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './cartPageItem.scss';
 import { Link } from 'react-router-dom';
 import AddIcon from '@material-ui/icons/Add';
@@ -23,9 +23,18 @@ const CartPageItem = ({ cartItem, getSingleProduct }) => {
     singleProduct: { colorImg, id, name, onSale, price },
   } = cartItem;
   //
+  const [inputNumber, setInputNumber] = useState('');
   const imgFollowColor = colorImg.find((item) => item.colorName === colorIndex)
     .img[0].thumbnails.large.url;
   //sc is shopping cart
+  useEffect(() => {
+    console.log(itemCount);
+    if (itemCount !== 0) {
+      setInputNumber(itemCount);
+    } else {
+      setInputNumber('');
+    }
+  }, [itemCount]);
   return (
     <Grid container>
       <Grid item xs={6} sm={5} className='sc-item flex-left'>
@@ -91,7 +100,7 @@ const CartPageItem = ({ cartItem, getSingleProduct }) => {
               type='number'
               className='mini-cart-quantity-input'
               data-idCart={idCart}
-              value={itemCount}
+              value={parseInt(inputNumber)}
               onChange={setItemCartByInput}
             />
             {itemCount !== 1 ? (

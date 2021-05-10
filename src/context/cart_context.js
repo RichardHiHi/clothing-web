@@ -64,10 +64,11 @@ export const CartProvider = ({ children }) => {
   const setItemCartByInput = (e) => {
     let value = e.target.value;
     const idCart = e.target.dataset.idcart;
-    if (value === '') {
-      value = 1;
-    } else {
+    if (value !== '') {
       value = parseInt(value);
+    }
+    if (value === '') {
+      value = '';
     }
     dispatch({ type: TOGGLE_ITEM_CART, payload: { idCart, value } });
   };
