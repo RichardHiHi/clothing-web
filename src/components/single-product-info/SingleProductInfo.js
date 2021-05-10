@@ -159,7 +159,10 @@ const SingleProductInfo = ({
           <div className='add-to-cart-btn-wrapper'>
             <button
               className='add-to-cart-btn button_primary'
-              onClick={() => addToCart()}
+              onClick={() => {
+                addToCart();
+                miniAction('open', 'MiniCart');
+              }}
             >
               ADD TO CART
             </button>

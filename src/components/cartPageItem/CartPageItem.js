@@ -7,14 +7,22 @@ import { BsTrash } from 'react-icons/bs';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { formatPrice } from '../../utils/helper';
 import Grid from '@material-ui/core/Grid';
+import { useCartContext } from '../../context/cart_context';
 
 const CartPageItem = ({ cartItem, getSingleProduct }) => {
   const {
+    toggleItemCart,
+    setItemCartByInput,
+    removeItemCart,
+  } = useCartContext();
+  const {
     colorIndex,
     size,
+    idCart,
     itemCount,
     singleProduct: { colorImg, id, name, onSale, price },
   } = cartItem;
+  //
   const imgFollowColor = colorImg.find((item) => item.colorName === colorIndex)
     .img[0].thumbnails.large.url;
   //sc is shopping cart
@@ -52,7 +60,10 @@ const CartPageItem = ({ cartItem, getSingleProduct }) => {
               <span>Edit item</span>
               <AiOutlineEdit />
             </button>
-            <button className='mini-cart-delete-btn'>
+            <button
+              className='mini-cart-delete-btn'
+              onClick={() => removeItemCart(idCart)}
+            >
               <span>Remove this item</span>
               <BsTrash />
             </button>
@@ -79,12 +90,32 @@ const CartPageItem = ({ cartItem, getSingleProduct }) => {
             <input
               type='number'
               className='mini-cart-quantity-input'
-              value='1'
+              data-idCart={idCart}
+              value={itemCount}
+              onChange={setItemCartByInput}
             />
-            <button className='mini-cart-minus-btn'>
-              <RemoveIcon />
-            </button>
-            <button className='mini-cart-plus-btn'>
+            {itemCount !== 1 ? (
+              <button
+                className='mini-cart-minus-btn'
+                onClick={() => toggleItemCart(idCart, 'dec')}
+              >
+                <RemoveIcon />
+              </button>
+            ) : (
+              <button
+                className='mini-cart-minus-btn'
+                onClick={() => {
+                  toggleItemCart(idCart, 'dec');
+                  removeItemCart(idCart);
+                }}
+              >
+                <BsTrash />
+              </button>
+            )}
+            <button
+              className='mini-cart-plus-btn'
+              onClick={() => toggleItemCart(idCart, 'inc')}
+            >
               <AddIcon />
             </button>
           </div>

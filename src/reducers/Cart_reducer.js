@@ -1,4 +1,10 @@
-import { ADD_TO_CART, CLEAR_CART, CART_TOTAL } from '../actions';
+import {
+  ADD_TO_CART,
+  CLEAR_CART,
+  CART_TOTAL,
+  TOGGLE_ITEM_CART,
+  REMOVE_ITEM_CART,
+} from '../actions';
 const button_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     //id of edit product
@@ -29,9 +35,13 @@ const button_reducer = (state, action) => {
           itemCart.colorIndex === productCart.colorIndex &&
           itemCart.size === productCart.size
         ) {
+          let newItemCount = itemCart.itemCount + productCart.itemCount;
+          if (newItemCount > itemCart.singleProduct.stock) {
+            newItemCount = itemCart.singleProduct.stock;
+          }
           return {
             ...itemCart,
-            itemCount: itemCart.itemCount + productCart.itemCount,
+            itemCount: newItemCount,
           };
         }
         return itemCart;
@@ -58,9 +68,58 @@ const button_reducer = (state, action) => {
     );
     return { ...state, amountTotal, totalItem };
   }
+  //toggle cart item
+  if (action.type === TOGGLE_ITEM_CART) {
+    const { idCart, value } = action.payload;
+    //if another condition , newItemCount equal 0
+    let newItemCount;
+    //find cart item that need edit
+    let newProductCart = state.cart.find(
+      (cartItem) => cartItem.idCart === idCart
+    );
+    if (value === 'inc') {
+      newItemCount = newProductCart.itemCount + 1;
+      if (newItemCount > newProductCart.singleProduct.stock) {
+        newItemCount = newProductCart.singleProduct.stock;
+      }
+      newProductCart = { ...newProductCart, itemCount: newItemCount };
+    }
+    if (value === 'dec') {
+      newItemCount = newProductCart.itemCount - 1;
+      if (newItemCount < 1) {
+        newItemCount = 1;
+      }
+      newProductCart = { ...newProductCart, itemCount: newItemCount };
+    }
+    if (typeof value === 'number') {
+      newItemCount = value;
+      if (newItemCount > newProductCart.singleProduct.stock) {
+        newItemCount = newProductCart.singleProduct.stock;
+      }
+      if (newItemCount < 1) {
+        newItemCount = 1;
+      }
+      newProductCart = { ...newProductCart, itemCount: newItemCount };
+    }
+    //change new cart item
+    const newCart = state.cart.map((cartItem) => {
+      if (cartItem.idCart === idCart) {
+        return newProductCart;
+      }
+      return cartItem;
+    });
+    return { ...state, cart: newCart };
+  }
   //clear cart
   if (action.type === CLEAR_CART) {
     return { ...state, cart: [] };
+  }
+  //remove cart item
+  if (action.type === REMOVE_ITEM_CART) {
+    const newCart = state.cart.filter(
+      (cartItem) => cartItem.idCart !== action.payload.idCart
+    );
+    return { ...state, cart: newCart };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

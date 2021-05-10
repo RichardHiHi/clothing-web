@@ -31,7 +31,7 @@ const ProductMiniItem = ({ product, page, category }) => {
               lockImgHover ? `mini-product-img` : `mini-product-img lock-scale`
             }
             style={{
-              backgroundImage: `url(${colorImg[indexImg].img[1].thumbnails.large.url})`,
+              backgroundImage: `url(${colorImg[indexImg].img[0].thumbnails.large.url})`,
             }}
           ></div>
         </Link>
@@ -40,7 +40,7 @@ const ProductMiniItem = ({ product, page, category }) => {
             <div
               className='mini-product-img_hover'
               style={{
-                backgroundImage: `url(${colorImg[0].img[0].thumbnails.large.url})`,
+                backgroundImage: `url(${colorImg[0].img[1].thumbnails.large.url})`,
               }}
             ></div>
           )}

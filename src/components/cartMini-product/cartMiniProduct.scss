@@ -55,7 +55,7 @@
 }
 .mini-cart-name-product {
   width: 100%;
-  font-size: 1.6rem;
+  @include font-size-weight(1.3rem, 500);
   text-decoration: none;
   color: $letterColor;
   @include transition(color 0.3s);
@@ -68,11 +68,12 @@
   margin-top: 6px;
   color: $lightLetterColor;
   .mini-cart-meta-color {
-    font-size: 1.2rem;
+    @include font-size-weight(1.3rem, 400);
     margin-bottom: 6px;
   }
   .mini-cart-meta-price {
-    font-size: 1.6rem;
+    @include font-size-weight(1.4rem, 500);
+    margin-bottom: 10px;
     del {
       margin-right: 6px;
     }

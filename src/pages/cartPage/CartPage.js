@@ -1,11 +1,6 @@
 import React from 'react';
 import './cartPage.scss';
-import {
-  SingleProductHero,
-  CartPageItem,
-  CartMiniEmty,
-  SingleProductRecommend,
-} from '../../components';
+import { CartPageItem, SingleProductRecommend } from '../../components';
 import hero from '../../assets/hero.jpg';
 import Grid from '@material-ui/core/Grid';
 import { useCartContext } from '../../context/cart_context';
@@ -15,7 +10,14 @@ import { formatPrice, scrollToTop } from '../../utils/helper';
 import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 const CartPage = () => {
-  const { cart, amountTotal, clearCart } = useCartContext();
+  const {
+    cart,
+    amountTotal,
+    clearCart,
+    toggleItemCart,
+    setItemCartByInput,
+    removeItemCart,
+  } = useCartContext();
   const { getSingleProduct } = useProductContext();
   return (
     <div className='content'>
@@ -46,13 +48,7 @@ const CartPage = () => {
               </div>
               <div className='shopping-cart-content'>
                 {cart.map((cartItem, index) => {
-                  return (
-                    <CartPageItem
-                      key={index}
-                      cartItem={cartItem}
-                      getSingleProduct={getSingleProduct}
-                    />
-                  );
+                  return <CartPageItem key={index} cartItem={cartItem} />;
                 })}
                 <button
                   className='sc-content-clear__btn'
@@ -66,8 +62,8 @@ const CartPage = () => {
               </div>
               <div className='shopping-cart-footer'>
                 <Grid container>
-                  <Grid item sm={6}></Grid>
-                  <Grid item sm={6}>
+                  <Grid item xs={12} sm={6}></Grid>
+                  <Grid item xs={12} sm={6}>
                     <div className='sc-checkout'>
                       <span className='sc-checkout__sub-total'>
                         SUBTOTAL: <span>{formatPrice(amountTotal)}</span>

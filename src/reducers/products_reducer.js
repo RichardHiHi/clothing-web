@@ -69,6 +69,7 @@ const products_reducer = (state, action) => {
       singleProduct: singleProduct,
     };
   }
+  //toggle index img
   if (action.type === INCREASE_INDEX_IMG) {
     let newindexIMG = state.singleProductAction.indexIMG + 1;
     if (newindexIMG > state.singleProduct.AllOfImg.length - 1) {

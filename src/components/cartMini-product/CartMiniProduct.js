@@ -8,224 +8,128 @@ import { BsTrash } from 'react-icons/bs';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';
+import { useCartContext } from '../../context/cart_context';
+import { useProductContext } from '../../context/product_context';
+import { formatPrice } from '../../utils/helper';
 
 const CartMiniProduct = ({ isMiniCartOpen }) => {
+  const { getSingleProduct, switchIMG } = useProductContext();
   const { miniAction } = useButtonContext();
+  const {
+    cart,
+    amountTotal,
+    clearCart,
+    toggleItemCart,
+    setItemCartByInput,
+    removeItemCart,
+  } = useCartContext();
+  const mutipleAction = (id, indexFollowColor) => {
+    getSingleProduct(id);
+    miniAction('close', 'MiniCart');
+    switchIMG(indexFollowColor);
+  };
   return (
     <div className='mini-wrap-2'>
       <div className='content-mini-cart'>
         <div className='mini-cart-list-wrapper'>
           <ul className='mini-cart-list'>
-            <li>
-              <a href='#' className='mini-cart-img'>
-                <img src={prch20_2} alt='' />
-              </a>
-              <div className='mini-cart-info'>
-                <a href='#' className='mini-cart-name-product'>
-                  cymbal
-                </a>
-                <div className='mini-cart-meta'>
-                  <p className='mini-cart-meta-color'>White Cream / S</p>
-                  <div className='mini-cart-meta-price'>
-                    <del>$60.00</del>
-                    <ins>$45.00</ins>
+            {cart.map((cartItem) => {
+              const {
+                colorIndex,
+                size,
+                idCart,
+                itemCount,
+                singleProduct: { colorImg, id, name, onSale, price },
+              } = cartItem;
+              //get first img of color
+              const imgFollowColor = colorImg.find(
+                (item) => item.colorName === colorIndex
+              ).img[0].thumbnails.large.url;
+              //get first index of array of img
+              const indexFollowColor = colorImg.find(
+                (item) => item.colorName === colorIndex
+              ).indexImg[0];
+              return (
+                <li>
+                  <Link
+                    to='singleProduct'
+                    onClick={() => mutipleAction(id, indexFollowColor)}
+                    className='mini-cart-img'
+                  >
+                    <img src={imgFollowColor} alt='' />
+                  </Link>
+                  <div className='mini-cart-info'>
+                    <Link
+                      to='singleProduct'
+                      onClick={() => mutipleAction(id, indexFollowColor)}
+                      className='mini-cart-name-product'
+                    >
+                      {name}
+                    </Link>
+                    <div className='mini-cart-meta'>
+                      <p className='mini-cart-meta-color'>
+                        {colorIndex} / {size}
+                      </p>
+                      <div className='mini-cart-meta-price'>
+                        {onSale ? (
+                          <div className='sc-item__meta__price'>
+                            <del>{formatPrice(price)}</del>
+                            <ins>{formatPrice(price * onSale)}</ins>
+                          </div>
+                        ) : (
+                          <div className='sc-item__meta__price'>
+                            <span>{formatPrice(price)}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className='mini-cart-actions'>
+                      <div className='mini-cart-quantity'>
+                        <input
+                          type='number'
+                          className='mini-cart-quantity-input'
+                          value={itemCount}
+                        />
+                        {itemCount !== 1 ? (
+                          <button
+                            className='mini-cart-minus-btn'
+                            onClick={() => toggleItemCart(idCart, 'dec')}
+                          >
+                            <RemoveIcon />
+                          </button>
+                        ) : (
+                          <button
+                            className='mini-cart-minus-btn'
+                            onClick={() => {
+                              toggleItemCart(idCart, 'dec');
+                              removeItemCart(idCart);
+                            }}
+                          >
+                            <BsTrash />
+                          </button>
+                        )}
+                        <button
+                          className='mini-cart-plus-btn'
+                          onClick={() => toggleItemCart(idCart, 'inc')}
+                        >
+                          <AddIcon />
+                        </button>
+                      </div>
+                      <div className='wrapper-btn-mini-cart'>
+                        <button className='mini-cart-edit-btn'>
+                          <span>Edit item</span>
+                          <AiOutlineEdit />
+                        </button>
+                        <button className='mini-cart-delete-btn'>
+                          <span>Remove this item</span>
+                          <BsTrash />
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className='mini-cart-actions'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  <div className='wrapper-btn-mini-cart'>
-                    <button className='mini-cart-edit-btn'>
-                      <span>Edit item</span>
-                      <AiOutlineEdit />
-                    </button>
-                    <button className='mini-cart-delete-btn'>
-                      <span>Remove this item</span>
-                      <BsTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href='#' className='mini-cart-img'>
-                <img src={prch20_2} alt='' />
-              </a>
-              <div className='mini-cart-info'>
-                <a href='#' className='mini-cart-name-product'>
-                  cymbal
-                </a>
-                <div className='mini-cart-meta'>
-                  <p className='mini-cart-meta-color'>White Cream / S</p>
-                  <div className='mini-cart-meta-price'>
-                    <del>$60.00</del>
-                    <ins>$45.00</ins>
-                  </div>
-                </div>
-                <div className='mini-cart-actions'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  <div className='wrapper-btn-mini-cart'>
-                    <button className='mini-cart-edit-btn'>
-                      <span>Edit item</span>
-                      <AiOutlineEdit />
-                    </button>
-                    <button className='mini-cart-delete-btn'>
-                      <span>Remove this item</span>
-                      <BsTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href='#' className='mini-cart-img'>
-                <img src={prch20_2} alt='' />
-              </a>
-              <div className='mini-cart-info'>
-                <a href='#' className='mini-cart-name-product'>
-                  cymbal
-                </a>
-                <div className='mini-cart-meta'>
-                  <p className='mini-cart-meta-color'>White Cream / S</p>
-                  <div className='mini-cart-meta-price'>
-                    <del>$60.00</del>
-                    <ins>$45.00</ins>
-                  </div>
-                </div>
-                <div className='mini-cart-actions'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  <div className='wrapper-btn-mini-cart'>
-                    <button className='mini-cart-edit-btn'>
-                      <span>Edit item</span>
-                      <AiOutlineEdit />
-                    </button>
-                    <button className='mini-cart-delete-btn'>
-                      <span>Remove this item</span>
-                      <BsTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href='#' className='mini-cart-img'>
-                <img src={prch20_2} alt='' />
-              </a>
-              <div className='mini-cart-info'>
-                <a href='#' className='mini-cart-name-product'>
-                  cymbal
-                </a>
-                <div className='mini-cart-meta'>
-                  <p className='mini-cart-meta-color'>White Cream / S</p>
-                  <div className='mini-cart-meta-price'>
-                    <del>$60.00</del>
-                    <ins>$45.00</ins>
-                  </div>
-                </div>
-                <div className='mini-cart-actions'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  <div className='wrapper-btn-mini-cart'>
-                    <button className='mini-cart-edit-btn'>
-                      <span>Edit item</span>
-                      <AiOutlineEdit />
-                    </button>
-                    <button className='mini-cart-delete-btn'>
-                      <span>Remove this item</span>
-                      <BsTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href='#' className='mini-cart-img'>
-                <img src={prch20_2} alt='' />
-              </a>
-              <div className='mini-cart-info'>
-                <a href='#' className='mini-cart-name-product'>
-                  cymbal
-                </a>
-                <div className='mini-cart-meta'>
-                  <p className='mini-cart-meta-color'>White Cream / S</p>
-                  <div className='mini-cart-meta-price'>
-                    <del>$60.00</del>
-                    <ins>$45.00</ins>
-                  </div>
-                </div>
-                <div className='mini-cart-actions'>
-                  <div className='mini-cart-quantity'>
-                    <input
-                      type='number'
-                      className='mini-cart-quantity-input'
-                      value='1'
-                    />
-                    <button className='mini-cart-minus-btn'>
-                      <RemoveIcon />
-                    </button>
-                    <button className='mini-cart-plus-btn'>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  <div className='wrapper-btn-mini-cart'>
-                    <button className='mini-cart-edit-btn'>
-                      <span>Edit item</span>
-                      <AiOutlineEdit />
-                    </button>
-                    <button className='mini-cart-delete-btn'>
-                      <span>Remove this item</span>
-                      <BsTrash />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </li>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

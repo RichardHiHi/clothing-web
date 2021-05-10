@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './singleProductContent.scss';
 import Grid from '@material-ui/core/Grid';
+
 import Slider from 'react-slick';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import SingleProductImg from '../single-product-img/SingleProductImg';
@@ -44,11 +45,11 @@ const SingleProductContent = () => {
     setMouseDown(0);
     setMouseUp(0);
   }, [mouseUp]);
-  // set position of slider
+  //set position of slider
   const handleOnClick = (index) => {
     sliderRef.current.slickGoTo(index);
   };
-  // set color follow index
+  //set color follow index
   useEffect(() => {
     handleOnClick(indexIMG - 2);
   }, [indexIMG]);
@@ -64,54 +65,52 @@ const SingleProductContent = () => {
   };
 
   return (
-    <>
-      <Grid container className='section-grid-content-wrapper'>
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <SingleProductImg
-            {...product}
-            indexIMG={indexIMG}
-            switchIMG={switchIMG}
-            setHiddenInfo={setHiddenInfo}
-            hiddenInfo={hiddenInfo}
-          />
-          <div className='single-product-thumbnails-list'>
-            <div className='single-product-section'>
-              <div className='single-product-container section-container'>
-                <div className='section-content-wrapper'>
-                  <Slider ref={sliderRef} {...settingsSingleProduct}>
-                    {AllOfImg.map((img, index) => {
-                      return (
-                        <div className='single-product-thumbnails' key={index}>
-                          <div
-                            className={
-                              index === indexIMG
-                                ? 'single-product-thumbnails__img active'
-                                : 'single-product-thumbnails__img'
-                            }
-                            style={{
-                              backgroundImage: `url(${img.thumbnails.large.url})`,
-                            }}
-                            onClick={() => switchIMG(index)}
-                          ></div>
-                        </div>
-                      );
-                    })}
-                  </Slider>
-                </div>
+    <div className='single-product-section'>
+      <div className='single-product-container section-container'>
+        <div className='section-content-wrapper'>
+          <Grid container className='section-grid-content-wrapper'>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
+              <SingleProductImg
+                {...product}
+                indexIMG={indexIMG}
+                switchIMG={switchIMG}
+                setHiddenInfo={setHiddenInfo}
+                hiddenInfo={hiddenInfo}
+              />
+              <div className='single-product-thumbnails-list'>
+                <Slider ref={sliderRef} {...settingsSingleProduct}>
+                  {AllOfImg.map((img, index) => {
+                    return (
+                      <div className='single-product-thumbnails' key={index}>
+                        <div
+                          className={
+                            index === indexIMG
+                              ? 'single-product-thumbnails__img active'
+                              : 'single-product-thumbnails__img'
+                          }
+                          style={{
+                            backgroundImage: `url(${img.thumbnails.large.url})`,
+                          }}
+                          onClick={() => switchIMG(index)}
+                        ></div>
+                      </div>
+                    );
+                  })}
+                </Slider>
               </div>
-            </div>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6} lg={6}>
-          <SingleProductInfo
-            colorIndex={colorIndex}
-            switchIMG={switchIMG}
-            {...product}
-            hiddenInfo={hiddenInfo}
-          />
-        </Grid>
-      </Grid>
-    </>
+            </Grid>
+            <Grid item xs={12} sm={6} md={6} lg={6}>
+              <SingleProductInfo
+                colorIndex={colorIndex}
+                switchIMG={switchIMG}
+                {...product}
+                hiddenInfo={hiddenInfo}
+              />
+            </Grid>
+          </Grid>
+        </div>
+      </div>
+    </div>
   );
 };
 
