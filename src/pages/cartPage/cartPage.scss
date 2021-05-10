@@ -8,24 +8,24 @@
   }
 }
 //content
-.shopping-cart-content {
-  .sc-content-clear__btn {
-    float: right;
-    margin-top: 15px;
-    padding: 13px 60px;
-    outline: none;
-    border-radius: 50px;
-    @include font-size-weight(1.6rem, 500);
-    border: 1px solid $letterColor;
-    background-color: transparent;
-    @include transition(all 0.3s);
-    &:hover {
-      cursor: pointer;
-      background-color: $letterColor;
-      color: white;
-    }
+// .shopping-cart-content {
+.sc-content-clear__btn {
+  float: right;
+  margin-top: 15px;
+  padding: 13px 60px;
+  outline: none;
+  border-radius: 50px;
+  @include font-size-weight(1.6rem, 500);
+  border: 1px solid $letterColor;
+  background-color: transparent;
+  @include transition(all 0.3s);
+  &:hover {
+    cursor: pointer;
+    background-color: $letterColor;
+    color: white;
   }
 }
+// }
 // check out
 .shopping-cart-footer {
   margin-top: 150px;

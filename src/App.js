@@ -18,6 +18,7 @@ import {
   SortMini,
   Toolbar,
   SingleProductModal,
+  CartToolBar,
 } from './components';
 import {
   HomePage,
@@ -51,6 +52,7 @@ function App() {
       <Toolbar />
       <SortMini />
       <SingleProductModal />
+      <CartToolBar />
       <Switch>
         <Route exact path='/'>
           <HomePage />
@@ -77,7 +79,6 @@ function App() {
           <CartPage />
         </Route>
         <Route
-          exact
           path='/singleProduct/:page?/:category?'
           children={<SingleProductPage />}
         />

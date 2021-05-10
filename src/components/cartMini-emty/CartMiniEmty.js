@@ -1,15 +1,22 @@
 import React from 'react';
 import './cartMiniEmty.scss';
 import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
+import { useButtonContext } from '../../context/button_context';
+import { Link } from 'react-router-dom';
 const CartMiniEmty = () => {
+  const { miniAction } = useButtonContext();
   return (
     <div className='mini-wrap-2'>
       <div class='empty-mini-cart'>
         <RemoveShoppingCartOutlinedIcon />
         <p>Your cart is empty.</p>
-        <a class='link-back-to-shop' href='#'>
+        <Link
+          to='./products'
+          class='link-back-to-shop'
+          onClick={() => miniAction('close', 'MiniCart')}
+        >
           <span>RETURN TO SHOP</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -4,12 +4,13 @@ import { useButtonContext } from '../../context/button_context';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 import CartMiniProduct from '../cartMini-product/CartMiniProduct';
 import CartMiniEmty from '../cartMini-emty/CartMiniEmty';
+import { useCartContext } from '../../context/cart_context';
 const CartMini = () => {
   const { isMiniCartOpen, miniAction } = useButtonContext();
   const action = () => {
     miniAction('close', 'MiniCart');
   };
-  const test = true;
+  const { cart } = useCartContext();
   return (
     <div
       className={isMiniCartOpen ? 'cart-mini cart-mini-openned' : 'cart-mini'}
@@ -19,7 +20,7 @@ const CartMini = () => {
           <h3>SHOPPING CART</h3>
           <RotateCloseBtn action={action} />
         </div>
-        {test ? (
+        {cart.length > 0 ? (
           <CartMiniProduct isMiniCartOpen={isMiniCartOpen} />
         ) : (
           <CartMiniEmty />

@@ -183,6 +183,7 @@ const SingleProductInfo = ({
               onClick={() => {
                 addToCart();
                 miniAction('open', 'MiniCart');
+                miniAction('close', 'SingleProductModal');
               }}
             >
               ADD TO CART

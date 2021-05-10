@@ -19,9 +19,9 @@
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  @include scroll-bar(12px);
+  @include scroll-bar(2px);
   li {
-    padding: 20px;
+    padding: 15px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -40,6 +40,12 @@
     }
     &:hover img {
       @include transform(scale(1.01));
+    }
+  }
+  .mini-cart-list__btn {
+    .sc-content-clear__btn {
+      padding: 10px 35px;
+      @include font-size-weight(1.2rem, 500);
     }
   }
 }

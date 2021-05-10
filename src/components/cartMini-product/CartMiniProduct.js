@@ -120,7 +120,10 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                           <span>Edit item</span>
                           <AiOutlineEdit />
                         </button>
-                        <button className='mini-cart-delete-btn'>
+                        <button
+                          className='mini-cart-delete-btn'
+                          onClick={() => removeItemCart(idCart)}
+                        >
                           <span>Remove this item</span>
                           <BsTrash />
                         </button>
@@ -130,6 +133,16 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                 </li>
               );
             })}
+            <div className='mini-cart-list__btn'>
+              <button
+                className='sc-content-clear__btn'
+                onClick={() => {
+                  clearCart();
+                }}
+              >
+                CLEAR CART
+              </button>
+            </div>
           </ul>
         </div>
       </div>
