@@ -151,13 +151,16 @@ const products_reducer = (state, action) => {
     let newItemCount;
     if (value === 'inc') {
       newItemCount = state.singleProductAction.itemCount + 1;
+      if (isNaN(newItemCount)) {
+        newItemCount = 1;
+      }
       if (newItemCount > stock) {
         newItemCount = stock;
       }
     }
     if (value === 'dec') {
       newItemCount = state.singleProductAction.itemCount - 1;
-      if (newItemCount < 1) {
+      if (newItemCount < 1 || isNaN(newItemCount)) {
         newItemCount = 1;
       }
     }

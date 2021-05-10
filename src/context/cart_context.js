@@ -30,11 +30,15 @@ export const CartProvider = ({ children }) => {
     singleProductAction: { colorIndex, size, itemCount },
   } = useProductContext();
   const addToCart = (id = null) => {
+    let newItemCount = itemCount;
+    if (isNaN(itemCount)) {
+      newItemCount = 1;
+    }
     const productCart = {
       singleProduct: singleProduct,
       colorIndex: colorIndex,
       size: size,
-      itemCount: itemCount,
+      itemCount: newItemCount,
       //date.now là số milisecond , math.random phòng vc click 2 lần cùng nhau , chuyển sang hệ 36
       idCart: (Date.now() + Math.random()).toString(36),
     };

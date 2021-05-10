@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './singleProductInfo.scss';
 import { formatPrice } from '../../utils/helper';
 import Box from '@material-ui/core/Box';
@@ -40,6 +40,15 @@ const SingleProductInfo = ({
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
+  const [alter, setAlter] = useState(false);
+  const checkMaxMIN = (stock, itemCount) => {
+    if (stock === itemCount || itemCount === 1) {
+      setAlter(true);
+      setTimeout(() => {
+        setAlter(false);
+      }, 500);
+    }
+  };
   return (
     <div
       className={
@@ -126,7 +135,11 @@ const SingleProductInfo = ({
       </div>
       <div className='single-product-cart-wrapper'>
         {stock > 0 && (
-          <div className='mini-cart-quantity'>
+          <div
+            className={
+              alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
+            }
+          >
             <input
               type='number'
               className='mini-cart-quantity-input'
@@ -134,11 +147,19 @@ const SingleProductInfo = ({
               onChange={setItemCountByInput}
             />
             <button className='mini-cart-minus-btn'>
-              <RemoveIcon onClick={() => setItemCount('dec')} />
+              <RemoveIcon
+                onClick={() => {
+                  setItemCount('dec');
+                  checkMaxMIN(stock, itemCount);
+                }}
+              />
             </button>
             <button
               className='mini-cart-plus-btn'
-              onClick={() => setItemCount('inc')}
+              onClick={() => {
+                setItemCount('inc');
+                checkMaxMIN(stock, itemCount);
+              }}
             >
               <AddIcon />
             </button>

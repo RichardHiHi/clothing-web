@@ -147,12 +147,7 @@ export const ProductProvider = ({ children }) => {
   };
   // no parameter can get e(enent)
   const setItemCountByInput = (e) => {
-    let value;
-    if (e.target.value === '') {
-      value = 1;
-    } else {
-      value = parseInt(e.target.value);
-    }
+    let value = parseInt(e.target.value);
     dispatch({ type: SET_ITEM_COUNT, payload: { value } });
   };
   useEffect(() => {
