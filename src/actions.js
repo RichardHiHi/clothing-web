@@ -1,4 +1,5 @@
 export const MINI_ACTION = 'MINI_ACTION';
+export const SET_PAGE = 'SET_PAGE';
 //product
 export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export const GET_PRODUCTS_BEGIN = 'LOAD_PRODUCTSGET_PRODUCTS_BEGIN';

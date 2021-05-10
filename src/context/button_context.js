@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import reducer from '../reducers/button_reducer';
-import { MINI_ACTION, SET_IS_IN_PRODUCT_PAGE } from '../actions';
+import { MINI_ACTION, SET_IS_IN_PRODUCT_PAGE, SET_PAGE } from '../actions';
 import { useFilterContext } from '../context/filter_context';
 const ButtonContext = React.createContext();
 const initialState = {
@@ -12,6 +12,7 @@ const initialState = {
   isSortMiniOpen: false,
   isInProductPage: false,
   isSingleProductModalOpen: false,
+  currentPage: '',
 };
 
 export const ButtonProvider = ({ children }) => {
@@ -24,12 +25,15 @@ export const ButtonProvider = ({ children }) => {
   const setIsInProductPage = (value) => {
     dispatch({ type: SET_IS_IN_PRODUCT_PAGE, payload: { value } });
   };
+  const setPage = (value) => {
+    dispatch({ type: SET_PAGE, payload: { value } });
+  };
   useEffect(() => {
     clearAllFilter();
   }, [state.isMiniSearchOpen]);
   return (
     <ButtonContext.Provider
-      value={{ ...state, miniAction, setIsInProductPage }}
+      value={{ ...state, miniAction, setIsInProductPage, setPage }}
     >
       {children}
     </ButtonContext.Provider>

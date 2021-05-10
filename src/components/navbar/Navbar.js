@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './navbar.scss';
 import NavButton from '../navButton/Navbutton';
 import logo from '../../assets/logo.svg';
@@ -15,13 +15,18 @@ import { NextArrow, PrevArrow } from '../../utils/helper';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import { scrollToTop } from '../../utils/helper';
+import CartToolBar from '../cart-tool-bar/CartToolBar';
 
 const Navbar = () => {
-  const { miniAction } = useButtonContext();
-  const { category } = useProductContext();
+  const { miniAction, currentPage } = useButtonContext();
   const { saleProducts: sale } = useProductContext();
   const { filterCategoryUpdate, clearAllFilter } = useFilterContext();
-
+  const [hiddenToolbar, setHiddenToolbar] = useState(true);
+  const [hiddenBackBTN, setHiddenBackBTN] = useState(false);
+  const [hiddenNavbar, setHiddenNavbar] = useState(true);
+  const { category } = useProductContext();
+  console.log(currentPage.split('/')[1] === 'singleProduct');
+  //  singleProduct;
   useEffect(() => {
     document
       .querySelector('.sub-menu-slider-wrapper')
@@ -32,15 +37,23 @@ const Navbar = () => {
     window.onscroll = function () {
       var currentScrollPos = window.pageYOffset;
       if (prevScrollpos < currentScrollPos && currentScrollPos > 75) {
-        document.querySelector('.nav').classList.add('hidden');
+        setHiddenNavbar(false);
       } else {
-        document.querySelector('.nav').classList.remove('hidden');
+        setHiddenNavbar(true);
       }
-
+      //set btn
       if (currentScrollPos > 75) {
-        document.querySelector('.back-to-top-btn').classList.add('hidden');
+        setHiddenBackBTN(false);
       } else {
-        document.querySelector('.back-to-top-btn').classList.remove('hidden');
+        setHiddenBackBTN(true);
+      }
+      //set toolbar
+      if (currentPage.split('/')[1] === 'singleProduct') {
+        if (currentScrollPos > 590) {
+          setHiddenToolbar(false);
+        } else {
+          setHiddenToolbar(true);
+        }
       }
 
       prevScrollpos = currentScrollPos;
@@ -67,7 +80,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className='nav'>
+      <div className={hiddenNavbar ? 'nav' : 'nav hidden'}>
         <div className='navbar'>
           <div className='logo-wrapper'>
             <button
@@ -198,9 +211,23 @@ const Navbar = () => {
           <NavButton />
         </div>
       </div>
-      <button onClick={scrollToTop} className='back-to-top-btn'>
-        <ExpandLessIcon />
-      </button>
+      <CartToolBar hiddenToolbar={hiddenToolbar} />
+      <div
+        className={
+          !hiddenToolbar
+            ? 'back-to-top-btn-wrapper top'
+            : 'back-to-top-btn-wrapper'
+        }
+      >
+        <button
+          onClick={scrollToTop}
+          className={
+            hiddenBackBTN ? 'back-to-top-btn' : 'back-to-top-btn hidden'
+          }
+        >
+          <ExpandLessIcon />
+        </button>
+      </div>
     </>
   );
 };

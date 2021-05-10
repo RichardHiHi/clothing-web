@@ -18,7 +18,6 @@ import {
   SortMini,
   Toolbar,
   SingleProductModal,
-  CartToolBar,
 } from './components';
 import {
   HomePage,
@@ -31,7 +30,7 @@ import {
 import ScrollToTop from 'react-router-scroll-top';
 import { useButtonContext } from './context/button_context';
 function App() {
-  const { setIsInProductPage } = useButtonContext();
+  const { setIsInProductPage, setPage } = useButtonContext();
   let location = useLocation();
   React.useEffect(() => {
     if (location.pathname === '/products') {
@@ -39,6 +38,7 @@ function App() {
     } else {
       setIsInProductPage(false);
     }
+    setPage(location.pathname);
   }, [location]);
   return (
     <ScrollToTop>
@@ -52,7 +52,7 @@ function App() {
       <Toolbar />
       <SortMini />
       <SingleProductModal />
-      <CartToolBar />
+
       <Switch>
         <Route exact path='/'>
           <HomePage />

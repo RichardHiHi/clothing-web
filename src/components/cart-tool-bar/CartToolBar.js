@@ -4,17 +4,19 @@ import './cartToolBar.scss';
 import { Grid } from '@material-ui/core';
 import { useCartContext } from '../../context/cart_context';
 import { useProductContext } from '../../context/product_context';
-import { formatPrice } from '../../utils/helper';
+import { formatPrice, scrollToTop } from '../../utils/helper';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-
-const CartToolBar = () => {
+import { useButtonContext } from '../../context/button_context';
+const CartToolBar = ({ hiddenToolbar }) => {
   //ctb is cart-tool-bar
   const {
-    singleProduct: { name, price, AllOfImg, stock },
+    singleProduct: { name, price, AllOfImg, stock, colorImg },
     singleProductAction: { indexIMG, size, itemCount },
   } = useProductContext();
-  console.log(AllOfImg[indexIMG]);
+  const { addToCart, clearCart } = useCartContext();
+  const { miniAction } = useButtonContext();
+
   const { setItemCount, setItemCountByInput } = useProductContext();
   const [alter, setAlter] = useState(false);
   const checkMaxMIN = (stock, itemCount) => {
@@ -25,59 +27,78 @@ const CartToolBar = () => {
       }, 500);
     }
   };
+  let colorFollowIndexIMG = 'none';
+  if (colorImg) {
+    colorFollowIndexIMG = colorImg.find((item) => {
+      return item.indexImg.some((i) => i === indexIMG);
+    }).colorName;
+  }
   return (
-    <div className='ctb-section'>
+    <div className={hiddenToolbar ? 'ctb-section hidden' : 'ctb-section'}>
       <div className='ctb-contain section-container'>
-        <Grid container className='section-grid-content-wrapper'>
-          <Grid item xs={12} sm={12} md={6}>
-            <div className='ctb__info'>
-              <div className='ctb__info__img'>
-                <img src={AllOfImg[indexIMG].thumbnails.small.url}></img>
-              </div>
-              <div className='ctb__info__info'>
-                <span className='ctb__info__info_name'>{name}</span>
-                <span className='ctb__info__info_size'>{size}</span>
-              </div>
+        <div className='ctb__info'>
+          <div className='ctb__info__img'>
+            {AllOfImg && (
+              <img src={AllOfImg[indexIMG].thumbnails.large.url}></img>
+            )}
+          </div>
+          <div className='ctb__info__info'>
+            <span className='ctb__info__info_name'>{name}</span>
+            {colorImg && (
+              <span
+                className='ctb__info__info_size'
+                onClick={() => scrollToTop(0)}
+              >
+                {size}/{colorFollowIndexIMG}
+              </span>
+            )}
+          </div>
+        </div>
+        {/* cart */}
+        <div className='ctb__cart'>
+          <span className='ctb__cart__price'>{formatPrice(price)}</span>
+          <div className='ctb__cart__amount-btn'>
+            <div
+              className={
+                alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
+              }
+            >
+              <input
+                type='number'
+                className='mini-cart-quantity-input'
+                value={itemCount}
+                onChange={setItemCountByInput}
+              />
+              <button className='mini-cart-minus-btn'>
+                <RemoveIcon
+                  onClick={() => {
+                    setItemCount('dec');
+                    checkMaxMIN(stock, itemCount);
+                  }}
+                />
+              </button>
+              <button
+                className='mini-cart-plus-btn'
+                onClick={() => {
+                  setItemCount('inc');
+                  checkMaxMIN(stock, itemCount);
+                }}
+              >
+                <AddIcon />
+              </button>
             </div>
-          </Grid>
-          <Grid item xs={12} sm={12} md={6}>
-            <div className='ctb__cart'>
-              <span className='ctb__cart__price'>{formatPrice(price)}</span>
-              <div className='ctb__cart__amount-btn'>
-                <div
-                  className={
-                    alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
-                  }
-                >
-                  <input
-                    type='number'
-                    className='mini-cart-quantity-input'
-                    value={itemCount}
-                    onChange={setItemCountByInput}
-                  />
-                  <button className='mini-cart-minus-btn'>
-                    <RemoveIcon
-                      onClick={() => {
-                        setItemCount('dec');
-                        checkMaxMIN(stock, itemCount);
-                      }}
-                    />
-                  </button>
-                  <button
-                    className='mini-cart-plus-btn'
-                    onClick={() => {
-                      setItemCount('inc');
-                      checkMaxMIN(stock, itemCount);
-                    }}
-                  >
-                    <AddIcon />
-                  </button>
-                </div>
-              </div>
-              <button className='ctb__cart__amount-btn'>ADD TO CART</button>
-            </div>
-          </Grid>
-        </Grid>
+          </div>
+          <button
+            className='ctb__cart__add-btn'
+            onClick={() => {
+              addToCart();
+              miniAction('open', 'MiniCart');
+              miniAction('close', 'SingleProductModal');
+            }}
+          >
+            ADD TO CART
+          </button>
+        </div>
       </div>
     </div>
   );
