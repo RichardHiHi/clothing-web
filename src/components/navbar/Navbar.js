@@ -25,7 +25,6 @@ const Navbar = () => {
   const [hiddenBackBTN, setHiddenBackBTN] = useState(false);
   const [hiddenNavbar, setHiddenNavbar] = useState(true);
   const { category } = useProductContext();
-  console.log(currentPage.split('/')[1] === 'singleProduct');
   //  singleProduct;
   useEffect(() => {
     document

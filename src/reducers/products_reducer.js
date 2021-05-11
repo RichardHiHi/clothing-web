@@ -15,6 +15,7 @@ import {
   CLEAR_SINGLE_ACTION,
   SET_SIZE_PRODUCT,
   SET_ITEM_COUNT,
+  SET_ID_CART,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -179,6 +180,15 @@ const products_reducer = (state, action) => {
       singleProductAction: {
         ...state.singleProductAction,
         itemCount: newItemCount,
+      },
+    };
+  }
+  if (action.type === SET_ID_CART) {
+    return {
+      ...state,
+      singleProductAction: {
+        ...state.singleProductAction,
+        idCart: action.payload.value,
       },
     };
   }

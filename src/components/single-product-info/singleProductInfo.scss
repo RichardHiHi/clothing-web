@@ -51,6 +51,7 @@
   .single-product-color-title {
     h4 {
       @include font-size-weight(1.3rem, 600);
+      text-transform: uppercase;
     }
     margin-bottom: 10px;
   }

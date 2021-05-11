@@ -12,6 +12,8 @@ const initialState = {
   isSortMiniOpen: false,
   isInProductPage: false,
   isSingleProductModalOpen: false,
+  isCartModalOpen: false,
+  isCartEditModalOpen: false,
   currentPage: '',
 };
 

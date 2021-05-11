@@ -8,13 +8,15 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { formatPrice } from '../../utils/helper';
 import Grid from '@material-ui/core/Grid';
 import { useCartContext } from '../../context/cart_context';
+import { useButtonContext } from '../../context/button_context';
+import { useProductContext } from '../../context/product_context';
 
-const CartPageItem = ({ cartItem, getSingleProduct }) => {
-  const {
-    toggleItemCart,
-    setItemCartByInput,
-    removeItemCart,
-  } = useCartContext();
+const CartPageItem = ({ cartItem }) => {
+  const { toggleItemCart, setItemCartByInput, removeItemCart } =
+    useCartContext();
+  const { miniAction } = useButtonContext();
+  const { cleartSingleProductAction, setIdCart, getSingleProduct } =
+    useProductContext();
   const {
     colorIndex,
     size,
@@ -65,7 +67,16 @@ const CartPageItem = ({ cartItem, getSingleProduct }) => {
             </p>
           </div>
           <div className='wrapper-btn-mini-cart'>
-            <button className='mini-cart-edit-btn'>
+            <button
+              className='mini-cart-edit-btn'
+              onClick={() => {
+                getSingleProduct(id);
+                cleartSingleProductAction();
+                setIdCart(idCart);
+                miniAction('open', 'CartEditModal');
+                miniAction('open', 'CartModal');
+              }}
+            >
               <span>Edit item</span>
               <AiOutlineEdit />
             </button>

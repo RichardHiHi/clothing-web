@@ -26,6 +26,7 @@ import SingleProductRecommend from './singleProductRecommend/SingleProductRecomm
 import SingleProductModal from './single-prodcut-modal/SingleProductModal';
 import CartPageItem from './cartPageItem/CartPageItem';
 import CartToolBar from './cart-tool-bar/CartToolBar';
+import CartModal from './cart-modal/CartModal';
 export {
   Navbar,
   NavButton,
@@ -55,4 +56,5 @@ export {
   CartPageItem,
   CartMiniEmty,
   CartToolBar,
+  CartModal,
 };

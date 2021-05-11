@@ -41,14 +41,17 @@ const SingleProductInfo = ({
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
   const [alter, setAlter] = useState(false);
-  const checkMaxMIN = (stock, itemCount) => {
-    if (stock === itemCount || itemCount === 1) {
+  useEffect(() => {
+    if (stock === itemCount) {
       setAlter(true);
-      setTimeout(() => {
-        setAlter(false);
-      }, 500);
+      // setTimeout(() => {
+      //   setAlter(false);
+      // }, 200);
+    } else {
+      setAlter(false);
     }
-  };
+  }, [itemCount]);
+
   return (
     <div
       className={
@@ -83,7 +86,7 @@ const SingleProductInfo = ({
       {colorImg.length > 1 && (
         <div className='single-product-color-wrapper'>
           <div className='single-product-color-title'>
-            <h4>COLOR: WHITE CREAM</h4>
+            <h4>COLOR: {colorIndex}</h4>
           </div>
           <div className='product-mini-watch-list'>
             {colorImg.map((color, index) => {
@@ -150,7 +153,6 @@ const SingleProductInfo = ({
               <RemoveIcon
                 onClick={() => {
                   setItemCount('dec');
-                  checkMaxMIN(stock, itemCount);
                 }}
               />
             </button>
@@ -158,7 +160,6 @@ const SingleProductInfo = ({
               className='mini-cart-plus-btn'
               onClick={() => {
                 setItemCount('inc');
-                checkMaxMIN(stock, itemCount);
               }}
             >
               <AddIcon />

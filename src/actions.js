@@ -10,6 +10,7 @@ export const SET_INDEX_IMG = ' SET_INDEX_IMG';
 export const SET_COLOR_INDEX = 'SET_COLOR_INDEX';
 export const CLEAR_SINGLE_ACTION = 'CLEAR_SINGLE_ACTION';
 export const SET_ITEM_COUNT = 'SET_ITEM_COUNT';
+export const SET_ID_CART = 'SET_ID_CART';
 //product-get home page element
 export const ADD_BLOG = 'ADD_BLOG';
 export const ADD_COLLECTION = 'ADD_COLLECTION';

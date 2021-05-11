@@ -13,7 +13,8 @@ import { useProductContext } from '../../context/product_context';
 import { formatPrice } from '../../utils/helper';
 
 const CartMiniProduct = ({ isMiniCartOpen }) => {
-  const { getSingleProduct, switchIMG } = useProductContext();
+  const { getSingleProduct, switchIMG, setIdCart, cleartSingleProductAction } =
+    useProductContext();
   const { miniAction } = useButtonContext();
   const {
     cart,
@@ -42,7 +43,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                 singleProduct: { colorImg, id, name, onSale, price },
               } = cartItem;
               //get first img of color
-              const imgFollowColor = colorImg.find(
+              let imgFollowColor = colorImg.find(
                 (item) => item.colorName === colorIndex
               ).img[0].thumbnails.large.url;
               //get first index of array of img
@@ -116,7 +117,16 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                         </button>
                       </div>
                       <div className='wrapper-btn-mini-cart'>
-                        <button className='mini-cart-edit-btn'>
+                        <button
+                          className='mini-cart-edit-btn'
+                          onClick={() => {
+                            getSingleProduct(id);
+                            cleartSingleProductAction();
+                            setIdCart(idCart);
+                            miniAction('open', 'CartEditModal');
+                            miniAction('open', 'CartModal');
+                          }}
+                        >
                           <span>Edit item</span>
                           <AiOutlineEdit />
                         </button>

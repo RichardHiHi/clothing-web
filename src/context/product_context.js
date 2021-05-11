@@ -17,6 +17,7 @@ import {
   CLEAR_SINGLE_ACTION,
   SET_SIZE_PRODUCT,
   SET_ITEM_COUNT,
+  SET_ID_CART,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -48,7 +49,13 @@ const initialState = {
   trendingProducts: [],
   saleProducts: [],
   singleProduct: getLocalStorage(),
-  singleProductAction: { colorIndex: '', indexIMG: 0, size: '', itemCount: 1 },
+  singleProductAction: {
+    colorIndex: '',
+    indexIMG: 0,
+    size: '',
+    itemCount: 1,
+    idCart: '',
+  },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -149,6 +156,9 @@ export const ProductProvider = ({ children }) => {
     let value = parseInt(e.target.value);
     dispatch({ type: SET_ITEM_COUNT, payload: { value } });
   };
+  const setIdCart = (value) => {
+    dispatch({ type: SET_ID_CART, payload: { value } });
+  };
   useEffect(() => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
@@ -177,6 +187,7 @@ export const ProductProvider = ({ children }) => {
         setSingleProductSize,
         setItemCount,
         setItemCountByInput,
+        setIdCart,
       }}
     >
       {children}

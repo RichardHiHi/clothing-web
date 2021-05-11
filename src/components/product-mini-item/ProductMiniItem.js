@@ -75,7 +75,14 @@ const ProductMiniItem = ({ product, page, category }) => {
             <span>Quick View</span>
             <VisibilityOutlinedIcon />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              getSingleProduct(id);
+              miniAction('open', 'CartModal');
+              miniAction('close', 'CartEditModal');
+              cleartSingleProductAction();
+            }}
+          >
             <span>Quick Shop</span>
             <ShoppingCartOutlinedIcon />
           </button>
