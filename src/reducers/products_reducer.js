@@ -25,8 +25,6 @@ const products_reducer = (state, action) => {
     const trendingProducts = products.filter((product) => product.trending);
     const sale = products.filter((product) => product.onSale);
     const brand = [...new Set(products.map((product) => product.brand))];
-    console.log();
-
     return {
       ...state,
       productsError: false,
@@ -126,15 +124,18 @@ const products_reducer = (state, action) => {
     };
   }
   if (action.type === CLEAR_SINGLE_ACTION) {
-    return {
-      ...state,
-      singleProductAction: {
-        colorIndex: state.singleProduct.colorImg[0].colorName,
-        indexIMG: 0,
-        size: state.singleProduct.size[0],
-        itemCount: 1,
-      },
-    };
+    if (Object.keys(state.singleProduct).length > 0) {
+      return {
+        ...state,
+        singleProductAction: {
+          colorIndex: state.singleProduct.colorImg[0].colorName,
+          indexIMG: 0,
+          size: state.singleProduct.size[0],
+          itemCount: 1,
+        },
+      };
+    }
+    return { ...state };
   }
   if (action.type === SET_SIZE_PRODUCT) {
     return {

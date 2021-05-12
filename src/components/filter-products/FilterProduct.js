@@ -56,7 +56,7 @@ const FilterProduct = () => {
               <span>Filter</span>
             </div>
             <div className='product-view'>
-              {Array.from({ length: 3 }, (_, i) => i).map((a, index) => {
+              {Array.from({ length: 2 }, (_, i) => i).map((a, index) => {
                 return (
                   <div
                     className={`product-view-btn column${index + 2} ${

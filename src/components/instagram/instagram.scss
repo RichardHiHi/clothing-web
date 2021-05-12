@@ -19,7 +19,7 @@
         padding-top: 100%;
         @include background-img;
       }
-      a {
+      button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -34,6 +34,11 @@
         color: $whiteColor;
         border: 2px solid $whiteColor;
         @include font-size-weight(1.4rem, 800);
+        @include transition(transform 0.3s);
+        &:hover {
+          cursor: pointer;
+          @include transform(scale(1.2));
+        }
       }
       &:hover .insta-img {
         @include transform(scale(1.1));

@@ -28,7 +28,7 @@
       border-radius: 50%;
       width: 15px;
       height: 15px;
-      font-size: 1rem;
+      @include font-size-weight(1.1rem, 600);
       box-shadow: 1px 1px 3px 0 rgb(146, 144, 144);
     }
     &:hover {
@@ -58,9 +58,9 @@
       color: white;
       letter-spacing: 0px;
       border-radius: 50%;
-      width: 15px;
-      height: 15px;
-      font-size: 1rem;
+      width: 16px;
+      height: 16px;
+      @include font-size-weight(1.1rem, 600);
       box-shadow: 1px 1px 3px 0 rgb(146, 144, 144);
     }
     &:hover {

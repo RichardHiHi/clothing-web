@@ -1,6 +1,8 @@
 @import '../../sassStyles/variables.scss';
 @import '../../sassStyles/mixin.scss';
-
+.filter-container {
+  display: flex;
+}
 .mini-product-item {
   position: relative;
   .mini-product-img-container {

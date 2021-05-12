@@ -6,8 +6,12 @@ import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import Grid from '@material-ui/core/Grid';
 import Loadding from '../loadding-img/LoaddingImg';
 import { getLinkApi } from '../../utils/helper';
+import { useProductContext } from '../../context/product_context';
+import { useButtonContext } from '../../context/button_context';
 const Instagram = () => {
   const [instas, setInstas] = useState([]);
+  const { getSingleProduct, cleartSingleProductAction } = useProductContext();
+  const { miniAction } = useButtonContext();
   useEffect(() => {
     document
       .querySelector('.insta-section')
@@ -30,7 +34,7 @@ const Instagram = () => {
           img: record.fields.img[0].thumbnails.large.url,
         };
       });
-      // newInstas;
+      console.log(newInstas);
       setInstas(newInstas);
     };
     fetchData();
@@ -141,15 +145,19 @@ const Instagram = () => {
                     className='insta-img'
                     style={{ backgroundImage: `url(${insta.img})` }}
                   ></div>
-                  {insta.instagramLinking.map((link, index) => {
+                  {insta.instagramLinking.map((item, index) => {
                     return (
-                      <a
-                        href='#'
+                      <button
                         key={index}
-                        style={{ top: `${link.top}%`, left: `${link.left}%` }}
+                        style={{ top: `${item.top}%`, left: `${item.left}%` }}
+                        onClick={() => {
+                          getSingleProduct(item.singleProductID[0]);
+                          miniAction('open', 'SingleProductModal');
+                          cleartSingleProductAction();
+                        }}
                       >
                         {index + 1}
-                      </a>
+                      </button>
                     );
                   })}
                 </div>

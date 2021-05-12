@@ -77,52 +77,56 @@ const CartModal = () => {
             <div className='single-product-size-title'>
               <h4>SIZE: {sizeAction}</h4>
             </div>
-            <div className='single-product-size'>
-              {size.map((item, index) => {
-                return (
-                  <span
-                    key={index}
-                    className={
-                      item === sizeAction
-                        ? 'single-product-size-item active'
-                        : 'single-product-size-item'
-                    }
-                    onClick={() => setSingleProductSize(item)}
-                  >
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
+            {size && (
+              <div className='single-product-size'>
+                {size.map((item, index) => {
+                  return (
+                    <span
+                      key={index}
+                      className={
+                        item === sizeAction
+                          ? 'single-product-size-item active'
+                          : 'single-product-size-item'
+                      }
+                      onClick={() => setSingleProductSize(item)}
+                    >
+                      {item}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div className='single-product-color-wrapper'>
             <div className='single-product-color-title'>
               <h4>COLOR: {colorFollowIndexIMG}</h4>
             </div>
-            <div className='product-mini-watch-list'>
-              {colorImg.map((color, index) => {
-                return (
-                  <span
-                    className={
-                      color.colorName === colorFollowIndexIMG
-                        ? `watch-list-color active`
-                        : `watch-list-color `
-                    }
-                    onClick={() => switchIMG(color.indexImg[0])}
-                    style={{ backgroundColor: `${color.colorCode}` }}
-                    // onMouseOver={() => {
-                    //   setLockImgHover(false);
-                    //   setIndexImg(index);
-                    // }}
-                    key={index}
-                  >
-                    <span className='watch-list-hover-text'>
-                      {color.colorName}
+            {colorImg && (
+              <div className='product-mini-watch-list'>
+                {colorImg.map((color, index) => {
+                  return (
+                    <span
+                      className={
+                        color.colorName === colorFollowIndexIMG
+                          ? `watch-list-color active`
+                          : `watch-list-color `
+                      }
+                      onClick={() => switchIMG(color.indexImg[0])}
+                      style={{ backgroundColor: `${color.colorCode}` }}
+                      // onMouseOver={() => {
+                      //   setLockImgHover(false);
+                      //   setIndexImg(index);
+                      // }}
+                      key={index}
+                    >
+                      <span className='watch-list-hover-text'>
+                        {color.colorName}
+                      </span>
                     </span>
-                  </span>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
           <div
             className={
