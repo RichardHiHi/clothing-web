@@ -141,6 +141,7 @@ const Footer = () => {
                         value=''
                         className='input-footer'
                         required='required'
+                        readOnly
                       />
                       <button className='input-footer-btn'>Subscribe</button>
                     </div>

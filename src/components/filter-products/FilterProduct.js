@@ -62,6 +62,7 @@ const FilterProduct = () => {
                     className={`product-view-btn column${index + 2} ${
                       numberGrid === index && 'active'
                     }`}
+                    key={index}
                     onClick={() => setNumberGrid(index)}
                   ></div>
                 );
@@ -85,7 +86,7 @@ const FilterProduct = () => {
             </div>
           </div>
           <Grid container>
-            <Grid item xs={0} sm={0} md={3} lg={3}>
+            <Grid item md={3} lg={3}>
               <div className='wrapper-filter'>
                 <Filter />
               </div>
@@ -104,6 +105,7 @@ const FilterProduct = () => {
                   return (
                     <Grid
                       item
+                      key={index}
                       xs={12 / (numberGrid + 2)}
                       sm={12 / (numberGrid + 2)}
                       md={12 / (numberGrid + 2)}
@@ -146,8 +148,9 @@ const FilterProduct = () => {
                     currentPage * productPerPage,
                     currentPage * productPerPage + productPerPage
                   )
-                  .map((product) => (
+                  .map((product, index) => (
                     <Grid
+                      key={index}
                       item
                       xs={12 / (numberGrid + 2)}
                       sm={12 / (numberGrid + 2)}
@@ -182,6 +185,7 @@ const FilterProduct = () => {
                           (a, index) => {
                             return (
                               <button
+                                key={index}
                                 className={
                                   index === currentPage
                                     ? 'number-pagination-btn actived'

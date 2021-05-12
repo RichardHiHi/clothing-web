@@ -30,11 +30,10 @@ const CartPageItem = ({ cartItem }) => {
     .img[0].thumbnails.large.url;
   //sc is shopping cart
   useEffect(() => {
-    console.log(itemCount);
     if (itemCount !== 0) {
       setInputNumber(itemCount);
     } else {
-      setInputNumber('');
+      setInputNumber(0);
     }
   }, [itemCount]);
   return (
@@ -42,7 +41,7 @@ const CartPageItem = ({ cartItem }) => {
       <Grid item xs={6} sm={5} className='sc-item flex-left'>
         <Link
           to='/single-product'
-          onclick={() => getSingleProduct(id)}
+          onClick={() => getSingleProduct(id)}
           className='sc-item__img'
         >
           <div
@@ -53,7 +52,7 @@ const CartPageItem = ({ cartItem }) => {
         <div className='sc-item__info'>
           <Link
             to='/single-product'
-            onclick={() => getSingleProduct(id)}
+            onClick={() => getSingleProduct(id)}
             className='sc-item__info__name'
           >
             {name}
@@ -110,8 +109,8 @@ const CartPageItem = ({ cartItem }) => {
             <input
               type='number'
               className='mini-cart-quantity-input'
-              data-idCart={idCart}
-              value={parseInt(inputNumber)}
+              data-idcart={idCart}
+              value={inputNumber}
               onChange={setItemCartByInput}
             />
             {itemCount !== 1 ? (

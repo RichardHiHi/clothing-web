@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './blogInsta.scss';
 import Slider from 'react-slick';
-import { blogs, instas } from '../../utils/data';
-import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import Loadding from '../loadding-img/LoaddingImg';
-import { fetchData } from '../../utils/helper';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import BlogItem from '../blog-item/BlogItem';
 import { useProductContext } from '../../context/product_context';

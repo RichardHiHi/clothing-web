@@ -19,6 +19,7 @@ const CartPage = () => {
     removeItemCart,
   } = useCartContext();
   const { getSingleProduct } = useProductContext();
+
   return (
     <div className='content'>
       <div className='hero-section margin'>

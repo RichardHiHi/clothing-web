@@ -102,7 +102,7 @@ const Instagram = () => {
               <Grid container className='section-grid-content-wrapper'>
                 {secShippings.map((secShipping, index) => {
                   return (
-                    <Grid item sx={12} sm={6} md={3} index={index}>
+                    <Grid item sx={12} sm={6} md={3} index={index} key={index}>
                       <div className='shipping-content'>
                         <div className='shipping-icon'>{secShipping.icon}</div>
                         <div className='shipping-info'>

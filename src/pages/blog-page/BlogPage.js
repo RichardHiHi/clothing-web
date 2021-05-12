@@ -53,9 +53,9 @@ const BlogPage = () => {
         <div className='insta-section margin'>
           <div className='insta-container section-content-wrapper none-margin'>
             <Slider {...settingsBlog}>
-              {Array.from({ length: 3 }, (_, i) => i).map((blog) => {
+              {Array.from({ length: 3 }, (_, i) => i).map((blog, index) => {
                 return (
-                  <article className='blog-slide position' key={blog.id}>
+                  <article className='blog-slide position' key={index}>
                     <a href='#'>
                       <LoadingImg classImg={'img-blog'} />
                     </a>
@@ -73,7 +73,7 @@ const BlogPage = () => {
                   {Array.from({ length: blogPerPage }, (_, i) => i).map(
                     (blog, index) => {
                       return (
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6} key={index}>
                           <BlogItem />
                         </Grid>
                       );
@@ -92,9 +92,9 @@ const BlogPage = () => {
       <div className='insta-section margin'>
         <div className='insta-container section-content-wrapper none-margin'>
           <Slider {...settingsBlog}>
-            {blogs.slice(0, 4).map((blog) => {
+            {blogs.slice(0, 4).map((blog, index) => {
               return (
-                <article className='blog-slide position' key={blog.id}>
+                <article className='blog-slide position' key={index}>
                   <a href='#'>
                     <div
                       className='img-blog'
@@ -110,7 +110,7 @@ const BlogPage = () => {
                     </h4>
                     <span className='post-time'>
                       <span className='bold'>
-                        <time datetime='2020-04-06T02:17:00Z'>
+                        <time dateTime='2020-04-06T02:17:00Z'>
                           April 6, 2020
                         </time>
                       </span>
@@ -137,7 +137,7 @@ const BlogPage = () => {
                     )
                     .map((blog, index) => {
                       return (
-                        <Grid item xs={12} sm={6}>
+                        <Grid item xs={12} sm={6} key={index}>
                           <BlogItem blog={blog} hideContent={true} />
                         </Grid>
                       );
@@ -157,7 +157,6 @@ const BlogPage = () => {
               }
               onClick={() => {
                 switchPage('dec');
-
                 scrollToTop(300);
               }}
             >
@@ -167,6 +166,7 @@ const BlogPage = () => {
               (a, index) => {
                 return (
                   <button
+                    key={index}
                     className={
                       index === currentPage
                         ? 'number-pagination-btn actived'

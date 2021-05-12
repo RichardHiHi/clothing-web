@@ -7,12 +7,12 @@ const CartMiniEmty = () => {
   const { miniAction } = useButtonContext();
   return (
     <div className='mini-wrap-2'>
-      <div class='empty-mini-cart'>
+      <div className='empty-mini-cart'>
         <RemoveShoppingCartOutlinedIcon />
         <p>Your cart is empty.</p>
         <Link
           to='./products'
-          class='link-back-to-shop'
+          className='link-back-to-shop'
           onClick={() => miniAction('close', 'MiniCart')}
         >
           <span>RETURN TO SHOP</span>

@@ -11,27 +11,13 @@ import { formatPrice } from '../../utils/helper';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 
 const CartModal = () => {
-  const { miniAction, isCartModalOpen, isCartEditModalOpen } =
+  const { miniAction, isCartModalOpen, isCartEditModalOpen, currentPage } =
     useButtonContext();
   const [alter, setAlter] = useState(false);
   const { addToCart, clearCart } = useCartContext();
+
   const {
-    singleProduct: {
-      name,
-      price,
-      review,
-      colorImg,
-      size,
-      category,
-      id,
-      rate,
-      description,
-      stock,
-      brand,
-      colorIndex,
-      hiddenInfo,
-      AllOfImg,
-    },
+    singleProduct: { name, price, colorImg, size, id, stock, AllOfImg },
     singleProductAction: { indexIMG, idCart },
     switchIMG,
   } = useProductContext();
@@ -171,7 +157,9 @@ const CartModal = () => {
                 className='add-to-cart-btn button_primary'
                 onClick={() => {
                   addToCart(idCart);
-                  miniAction('open', 'MiniCart');
+                  if (currentPage !== '/cart') {
+                    miniAction('open', 'MiniCart');
+                  }
                   miniAction('close', 'CartModal');
                 }}
               >

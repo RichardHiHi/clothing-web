@@ -43,7 +43,7 @@ const ProductCategory = () => {
           </li>
           {category.map((item, index) => {
             return (
-              <li className='category-item'>
+              <li className='category-item' key={index}>
                 <button
                   className={
                     filterCategory === item

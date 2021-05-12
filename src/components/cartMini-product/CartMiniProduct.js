@@ -34,7 +34,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
       <div className='content-mini-cart'>
         <div className='mini-cart-list-wrapper'>
           <ul className='mini-cart-list'>
-            {cart.map((cartItem) => {
+            {cart.map((cartItem, index) => {
               const {
                 colorIndex,
                 size,
@@ -51,7 +51,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                 (item) => item.colorName === colorIndex
               ).indexImg[0];
               return (
-                <li>
+                <li key={index}>
                   <Link
                     to='singleProduct'
                     onClick={() => mutipleAction(id, indexFollowColor)}
@@ -90,6 +90,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                           type='number'
                           className='mini-cart-quantity-input'
                           value={itemCount}
+                          onChange={setItemCartByInput}
                         />
                         {itemCount !== 1 ? (
                           <button
