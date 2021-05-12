@@ -10,14 +10,7 @@ import { formatPrice, scrollToTop } from '../../utils/helper';
 import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 const CartPage = () => {
-  const {
-    cart,
-    amountTotal,
-    clearCart,
-    toggleItemCart,
-    setItemCartByInput,
-    removeItemCart,
-  } = useCartContext();
+  const { cart, amountTotal, clearCart } = useCartContext();
   const { getSingleProduct } = useProductContext();
 
   return (

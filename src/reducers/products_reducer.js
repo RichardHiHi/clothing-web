@@ -16,6 +16,8 @@ import {
   SET_SIZE_PRODUCT,
   SET_ITEM_COUNT,
   SET_ID_CART,
+  RANDOM_PRODUCT,
+  SET_VIEWED_PRODUCT,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -192,6 +194,31 @@ const products_reducer = (state, action) => {
         idCart: action.payload.value,
       },
     };
+  }
+  //random products
+  if (action.type === RANDOM_PRODUCT) {
+    const products = action.payload.products;
+    //array of random
+    let arr = [];
+    Array.from({ length: 7 }, (_, i) => i).forEach(() => {
+      const r = Math.floor(Math.random() * products.length);
+      if (arr.indexOf(r) === -1) arr.push(r);
+    });
+    const randomProduct = arr.map((random) => products[random]);
+    return { ...state, [action.payload.name]: randomProduct };
+  }
+  if (action.type === SET_VIEWED_PRODUCT) {
+    if (
+      state.viewedProducts.some((item) => item.id === state.singleProduct.id)
+    ) {
+      return { ...state };
+    }
+    const newViewedProducts = state.viewedProducts.slice(
+      0,
+      state.viewedProducts.length - 1
+    );
+    newViewedProducts.unshift(state.singleProduct);
+    return { ...state, viewedProducts: newViewedProducts };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

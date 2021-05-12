@@ -18,6 +18,8 @@ import {
   SET_SIZE_PRODUCT,
   SET_ITEM_COUNT,
   SET_ID_CART,
+  RANDOM_PRODUCT,
+  SET_VIEWED_PRODUCT,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 const ProductContext = React.createContext();
@@ -49,6 +51,8 @@ const initialState = {
   trendingProducts: [],
   saleProducts: [],
   singleProduct: getLocalStorage(),
+  viewedProducts: [],
+  recommendProducts: [],
   singleProductAction: {
     colorIndex: '',
     indexIMG: 0,
@@ -108,6 +112,8 @@ export const ProductProvider = ({ children }) => {
           AllOfImg: AllOfImg,
         };
       });
+      randomProduct(products, 'viewedProducts');
+      randomProduct(products, 'recommendProducts');
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
@@ -159,6 +165,12 @@ export const ProductProvider = ({ children }) => {
   const setIdCart = (value) => {
     dispatch({ type: SET_ID_CART, payload: { value } });
   };
+  const randomProduct = (products, name) => {
+    dispatch({ type: RANDOM_PRODUCT, payload: { products, name } });
+  };
+  const setViewedProduct = () => {
+    dispatch({ type: SET_VIEWED_PRODUCT });
+  };
   useEffect(() => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
@@ -168,6 +180,9 @@ export const ProductProvider = ({ children }) => {
     if (Object.keys(state.singleProduct).length > 0) {
       setSingleProductSize(state.singleProduct.size[0]);
     }
+
+    randomProduct(state.products, 'recommendProducts');
+    setViewedProduct();
   }, [state.singleProduct]);
   useEffect(() => {
     getProducts();
