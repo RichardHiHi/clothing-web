@@ -8,10 +8,13 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { useProductContext } from '../../context/product_context';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';
-
+import { useUserContext } from '../../context/user_context';
 const ProductMiniItem = ({ product, page, category }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
+  const { wishList, addToWishList, removeWishList } = useUserContext();
+
   const [indexImg, setIndexImg] = useState(0);
+  const [wish, setWish] = useState(false);
   const [lockImgHover, setLockImgHover] = useState(true);
   const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction } = useButtonContext();
@@ -48,22 +51,39 @@ const ProductMiniItem = ({ product, page, category }) => {
         <div className='mini-product-size-contain'>
           {size && <p>{size.join()}</p>}
         </div>
-        <div className='mini-product-wishlist-container'>
-          <a href='#' className='wishList-link'>
-            {/*
-              wish list is activated
-             wishList-link-activated 
-             */}
-            <div className='wish-list'>
-              <FavoriteBorderIcon />
-              <span className='hoverText'>Add to Wishlist</span>
-            </div>
-            <div className='wish-list-activated'>
-              <span className='hoverText'>Add to Wishlist</span>
-              <FavoriteIcon />
-            </div>
-          </a>
-        </div>
+        {wishList && (
+          <div className='mini-product-wishlist-container'>
+            {!wishList.some((item) => item === id) ? (
+              <button
+                className='wishList-link'
+                onClick={() => addToWishList(id)}
+              >
+                <div className='wish-list'>
+                  <FavoriteBorderIcon />
+                  <span className='hoverText'>Add to Wishlist</span>
+                </div>
+                <div className='wish-list-activated'>
+                  <span className='hoverText'>Add to Wishlist</span>
+                  <FavoriteIcon />
+                </div>
+              </button>
+            ) : (
+              <button
+                className='wishList-link wishList-link-activated'
+                onClick={() => removeWishList(id)}
+              >
+                <div className='wish-list'>
+                  <FavoriteBorderIcon />
+                  <span className='hoverText'>Add to Wishlist</span>
+                </div>
+                <div className='wish-list-activated'>
+                  <span className='hoverText'>revome Wishlist</span>
+                  <FavoriteIcon />
+                </div>
+              </button>
+            )}
+          </div>
+        )}
         <div className='mini-product-btn-container'>
           <button
             onClick={() => {

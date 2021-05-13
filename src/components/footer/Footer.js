@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './footer.scss';
 import Grid from '@material-ui/core/Grid';
 import { footers, icons } from '../../utils/data';
 import logo from '../../assets/logo.svg';
+import { Link } from 'react-router-dom';
 import payment from '../../assets/footer/payment.webp';
 import { VscLocation } from 'react-icons/vsc';
-import {
-  AiOutlineMail,
-  AiOutlinePhone,
-  AiOutlinePlus,
-  AiOutlineMinus,
-} from 'react-icons/ai';
-import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
+import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
 const Footer = () => {
   const openClose = (e) => {
     e.target.parentElement.classList.toggle('menu-footer-wrapper_open');
@@ -36,9 +31,9 @@ const Footer = () => {
                 <div className='footer-contact menu-footer'>
                   <div className='menu'>
                     <p>
-                      <a href='#' className='footer-logo'>
-                        <img src={logo}></img>
-                      </a>
+                      <Link to='#' className='footer-logo'>
+                        <img src={logo} alt='empty'></img>
+                      </Link>
                     </p>
                     <p>
                       <span className='icon-item-footer'>
@@ -68,14 +63,14 @@ const Footer = () => {
                     <div className='social-footer-container'>
                       {icons.map((icon, index) => {
                         return (
-                          <a
-                            href='#'
+                          <Link
+                            to='#'
                             className={`social-icon ${icon.name}`}
                             key={index}
                           >
                             <span className='text-icon'>{icon.text}</span>
                             {icon.icon}
-                          </a>
+                          </Link>
                         );
                       })}
                     </div>
@@ -105,7 +100,7 @@ const Footer = () => {
                         {footer.items.map((item, index) => {
                           return (
                             <li className='item' key={index}>
-                              <a href={item.link}>{item.name}</a>
+                              <Link to={item.link}>{item.name}</Link>
                             </li>
                           );
                         })}
@@ -162,22 +157,22 @@ const Footer = () => {
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <div className='footer-bot-store-name'>
                   Copyright © 2021 <span>Kalles</span> all rights reserved.
-                  Powered by <a href='#'>The4</a>
+                  Powered by <Link to='#'>The4</Link>
                 </div>
               </Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <ul className='footer-bot-menu'>
                   <li className='menu-item'>
-                    <a href='#'>Shop</a>
+                    <Link to='#'>Shop</Link>
                   </li>
                   <li className='menu-item'>
-                    <a href='#'>About Us</a>
+                    <Link to='#'>About Us</Link>
                   </li>
                   <li className='menu-item'>
-                    <a href='#'>Contact</a>
+                    <Link to='#'>Contact</Link>
                   </li>
                   <li className='menu-item'>
-                    <a href='#'>Blog</a>
+                    <Link to='#'>Blog</Link>
                   </li>
                 </ul>
               </Grid>

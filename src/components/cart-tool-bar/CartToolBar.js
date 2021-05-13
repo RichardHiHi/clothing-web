@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './cartToolBar.scss';
 // import Gird from '@material-ui/core/Gird';
-import { Grid } from '@material-ui/core';
 import { useCartContext } from '../../context/cart_context';
 import { useProductContext } from '../../context/product_context';
 import { formatPrice, scrollToTop } from '../../utils/helper';
@@ -14,7 +13,7 @@ const CartToolBar = ({ hiddenToolbar }) => {
     singleProduct: { name, price, AllOfImg, stock, colorImg },
     singleProductAction: { indexIMG, size, itemCount },
   } = useProductContext();
-  const { addToCart, clearCart } = useCartContext();
+  const { addToCart } = useCartContext();
   const { miniAction } = useButtonContext();
 
   const { setItemCount, setItemCountByInput } = useProductContext();
@@ -39,7 +38,10 @@ const CartToolBar = ({ hiddenToolbar }) => {
         <div className='ctb__info'>
           <div className='ctb__info__img'>
             {AllOfImg && (
-              <img src={AllOfImg[indexIMG].thumbnails.large.url}></img>
+              <img
+                src={AllOfImg[indexIMG].thumbnails.large.url}
+                alt='empty'
+              ></img>
             )}
           </div>
           <div className='ctb__info__info'>

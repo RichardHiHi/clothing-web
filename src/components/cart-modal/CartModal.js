@@ -14,7 +14,7 @@ const CartModal = () => {
   const { miniAction, isCartModalOpen, isCartEditModalOpen, currentPage } =
     useButtonContext();
   const [alter, setAlter] = useState(false);
-  const { addToCart, clearCart } = useCartContext();
+  const { addToCart } = useCartContext();
 
   const {
     singleProduct: { name, price, colorImg, size, id, stock, AllOfImg },
@@ -44,6 +44,7 @@ const CartModal = () => {
     } else {
       setAlter(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemCount]);
   const action = () => {
     miniAction('close', 'CartModal');
@@ -65,7 +66,7 @@ const CartModal = () => {
           <div className='ctb__info'>
             <div className='ctb__info__img'>
               {AllOfImg && (
-                <img src={AllOfImg[indexIMG].thumbnails.large.url}></img>
+                <img src={AllOfImg[indexIMG].thumbnails.large.url} alt=''></img>
               )}
             </div>
             <div className='ctb__info__info'>

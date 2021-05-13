@@ -1,4 +1,3 @@
-import { SubscriptionsOutlined } from '@material-ui/icons';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
 import {

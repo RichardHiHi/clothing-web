@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './collectionList.scss';
 import Grid from '@material-ui/core/Grid';
 import Loading from '../loadding-img/LoaddingImg';
-import { fetchData } from '../../utils/helper';
 import { Link } from 'react-router-dom';
 import { useFilterContext } from '../../context/filter_context';
 import { useProductContext } from '../../context/product_context';

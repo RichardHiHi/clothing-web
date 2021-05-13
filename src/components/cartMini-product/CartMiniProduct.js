@@ -1,7 +1,6 @@
 import React from 'react';
 import trust_img2_360x from '../../assets/trust_img2_360x.png';
 import './cartMiniProduct.scss';
-import prch20_2 from '../../assets/prch20_2.jpg';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { BsTrash } from 'react-icons/bs';
@@ -11,6 +10,7 @@ import { useButtonContext } from '../../context/button_context';
 import { useCartContext } from '../../context/cart_context';
 import { useProductContext } from '../../context/product_context';
 import { formatPrice } from '../../utils/helper';
+import { useUserContext } from '../../context/user_context';
 
 const CartMiniProduct = ({ isMiniCartOpen }) => {
   const { getSingleProduct, switchIMG, setIdCart, cleartSingleProductAction } =
@@ -18,7 +18,6 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
   const { miniAction } = useButtonContext();
   const {
     cart,
-    amountTotal,
     clearCart,
     toggleItemCart,
     setItemCartByInput,
@@ -29,6 +28,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
     miniAction('close', 'MiniCart');
     switchIMG(indexFollowColor);
   };
+  const { myUser, loginWithRedirect } = useUserContext();
   return (
     <div className='mini-wrap-2'>
       <div className='content-mini-cart'>
@@ -176,9 +176,15 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
           className='view-mini-cart-link'
           onClick={() => miniAction('close', 'MiniCart')}
         >
-          view cart
+          VIEW CART
         </Link>
-        <button className='button_primary'>check out</button>
+        {myUser ? (
+          <button className='button_primary'>CHECK OUT</button>
+        ) : (
+          <button className='button_primary' onClick={loginWithRedirect}>
+            LOGIN
+          </button>
+        )}
         <img src={trust_img2_360x} alt='' />
       </div>
     </div>

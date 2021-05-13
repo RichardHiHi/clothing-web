@@ -119,7 +119,7 @@ export const ProductProvider = ({ children }) => {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
-  const getInfoOfHome = async (table, type, size = 'large') => {
+  const getTable = async (table, type, size = 'large') => {
     const res = await base(table).select({}).firstPage();
     const value = res.map((record) => {
       return {
@@ -130,6 +130,7 @@ export const ProductProvider = ({ children }) => {
     });
     dispatch({ type: type, payload: { value } });
   };
+
   const getSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id } });
   };
@@ -186,11 +187,11 @@ export const ProductProvider = ({ children }) => {
   }, [state.singleProduct]);
   useEffect(() => {
     getProducts();
-    getInfoOfHome('slide', ADD_SLIDESHOW, 'full');
-    getInfoOfHome('collection', ADD_COLLECTION, 'full');
-    getInfoOfHome('blog', ADD_BLOG);
-    getInfoOfHome('banner', ADD_BANNER);
-    getInfoOfHome('blog', ADD_BLOG_HOME);
+    getTable('slide', ADD_SLIDESHOW, 'full');
+    getTable('collection', ADD_COLLECTION, 'full');
+    getTable('blog', ADD_BLOG);
+    getTable('banner', ADD_BANNER);
+    getTable('blog', ADD_BLOG_HOME);
   }, []);
   return (
     <ProductContext.Provider

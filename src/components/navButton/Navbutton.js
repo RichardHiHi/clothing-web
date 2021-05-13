@@ -4,11 +4,14 @@ import { useButtonContext } from '../../context/button_context';
 import { BsSearch, BsHeart } from 'react-icons/bs';
 import { BiUser, BiUserCheck } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
+import { FaUserCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cart_context';
+import { useUserContext } from '../../context/user_context';
 const Navbutton = () => {
   const { miniAction, currentPage } = useButtonContext();
   const { totalItem } = useCartContext();
+  const { loginWithRedirect, logout, myUser } = useUserContext();
   return (
     <div className='nav-icons'>
       <button
@@ -17,14 +20,20 @@ const Navbutton = () => {
       >
         <BsSearch />
       </button>
-      <button
-        className='nav-icon-user'
-        onClick={() => miniAction('open', 'MiniLogin')}
-      >
-        <BiUser />
-        {/* icon when user login */}
-        {/* <BiUserCheck /> */}
-      </button>
+      {!myUser ? (
+        <button className='nav-icon-user' onClick={loginWithRedirect}>
+          <BiUser />
+          {/* icon when user login */}
+        </button>
+      ) : (
+        <button
+          className='nav-icon-user'
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          {/* icon when user login */}
+          <FaUserCheck />
+        </button>
+      )}
       <Link to='/wishlist' className='nav-icon-wishlist'>
         <BsHeart />
         <span className='nav-icon-number'>1</span>

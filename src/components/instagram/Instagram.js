@@ -34,7 +34,7 @@ const Instagram = () => {
           img: record.fields.img[0].thumbnails.large.url,
         };
       });
-      console.log(newInstas);
+
       setInstas(newInstas);
     };
     fetchData();

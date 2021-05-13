@@ -20,7 +20,7 @@ const FilterProduct = () => {
   } = useFilterContext();
   const [numberGrid, setNumberGrid] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [productPerPage, setProductPerpage] = useState(8);
+  const productPerPage = 8;
   const [pageNumbers, setPageNumbers] = useState(0);
   const { miniAction } = useButtonContext();
   const { productsLoading } = useProductContext();

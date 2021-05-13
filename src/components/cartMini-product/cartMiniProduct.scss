@@ -228,6 +228,10 @@
   img {
     width: 100%;
   }
+  .button_primary {
+    @include font-size-weight(1.35rem, 600);
+    padding: 14px 30px;
+  }
 }
 .footer-mini-cart-total-wrapper {
   display: flex;
@@ -249,8 +253,8 @@
   background-color: darken($whiteColor, 3%);
   text-decoration: none;
   color: $letterColor;
-  padding: 10px 25px;
+  padding: 14px 30px;
   margin: 10px 0;
-  font-size: 19px;
+  @include font-size-weight(1.35rem, 500);
   border-radius: 30px;
 }

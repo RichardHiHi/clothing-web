@@ -5,8 +5,7 @@ import { useProductContext } from '../../context/product_context';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 const SingleProductRecommend = () => {
   const { products, recommendProducts, viewedProducts } = useProductContext();
-  console.log(recommendProducts);
-  console.log(products);
+
   var settingsSingleProduct = {
     speed: 500,
     slidesToShow: 4,
@@ -50,9 +49,11 @@ const SingleProductRecommend = () => {
                 <h3>Recently viewed products</h3>
               </div>
               <Slider {...settingsSingleProduct}>
-                {viewedProducts.map((product, index) => {
-                  return <ProductMiniItem product={product} key={index} />;
-                })}
+                {viewedProducts
+                  .slice(1, viewedProducts.length)
+                  .map((product, index) => {
+                    return <ProductMiniItem product={product} key={index} />;
+                  })}
               </Slider>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './filter.scss';
 import AddIcon from '@material-ui/icons/Add';
 import { formatPrice } from '../../utils/helper';
@@ -295,6 +295,7 @@ const Filter = () => {
                   </li>
                 );
               }
+              return <li></li>;
             })}
           </ul>
         )}
