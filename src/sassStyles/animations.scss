@@ -22,3 +22,14 @@
     @include transform(scale(1));
   }
 }
+@include keyframes(shakeButton) {
+  0% {
+    @include transform(translateX(0));
+  }
+  50% {
+    @include transform(translateX(7px));
+  }
+  100% {
+    @include transform(translateX(-7px));
+  }
+}

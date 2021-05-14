@@ -134,6 +134,9 @@
     @include font-size-weight(1.1rem, 400);
   }
   .add-to-cart-btn-wrapper {
+    &.shake {
+      animation: shakeButton 0.2s infinite;
+    }
     order: 2;
     width: auto;
     min-width: 160px;
@@ -143,11 +146,27 @@
       margin: 0;
       height: 40px;
       @include font-size-weight(1.2rem, 600);
+      &:hover {
+        background-color: $letterColor;
+      }
     }
   }
   .single-product-wishList-wrapper {
+    &.scale {
+      .single-product-wishList {
+        svg {
+          animation: lightScale 0.4s infinite;
+        }
+      }
+    }
     order: 3;
     .single-product-wishList {
+      &.active {
+        color: red;
+        &:hover {
+          color: red;
+        }
+      }
       display: flex;
       justify-content: center;
       align-items: center;

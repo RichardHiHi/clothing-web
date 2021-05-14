@@ -9,10 +9,12 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import payment from '../../assets/payment.png';
 import { Link } from 'react-router-dom';
 import { icons } from '../../utils/data';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import { useFilterContext } from '../../context/filter_context';
 import { useProductContext } from '../../context/product_context';
 import { useButtonContext } from '../../context/button_context';
 import { useCartContext } from '../../context/cart_context';
+import { useUserContext } from '../../context/user_context';
 
 const SingleProductInfo = ({
   name,
@@ -30,6 +32,7 @@ const SingleProductInfo = ({
   switchIMG,
   hiddenInfo,
 }) => {
+  const { wishList, addToWishList, removeWishList } = useUserContext();
   const { addToCart, clearCart } = useCartContext();
   const {
     getSingleProduct,
@@ -41,6 +44,8 @@ const SingleProductInfo = ({
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
   const [alter, setAlter] = useState(false);
+  const [scale, setScale] = useState(false);
+  const [shake, setShake] = useState(false);
   useEffect(() => {
     if (stock === itemCount) {
       setAlter(true);
@@ -51,6 +56,21 @@ const SingleProductInfo = ({
       setAlter(false);
     }
   }, [itemCount]);
+  useEffect(() => {
+    let timeout;
+    if (shake === true) {
+      timeout = setTimeout(() => {
+        setShake(false);
+      }, 1500);
+    } else {
+      timeout = setTimeout(() => {
+        setShake(true);
+      }, 4000);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [shake]);
 
   return (
     <div
@@ -169,16 +189,45 @@ const SingleProductInfo = ({
         {stock === 0 && (
           <div className='out-of-stock-btn-wrapper'>Out Of Stock</div>
         )}
-        <div className='single-product-wishList-wrapper'>
-          <span className='single-product-wishList'>
-            <FavoriteBorderIcon />
-            <span className='single-product-wishList-hover-text'>
-              Browse Wishlist
+        <div
+          className={
+            scale
+              ? 'single-product-wishList-wrapper scale'
+              : 'single-product-wishList-wrapper'
+          }
+          onMouseOver={() => setScale(true)}
+          onMouseOut={() => setScale(false)}
+        >
+          {!wishList.some((item) => item === id) ? (
+            <span
+              className='single-product-wishList'
+              onClick={() => addToWishList(id)}
+            >
+              <FavoriteBorderIcon />
+              <span className='single-product-wishList-hover-text'>
+                Add To Wishlist
+              </span>
             </span>
-          </span>
+          ) : (
+            <span
+              className='single-product-wishList active'
+              onClick={() => removeWishList(id)}
+            >
+              <FavoriteIcon />
+              <span className='single-product-wishList-hover-text'>
+                Remove Wishlist
+              </span>
+            </span>
+          )}
         </div>
         {stock > 0 && (
-          <div className='add-to-cart-btn-wrapper'>
+          <div
+            className={
+              shake
+                ? 'add-to-cart-btn-wrapper shake'
+                : 'add-to-cart-btn-wrapper'
+            }
+          >
             <button
               className='add-to-cart-btn button_primary'
               onClick={() => {
