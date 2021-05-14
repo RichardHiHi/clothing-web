@@ -20,8 +20,10 @@ import {
   SET_ID_CART,
   RANDOM_PRODUCT,
   SET_VIEWED_PRODUCT,
+  UPDATE_WISHLISH,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
+import { useUserContext } from '../context/user_context';
 const ProductContext = React.createContext();
 var Airtable = require('airtable');
 var base = new Airtable({ apiKey: process.env.REACT_APP_PERSON_KEY }).base(
@@ -53,6 +55,7 @@ const initialState = {
   singleProduct: getLocalStorage(),
   viewedProducts: [],
   recommendProducts: [],
+  wishProducts: [],
   singleProductAction: {
     colorIndex: '',
     indexIMG: 0,
@@ -64,7 +67,7 @@ const initialState = {
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const { wishList } = useUserContext();
   const getProducts = async () => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
@@ -114,6 +117,7 @@ export const ProductProvider = ({ children }) => {
       });
       randomProduct(products, 'viewedProducts');
       randomProduct(products, 'recommendProducts');
+      updateWishList(products);
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: { products } });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
@@ -172,6 +176,14 @@ export const ProductProvider = ({ children }) => {
   const setViewedProduct = () => {
     dispatch({ type: SET_VIEWED_PRODUCT });
   };
+  const updateWishList = (products) => {
+    dispatch({ type: UPDATE_WISHLISH, payload: { wishList, products } });
+  };
+  //wishlist change
+  useEffect(() => {
+    updateWishList(state.products);
+  }, [wishList]);
+  //
   useEffect(() => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
@@ -181,7 +193,6 @@ export const ProductProvider = ({ children }) => {
     if (Object.keys(state.singleProduct).length > 0) {
       setSingleProductSize(state.singleProduct.size[0]);
     }
-
     randomProduct(state.products, 'recommendProducts');
     setViewedProduct();
   }, [state.singleProduct]);

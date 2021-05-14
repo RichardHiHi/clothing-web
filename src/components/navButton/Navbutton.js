@@ -10,8 +10,9 @@ import { useCartContext } from '../../context/cart_context';
 import { useUserContext } from '../../context/user_context';
 const Navbutton = () => {
   const { miniAction, currentPage } = useButtonContext();
+  console.log(currentPage);
   const { totalItem } = useCartContext();
-  const { loginWithRedirect, logout, myUser } = useUserContext();
+  const { loginWithRedirect, logout, myUser, wishList } = useUserContext();
   return (
     <div className='nav-icons'>
       <button
@@ -34,9 +35,16 @@ const Navbutton = () => {
           <FaUserCheck />
         </button>
       )}
-      <Link to='/wishlist' className='nav-icon-wishlist'>
+      <Link
+        to='/wishlist'
+        className={
+          currentPage === '/wishlist'
+            ? 'nav-icon-wishlist no-pointer'
+            : 'nav-icon-wishlist '
+        }
+      >
         <BsHeart />
-        <span className='nav-icon-number'>1</span>
+        <span className='nav-icon-number'>{wishList.length}</span>
       </Link>
       <button
         className={

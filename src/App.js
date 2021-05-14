@@ -27,6 +27,7 @@ import {
   ProductsPage,
   SingleProductPage,
   CartPage,
+  WishListPage,
 } from './pages';
 import ScrollToTop from 'react-router-scroll-top';
 import { useButtonContext } from './context/button_context';
@@ -78,6 +79,9 @@ function App() {
         </Route>
         <Route exact path='/singleProduct/home/cart'>
           <CartPage />
+        </Route>
+        <Route exact path='/wishList'>
+          <WishListPage />
         </Route>
         <Route
           path='/singleProduct/:page?/:category?'

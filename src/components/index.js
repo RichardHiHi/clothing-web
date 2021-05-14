@@ -27,6 +27,8 @@ import SingleProductModal from './single-prodcut-modal/SingleProductModal';
 import CartPageItem from './cartPageItem/CartPageItem';
 import CartToolBar from './cart-tool-bar/CartToolBar';
 import CartModal from './cart-modal/CartModal';
+import ProductMiniItem from './product-mini-item/ProductMiniItem';
+import ProductMiniLoading from './product-mimi-loading/ProductMiniLoading';
 export {
   Navbar,
   NavButton,
@@ -39,12 +41,14 @@ export {
   CollectionList,
   Footer,
   Banner,
+  ProductMiniItem,
   BlogInsta,
   Instagram,
   Trending,
   Sale,
   BlogItem,
   ProductsCategory,
+  ProductMiniLoading,
   FilterProduct,
   FilterMini,
   SortMini,

@@ -18,6 +18,7 @@ import {
   SET_ID_CART,
   RANDOM_PRODUCT,
   SET_VIEWED_PRODUCT,
+  UPDATE_WISHLISH,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -219,6 +220,23 @@ const products_reducer = (state, action) => {
     );
     newViewedProducts.unshift(state.singleProduct);
     return { ...state, viewedProducts: newViewedProducts };
+  }
+  if (action.type === UPDATE_WISHLISH) {
+    const wishList = action.payload.wishList;
+    const products = action.payload.products;
+    console.log(products);
+    let newWishProduct = [];
+    if (products) {
+      newWishProduct = products.map((product) => {
+        if (wishList.some((wish) => wish === product.id)) {
+          return product;
+        }
+        return;
+      });
+      newWishProduct = newWishProduct.filter((item) => item);
+    }
+
+    return { ...state, wishProducts: newWishProduct };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

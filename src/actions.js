@@ -13,6 +13,7 @@ export const SET_ITEM_COUNT = 'SET_ITEM_COUNT';
 export const SET_ID_CART = 'SET_ID_CART';
 export const RANDOM_PRODUCT = 'RANDOM_PRODUCT';
 export const SET_VIEWED_PRODUCT = 'SET_VIEWED_PRODUCT';
+export const UPDATE_WISHLISH = 'UPDATE_WISHLISH';
 //product-get home page element
 export const ADD_BLOG = 'ADD_BLOG';
 export const ADD_COLLECTION = 'ADD_COLLECTION';
