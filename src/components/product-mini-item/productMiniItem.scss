@@ -86,46 +86,49 @@
   }
 }
 //mini-product-wish
+
 .mini-product-wishlist-container {
   position: absolute;
   top: 10px;
   left: 10px;
+  .hoverText {
+    @include hoverText;
+    bottom: 50%;
+    left: 90%;
+    @include transform(translateY(40%));
+    padding: 6px 10px;
+    &:after {
+      top: 50%;
+      right: 100%;
+      @include transform(translateY(-50%));
+      border-color: transparent #383838 transparent transparent;
+    }
+  }
+  &.scale {
+    .wishList-link {
+      svg {
+        animation: lightScale 0.4s infinite;
+      }
+    }
+  }
   .wishList-link {
+    padding: 0;
+    svg {
+      color: $whiteColor;
+      @include font-size-weight(1.8rem, 400);
+    }
     border: none;
     background: transparent;
     &:hover {
       cursor: pointer;
-    }
-    &.wishList-link-activated {
       .wish-list {
-        display: none;
-      }
-      .wish-list-activated {
-        display: block;
-      }
-      svg {
-        color: red;
-        &:hover {
-          color: red;
+        svg {
+          @include transition(all 0.3s);
+          color: white;
+          &:hover {
+            color: $hoverColor;
+          }
         }
-      }
-    }
-    .wish-list {
-      display: block;
-    }
-    .wish-list-activated {
-      display: none;
-    }
-    .hoverText {
-      @include hoverText;
-      bottom: 50%;
-      left: 100%;
-      @include transform(translateY(40%));
-      &:after {
-        top: 50%;
-        right: 100%;
-        @include transform(translateY(-50%));
-        border-color: transparent #383838 transparent transparent;
       }
     }
     &:hover .hoverText {
@@ -133,15 +136,20 @@
       opacity: 1;
       visibility: visible;
     }
-    &:hover svg {
-      color: $hoverColor;
-      font-size: 2rem;
-      @include transform(scale(1.1));
-    }
-    svg {
-      color: $whiteColor;
-      font-size: 1.8rem;
-      @include transition(all 0.5s);
+
+    &.active {
+      &:hover {
+        .wish-list {
+          svg {
+            color: red;
+          }
+        }
+      }
+      .wish-list {
+        svg {
+          color: red;
+        }
+      }
     }
   }
 }

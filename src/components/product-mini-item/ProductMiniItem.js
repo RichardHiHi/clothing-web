@@ -15,6 +15,7 @@ const ProductMiniItem = ({ product, page, category }) => {
 
   const [indexImg, setIndexImg] = useState(0);
   const [wish, setWish] = useState(false);
+  const [scale, setScale] = useState(false);
   const [lockImgHover, setLockImgHover] = useState(true);
   const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction } = useButtonContext();
@@ -52,7 +53,15 @@ const ProductMiniItem = ({ product, page, category }) => {
           {size && <p>{size.join()}</p>}
         </div>
         {wishList && (
-          <div className='mini-product-wishlist-container'>
+          <div
+            className={
+              scale
+                ? 'mini-product-wishlist-container scale'
+                : 'mini-product-wishlist-container'
+            }
+            onMouseOver={() => setScale(true)}
+            onMouseOut={() => setScale(false)}
+          >
             {!wishList.some((item) => item === id) ? (
               <button
                 className='wishList-link'
@@ -62,21 +71,13 @@ const ProductMiniItem = ({ product, page, category }) => {
                   <FavoriteBorderIcon />
                   <span className='hoverText'>Add to Wishlist</span>
                 </div>
-                <div className='wish-list-activated'>
-                  <span className='hoverText'>Add to Wishlist</span>
-                  <FavoriteIcon />
-                </div>
               </button>
             ) : (
               <button
-                className='wishList-link wishList-link-activated'
+                className='wishList-link active'
                 onClick={() => removeWishList(id)}
               >
                 <div className='wish-list'>
-                  <FavoriteBorderIcon />
-                  <span className='hoverText'>Add to Wishlist</span>
-                </div>
-                <div className='wish-list-activated'>
                   <span className='hoverText'>revome Wishlist</span>
                   <FavoriteIcon />
                 </div>
