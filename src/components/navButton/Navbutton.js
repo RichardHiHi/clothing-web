@@ -10,7 +10,6 @@ import { useCartContext } from '../../context/cart_context';
 import { useUserContext } from '../../context/user_context';
 const Navbutton = () => {
   const { miniAction, currentPage } = useButtonContext();
-  console.log(currentPage);
   const { totalItem } = useCartContext();
   const { loginWithRedirect, logout, myUser, wishList } = useUserContext();
   return (

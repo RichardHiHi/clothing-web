@@ -224,7 +224,7 @@ const products_reducer = (state, action) => {
   if (action.type === UPDATE_WISHLISH) {
     const wishList = action.payload.wishList;
     const products = action.payload.products;
-    console.log(products);
+
     let newWishProduct = [];
     if (products) {
       newWishProduct = products.map((product) => {

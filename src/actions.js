@@ -40,3 +40,8 @@ export const CLEAR_CART = ' CLEAR_CART';
 export const CART_TOTAL = 'CART_TOTAL';
 export const TOGGLE_ITEM_CART = 'TOGGLE_ITEM_CART';
 export const REMOVE_ITEM_CART = 'REMOVE_ITEM_CART';
+//wish list
+export const ADD_TO_WISHLIST = 'ADD_TO_WISHLIST';
+export const REMOVE_WISHLIST = 'REMOVE_WISHLIST';
+export const SET_USER = 'SET_USER';
+export const UPDATE_WISHLIST = 'UPDATE_WISHLIST';
