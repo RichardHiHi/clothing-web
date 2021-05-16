@@ -5,10 +5,12 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { useProductContext } from '../../context/product_context';
+import { useUserContext } from '../../context/user_context';
 const SideBar = () => {
   const [test, setTest] = useState('menu');
   const { isSideBarOpen, miniAction } = useButtonContext();
   const { category } = useProductContext();
+  const { logout } = useUserContext();
   return (
     <div className={isSideBarOpen ? 'sidebar sidebar-openned' : 'sidebar '}>
       <div
@@ -49,7 +51,7 @@ const SideBar = () => {
           </a>
         </li>
         <li>
-          <a href=''>
+          <a href='' onClick={logout}>
             <PersonOutlineOutlinedIcon />
             Logiregister
           </a>

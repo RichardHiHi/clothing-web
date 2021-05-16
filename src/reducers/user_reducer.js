@@ -19,14 +19,12 @@ const user_reducer = (state, action) => {
   }
   if (action.type === SET_USER) {
     let newUser;
-    const { email, nickname, picture } = action.payload.user;
-
+    const { sub, nickname, picture } = action.payload.user;
     newUser = {
-      email,
+      sub,
       nickname,
       picture,
       wishList: action.payload.wishList,
-      recordId: action.payload.recordId,
     };
 
     if (!action.payload.user) {

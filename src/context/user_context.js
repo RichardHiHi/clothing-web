@@ -33,13 +33,13 @@ export const UserProvider = ({ children }) => {
   //return user follow email
   const getRecord = async (email) => {
     const res = await base('user')
-      .select({ filterByFormula: `email = "${email}"` })
+      .select({ filterByFormula: `sub = "${email}"` })
       .firstPage();
     return res;
   };
-  const postRecord = async (user) => {
-    const { email, nickname, picture } = user;
-    const newUser = { email, nickname, picture, wishList: [] };
+  const postRecord = async (user, wishList) => {
+    const { sub, nickname, picture } = user;
+    const newUser = { sub, nickname, picture, wishList };
     base('user').create([
       {
         fields: newUser,
@@ -47,8 +47,8 @@ export const UserProvider = ({ children }) => {
     ]);
   };
   const updateRecord = async (userAir, wishList, recordId) => {
-    const { email, nickname, picture } = userAir;
-    const newUserAir = { email, nickname, picture, wishList: wishList };
+    const { sub, nickname, picture } = userAir;
+    const newUserAir = { sub, nickname, picture, wishList: wishList };
     base('user').update([
       {
         id: `${recordId}`,
@@ -56,8 +56,8 @@ export const UserProvider = ({ children }) => {
       },
     ]);
   };
-  const setMyUser = (user, wishList, recordId) => {
-    dispatch({ type: SET_USER, payload: { user, wishList, recordId } });
+  const setMyUser = (user, wishList) => {
+    dispatch({ type: SET_USER, payload: { user, wishList } });
   };
   //handle wishlist
   const addToWishList = (idProduct) => {
@@ -69,14 +69,15 @@ export const UserProvider = ({ children }) => {
   const updateWishList = (wishList) => {
     dispatch({ type: UPDATE_WISHLIST, payload: { wishList } });
   };
-  useEffect(async () => {
-    if (isAuthenticated) {
-      const record = await getRecord(user.email);
-      if (record.length === 0) {
-        await postRecord(user);
-      }
+  const handleUpdateLogin = async () => {
+    const record = await getRecord(user.sub);
+    //if there is not user , create it
+    if (record.length === 0) {
+      const a = await postRecord(user, state.wishList);
+      setMyUser(user, state.wishList);
+    } else {
       // update wishlist on air and local
-      const newRecord = await getRecord(user.email);
+      const newRecord = await getRecord(user.sub);
       const userAir = newRecord[0].fields;
       const recordId = newRecord[0].id;
       //wishlist air
@@ -89,9 +90,14 @@ export const UserProvider = ({ children }) => {
       //update wishlist of local
       updateWishList(wishList);
       //update user
-      setMyUser(userAir, wishList, recordId);
+      setMyUser(userAir, wishList);
       //update air
       updateRecord(userAir, wishList, recordId);
+    }
+  };
+  useEffect(() => {
+    if (isAuthenticated) {
+      handleUpdateLogin();
     } else {
       setMyUser(false);
     }
@@ -99,12 +105,11 @@ export const UserProvider = ({ children }) => {
   useEffect(async () => {
     localStorage.setItem('wishList', JSON.stringify(state.wishList));
     if (state.myUser) {
-      const a = await updateRecord(
-        state.myUser,
-        state.wishList,
-        state.myUser.recordId
-      );
-      setMyUser(state.myUser, state.wishList, state.myUser.recordId);
+      const newRecord = await getRecord(state.myUser.sub);
+      //get recordId for update on air
+      const recordId = newRecord[0].id;
+      await updateRecord(state.myUser, state.wishList, recordId);
+      setMyUser(state.myUser, state.wishList);
     }
   }, [state.wishList]);
 
