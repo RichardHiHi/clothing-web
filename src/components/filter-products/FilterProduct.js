@@ -161,6 +161,7 @@ const FilterProduct = () => {
                         product={product}
                         page={'products'}
                         category={category}
+                        paginationPage={currentPage}
                       />
                     </Grid>
                   ))}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './productMiniItem.scss';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -10,7 +10,7 @@ import { useProductContext } from '../../context/product_context';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';
 import { useUserContext } from '../../context/user_context';
-const ProductMiniItem = ({ product, page, category }) => {
+const ProductMiniItem = ({ product, page, category, paginationPage }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const [indexImg, setIndexImg] = useState(0);
@@ -18,7 +18,11 @@ const ProductMiniItem = ({ product, page, category }) => {
   const [lockImgHover, setLockImgHover] = useState(true);
   const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction, currentPage } = useButtonContext();
-
+  useEffect(() => {
+    console.log(123);
+    setLockImgHover(true);
+    setIndexImg(0);
+  }, [paginationPage]);
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>
@@ -30,14 +34,18 @@ const ProductMiniItem = ({ product, page, category }) => {
             cleartSingleProductAction();
           }}
         >
-          <div
-            className={
-              lockImgHover ? `mini-product-img` : `mini-product-img lock-scale`
-            }
-            style={{
-              backgroundImage: `url(${colorImg[indexImg].img[0].thumbnails.large.url})`,
-            }}
-          ></div>
+          {colorImg[indexImg] && (
+            <div
+              className={
+                lockImgHover
+                  ? `mini-product-img`
+                  : `mini-product-img lock-scale`
+              }
+              style={{
+                backgroundImage: `url(${colorImg[indexImg].img[0].thumbnails.large.url})`,
+              }}
+            ></div>
+          )}
         </Link>
         <div className='mini-product-img-wrapper_hover'>
           {lockImgHover && (
