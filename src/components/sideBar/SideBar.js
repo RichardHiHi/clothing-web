@@ -6,6 +6,7 @@ import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import { useProductContext } from '../../context/product_context';
 import { useUserContext } from '../../context/user_context';
+import { Link } from 'react-router-dom';
 const SideBar = () => {
   const [test, setTest] = useState('menu');
   const { isSideBarOpen, miniAction } = useButtonContext();
@@ -33,22 +34,21 @@ const SideBar = () => {
         {category.map((item, index) => {
           return (
             <li key={index}>
-              <a href='#'>{item}</a>
+              <Link to={item}>{item}</Link>
             </li>
           );
         })}
-
         <li>
-          <a href=''>
+          <Link to='wishList'>
             <FavoriteBorderOutlinedIcon />
             Wishst
-          </a>
+          </Link>
         </li>
         <li>
-          <a href=''>
+          <Link to=''>
             <SearchOutlinedIcon />
             Sech
-          </a>
+          </Link>
         </li>
         <li>
           <a href='' onClick={logout}>
@@ -61,25 +61,25 @@ const SideBar = () => {
         className={test === 'category' ? 'sidebar-list' : 'sidebar-list active'}
       >
         <li>
-          <a href=''>Home</a>
+          <Link to=''>Home</Link>
         </li>
         <li>
-          <a href='/Products'>Products</a>
+          <Link to='Products'>Products</Link>
         </li>
         <li>
-          <a href=''>Sale</a>
+          <Link to=''>Sale</Link>
         </li>
         <li>
-          <a href='/about'>About</a>
+          <Link to='about'>About</Link>
         </li>
         <li>
-          <a href='/blog'>Blog</a>
+          <Link to='blog'>Blog</Link>
         </li>
         <li>
-          <a href=''>
+          <Link to='wishList'>
             <FavoriteBorderOutlinedIcon />
             Wishlist
-          </a>
+          </Link>
         </li>
         <li>
           <a href=''>

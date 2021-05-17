@@ -26,6 +26,7 @@ import insta_6 from '../assets/insta/insta_6.jpg';
 import insta_7 from '../assets/insta/insta_7.jpg';
 import insta_8 from '../assets/insta/insta_8.jpg';
 import insta_9 from '../assets/insta/insta_9.jpg';
+import { Home } from '@material-ui/icons';
 
 export const secShippings = [
   {

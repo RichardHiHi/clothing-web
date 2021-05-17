@@ -5,6 +5,8 @@ import ProductsPage from './ProductsPage';
 import SingleProductPage from './SingleProductPage';
 import CartPage from './cartPage/CartPage';
 import WishListPage from './wishlistPage/WishListPage';
+import PrivateRouter from './PrivateRoute';
+import CheckOutPage from './checkOutPage/CheckOutPage';
 export {
   HomePage,
   BlogPage,
@@ -13,4 +15,6 @@ export {
   SingleProductPage,
   CartPage,
   WishListPage,
+  PrivateRouter,
+  CheckOutPage,
 };

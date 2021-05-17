@@ -28,6 +28,8 @@ import {
   SingleProductPage,
   CartPage,
   WishListPage,
+  PrivateRouter,
+  CheckOutPage,
 } from './pages';
 import ScrollToTop from 'react-router-scroll-top';
 import { useButtonContext } from './context/button_context';
@@ -83,6 +85,9 @@ function App() {
         <Route exact path='/wishList'>
           <WishListPage />
         </Route>
+        <PrivateRouter exact path='/checkOut'>
+          <CheckOutPage />
+        </PrivateRouter>
         <Route
           path='/singleProduct/:page?/:category?'
           children={<SingleProductPage />}
