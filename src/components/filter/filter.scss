@@ -6,11 +6,58 @@
     margin-bottom: 20px;
   }
   .filter-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 30px 0;
+
+    .filter-title__clear-btn {
+      &.hidden {
+        opacity: 0;
+        visibility: hidden;
+        @include transform(scale(0));
+      }
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      position: relative;
+      @include transition(all 0.3s);
+      svg {
+        @include transform(translateY(2px));
+        @include font-size-weight(2.5rem, 400);
+        pointer-events: none;
+      }
+      &:hover {
+        cursor: pointer;
+        color: $hoverColor;
+
+        .hoverText {
+          opacity: 1;
+          visibility: visible;
+          @include transform(translateY(0));
+        }
+      }
+      .hoverText {
+        @include hoverText;
+        padding: 6px 10px;
+        @include font-size-weight(1.1rem, 500);
+        bottom: 130%;
+        right: 4%;
+        @include transform(translateY(40%));
+        border-radius: 1px;
+        &:after {
+          bottom: -14px;
+          right: 7%;
+          @include transform(translateY(-50%));
+          border-color: #383838 transparent transparent transparent;
+        }
+      }
+    }
     h5 {
       @include font-size-weight(1.9rem, 500);
       color: $letterColor;
       position: relative;
-      margin: 0 0 30px 0;
+      margin: 0;
       &::after {
         content: '';
         width: 60px;
@@ -23,7 +70,6 @@
     }
     // margin-bottom: 20px;
   }
-  margin-bottom: 50px;
 }
 //list items
 .filter-list {

@@ -134,6 +134,7 @@ export const FilterProvider = ({ children }) => {
   const setCurrentMaxPrice = (value) => {
     dispatch({ type: SET_CURRENT_MAX_PRICE, payload: { value: value } });
   };
+
   const clearAllFilter = () => {
     dispatch({ type: CLEAR_ALL_FILTERS });
   };
