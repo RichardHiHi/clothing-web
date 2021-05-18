@@ -24,6 +24,7 @@ const Navbar = () => {
   const [hiddenToolbar, setHiddenToolbar] = useState(true);
   const [hiddenBackBTN, setHiddenBackBTN] = useState(false);
   const [hiddenNavbar, setHiddenNavbar] = useState(true);
+  const [subHover, setSubHover] = useState(true);
   const { category } = useProductContext();
   //  singleProduct;
   useEffect(() => {
@@ -61,6 +62,18 @@ const Navbar = () => {
       prevScrollpos = currentScrollPos;
     };
   }, [currentPage]);
+  const handleSubHover = () => {
+    setSubHover(false);
+    setTimeout(() => {
+      setSubHover(true);
+    }, 400);
+  };
+  const offSubHover = () => {
+    setSubHover(false);
+  };
+  const onSubHover = () => {
+    setSubHover(true);
+  };
   var settingSlide = {
     speed: 600,
     slidesToShow: 4,
@@ -104,15 +117,22 @@ const Navbar = () => {
                 <Link to='/'>Home</Link>
               </li>
               <li>
-                <Link to='/products' onClick={clearAllFilter}>
-                  Products
-                </Link>
-                <div className='sub-menu-wrapper'>
+                <button className='nav-button'>Products</button>
+                <div
+                  className={
+                    subHover
+                      ? 'sub-menu-wrapper '
+                      : 'sub-menu-wrapper no-pointer'
+                  }
+                >
                   <Grid container>
                     <Grid item sm={4}>
                       <Link
                         to='/products'
-                        onClick={() => filterCategoryUpdate('Women')}
+                        onClick={() => {
+                          filterCategoryUpdate('Women');
+                          handleSubHover();
+                        }}
                         className='submenu-img-wrapper margin-left'
                       >
                         <div
@@ -127,7 +147,10 @@ const Navbar = () => {
                     <Grid item sm={4}>
                       <Link
                         to='/products'
-                        onClick={() => filterCategoryUpdate('Men')}
+                        onClick={() => {
+                          filterCategoryUpdate('Men');
+                          handleSubHover();
+                        }}
                         className='submenu-img-wrapper'
                       >
                         <div
@@ -146,7 +169,10 @@ const Navbar = () => {
                             <li key={index}>
                               <Link
                                 to='/products'
-                                onClick={() => filterCategoryUpdate(category)}
+                                onClick={() => {
+                                  filterCategoryUpdate(category);
+                                  handleSubHover();
+                                }}
                               >
                                 {category}
                               </Link>
@@ -159,26 +185,29 @@ const Navbar = () => {
                 </div>
               </li>
               <li>
-                <Link
-                  to='/products'
-                  onClick={() => filterCategoryUpdate('All', true)}
-                  style={{ color: 'red' }}
-                >
+                <Link className='nav-button' style={{ color: 'red' }}>
                   Sale
                 </Link>
-                <div className='sub-menu-wrapper submenu-slide'>
+                <div
+                  className={
+                    subHover
+                      ? 'sub-menu-wrapper submenu-slide '
+                      : 'sub-menu-wrapper submenu-slide no-pointer'
+                  }
+                >
                   <Grid container>
                     <Grid item sm={2}>
                       <div className='sub-menu-slider-menu-wrapper'>
                         <ul className='sub-menu text-align '>
-                          {category.slice(0, 5).map((category, index) => {
+                          {category.slice(0, 7).map((category, index) => {
                             return (
                               <li key={index}>
                                 <Link
                                   to='/products'
-                                  onClick={() =>
-                                    filterCategoryUpdate(category, true)
-                                  }
+                                  onClick={() => {
+                                    filterCategoryUpdate(category, true);
+                                    handleSubHover();
+                                  }}
                                 >
                                   {category}
                                 </Link>
@@ -193,7 +222,11 @@ const Navbar = () => {
                         <Slider {...settingSlide}>
                           {sale.map((product, index) => {
                             return (
-                              <ProductMiniItem product={product} key={index} />
+                              <ProductMiniItem
+                                product={product}
+                                key={index}
+                                handleSubHover={handleSubHover}
+                              />
                             );
                           })}
                         </Slider>

@@ -52,7 +52,10 @@
     padding: 0 10px;
     // line-height: 74px;
     list-style: none;
-    & > a {
+    display: flex;
+    align-items: center;
+    & > a,
+    .nav-button {
       position: relative;
       padding: 28px 17.5px;
       font-size: 1.5rem;
@@ -88,6 +91,10 @@
         background-color: $lightLetterColor;
       }
     }
+    .nav-button {
+      border: 0;
+      background-color: transparent;
+    }
     &:hover .sub-menu-wrapper {
       opacity: 1;
       visibility: visible;
@@ -99,7 +106,11 @@
     @include transition(color 0.3s ease-in-out);
   }
 }
+
 .sub-menu-wrapper {
+  &.no-pointer {
+    pointer-events: none;
+  }
   opacity: 0;
   visibility: hidden;
   padding: 20px 0 20px 20px;
@@ -207,6 +218,7 @@
       .slick-slider {
         .next-arrow,
         .prev-arrow {
+          top: 37%;
           opacity: 0;
           visibility: hidden;
         }

@@ -10,7 +10,13 @@ import { useProductContext } from '../../context/product_context';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';
 import { useUserContext } from '../../context/user_context';
-const ProductMiniItem = ({ product, page, category, paginationPage }) => {
+const ProductMiniItem = ({
+  product,
+  page,
+  category,
+  paginationPage,
+  handleSubHover,
+}) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const [indexImg, setIndexImg] = useState(0);
@@ -31,6 +37,9 @@ const ProductMiniItem = ({ product, page, category, paginationPage }) => {
           onClick={() => {
             getSingleProduct(id);
             cleartSingleProductAction();
+            if (handleSubHover) {
+              handleSubHover();
+            }
           }}
         >
           {colorImg[indexImg] && (
@@ -158,7 +167,12 @@ const ProductMiniItem = ({ product, page, category, paginationPage }) => {
         <h3 className='mini-product-title'>
           <Link
             to={`/singleProduct/${page}/${category}`}
-            onClick={() => getSingleProduct(id)}
+            onClick={() => {
+              getSingleProduct(id);
+              if (handleSubHover) {
+                handleSubHover();
+              }
+            }}
           >
             {name}
           </Link>{' '}
