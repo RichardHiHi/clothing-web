@@ -73,25 +73,15 @@ function App() {
         <Route exact path='/cart'>
           <CartPage />
         </Route>
-        <Route exact path='/products/cart'>
-          <CartPage />
-        </Route>
-        <Route exact path='/singleProduct/products/cart'>
-          <CartPage />
-        </Route>
-        <Route exact path='/singleProduct/home/cart'>
-          <CartPage />
-        </Route>
         <Route exact path='/wishList'>
           <WishListPage />
         </Route>
         <PrivateRouter exact path='/checkOut'>
           <CheckOutPage />
         </PrivateRouter>
-        <Route
-          path='/singleProduct/:page?/:category?'
-          children={<SingleProductPage />}
-        />
+        <Route exact path='/singleProduct/:page?/:category?'>
+          <SingleProductPage />
+        </Route>
       </Switch>
       <Footer />
     </ScrollToTop>

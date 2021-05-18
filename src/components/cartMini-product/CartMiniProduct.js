@@ -16,6 +16,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
   const { getSingleProduct, switchIMG, setIdCart, cleartSingleProductAction } =
     useProductContext();
   const { miniAction } = useButtonContext();
+  const { amountTotal } = useCartContext();
   const {
     cart,
     clearCart,
@@ -53,7 +54,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
               return (
                 <li key={index}>
                   <Link
-                    to='singleProduct'
+                    to='/singleProduct'
                     onClick={() => mutipleAction(id, indexFollowColor)}
                     className='mini-cart-img'
                   >
@@ -61,7 +62,7 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
                   </Link>
                   <div className='mini-cart-info'>
                     <Link
-                      to='singleProduct'
+                      to='/singleProduct'
                       onClick={() => mutipleAction(id, indexFollowColor)}
                       className='mini-cart-name-product'
                     >
@@ -167,12 +168,12 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
             <strong>Subtotal:</strong>
           </div>
           <div className='footer-mini-cart-price'>
-            <span>$100.00</span>
+            <span>{formatPrice(amountTotal)}</span>
           </div>
         </div>
         <p>Taxes, shipping and discounts codes calculated at checkout</p>
         <Link
-          to='cart'
+          to='/cart'
           className='view-mini-cart-link'
           onClick={() => miniAction('close', 'MiniCart')}
         >

@@ -12,9 +12,14 @@
   justify-content: space-around;
   overflow-x: auto;
   .toolbar-icon-wrapper {
+    &.no-pointer {
+      pointer-events: none;
+    }
     height: 100%;
     width: 100%;
     .toolbar-link {
+      border: none;
+      background-color: white;
       &.btn {
         border: none;
         background-color: white;

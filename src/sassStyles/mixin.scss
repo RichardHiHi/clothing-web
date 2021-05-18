@@ -20,7 +20,7 @@
   background-color: $whiteColor;
   @include transform(translateX($transform));
   transition: all 0.3s;
-  @include scroll-bar(12px);
+  @include scroll-bar(2px);
 }
 
 @mixin mini-open {

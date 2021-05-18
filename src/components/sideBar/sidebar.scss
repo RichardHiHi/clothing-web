@@ -79,7 +79,8 @@
   li {
     list-style: none;
     border-bottom: 1px solid rgba(129, 129, 129, 0.2);
-    a {
+    a,
+    button {
       color: $letterColor;
       font-size: 1.4rem;
       font-weight: 400;
@@ -95,10 +96,19 @@
         transform: translateY(4px);
       }
     }
+    button {
+      border: none;
+      background-color: transparent;
+      text-align: left;
+    }
     &:hover {
       background-color: rgba(0, 0, 0, 0.04);
     }
     &:hover a {
+      background-color: rgba(0, 0, 0, 0.04);
+      transform: translateX(8px);
+    }
+    &:hover button {
       background-color: rgba(0, 0, 0, 0.04);
       transform: translateX(8px);
     }

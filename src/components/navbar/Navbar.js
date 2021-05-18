@@ -48,16 +48,19 @@ const Navbar = () => {
       }
       //set toolbar
       if (currentPage.split('/')[1] === 'singleProduct') {
+        console.log(123);
         if (currentScrollPos > 590) {
           setHiddenToolbar(false);
         } else {
           setHiddenToolbar(true);
         }
+      } else {
+        setHiddenToolbar(true);
       }
 
       prevScrollpos = currentScrollPos;
     };
-  });
+  }, [currentPage]);
   var settingSlide = {
     speed: 600,
     slidesToShow: 4,

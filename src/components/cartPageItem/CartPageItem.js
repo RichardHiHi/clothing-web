@@ -40,7 +40,7 @@ const CartPageItem = ({ cartItem }) => {
     <Grid container>
       <Grid item xs={6} sm={5} className='sc-item flex-left'>
         <Link
-          to='/single-product'
+          to='/singleProduct'
           onClick={() => getSingleProduct(id)}
           className='sc-item__img'
         >
@@ -51,7 +51,7 @@ const CartPageItem = ({ cartItem }) => {
         </Link>
         <div className='sc-item__info'>
           <Link
-            to='/single-product'
+            to='/singleProduct'
             onClick={() => getSingleProduct(id)}
             className='sc-item__info__name'
           >

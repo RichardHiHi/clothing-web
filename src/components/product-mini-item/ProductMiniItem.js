@@ -19,7 +19,6 @@ const ProductMiniItem = ({ product, page, category, paginationPage }) => {
   const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction, currentPage } = useButtonContext();
   useEffect(() => {
-    console.log(123);
     setLockImgHover(true);
     setIndexImg(0);
   }, [paginationPage]);
@@ -60,7 +59,7 @@ const ProductMiniItem = ({ product, page, category, paginationPage }) => {
         <div className='mini-product-size-contain'>
           {size && <p>{size.join()}</p>}
         </div>
-        {wishList && currentPage !== '/wishlist' && (
+        {wishList && currentPage !== '/wishList' && (
           <div
             className={
               scale
@@ -93,7 +92,7 @@ const ProductMiniItem = ({ product, page, category, paginationPage }) => {
             )}
           </div>
         )}
-        {currentPage === '/wishlist' && (
+        {currentPage === '/wishList' && (
           <div
             className={
               scale

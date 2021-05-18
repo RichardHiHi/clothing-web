@@ -2,7 +2,7 @@ import React from 'react';
 import './navButton.scss';
 import { useButtonContext } from '../../context/button_context';
 import { BsSearch, BsHeart } from 'react-icons/bs';
-import { BiUser, BiUserCheck } from 'react-icons/bi';
+import { BiUser } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaUserCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -35,9 +35,9 @@ const Navbutton = () => {
         </button>
       )}
       <Link
-        to='/wishlist'
+        to='/wishList'
         className={
-          currentPage === '/wishlist'
+          currentPage === '/wishList'
             ? 'nav-icon-wishlist no-pointer'
             : 'nav-icon-wishlist '
         }

@@ -40,6 +40,7 @@ const FilterProduct = () => {
   };
   useEffect(() => {
     if (products) {
+      setCurrentPage(0);
       setPageNumbers(Math.round(products.length / productPerPage));
     }
   }, [products]);

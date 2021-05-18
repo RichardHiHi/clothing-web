@@ -8,9 +8,14 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';
 import SortIcon from '@material-ui/icons/Sort';
+import { useCartContext } from '../../context/cart_context';
+import { useUserContext } from '../../context/user_context';
+import { FaUserCheck } from 'react-icons/fa';
 
 const Toolbar = () => {
-  const { miniAction, isInProductPage } = useButtonContext();
+  const { miniAction, isInProductPage, currentPage } = useButtonContext();
+  const { totalItem } = useCartContext();
+  const { wishList, myUser, logout, loginWithRedirect } = useUserContext();
   return (
     <div className='toolbar-section'>
       {!isInProductPage && (
@@ -51,8 +56,7 @@ const Toolbar = () => {
       )}
 
       <div className='toolbar-icon-wrapper'>
-        <a
-          href='#'
+        <button
           className='toolbar-link'
           onClick={() => miniAction('open', 'MiniSearch')}
         >
@@ -60,42 +64,59 @@ const Toolbar = () => {
             <BsSearch />
           </span>
           <span className='toolbar-name'>search</span>
-        </a>
+        </button>
       </div>
 
-      <div className='toolbar-icon-wrapper'>
-        <a
-          href='#'
+      <div
+        className={
+          currentPage === '/cart'
+            ? 'toolbar-icon-wrapper no-pointer'
+            : 'toolbar-icon-wrapper '
+        }
+      >
+        <button
           className='toolbar-link'
           onClick={() => miniAction('open', 'MiniCart')}
         >
           <span className='toolbar-icon'>
             <FiShoppingCart />
-            <span className='toolbar-count'>1</span>
+            <span className='toolbar-count'>{totalItem}</span>
           </span>
           <span className='toolbar-name'>Cart</span>
-        </a>
+        </button>
       </div>
-      <div className='toolbar-icon-wrapper'>
-        <a href='#' className='toolbar-link'>
+      <div
+        className={
+          currentPage === '/wishList'
+            ? 'toolbar-icon-wrapper no-pointer'
+            : 'toolbar-icon-wrapper '
+        }
+      >
+        <Link to='/wishList' className='toolbar-link'>
           <span className='toolbar-icon'>
             <BsHeart />
-            <span className='toolbar-count'>1</span>
+            <span className='toolbar-count'>{wishList.length}</span>
           </span>
           <span className='toolbar-name'>Wishlist</span>
-        </a>
+        </Link>
       </div>
       <div className='toolbar-icon-wrapper'>
-        <a
-          href='#'
-          className='toolbar-link'
-          onClick={() => miniAction('open', 'MiniLogin')}
-        >
-          <span className='toolbar-icon'>
-            <BiUser />
-          </span>
-          <span className='toolbar-name'>Account</span>
-        </a>
+        {myUser && (
+          <button className='toolbar-link' onClick={logout}>
+            <span className='toolbar-icon'>
+              <FaUserCheck />
+            </span>
+            <span className='toolbar-name'>{myUser.nickname}</span>
+          </button>
+        )}
+        {!myUser && (
+          <button className='toolbar-link' onClick={loginWithRedirect}>
+            <span className='toolbar-icon'>
+              <BiUser />
+            </span>
+            <span className='toolbar-name'>Account</span>
+          </button>
+        )}
       </div>
     </div>
   );
