@@ -21,6 +21,7 @@ import {
   RANDOM_PRODUCT,
   SET_VIEWED_PRODUCT,
   UPDATE_WISHLISH,
+  HIDDEN_PRODUCT_ALTER_MESS,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 import { useUserContext } from '../context/user_context';
@@ -63,6 +64,7 @@ const initialState = {
     itemCount: 1,
     idCart: '',
   },
+  productAlertMess: { show: false, message: '', color: '', status: '' },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -179,6 +181,17 @@ export const ProductProvider = ({ children }) => {
   const updateWishList = (products) => {
     dispatch({ type: UPDATE_WISHLISH, payload: { wishList, products } });
   };
+  const hiddenProductAlertMess = () => {
+    dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS });
+  };
+  useEffect(() => {
+    let timer;
+    if (state.productAlertMess.show) {
+      timer = setTimeout(() => {
+        hiddenProductAlertMess();
+      }, 1500);
+    }
+  }, [state.productAlertMess.show]);
   //wishlist change
   useEffect(() => {
     updateWishList(state.products);

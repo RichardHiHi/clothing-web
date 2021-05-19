@@ -168,7 +168,7 @@ const CartModal = () => {
                   miniAction('close', 'CartModal');
                 }}
               >
-                ADD TO CART close
+                ADD TO CART
               </button>
             ) : (
               <button
@@ -179,7 +179,7 @@ const CartModal = () => {
                   miniAction('close', 'CartModal');
                 }}
               >
-                ADD TO CART open
+                ADD TO CART
               </button>
             )}
           </div>

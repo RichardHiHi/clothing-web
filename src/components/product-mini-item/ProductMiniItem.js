@@ -27,7 +27,7 @@ const ProductMiniItem = ({
   useEffect(() => {
     setLockImgHover(true);
     setIndexImg(0);
-  }, [paginationPage]);
+  }, [paginationPage, wishList]);
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>

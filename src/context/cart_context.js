@@ -6,6 +6,7 @@ import {
   CART_TOTAL,
   TOGGLE_ITEM_CART,
   REMOVE_ITEM_CART,
+  HIDDEN_CART_ALTER_MESS,
 } from '../actions';
 import { useProductContext } from '../context/product_context';
 
@@ -22,6 +23,7 @@ const initialState = {
   cart: getLocalStorage(),
   amountTotal: 0,
   totalItem: 0,
+  cartAlertMess: { show: false, message: '', color: '', status: '' },
 };
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -76,10 +78,25 @@ export const CartProvider = ({ children }) => {
   const removeItemCart = (idCart) => {
     dispatch({ type: REMOVE_ITEM_CART, payload: { idCart } });
   };
+  //show and hide alert mess
+  // const showCartAlertMess = (mess, color) => {
+  //   dispatch({ type: SHOW_CART_ALTER_MESS });
+  // };
+  const hiddenCartAlertMess = () => {
+    dispatch({ type: HIDDEN_CART_ALTER_MESS });
+  };
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
     totalCart();
   }, [state.cart]);
+  useEffect(() => {
+    let timer;
+    if (state.cartAlertMess.show) {
+      timer = setTimeout(() => {
+        hiddenCartAlertMess();
+      }, 1500);
+    }
+  }, [state.cartAlertMess.show]);
   return (
     <CartContext.Provider
       value={{

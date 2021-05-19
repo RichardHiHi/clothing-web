@@ -40,6 +40,7 @@ const SingleProductInfo = ({
     setSingleProductSize,
     setItemCount,
     setItemCountByInput,
+    productAlertMess: { show },
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
@@ -149,9 +150,7 @@ const SingleProductInfo = ({
       <div className='single-product-cart-wrapper'>
         {stock > 0 && (
           <div className='mini-cart-quantity'>
-            <span
-              className={itemCount === stock ? 'hoverText show' : 'hoverText'}
-            >
+            <span className={show ? 'hoverText show' : 'hoverText'}>
               <span>{stock}</span> available items{' '}
             </span>
             <input

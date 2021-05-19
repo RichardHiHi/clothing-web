@@ -5,6 +5,7 @@ import {
   REMOVE_WISHLIST,
   SET_USER,
   UPDATE_WISHLIST,
+  HIDDEN_WISHLIST_ALTER_MESS,
 } from '../actions';
 import reducer from '../reducers/user_reducer';
 const UserContext = React.createContext();
@@ -24,11 +25,11 @@ const getLocalStorage = () => {
 const initialState = {
   wishList: getLocalStorage(),
   myUser: null,
+  wishListAlertMess: { show: false, message: '', color: '', status: '' },
 };
 export const UserProvider = ({ children }) => {
   const { isAuthenticated, loginWithRedirect, logout, user, isLoading } =
     useAuth0();
-
   const [state, dispatch] = useReducer(reducer, initialState);
   //return user follow email
   const getRecord = async (email) => {
@@ -95,6 +96,17 @@ export const UserProvider = ({ children }) => {
       updateRecord(userAir, wishList, recordId);
     }
   };
+  const hiddenWishListAlertMess = () => {
+    dispatch({ type: HIDDEN_WISHLIST_ALTER_MESS });
+  };
+  useEffect(() => {
+    let timer;
+    if (state.wishListAlertMess.show) {
+      timer = setTimeout(() => {
+        hiddenWishListAlertMess();
+      }, 1500);
+    }
+  }, [state.wishListAlertMess.show]);
   useEffect(() => {
     if (isAuthenticated) {
       handleUpdateLogin();

@@ -4,19 +4,24 @@ import {
   CART_TOTAL,
   TOGGLE_ITEM_CART,
   REMOVE_ITEM_CART,
+  HIDDEN_CART_ALTER_MESS,
 } from '../actions';
 const button_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
     //id of edit product
+
     let { id } = action.payload;
     const { productCart } = action.payload;
     let newCart = state.cart;
     //có id nhưng id không trùng vs idcart trong cart nên k thay đổi
     //xóa id cần edit
+    let newCartAlertMess = state.cartAlertMess;
+
     if (id) {
       if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
         return { ...state };
       }
+
       newCart = newCart.filter((itemCart) => itemCart.idCart !== id);
     }
     //ktra xem trong cart có cartproduct trùng không
@@ -46,11 +51,32 @@ const button_reducer = (state, action) => {
         }
         return itemCart;
       });
-      return { ...state, cart: newCart };
+      if (id) {
+        newCartAlertMess = {
+          show: true,
+          status: 'Success!',
+          message: 'Edit cart and this item existed',
+          //color #2fb886 is green
+          color: '#2fb886',
+        };
+      }
+
+      return { ...state, cart: newCart, cartAlertMess: newCartAlertMess };
     }
     // id and not unique
     if (id && !checkUnique) {
-      return { ...state, cart: [...newCart, productCart] };
+      newCartAlertMess = {
+        show: true,
+        status: 'Success!',
+        message: 'Edit cart ',
+        //color #2fb886 is green
+        color: '#2fb886',
+      };
+      return {
+        ...state,
+        cart: [...newCart, productCart],
+        cartAlertMess: newCartAlertMess,
+      };
     }
     return { ...state, cart: [...state.cart, productCart] };
   }
@@ -77,10 +103,19 @@ const button_reducer = (state, action) => {
     let newProductCart = state.cart.find(
       (cartItem) => cartItem.idCart === idCart
     );
+    //
+    let newCartAlertMess = state.cartAlertMess;
     if (value === 'inc') {
       newItemCount = newProductCart.itemCount + 1;
       if (newItemCount > newProductCart.singleProduct.stock) {
         newItemCount = newProductCart.singleProduct.stock;
+        newCartAlertMess = {
+          show: true,
+          status: 'Warning!',
+          message: `there is ${newProductCart.singleProduct.stock} available products`,
+          //color #2fb886 is yellow
+          color: '#ff9800',
+        };
       }
       newProductCart = { ...newProductCart, itemCount: newItemCount };
     }
@@ -112,7 +147,7 @@ const button_reducer = (state, action) => {
       }
       return cartItem;
     });
-    return { ...state, cart: newCart };
+    return { ...state, cart: newCart, cartAlertMess: newCartAlertMess };
   }
   //clear cart
   if (action.type === CLEAR_CART) {
@@ -123,7 +158,28 @@ const button_reducer = (state, action) => {
     const newCart = state.cart.filter(
       (cartItem) => cartItem.idCart !== action.payload.idCart
     );
-    return { ...state, cart: newCart };
+    return {
+      ...state,
+      cart: newCart,
+      cartAlertMess: {
+        show: true,
+        status: 'Success!',
+        message: 'Remove cart',
+        //color #2fb886 is green
+        color: '#2fb886',
+      },
+    };
+  }
+  if (action.type === HIDDEN_CART_ALTER_MESS) {
+    return {
+      ...state,
+      cartAlertMess: {
+        show: false,
+        message: '',
+        color: '',
+        status: '',
+      },
+    };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

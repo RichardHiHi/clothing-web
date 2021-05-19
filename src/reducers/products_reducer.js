@@ -19,6 +19,7 @@ import {
   RANDOM_PRODUCT,
   SET_VIEWED_PRODUCT,
   UPDATE_WISHLISH,
+  HIDDEN_PRODUCT_ALTER_MESS,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -154,6 +155,7 @@ const products_reducer = (state, action) => {
 
     const stock = state.singleProduct.stock;
     let newItemCount;
+    let newProductAlertMess = state.productAlertMess;
     if (value === 'inc') {
       newItemCount = state.singleProductAction.itemCount + 1;
       if (isNaN(newItemCount)) {
@@ -161,6 +163,13 @@ const products_reducer = (state, action) => {
       }
       if (newItemCount > stock) {
         newItemCount = stock;
+        newProductAlertMess = {
+          show: true,
+          status: 'Success!',
+          message: 'Remove wishlist',
+          //color #2fb886 is green
+          color: '#2fb886',
+        };
       }
     }
     if (value === 'dec') {
@@ -185,6 +194,7 @@ const products_reducer = (state, action) => {
         ...state.singleProductAction,
         itemCount: newItemCount,
       },
+      productAlertMess: newProductAlertMess,
     };
   }
   if (action.type === SET_ID_CART) {
@@ -237,6 +247,17 @@ const products_reducer = (state, action) => {
     }
 
     return { ...state, wishProducts: newWishProduct };
+  }
+  if (action.type === HIDDEN_PRODUCT_ALTER_MESS) {
+    return {
+      ...state,
+      productAlertMess: {
+        show: false,
+        message: '',
+        color: '',
+        status: '',
+      },
+    };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

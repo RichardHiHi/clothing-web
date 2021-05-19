@@ -29,6 +29,7 @@ import CartToolBar from './cart-tool-bar/CartToolBar';
 import CartModal from './cart-modal/CartModal';
 import ProductMiniItem from './product-mini-item/ProductMiniItem';
 import ProductMiniLoading from './product-mimi-loading/ProductMiniLoading';
+import AlertMess from './alert-mess/AlertMess';
 export {
   Navbar,
   NavButton,
@@ -61,4 +62,5 @@ export {
   CartMiniEmty,
   CartToolBar,
   CartModal,
+  AlertMess,
 };

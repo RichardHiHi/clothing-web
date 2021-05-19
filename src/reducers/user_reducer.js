@@ -3,6 +3,7 @@ import {
   REMOVE_WISHLIST,
   SET_USER,
   UPDATE_WISHLIST,
+  HIDDEN_WISHLIST_ALTER_MESS,
 } from '../actions';
 const user_reducer = (state, action) => {
   if (action.type === ADD_TO_WISHLIST) {
@@ -15,7 +16,17 @@ const user_reducer = (state, action) => {
     const newWishList = state.wishList.filter(
       (item) => item !== action.payload.idProduct
     );
-    return { ...state, wishList: newWishList };
+    return {
+      ...state,
+      wishList: newWishList,
+      wishListAlertMess: {
+        show: true,
+        status: 'Success!',
+        message: 'Remove wishlist',
+        //color #2fb886 is green
+        color: '#2fb886',
+      },
+    };
   }
   if (action.type === SET_USER) {
     let newUser;
@@ -35,7 +46,17 @@ const user_reducer = (state, action) => {
   if (action.type === UPDATE_WISHLIST) {
     return { ...state, wishList: action.payload.wishList };
   }
-
+  if (action.type === HIDDEN_WISHLIST_ALTER_MESS) {
+    return {
+      ...state,
+      wishListAlertMess: {
+        show: false,
+        message: '',
+        color: '',
+        status: '',
+      },
+    };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 export default user_reducer;
