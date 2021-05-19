@@ -30,6 +30,7 @@
   &:hover {
     .zoom_len,
     .single-product-img__img__zoom {
+      pointer-events: none;
       opacity: 1;
       visibility: visible;
       @include transform(scale(1));
@@ -57,7 +58,6 @@
   .single-product-img__img__zoom {
     &.hidden {
       opacity: 0;
-
       @include transform(scale(0.7));
       visibility: hidden;
     }

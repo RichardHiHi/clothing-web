@@ -43,19 +43,9 @@ const SingleProductInfo = ({
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
-  const [alter, setAlter] = useState(false);
   const [scale, setScale] = useState(false);
   const [shake, setShake] = useState(false);
-  useEffect(() => {
-    if (stock === itemCount) {
-      setAlter(true);
-      // setTimeout(() => {
-      //   setAlter(false);
-      // }, 200);
-    } else {
-      setAlter(false);
-    }
-  }, [itemCount]);
+
   useEffect(() => {
     let timeout;
     if (shake === true) {
@@ -65,7 +55,7 @@ const SingleProductInfo = ({
     } else {
       timeout = setTimeout(() => {
         setShake(true);
-      }, 4000);
+      }, 5000);
     }
     return () => {
       clearTimeout(timeout);
@@ -158,11 +148,12 @@ const SingleProductInfo = ({
       </div>
       <div className='single-product-cart-wrapper'>
         {stock > 0 && (
-          <div
-            className={
-              alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
-            }
-          >
+          <div className='mini-cart-quantity'>
+            <span
+              className={itemCount === stock ? 'hoverText show' : 'hoverText'}
+            >
+              <span>{stock}</span> available items{' '}
+            </span>
             <input
               type='number'
               className='mini-cart-quantity-input'
@@ -260,13 +251,13 @@ const SingleProductInfo = ({
           <span className='sku'>{id}</span>
         </span>
         <span className='simple-product-stock sku-wrapper'>
-          Availability:
+          Availability:{' '}
           <span className='sku--blod'>
             {stock > 0 ? 'In Stock' : 'Out Of Stock'}
           </span>
         </span>
         <span className='category-tag'>
-          Categories:
+          Categories:{' '}
           {category.map((item, index) => {
             return (
               <Link to='/products' title='' key={index}>

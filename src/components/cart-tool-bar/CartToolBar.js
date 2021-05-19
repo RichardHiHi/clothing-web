@@ -17,15 +17,7 @@ const CartToolBar = ({ hiddenToolbar }) => {
   const { miniAction } = useButtonContext();
 
   const { setItemCount, setItemCountByInput } = useProductContext();
-  const [alter, setAlter] = useState(false);
-  const checkMaxMIN = (stock, itemCount) => {
-    if (stock === itemCount + 1 || itemCount === 1) {
-      setAlter(true);
-      setTimeout(() => {
-        setAlter(false);
-      }, 500);
-    }
-  };
+
   let colorFollowIndexIMG = 'none';
   if (colorImg) {
     colorFollowIndexIMG = colorImg.find((item) => {
@@ -60,11 +52,12 @@ const CartToolBar = ({ hiddenToolbar }) => {
         <div className='ctb__cart'>
           <span className='ctb__cart__price'>{formatPrice(price)}</span>
           <div className='ctb__cart__amount-btn'>
-            <div
-              className={
-                alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
-              }
-            >
+            <div className='mini-cart-quantity'>
+              <span
+                className={itemCount === stock ? 'hoverText show' : 'hoverText'}
+              >
+                <span>{stock}</span> available items{' '}
+              </span>
               <input
                 type='number'
                 className='mini-cart-quantity-input'
@@ -75,7 +68,6 @@ const CartToolBar = ({ hiddenToolbar }) => {
                 <RemoveIcon
                   onClick={() => {
                     setItemCount('dec');
-                    checkMaxMIN(stock, itemCount);
                   }}
                 />
               </button>
@@ -83,7 +75,6 @@ const CartToolBar = ({ hiddenToolbar }) => {
                 className='mini-cart-plus-btn'
                 onClick={() => {
                   setItemCount('inc');
-                  checkMaxMIN(stock, itemCount);
                 }}
               >
                 <AddIcon />
