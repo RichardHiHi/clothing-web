@@ -67,39 +67,18 @@
   .ctb__cart__amount-btn {
     margin-right: 10px;
     .mini-cart-quantity {
-      .hoverText {
-        &.show {
-          @include transform(translate(-50%, 0));
-          opacity: 1;
-          visibility: visible;
-        }
-        @include hoverText;
-        @include font-size-weight(1.1rem, 700);
-        background-color: orange;
-        bottom: 105%;
-        left: 50%;
-        padding: 6px 10px;
-        pointer-events: auto;
-        @include transform(translate(-50%, 50%));
-        @include transition(all 0.2s);
-        &:after {
-          display: none;
-        }
-        span {
-          color: red;
-          @include font-size-weight(1.2rem, 800);
-        }
-        &:hover {
-          @include transform(translate(-50%, 0) scale(1.1));
-          cursor: default;
-        }
-      }
       margin: 0;
       border-radius: 0px;
       border: 1px solid lighten($lightLetterColor, 30%);
     }
   }
   .ctb__cart__add-btn {
+    //dont touch button
+    &.no-pointer {
+      pointer-events: none;
+      border-bottom: 2px solid rgb(165, 165, 165);
+      background-color: rgb(165, 165, 165);
+    }
     height: 38px;
     width: 144px;
     border: none;

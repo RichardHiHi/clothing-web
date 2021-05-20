@@ -14,7 +14,7 @@ const CartModal = () => {
   const { miniAction, isCartModalOpen, isCartEditModalOpen, currentPage } =
     useButtonContext();
   const [alter, setAlter] = useState(false);
-  const { addToCart } = useCartContext();
+  const { addToCart, showCartmessage } = useCartContext();
 
   const {
     singleProduct: { name, price, colorImg, size, id, stock, AllOfImg },
@@ -174,12 +174,17 @@ const CartModal = () => {
           <div className='add-to-cart-btn-wrapper'>
             {isCartEditModalOpen ? (
               <button
-                className='add-to-cart-btn button_primary'
+                className={
+                  isNaN(itemCount)
+                    ? 'add-to-cart-btn button_primary no-pointer'
+                    : 'add-to-cart-btn button_primary'
+                }
                 onClick={() => {
                   addToCart(idCart);
                   if (currentPage !== '/cart') {
                     miniAction('open', 'MiniCart');
                   }
+
                   miniAction('close', 'CartModal');
                 }}
               >
@@ -187,11 +192,24 @@ const CartModal = () => {
               </button>
             ) : (
               <button
-                className='add-to-cart-btn button_primary'
+                className={
+                  isNaN(itemCount)
+                    ? 'add-to-cart-btn button_primary no-pointer'
+                    : 'add-to-cart-btn button_primary'
+                }
                 onClick={() => {
                   addToCart();
-                  miniAction('open', 'MiniCart');
                   miniAction('close', 'CartModal');
+                  if (currentPage !== '/cart') {
+                    miniAction('open', 'MiniCart');
+                  }
+                  if (currentPage === '/cart') {
+                    showCartmessage(
+                      'Success!',
+                      'added item to cart',
+                      '#2fb886'
+                    );
+                  }
                 }}
               >
                 ADD TO CART

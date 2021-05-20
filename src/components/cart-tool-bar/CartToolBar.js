@@ -95,7 +95,11 @@ const CartToolBar = ({ hiddenToolbar }) => {
             </div>
           </div>
           <button
-            className='ctb__cart__add-btn'
+            className={
+              isNaN(itemCount)
+                ? 'ctb__cart__add-btn no-pointer'
+                : 'ctb__cart__add-btn'
+            }
             onClick={() => {
               addToCart();
               miniAction('open', 'MiniCart');

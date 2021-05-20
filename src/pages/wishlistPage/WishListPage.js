@@ -46,7 +46,10 @@ const WishListPage = () => {
                     lg={12 / (numberGrid + 2)}
                     key={index}
                   >
-                    <ProductMiniItem product={product} />
+                    <ProductMiniItem
+                      product={product}
+                      isInWishListPage={true}
+                    />
                   </Grid>
                 );
               })}

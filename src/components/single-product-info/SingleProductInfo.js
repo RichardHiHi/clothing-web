@@ -33,17 +33,17 @@ const SingleProductInfo = ({
   hiddenInfo,
 }) => {
   const { wishList, addToWishList, removeWishList } = useUserContext();
-  const { addToCart, clearCart } = useCartContext();
+  const { addToCart, clearCart, showCartmessage } = useCartContext();
   const {
     getSingleProduct,
     singleProductAction: { size: sizeAction, itemCount },
     setSingleProductSize,
     setItemCount,
     setItemCountByInput,
-    productAlertMess: { show, color, message },
+    productAlertMess: { show, color },
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
-  const { miniAction } = useButtonContext();
+  const { miniAction, currentPage } = useButtonContext();
   const [shake, setShake] = useState(false);
 
   useEffect(() => {
@@ -225,10 +225,19 @@ const SingleProductInfo = ({
             }
           >
             <button
-              className='add-to-cart-btn button_primary'
+              className={
+                isNaN(itemCount)
+                  ? 'add-to-cart-btn button_primary no-pointer'
+                  : 'add-to-cart-btn button_primary'
+              }
               onClick={() => {
                 addToCart();
-                miniAction('open', 'MiniCart');
+                if (currentPage !== '/cart') {
+                  miniAction('open', 'MiniCart');
+                }
+                if (currentPage === '/cart') {
+                  showCartmessage('Success!', 'added item to cart', '#2fb886');
+                }
                 miniAction('close', 'SingleProductModal');
               }}
             >

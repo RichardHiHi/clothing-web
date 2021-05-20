@@ -22,7 +22,8 @@ const CartPageItem = ({ cartItem }) => {
     size,
     idCart,
     itemCount,
-    singleProduct: { colorImg, id, name, onSale, price },
+    singleProduct: { colorImg, id, name, onSale, price, stock },
+    mess: { show, color },
   } = cartItem;
   //
   const [inputNumber, setInputNumber] = useState('');
@@ -113,6 +114,18 @@ const CartPageItem = ({ cartItem }) => {
               value={inputNumber}
               onChange={setItemCartByInput}
             />
+            <span
+              className={show === 'max' ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: color }}
+            >
+              <span>{stock}</span> items is max
+            </span>
+            <span
+              className={itemCount === 0 ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: '#47a8f5' }}
+            >
+              Add item quantity
+            </span>
             {itemCount !== 1 ? (
               <button
                 className='mini-cart-minus-btn'

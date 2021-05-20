@@ -58,7 +58,7 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
-          <Link to='Products' onClick={() => miniAction('close', 'SideBar')}>
+          <Link to='/products' onClick={() => miniAction('close', 'SideBar')}>
             Products
           </Link>
         </li>

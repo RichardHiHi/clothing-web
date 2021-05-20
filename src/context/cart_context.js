@@ -7,6 +7,8 @@ import {
   TOGGLE_ITEM_CART,
   REMOVE_ITEM_CART,
   HIDDEN_CART_ALTER_MESS,
+  SHOW_CART_ALTER_MESS,
+  HIDDEN_CART_ITEM_MESS,
 } from '../actions';
 import { useProductContext } from '../context/product_context';
 
@@ -43,6 +45,7 @@ export const CartProvider = ({ children }) => {
       itemCount: newItemCount,
       //date.now là số milisecond , math.random phòng vc click 2 lần cùng nhau , chuyển sang hệ 36
       idCart: (Date.now() + Math.random()).toString(36),
+      mess: { show: false, message: '', color: '' },
     };
 
     dispatch({
@@ -78,12 +81,16 @@ export const CartProvider = ({ children }) => {
   const removeItemCart = (idCart) => {
     dispatch({ type: REMOVE_ITEM_CART, payload: { idCart } });
   };
-  //show and hide alert mess
-  // const showCartAlertMess = (mess, color) => {
-  //   dispatch({ type: SHOW_CART_ALTER_MESS });
-  // };
+  //show and hide alert mess of cart
+  const showCartmessage = (status, mess, color) => {
+    dispatch({ type: SHOW_CART_ALTER_MESS, payload: { status, mess, color } });
+  };
   const hiddenCartAlertMess = () => {
     dispatch({ type: HIDDEN_CART_ALTER_MESS });
+  };
+  //show and hide alert mess of cart item
+  const hiddenCartItemMess = (idCart) => {
+    dispatch({ type: HIDDEN_CART_ITEM_MESS, payload: { idCart } });
   };
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -97,6 +104,7 @@ export const CartProvider = ({ children }) => {
       }, 1500);
     }
   }, [state.cartAlertMess.show]);
+
   return (
     <CartContext.Provider
       value={{
@@ -106,6 +114,8 @@ export const CartProvider = ({ children }) => {
         toggleItemCart,
         setItemCartByInput,
         removeItemCart,
+        showCartmessage,
+        hiddenCartItemMess,
       }}
     >
       {children}

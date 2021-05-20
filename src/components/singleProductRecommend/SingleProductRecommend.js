@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import { useProductContext } from '../../context/product_context';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
 const SingleProductRecommend = () => {
-  const { products, recommendProducts, viewedProducts } = useProductContext();
+  const { recommendProducts, viewedProducts } = useProductContext();
 
   var settingsSingleProduct = {
     speed: 500,
@@ -40,7 +40,13 @@ const SingleProductRecommend = () => {
               </div>
               <Slider {...settingsSingleProduct}>
                 {recommendProducts.map((product, index) => {
-                  return <ProductMiniItem product={product} key={index} />;
+                  return (
+                    <ProductMiniItem
+                      product={product}
+                      key={index}
+                      recommendProducts={recommendProducts}
+                    />
+                  );
                 })}
               </Slider>
             </div>

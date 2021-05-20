@@ -16,6 +16,8 @@ const ProductMiniItem = ({
   category,
   paginationPage,
   handleSubHover,
+  isInWishListPage,
+  recommendProducts,
 }) => {
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const { wishList, addToWishList, removeWishList } = useUserContext();
@@ -26,7 +28,7 @@ const ProductMiniItem = ({
   useEffect(() => {
     setLockImgHover(true);
     setIndexImg(0);
-  }, [paginationPage, wishList]);
+  }, [paginationPage, wishList, recommendProducts]);
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>
@@ -67,7 +69,7 @@ const ProductMiniItem = ({
         <div className='mini-product-size-contain'>
           {size && <p>{size.join()}</p>}
         </div>
-        {wishList && currentPage !== '/wishList' && (
+        {wishList && !isInWishListPage && (
           <div className='mini-product-wishlist-container'>
             {!wishList.some((item) => item === id) ? (
               <button
@@ -92,7 +94,7 @@ const ProductMiniItem = ({
             )}
           </div>
         )}
-        {currentPage === '/wishList' && (
+        {isInWishListPage && (
           <div className='mini-product-wishlist-container'>
             <button
               className='wishList-link'

@@ -119,33 +119,6 @@
   display: flex;
   align-items: flex-start;
   .mini-cart-quantity {
-    .hoverText {
-      &.show {
-        @include transform(translate(-50%, 0));
-        opacity: 1;
-        visibility: visible;
-      }
-      background-color: #47a8f5;
-      @include hoverText;
-      @include font-size-weight(1.1rem, 700);
-      bottom: 110%;
-      left: 50%;
-      padding: 6px 10px;
-      pointer-events: auto;
-      @include transform(translate(-50%, 50%));
-      @include transition(all 0.2s);
-      &:after {
-        display: none;
-      }
-      span {
-        color: red;
-        @include font-size-weight(1.2rem, 800);
-      }
-      &:hover {
-        @include transform(translate(-50%, 0) scale(1.1));
-        cursor: default;
-      }
-    }
     margin-right: 8px;
     order: 1;
   }

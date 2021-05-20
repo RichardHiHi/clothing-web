@@ -82,6 +82,11 @@ p {
   flex-direction: column;
 }
 .button_primary {
+  //dont touch button
+  &.no-pointer {
+    pointer-events: none;
+    background-color: rgb(165, 165, 165);
+  }
   margin: 10px 0;
   width: 100%;
   border-radius: 30px;
@@ -342,6 +347,119 @@ p {
     }
   }
 }
+//quantity-button
+.mini-cart-quantity {
+  position: relative;
+  width: 100%;
+  min-width: 120px;
+  width: 120px;
+  height: 40px;
+  border-radius: 40px;
+  border: 1px solid $letterColor;
+  margin-bottom: 18px;
+  input {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    padding: 0;
+    font-weight: 600;
+    font-size: 1.6rem;
+    width: 40px;
+    height: 38px;
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .mini-cart-minus-btn,
+  .mini-cart-plus-btn {
+    position: absolute;
+    outline: none;
+    top: 0;
+    width: 40px;
+    height: 38px;
+    border: none;
+    background-color: transparent;
+    button {
+      outline: none;
+    }
+    svg {
+      @include transition(all 0.3s);
+      font-size: 1.8rem;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+    &:hover svg {
+      color: $hoverColor;
+      transform: scale(1.4);
+    }
+    &:active svg {
+      color: $letterColor;
+    }
+  }
+  .mini-cart-plus-btn {
+    right: 0;
+  }
+  .mini-cart-minus-btn {
+    left: 0;
+  }
+}
+.mini-cart-minus-btn {
+  span {
+    @include hoverText;
+    bottom: 119%;
+    left: 28%;
+    @include transform(translateY(40%));
+    pointer-events: none;
+    &:after {
+      top: 112%;
+      left: 3%;
+      @include transform(translateY(-50%));
+      border-color: #383838 transparent transparent transparent;
+    }
+  }
+  &:hover span {
+    visibility: visible;
+    opacity: 1;
+    @include transform(translateY(0%));
+  }
+}
+//alert of quantity
+.mini-cart-quantity {
+  .hoverText {
+    &.show {
+      @include transform(translate(-50%, 0));
+      opacity: 1;
+      visibility: visible;
+    }
+    @include hoverText;
+    @include font-size-weight(1.1rem, 700);
+    bottom: 105%;
+    left: 50%;
+    padding: 6px 10px;
+    pointer-events: auto;
+    @include transform(translate(-50%, 50%));
+    @include transition(all 0.2s);
+    &:after {
+      display: none;
+    }
+    span {
+      color: red;
+      @include font-size-weight(1.2rem, 800);
+    }
+    &:hover {
+      @include transform(translate(-50%, 0) scale(1.1));
+      cursor: default;
+    }
+  }
+}
+
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {
   html {
