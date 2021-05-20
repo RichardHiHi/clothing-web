@@ -104,7 +104,7 @@
       border-color: transparent #383838 transparent transparent;
     }
   }
-  &.scale {
+  &:hover {
     .wishList-link {
       svg {
         animation: lightScale 0.4s infinite;

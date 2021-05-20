@@ -12,10 +12,10 @@ const CartToolBar = ({ hiddenToolbar }) => {
   const {
     singleProduct: { name, price, AllOfImg, stock, colorImg },
     singleProductAction: { indexIMG, size, itemCount },
+    productAlertMess: { show, color, message },
   } = useProductContext();
   const { addToCart } = useCartContext();
   const { miniAction } = useButtonContext();
-
   const { setItemCount, setItemCountByInput } = useProductContext();
 
   let colorFollowIndexIMG = 'none';
@@ -54,9 +54,22 @@ const CartToolBar = ({ hiddenToolbar }) => {
           <div className='ctb__cart__amount-btn'>
             <div className='mini-cart-quantity'>
               <span
-                className={itemCount === stock ? 'hoverText show' : 'hoverText'}
+                className={show === 'max' ? 'hoverText show' : 'hoverText'}
+                style={{ backgroundColor: color }}
               >
-                <span>{stock}</span> available items{' '}
+                <span>{stock}</span> items is max
+              </span>
+              <span
+                className={show === 'min' ? 'hoverText show' : 'hoverText'}
+                style={{ backgroundColor: color }}
+              >
+                <span>1</span> item is min
+              </span>
+              <span
+                className={isNaN(itemCount) ? 'hoverText show' : 'hoverText'}
+                style={{ backgroundColor: '#47a8f5' }}
+              >
+                Add item quantity
               </span>
               <input
                 type='number'

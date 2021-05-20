@@ -40,11 +40,10 @@ const SingleProductInfo = ({
     setSingleProductSize,
     setItemCount,
     setItemCountByInput,
-    productAlertMess: { show },
+    productAlertMess: { show, color, message },
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction } = useButtonContext();
-  const [scale, setScale] = useState(false);
   const [shake, setShake] = useState(false);
 
   useEffect(() => {
@@ -150,8 +149,23 @@ const SingleProductInfo = ({
       <div className='single-product-cart-wrapper'>
         {stock > 0 && (
           <div className='mini-cart-quantity'>
-            <span className={show ? 'hoverText show' : 'hoverText'}>
-              <span>{stock}</span> available items{' '}
+            <span
+              className={show === 'max' ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: color }}
+            >
+              <span>{stock}</span> items is max
+            </span>
+            <span
+              className={show === 'min' ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: color }}
+            >
+              <span>1</span> item is min
+            </span>
+            <span
+              className={isNaN(itemCount) ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: '#47a8f5' }}
+            >
+              Add item quantity
             </span>
             <input
               type='number'
@@ -179,15 +193,7 @@ const SingleProductInfo = ({
         {stock === 0 && (
           <div className='out-of-stock-btn-wrapper'>Out Of Stock</div>
         )}
-        <div
-          className={
-            scale
-              ? 'single-product-wishList-wrapper scale'
-              : 'single-product-wishList-wrapper'
-          }
-          onMouseOver={() => setScale(true)}
-          onMouseOut={() => setScale(false)}
-        >
+        <div className='single-product-wishList-wrapper'>
           {!wishList.some((item) => item === id) ? (
             <span
               className='single-product-wishList'
@@ -201,7 +207,7 @@ const SingleProductInfo = ({
           ) : (
             <span
               className='single-product-wishList active'
-              onClick={() => removeWishList(id)}
+              onClick={() => removeWishList(id, true)}
             >
               <FavoriteIcon />
               <span className='single-product-wishList-hover-text'>

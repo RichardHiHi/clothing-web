@@ -164,11 +164,10 @@ const products_reducer = (state, action) => {
       if (newItemCount > stock) {
         newItemCount = stock;
         newProductAlertMess = {
-          show: true,
-          status: 'Success!',
-          message: 'Remove wishlist',
-          //color #2fb886 is green
-          color: '#2fb886',
+          show: 'max',
+          message: 'available item',
+          //color #2fb886 is yellow
+          color: '#47a8f5',
         };
       }
     }
@@ -176,12 +175,24 @@ const products_reducer = (state, action) => {
       newItemCount = state.singleProductAction.itemCount - 1;
       if (newItemCount < 1 || isNaN(newItemCount)) {
         newItemCount = 1;
+        newProductAlertMess = {
+          show: 'min',
+          message: 'available item',
+          //color #2fb886 is yellow
+          color: '#47a8f5',
+        };
       }
     }
     if (typeof value === 'number') {
       newItemCount = value;
       if (newItemCount > stock) {
         newItemCount = stock;
+        newProductAlertMess = {
+          show: 'max',
+          message: 'available item',
+          //color #2fb886 is yellow
+          color: '#47a8f5',
+        };
       }
       if (newItemCount < 1) {
         newItemCount = 1;
@@ -255,7 +266,6 @@ const products_reducer = (state, action) => {
         show: false,
         message: '',
         color: '',
-        status: '',
       },
     };
   }

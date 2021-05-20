@@ -16,16 +16,22 @@ const user_reducer = (state, action) => {
     const newWishList = state.wishList.filter(
       (item) => item !== action.payload.idProduct
     );
+    if (!action.payload.mess) {
+      return {
+        ...state,
+        wishList: newWishList,
+        wishListAlertMess: {
+          show: true,
+          status: 'Success!',
+          message: 'Remove wishlist',
+          //color #2fb886 is green
+          color: '#2fb886',
+        },
+      };
+    }
     return {
       ...state,
       wishList: newWishList,
-      wishListAlertMess: {
-        show: true,
-        status: 'Success!',
-        message: 'Remove wishlist',
-        //color #2fb886 is green
-        color: '#2fb886',
-      },
     };
   }
   if (action.type === SET_USER) {

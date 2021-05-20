@@ -125,9 +125,9 @@
         opacity: 1;
         visibility: visible;
       }
+      background-color: #47a8f5;
       @include hoverText;
       @include font-size-weight(1.1rem, 700);
-      background-color: orange;
       bottom: 110%;
       left: 50%;
       padding: 6px 10px;
@@ -179,7 +179,7 @@
     }
   }
   .single-product-wishList-wrapper {
-    &.scale {
+    &:hover {
       .single-product-wishList {
         svg {
           animation: lightScale 0.4s infinite;
@@ -208,6 +208,7 @@
         top: -115%;
         right: 0%;
         @include transform(translateY(50%));
+
         &:after {
           top: 98%;
           right: 12%;

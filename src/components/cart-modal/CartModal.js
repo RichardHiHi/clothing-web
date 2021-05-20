@@ -28,6 +28,7 @@ const CartModal = () => {
     setSingleProductSize,
     setItemCount,
     setItemCountByInput,
+    productAlertMess: { show, color, message },
   } = useProductContext();
   let colorFollowIndexIMG = 'none';
   if (colorImg) {
@@ -129,11 +130,25 @@ const CartModal = () => {
               </div>
             )}
           </div>
-          <div
-            className={
-              alter ? 'mini-cart-quantity maximum' : 'mini-cart-quantity'
-            }
-          >
+          <div className='mini-cart-quantity'>
+            <span
+              className={show === 'max' ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: color }}
+            >
+              <span>{stock}</span> items is max
+            </span>
+            <span
+              className={show === 'min' ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: color }}
+            >
+              <span>1</span> item is min
+            </span>
+            <span
+              className={isNaN(itemCount) ? 'hoverText show' : 'hoverText'}
+              style={{ backgroundColor: '#47a8f5' }}
+            >
+              Add item quantity
+            </span>
             <input
               type='number'
               className='mini-cart-quantity-input'

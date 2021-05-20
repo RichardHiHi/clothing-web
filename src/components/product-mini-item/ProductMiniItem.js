@@ -20,7 +20,6 @@ const ProductMiniItem = ({
   const { colorImg, size, onNew, onSale, name, price, stock, id } = product;
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const [indexImg, setIndexImg] = useState(0);
-  const [scale, setScale] = useState(false);
   const [lockImgHover, setLockImgHover] = useState(true);
   const { getSingleProduct, cleartSingleProductAction } = useProductContext();
   const { miniAction, currentPage } = useButtonContext();
@@ -69,15 +68,7 @@ const ProductMiniItem = ({
           {size && <p>{size.join()}</p>}
         </div>
         {wishList && currentPage !== '/wishList' && (
-          <div
-            className={
-              scale
-                ? 'mini-product-wishlist-container scale'
-                : 'mini-product-wishlist-container'
-            }
-            onMouseOver={() => setScale(true)}
-            onMouseOut={() => setScale(false)}
-          >
+          <div className='mini-product-wishlist-container'>
             {!wishList.some((item) => item === id) ? (
               <button
                 className='wishList-link'
@@ -91,7 +82,7 @@ const ProductMiniItem = ({
             ) : (
               <button
                 className='wishList-link active'
-                onClick={() => removeWishList(id)}
+                onClick={() => removeWishList(id, true)}
               >
                 <div className='wish-list'>
                   <span className='hoverText'>Revome Wishlist</span>
@@ -102,15 +93,7 @@ const ProductMiniItem = ({
           </div>
         )}
         {currentPage === '/wishList' && (
-          <div
-            className={
-              scale
-                ? 'mini-product-wishlist-container scale'
-                : 'mini-product-wishlist-container'
-            }
-            onMouseOver={() => setScale(true)}
-            onMouseOut={() => setScale(false)}
-          >
+          <div className='mini-product-wishlist-container'>
             <button
               className='wishList-link'
               onClick={() => removeWishList(id)}

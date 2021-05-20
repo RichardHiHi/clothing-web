@@ -64,7 +64,7 @@ const initialState = {
     itemCount: 1,
     idCart: '',
   },
-  productAlertMess: { show: false, message: '', color: '', status: '' },
+  productAlertMess: { show: false, message: '', color: '' },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -189,7 +189,7 @@ export const ProductProvider = ({ children }) => {
     if (state.productAlertMess.show) {
       timer = setTimeout(() => {
         hiddenProductAlertMess();
-      }, 1500);
+      }, 1000);
     }
   }, [state.productAlertMess.show]);
   //wishlist change

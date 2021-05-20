@@ -64,8 +64,8 @@ export const UserProvider = ({ children }) => {
   const addToWishList = (idProduct) => {
     dispatch({ type: ADD_TO_WISHLIST, payload: { idProduct } });
   };
-  const removeWishList = (idProduct) => {
-    dispatch({ type: REMOVE_WISHLIST, payload: { idProduct } });
+  const removeWishList = (idProduct, mess) => {
+    dispatch({ type: REMOVE_WISHLIST, payload: { idProduct, mess } });
   };
   const updateWishList = (wishList) => {
     dispatch({ type: UPDATE_WISHLIST, payload: { wishList } });
