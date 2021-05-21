@@ -22,7 +22,7 @@ const button_reducer = (state, action) => {
       if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
         return { ...state };
       }
-
+      console.log(123);
       newCart = newCart.filter((itemCart) => itemCart.idCart !== id);
     }
     //ktra xem trong cart có cartproduct trùng không
@@ -166,7 +166,17 @@ const button_reducer = (state, action) => {
   }
   //clear cart
   if (action.type === CLEAR_CART) {
-    return { ...state, cart: [] };
+    return {
+      ...state,
+      cart: [],
+      cartAlertMess: {
+        show: true,
+        status: 'Success!',
+        message: 'clear all cart items',
+        //color #2fb886 is green
+        color: '#2fb886',
+      },
+    };
   }
   //remove cart item
   if (action.type === REMOVE_ITEM_CART) {
@@ -179,7 +189,7 @@ const button_reducer = (state, action) => {
       cartAlertMess: {
         show: true,
         status: 'Success!',
-        message: 'Removed cart',
+        message: 'Removed cart item',
         //color #2fb886 is green
         color: '#2fb886',
       },

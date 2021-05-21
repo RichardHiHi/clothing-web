@@ -178,7 +178,7 @@ const CartModal = () => {
                   miniAction('close', 'CartModal');
                 }}
               >
-                ADD TO CART
+                ADD TO CART id
               </button>
             ) : (
               <button

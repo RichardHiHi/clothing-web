@@ -18,7 +18,11 @@ const SingleProductModal = () => {
     tempSingleProduct: product,
     getSingleProduct,
     tempSingleProductAction: { indexIMG, colorIndex },
-    switchIMG,
+    switchIMGTSP,
+    tempSingleProductAction,
+    setSingleProductSizeTSP,
+    setItemCountTSP,
+    setItemCountByInputTSP,
   } = useProductContext();
   const { AllOfImg, colorImg } = product;
   const [mouseDown, setMouseDown] = useState(0);
@@ -42,10 +46,10 @@ const SingleProductModal = () => {
   useEffect(() => {
     if (mouseDown !== mouseUp) {
       if (mouseDown > mouseUp) {
-        switchIMG('inc');
+        switchIMGTSP('inc');
       }
       if (mouseDown < mouseUp) {
-        switchIMG('dec');
+        switchIMGTSP('dec');
       }
     }
     setMouseDown(0);
@@ -89,8 +93,8 @@ const SingleProductModal = () => {
                       ></div>
                     );
                   })}
-                <NextArrow onClick={() => switchIMG('inc')} />
-                <PrevArrow onClick={() => switchIMG('dec')} />
+                <NextArrow onClick={() => switchIMGTSP('inc')} />
+                <PrevArrow onClick={() => switchIMGTSP('dec')} />
               </div>
               {product.AllOfImg && (
                 <div className='slide-dot-button-container'>
@@ -101,7 +105,7 @@ const SingleProductModal = () => {
                         className={
                           indexIMG === index ? 'slide-dot-btn-actived' : null
                         }
-                        onClick={() => switchIMG(index)}
+                        onClick={() => switchIMGTSP(index)}
                       ></button>
                     );
                   })}
@@ -114,8 +118,12 @@ const SingleProductModal = () => {
                   <SingleProductInfo
                     {...product}
                     colorIndex={colorIndex}
-                    switchIMG={switchIMG}
+                    switchIMG={switchIMGTSP}
                     addToCart={addToCartTSP}
+                    setSingleProductSize={setSingleProductSizeTSP}
+                    singleProductAction={tempSingleProductAction}
+                    setItemCount={setItemCountTSP}
+                    setItemCountByInput={setItemCountByInputTSP}
                   />
                 )}
                 <div className='mini-search-footer'>

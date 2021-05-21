@@ -32,20 +32,19 @@ const SingleProductInfo = ({
   switchIMG,
   hiddenInfo,
   addToCart,
+  setSingleProductSize,
+  singleProductAction,
+  setItemCount,
+  setItemCountByInput,
 }) => {
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const { clearCart, showCartmessage } = useCartContext();
+  const { getSingleProduct } = useProductContext();
   const {
-    getSingleProduct,
-    singleProductAction: {
-      size: sizeAction,
-      itemCount,
-      productAlertMess: { show, color },
-    },
-    setSingleProductSize,
-    setItemCount,
-    setItemCountByInput,
-  } = useProductContext();
+    size: sizeAction,
+    itemCount,
+    productAlertMess: { show, color },
+  } = singleProductAction;
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction, currentPage } = useButtonContext();
   const [shake, setShake] = useState(false);

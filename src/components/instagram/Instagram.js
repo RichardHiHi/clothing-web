@@ -154,7 +154,6 @@ const Instagram = () => {
                         onClick={() => {
                           getSingleProductTSP(item.singleProductID[0]);
                           miniAction('open', 'SingleProductModal');
-                          cleartSingleProductActionTSP();
                         }}
                       >
                         {index + 1}

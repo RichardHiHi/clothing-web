@@ -121,6 +121,7 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
     totalCart();
   }, [state.cart]);
+
   useEffect(() => {
     let timer;
     if (state.cartAlertMess.show) {

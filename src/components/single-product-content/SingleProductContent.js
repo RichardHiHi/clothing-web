@@ -11,7 +11,10 @@ import { useCartContext } from '../../context/cart_context';
 const SingleProductContent = () => {
   const {
     singleProduct: product,
-    getSingleProduct,
+    setSingleProductSize,
+    singleProductAction,
+    setItemCount,
+    setItemCountByInput,
     singleProductAction: { indexIMG, colorIndex },
     switchIMG,
   } = useProductContext();
@@ -107,6 +110,12 @@ const SingleProductContent = () => {
                 colorIndex={colorIndex}
                 switchIMG={switchIMG}
                 hiddenInfo={hiddenInfo}
+                switchIMG={switchIMG}
+                addToCart={addToCart}
+                setSingleProductSize={setSingleProductSize}
+                singleProductAction={singleProductAction}
+                setItemCount={setItemCount}
+                setItemCountByInput={setItemCountByInput}
               />
             </Grid>
           </Grid>

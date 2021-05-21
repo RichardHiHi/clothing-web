@@ -42,7 +42,6 @@ const ProductMiniItem = ({
           className='mini-product-img-wrapper'
           onClick={() => {
             getSingleProduct(id);
-            cleartSingleProductAction();
             if (handleSubHover) {
               handleSubHover();
             }
@@ -117,7 +116,6 @@ const ProductMiniItem = ({
             onClick={() => {
               getSingleProductTSP(id);
               miniAction('open', 'SingleProductModal');
-              cleartSingleProductActionTSP();
             }}
           >
             <span>Quick View</span>
@@ -128,7 +126,6 @@ const ProductMiniItem = ({
               getSingleProductTSP(id);
               miniAction('open', 'CartModal');
               miniAction('close', 'CartEditModal');
-              cleartSingleProductActionTSP();
             }}
           >
             <span>Quick Shop</span>
@@ -159,6 +156,7 @@ const ProductMiniItem = ({
             to={`/singleProduct/${page}/${category}`}
             onClick={() => {
               getSingleProduct(id);
+
               if (handleSubHover) {
                 handleSubHover();
               }

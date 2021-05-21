@@ -165,6 +165,7 @@ export const ProductProvider = ({ children }) => {
 
   const getSingleProduct = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT, payload: { id } });
+    cleartSingleProductAction();
   };
 
   const switchIMG = (value) => {
@@ -202,6 +203,7 @@ export const ProductProvider = ({ children }) => {
   // tempSingleProduct
   const getSingleProductTSP = async (id) => {
     dispatch({ type: GET_SINGLE_PRODUCT_TSP, payload: { id } });
+    cleartSingleProductActionTSP();
   };
 
   const switchIMGTSP = (value) => {
@@ -254,7 +256,6 @@ export const ProductProvider = ({ children }) => {
       }, 1000);
     }
   }, [state.singleProductAction.productAlertMess.show]);
-  console.log(state.singleProductAction.productAlertMess);
 
   useEffect(() => {
     let timer;
@@ -275,6 +276,10 @@ export const ProductProvider = ({ children }) => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
   }, [state.singleProductAction.indexIMG]);
+  useEffect(() => {
+    //when indexIMG change , find color follow product
+    setColorFollowIndexTSP();
+  }, [state.tempSingleProductAction.indexIMG]);
 
   useEffect(() => {
     localStorage.setItem('singleProduct', JSON.stringify(state.singleProduct));
@@ -309,7 +314,6 @@ export const ProductProvider = ({ children }) => {
         ...state,
         getSingleProduct,
         switchIMG,
-        cleartSingleProductAction,
         setSingleProductSize,
         setItemCount,
         setItemCountByInput,
@@ -317,7 +321,6 @@ export const ProductProvider = ({ children }) => {
         getSingleProductTSP,
         switchIMGTSP,
         setColorFollowIndexTSP,
-        cleartSingleProductActionTSP,
         setSingleProductSizeTSP,
         setItemCountTSP,
         setItemCountByInputTSP,

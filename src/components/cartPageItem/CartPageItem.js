@@ -15,8 +15,12 @@ const CartPageItem = ({ cartItem }) => {
   const { toggleItemCart, setItemCartByInput, removeItemCart } =
     useCartContext();
   const { miniAction } = useButtonContext();
-  const { cleartSingleProductAction, setIdCart, getSingleProduct } =
-    useProductContext();
+  const {
+    cleartSingleProductActionTSP,
+    setIdCartTSP,
+    getSingleProduct,
+    getSingleProductTSP,
+  } = useProductContext();
   const {
     colorIndex,
     size,
@@ -70,9 +74,8 @@ const CartPageItem = ({ cartItem }) => {
             <button
               className='mini-cart-edit-btn'
               onClick={() => {
-                getSingleProduct(id);
-                cleartSingleProductAction();
-                setIdCart(idCart);
+                getSingleProductTSP(id);
+                setIdCartTSP(idCart);
                 miniAction('open', 'CartEditModal');
                 miniAction('open', 'CartModal');
               }}

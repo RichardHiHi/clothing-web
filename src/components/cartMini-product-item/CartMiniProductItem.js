@@ -22,8 +22,14 @@ const CartMiniProductItem = ({ cartItem }) => {
     mess: { show, color },
   } = cartItem;
   const { miniAction } = useButtonContext();
-  const { getSingleProduct, switchIMG, setIdCart, cleartSingleProductAction } =
-    useProductContext();
+  const {
+    getSingleProduct,
+    getSingleProductTSP,
+    switchIMG,
+    cleartSingleProductActionTSP,
+    cleartSingleProductAction,
+    setIdCartTSP,
+  } = useProductContext();
   const { hiddenCartItemMess } = useCartContext();
   const mutipleAction = (id, indexFollowColor) => {
     getSingleProduct(id);
@@ -137,9 +143,8 @@ const CartMiniProductItem = ({ cartItem }) => {
             <button
               className='mini-cart-edit-btn'
               onClick={() => {
-                getSingleProduct(id);
-                cleartSingleProductAction();
-                setIdCart(idCart);
+                getSingleProductTSP(id);
+                setIdCartTSP(idCart);
                 miniAction('open', 'CartEditModal');
                 miniAction('open', 'CartModal');
               }}
