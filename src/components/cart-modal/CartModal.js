@@ -13,22 +13,23 @@ import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 const CartModal = () => {
   const { miniAction, isCartModalOpen, isCartEditModalOpen, currentPage } =
     useButtonContext();
-  const [alter, setAlter] = useState(false);
-  const { addToCart, showCartmessage } = useCartContext();
-
+  const { addToCartTSP, showCartmessage } = useCartContext();
   const {
-    singleProduct: { name, price, colorImg, size, id, stock, AllOfImg },
-    singleProductAction: { indexIMG, idCart },
-    switchIMG,
+    tempSingleProduct: { name, price, colorImg, size, id, stock, AllOfImg },
+    tempSingleProductAction: { indexIMG, idCart },
+    switchIMGTSP,
   } = useProductContext();
 
   const {
     getSingleProduct,
-    singleProductAction: { size: sizeAction, itemCount },
-    setSingleProductSize,
-    setItemCount,
-    setItemCountByInput,
-    productAlertMess: { show, color, message },
+    tempSingleProductAction: {
+      size: sizeAction,
+      itemCount,
+      productAlertMess: { show, color, message },
+    },
+    setSingleProductSizeTSP,
+    setItemCountTSP,
+    setItemCountByInputTSP,
   } = useProductContext();
   let colorFollowIndexIMG = 'none';
   if (colorImg) {
@@ -36,17 +37,7 @@ const CartModal = () => {
       return item.indexImg.some((i) => i === indexIMG);
     }).colorName;
   }
-  useEffect(() => {
-    if (stock === itemCount) {
-      setAlter(true);
-      // setTimeout(() => {
-      //   setAlter(false);
-      // }, 200);
-    } else {
-      setAlter(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemCount]);
+
   const action = () => {
     miniAction('close', 'CartModal');
   };
@@ -90,7 +81,7 @@ const CartModal = () => {
                           ? 'single-product-size-item active'
                           : 'single-product-size-item'
                       }
-                      onClick={() => setSingleProductSize(item)}
+                      onClick={() => setSingleProductSizeTSP(item)}
                     >
                       {item}
                     </span>
@@ -113,7 +104,7 @@ const CartModal = () => {
                           ? `watch-list-color active`
                           : `watch-list-color `
                       }
-                      onClick={() => switchIMG(color.indexImg[0])}
+                      onClick={() => switchIMGTSP(color.indexImg[0])}
                       style={{ backgroundColor: `${color.colorCode}` }}
                       // onMouseOver={() => {
                       //   setLockImgHover(false);
@@ -153,19 +144,19 @@ const CartModal = () => {
               type='number'
               className='mini-cart-quantity-input'
               value={itemCount}
-              onChange={setItemCountByInput}
+              onChange={setItemCountByInputTSP}
             />
             <button className='mini-cart-minus-btn'>
               <RemoveIcon
                 onClick={() => {
-                  setItemCount('dec');
+                  setItemCountTSP('dec');
                 }}
               />
             </button>
             <button
               className='mini-cart-plus-btn'
               onClick={() => {
-                setItemCount('inc');
+                setItemCountTSP('inc');
               }}
             >
               <AddIcon />
@@ -180,11 +171,10 @@ const CartModal = () => {
                     : 'add-to-cart-btn button_primary'
                 }
                 onClick={() => {
-                  addToCart(idCart);
+                  addToCartTSP(idCart);
                   if (currentPage !== '/cart') {
                     miniAction('open', 'MiniCart');
                   }
-
                   miniAction('close', 'CartModal');
                 }}
               >
@@ -198,7 +188,7 @@ const CartModal = () => {
                     : 'add-to-cart-btn button_primary'
                 }
                 onClick={() => {
-                  addToCart();
+                  addToCartTSP();
                   miniAction('close', 'CartModal');
                   if (currentPage !== '/cart') {
                     miniAction('open', 'MiniCart');

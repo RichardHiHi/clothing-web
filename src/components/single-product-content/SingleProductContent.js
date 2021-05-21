@@ -7,7 +7,7 @@ import { NextArrow, PrevArrow } from '../../utils/helper';
 import SingleProductImg from '../single-product-img/SingleProductImg';
 import SingleProductInfo from '../single-product-info/SingleProductInfo';
 import { useProductContext } from '../../context/product_context';
-
+import { useCartContext } from '../../context/cart_context';
 const SingleProductContent = () => {
   const {
     singleProduct: product,
@@ -15,6 +15,7 @@ const SingleProductContent = () => {
     singleProductAction: { indexIMG, colorIndex },
     switchIMG,
   } = useProductContext();
+  const { addToCart } = useCartContext();
   const [hiddenInfo, setHiddenInfo] = useState(true);
   const { AllOfImg } = product;
   const sliderRef = useRef();
@@ -101,9 +102,10 @@ const SingleProductContent = () => {
             </Grid>
             <Grid item xs={12} sm={6} md={6} lg={6}>
               <SingleProductInfo
+                {...product}
+                addToCart={addToCart}
                 colorIndex={colorIndex}
                 switchIMG={switchIMG}
-                {...product}
                 hiddenInfo={hiddenInfo}
               />
             </Grid>

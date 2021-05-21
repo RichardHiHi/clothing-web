@@ -11,8 +11,12 @@ const CartToolBar = ({ hiddenToolbar }) => {
   //ctb is cart-tool-bar
   const {
     singleProduct: { name, price, AllOfImg, stock, colorImg },
-    singleProductAction: { indexIMG, size, itemCount },
-    productAlertMess: { show, color, message },
+    singleProductAction: {
+      indexIMG,
+      size,
+      itemCount,
+      productAlertMess: { show, color, message },
+    },
   } = useProductContext();
   const { addToCart } = useCartContext();
   const { miniAction } = useButtonContext();

@@ -10,7 +10,8 @@ import { useProductContext } from '../../context/product_context';
 import { useButtonContext } from '../../context/button_context';
 const Instagram = () => {
   const [instas, setInstas] = useState([]);
-  const { getSingleProduct, cleartSingleProductAction } = useProductContext();
+  const { getSingleProductTSP, cleartSingleProductActionTSP } =
+    useProductContext();
   const { miniAction } = useButtonContext();
   useEffect(() => {
     document
@@ -151,9 +152,9 @@ const Instagram = () => {
                         key={index}
                         style={{ top: `${item.top}%`, left: `${item.left}%` }}
                         onClick={() => {
-                          getSingleProduct(item.singleProductID[0]);
+                          getSingleProductTSP(item.singleProductID[0]);
                           miniAction('open', 'SingleProductModal');
-                          cleartSingleProductAction();
+                          cleartSingleProductActionTSP();
                         }}
                       >
                         {index + 1}

@@ -5,7 +5,6 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { BsTrash } from 'react-icons/bs';
 import { useCartContext } from '../../context/cart_context';
 import { AiOutlineEdit } from 'react-icons/ai';
-
 import { formatPrice } from '../../utils/helper';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';

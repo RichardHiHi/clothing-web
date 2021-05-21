@@ -22,6 +22,16 @@ import {
   SET_VIEWED_PRODUCT,
   UPDATE_WISHLISH,
   HIDDEN_PRODUCT_ALTER_MESS,
+  GET_SINGLE_PRODUCT_TSP,
+  INCREASE_INDEX_IMG_TSP,
+  DECREASE_INDEX_IMG_TSP,
+  SET_INDEX_IMG_TSP,
+  SET_COLOR_INDEX_TSP,
+  CLEAR_SINGLE_ACTION_TSP,
+  SET_SIZE_PRODUCT_TSP,
+  SET_ITEM_COUNT_TSP,
+  SET_ID_CART_TSP,
+  HIDDEN_PRODUCT_ALTER_MESS_TSP,
 } from '../actions';
 import { ContactsOutlined } from '@material-ui/icons';
 import { useUserContext } from '../context/user_context';
@@ -34,6 +44,14 @@ const getLocalStorage = () => {
   let singleProduct = localStorage.getItem('singleProduct');
   if (singleProduct) {
     return JSON.parse(localStorage.getItem('singleProduct'));
+  } else {
+    return {};
+  }
+};
+const getTempLocalStorage = () => {
+  let tempSingleProduct = localStorage.getItem('tempSingleProduct');
+  if (tempSingleProduct) {
+    return JSON.parse(localStorage.getItem('tempSingleProduct'));
   } else {
     return {};
   }
@@ -53,18 +71,27 @@ const initialState = {
   productsError: false,
   trendingProducts: [],
   saleProducts: [],
-  singleProduct: getLocalStorage(),
   viewedProducts: [],
   recommendProducts: [],
   wishProducts: [],
+  singleProduct: getLocalStorage(),
   singleProductAction: {
     colorIndex: '',
     indexIMG: 0,
     size: '',
     itemCount: 1,
     idCart: '',
+    productAlertMess: { show: false, message: '', color: '' },
   },
-  productAlertMess: { show: false, message: '', color: '' },
+  tempSingleProduct: getTempLocalStorage(),
+  tempSingleProductAction: {
+    colorIndex: '',
+    indexIMG: 0,
+    size: '',
+    itemCount: 1,
+    idCart: '',
+    productAlertMess: { show: false, message: '', color: '' },
+  },
 };
 
 export const ProductProvider = ({ children }) => {
@@ -108,7 +135,6 @@ export const ProductProvider = ({ children }) => {
         const AllOfImg = newColorImg.reduce((acc, cur) => {
           return acc.concat(cur.img);
         }, []);
-
         return {
           ...item.fields,
           colorImg: a,
@@ -158,8 +184,8 @@ export const ProductProvider = ({ children }) => {
   const cleartSingleProductAction = () => {
     dispatch({ type: CLEAR_SINGLE_ACTION });
   };
-  const setSingleProductSize = (value) => {
-    dispatch({ type: SET_SIZE_PRODUCT, payload: { value } });
+  const setSingleProductSize = (value, addTo) => {
+    dispatch({ type: SET_SIZE_PRODUCT, payload: { value, addTo } });
   };
   const setItemCount = (value) => {
     dispatch({ type: SET_ITEM_COUNT, payload: { value } });
@@ -172,6 +198,44 @@ export const ProductProvider = ({ children }) => {
   const setIdCart = (value) => {
     dispatch({ type: SET_ID_CART, payload: { value } });
   };
+
+  // tempSingleProduct
+  const getSingleProductTSP = async (id) => {
+    dispatch({ type: GET_SINGLE_PRODUCT_TSP, payload: { id } });
+  };
+
+  const switchIMGTSP = (value) => {
+    if (Object.keys(state.tempSingleProduct).length > 0) {
+      if (value === 'inc') {
+        dispatch({ type: INCREASE_INDEX_IMG_TSP });
+      } else if (value === 'dec') {
+        dispatch({ type: DECREASE_INDEX_IMG_TSP });
+      } else {
+        dispatch({ type: SET_INDEX_IMG_TSP, payload: { value } });
+      }
+    }
+  };
+  const setColorFollowIndexTSP = () => {
+    dispatch({ type: SET_COLOR_INDEX_TSP });
+  };
+  const cleartSingleProductActionTSP = () => {
+    dispatch({ type: CLEAR_SINGLE_ACTION_TSP });
+  };
+  const setSingleProductSizeTSP = (value) => {
+    dispatch({ type: SET_SIZE_PRODUCT_TSP, payload: { value } });
+  };
+  const setItemCountTSP = (value) => {
+    dispatch({ type: SET_ITEM_COUNT_TSP, payload: { value } });
+  };
+  // no parameter can get e(enent)
+  const setItemCountByInputTSP = (e) => {
+    let value = parseInt(e.target.value);
+    dispatch({ type: SET_ITEM_COUNT_TSP, payload: { value } });
+  };
+  const setIdCartTSP = (value) => {
+    dispatch({ type: SET_ID_CART_TSP, payload: { value } });
+  };
+
   const randomProduct = (products, name) => {
     dispatch({ type: RANDOM_PRODUCT, payload: { products, name } });
   };
@@ -181,26 +245,37 @@ export const ProductProvider = ({ children }) => {
   const updateWishList = (products) => {
     dispatch({ type: UPDATE_WISHLISH, payload: { wishList, products } });
   };
-  const hiddenProductAlertMess = () => {
-    dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS });
-  };
+
   useEffect(() => {
     let timer;
-    if (state.productAlertMess.show) {
+    if (state.singleProductAction.productAlertMess.show) {
       timer = setTimeout(() => {
-        hiddenProductAlertMess();
+        dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS });
       }, 1000);
     }
-  }, [state.productAlertMess.show]);
+  }, [state.singleProductAction.productAlertMess.show]);
+  console.log(state.singleProductAction.productAlertMess);
+
+  useEffect(() => {
+    let timer;
+    if (state.tempSingleProductAction.productAlertMess.show) {
+      timer = setTimeout(() => {
+        dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS_TSP });
+      }, 1000);
+    }
+  }, [state.tempSingleProductAction.productAlertMess]);
+
   //wishlist change
   useEffect(() => {
     updateWishList(state.products);
   }, [wishList]);
+
   //
   useEffect(() => {
     //when indexIMG change , find color follow product
     setColorFollowIndex();
   }, [state.singleProductAction.indexIMG]);
+
   useEffect(() => {
     localStorage.setItem('singleProduct', JSON.stringify(state.singleProduct));
     if (Object.keys(state.singleProduct).length > 0) {
@@ -209,6 +284,17 @@ export const ProductProvider = ({ children }) => {
     randomProduct(state.products, 'recommendProducts');
     setViewedProduct();
   }, [state.singleProduct]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'tempSingleProduct',
+      JSON.stringify(state.tempSingleProduct)
+    );
+    if (state.temSingleProduct) {
+      setSingleProductSizeTSP(state.temSingleProduct.size[0]);
+    }
+  }, [state.tempSingleProduct]);
+
   useEffect(() => {
     getProducts();
     getTable('slide', ADD_SLIDESHOW, 'full');
@@ -228,6 +314,14 @@ export const ProductProvider = ({ children }) => {
         setItemCount,
         setItemCountByInput,
         setIdCart,
+        getSingleProductTSP,
+        switchIMGTSP,
+        setColorFollowIndexTSP,
+        cleartSingleProductActionTSP,
+        setSingleProductSizeTSP,
+        setItemCountTSP,
+        setItemCountByInputTSP,
+        setIdCartTSP,
       }}
     >
       {children}

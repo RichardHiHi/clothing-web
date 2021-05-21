@@ -23,7 +23,12 @@ const ProductMiniItem = ({
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
-  const { getSingleProduct, cleartSingleProductAction } = useProductContext();
+  const {
+    getSingleProductTSP,
+    cleartSingleProductActionTSP,
+    cleartSingleProductAction,
+    getSingleProduct,
+  } = useProductContext();
   const { miniAction, currentPage } = useButtonContext();
   useEffect(() => {
     setLockImgHover(true);
@@ -110,9 +115,9 @@ const ProductMiniItem = ({
         <div className='mini-product-btn-container'>
           <button
             onClick={() => {
-              getSingleProduct(id);
+              getSingleProductTSP(id);
               miniAction('open', 'SingleProductModal');
-              cleartSingleProductAction();
+              cleartSingleProductActionTSP();
             }}
           >
             <span>Quick View</span>
@@ -120,10 +125,10 @@ const ProductMiniItem = ({
           </button>
           <button
             onClick={() => {
-              getSingleProduct(id);
+              getSingleProductTSP(id);
               miniAction('open', 'CartModal');
               miniAction('close', 'CartEditModal');
-              cleartSingleProductAction();
+              cleartSingleProductActionTSP();
             }}
           >
             <span>Quick Shop</span>

@@ -31,9 +31,12 @@ export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {
     singleProduct,
-    singleProductAction: { colorIndex, size, itemCount },
+    singleProductAction,
+    tempSingleProduct,
+    tempSingleProductAction,
   } = useProductContext();
   const addToCart = (id = null) => {
+    const { colorIndex, size, itemCount } = singleProductAction;
     let newItemCount = itemCount;
     if (isNaN(itemCount)) {
       newItemCount = 1;
@@ -48,6 +51,28 @@ export const CartProvider = ({ children }) => {
       mess: { show: false, message: '', color: '' },
     };
 
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { productCart, id },
+    });
+  };
+  //cart item
+  const addToCartTSP = (id = null) => {
+    const { colorIndex, size, itemCount } = tempSingleProductAction;
+
+    let newItemCount = itemCount;
+    if (isNaN(itemCount)) {
+      newItemCount = 1;
+    }
+    const productCart = {
+      singleProduct: tempSingleProduct,
+      colorIndex: colorIndex,
+      size: size,
+      itemCount: newItemCount,
+      //date.now là số milisecond , math.random phòng vc click 2 lần cùng nhau , chuyển sang hệ 36
+      idCart: (Date.now() + Math.random()).toString(36),
+      mess: { show: false, message: '', color: '' },
+    };
     dispatch({
       type: ADD_TO_CART,
       payload: { productCart, id },
@@ -116,6 +141,7 @@ export const CartProvider = ({ children }) => {
         removeItemCart,
         showCartmessage,
         hiddenCartItemMess,
+        addToCartTSP,
       }}
     >
       {children}

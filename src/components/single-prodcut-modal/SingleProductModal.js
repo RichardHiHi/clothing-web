@@ -9,13 +9,15 @@ import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
 import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { NextArrow, PrevArrow } from '../../utils/helper';
+import { useCartContext } from '../../context/cart_context';
 
 const SingleProductModal = () => {
   const { miniAction, isSingleProductModalOpen } = useButtonContext();
+  const { addToCartTSP } = useCartContext();
   const {
-    singleProduct: product,
+    tempSingleProduct: product,
     getSingleProduct,
-    singleProductAction: { indexIMG, colorIndex },
+    tempSingleProductAction: { indexIMG, colorIndex },
     switchIMG,
   } = useProductContext();
   const { AllOfImg, colorImg } = product;
@@ -110,9 +112,10 @@ const SingleProductModal = () => {
               <div className='sp-info-content'>
                 {product && (
                   <SingleProductInfo
+                    {...product}
                     colorIndex={colorIndex}
                     switchIMG={switchIMG}
-                    {...product}
+                    addToCart={addToCartTSP}
                   />
                 )}
                 <div className='mini-search-footer'>

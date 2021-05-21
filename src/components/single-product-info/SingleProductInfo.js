@@ -31,16 +31,20 @@ const SingleProductInfo = ({
   colorIndex,
   switchIMG,
   hiddenInfo,
+  addToCart,
 }) => {
   const { wishList, addToWishList, removeWishList } = useUserContext();
-  const { addToCart, clearCart, showCartmessage } = useCartContext();
+  const { clearCart, showCartmessage } = useCartContext();
   const {
     getSingleProduct,
-    singleProductAction: { size: sizeAction, itemCount },
+    singleProductAction: {
+      size: sizeAction,
+      itemCount,
+      productAlertMess: { show, color },
+    },
     setSingleProductSize,
     setItemCount,
     setItemCountByInput,
-    productAlertMess: { show, color },
   } = useProductContext();
   const { filterBrandUpdate } = useFilterContext();
   const { miniAction, currentPage } = useButtonContext();
