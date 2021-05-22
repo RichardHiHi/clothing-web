@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './productsCategory.scss';
 import { useProductContext } from '../../context/product_context';
 import { useFilterContext } from '../../context/filter_context';

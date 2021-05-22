@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './singleProductModal.scss';
 import { useButtonContext } from '../../context/button_context';
 import Grid from '@material-ui/core/Grid';
-import SingleProductImg from '../single-product-img/SingleProductImg';
 import { useProductContext } from '../../context/product_context';
 import SingleProductInfo from '../single-product-info/SingleProductInfo';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
@@ -24,7 +23,7 @@ const SingleProductModal = () => {
     setItemCountTSP,
     setItemCountByInputTSP,
   } = useProductContext();
-  const { AllOfImg, colorImg } = product;
+  const { AllOfImg } = product;
   const [mouseDown, setMouseDown] = useState(0);
   const [mouseUp, setMouseUp] = useState(0);
 
@@ -41,7 +40,7 @@ const SingleProductModal = () => {
         .addEventListener('mouseup', (e) => {
           setMouseUp(e.x);
         });
-    }
+    } // eslint-disable-next-line
   }, []);
   useEffect(() => {
     if (mouseDown !== mouseUp) {
@@ -53,7 +52,7 @@ const SingleProductModal = () => {
       }
     }
     setMouseDown(0);
-    setMouseUp(0);
+    setMouseUp(0); // eslint-disable-next-line
   }, [mouseUp]);
 
   const actiona = () => {

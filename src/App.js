@@ -1,11 +1,6 @@
 import React from 'react';
 import './sassStyles/global.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useLocation,
-} from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import {
   Navbar,
   SideBar,
@@ -43,7 +38,7 @@ function App() {
     } else {
       setIsInProductPage(false);
     }
-    setPage(location.pathname);
+    setPage(location.pathname); // eslint-disable-next-line
   }, [location]);
   return (
     <ScrollToTop>

@@ -89,6 +89,7 @@ const SearchMini = () => {
                       >
                         <img
                           src={product.colorImg[0].img[0].thumbnails.large.url}
+                          alt='empty'
                         />
                         <div className='product-title'>
                           <span className='product-name'>{product.name}</span>

@@ -119,16 +119,15 @@ export const CartProvider = ({ children }) => {
   };
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
-    totalCart();
+    totalCart(); // eslint-disable-next-line
   }, [state.cart]);
 
   useEffect(() => {
-    let timer;
     if (state.cartAlertMess.show) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         hiddenCartAlertMess();
       }, 1500);
-    }
+    } // eslint-disable-next-line
   }, [state.cartAlertMess.show]);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect, useState } from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
   ADD_TO_WISHLIST,
@@ -28,8 +28,7 @@ const initialState = {
   wishListAlertMess: { show: false, message: '', color: '', status: '' },
 };
 export const UserProvider = ({ children }) => {
-  const { isAuthenticated, loginWithRedirect, logout, user, isLoading } =
-    useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [state, dispatch] = useReducer(reducer, initialState);
   //return user follow email
   const getRecord = async (email) => {
@@ -74,7 +73,7 @@ export const UserProvider = ({ children }) => {
     const record = await getRecord(user.sub);
     //if there is not user , create it
     if (record.length === 0) {
-      const a = await postRecord(user, state.wishList);
+      await postRecord(user, state.wishList);
       setMyUser(user, state.wishList);
     } else {
       // update wishlist on air and local
@@ -100,29 +99,31 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: HIDDEN_WISHLIST_ALTER_MESS });
   };
   useEffect(() => {
-    let timer;
     if (state.wishListAlertMess.show) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         hiddenWishListAlertMess();
       }, 1500);
-    }
+    } // eslint-disable-next-line
   }, [state.wishListAlertMess.show]);
   useEffect(() => {
     if (isAuthenticated) {
       handleUpdateLogin();
     } else {
       setMyUser(false);
-    }
+    } // eslint-disable-next-line
   }, [isAuthenticated]);
-  useEffect(async () => {
+  useEffect(() => {
     localStorage.setItem('wishList', JSON.stringify(state.wishList));
-    if (state.myUser) {
-      const newRecord = await getRecord(state.myUser.sub);
-      //get recordId for update on air
-      const recordId = newRecord[0].id;
-      await updateRecord(state.myUser, state.wishList, recordId);
-      setMyUser(state.myUser, state.wishList);
-    }
+    const updateWishList = async () => {
+      if (state.myUser) {
+        const newRecord = await getRecord(state.myUser.sub);
+        //get recordId for update on air
+        const recordId = newRecord[0].id;
+        await updateRecord(state.myUser, state.wishList, recordId);
+        setMyUser(state.myUser, state.wishList);
+      }
+    };
+    updateWishList();
   }, [state.wishList]);
 
   return (

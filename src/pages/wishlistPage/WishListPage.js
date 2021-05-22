@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import hero from '../../assets/hero.jpg';
 import './wishListPage.scss';
 import { useProductContext } from '../../context/product_context';
 import Grid from '@material-ui/core/Grid';
-import { ProductMiniItem, ProductMiniLoading } from '../../components';
+import { ProductMiniItem } from '../../components';
 import { Link } from 'react-router-dom';
 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 const WishListPage = () => {
   const [numberGrid, setNumberGrid] = useState(0);
-  const { wishProducts, productsLoading } = useProductContext();
+  const { wishProducts } = useProductContext();
   return (
     <div className='content'>
       <div className='hero-section margin'>

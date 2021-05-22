@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { getProduct } from '../../utils/helper';
+import React from 'react';
 import './sale.scss';
 import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';

@@ -4,14 +4,13 @@ import { CartPageItem, SingleProductRecommend } from '../../components';
 import hero from '../../assets/hero.jpg';
 import Grid from '@material-ui/core/Grid';
 import { useCartContext } from '../../context/cart_context';
-import { useProductContext } from '../../context/product_context';
+
 import payment from '../../assets/payment.png';
 import { formatPrice, scrollToTop } from '../../utils/helper';
 import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 import { Link } from 'react-router-dom';
 const CartPage = () => {
   const { cart, amountTotal, clearCart } = useCartContext();
-  const { getSingleProduct } = useProductContext();
 
   return (
     <div className='content'>

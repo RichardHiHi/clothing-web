@@ -3,7 +3,7 @@ import './toolbar.scss';
 import { useButtonContext } from '../../context/button_context';
 import { BsSearch, BsHeart } from 'react-icons/bs';
 import { AiOutlineShop } from 'react-icons/ai';
-import { BiUser, BiUserCheck } from 'react-icons/bi';
+import { BiUser } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';

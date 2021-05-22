@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './trending.scss';
 import Grid from '@material-ui/core/Grid';
 import ProductMiniItem from '../product-mini-item/ProductMiniItem';
-import { getProduct } from '../../utils/helper';
 import ProductMiniLoading from '../product-mimi-loading/ProductMiniLoading';
 import { useProductContext } from '../../context/product_context';
 
 const Trending = () => {
-  const {
-    trendingProducts: trending,
-    productsLoading: loading,
-  } = useProductContext();
+  const { trendingProducts: trending, productsLoading: loading } =
+    useProductContext();
 
   const [number, setNumber] = useState(8);
 

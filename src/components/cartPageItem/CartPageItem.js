@@ -15,12 +15,8 @@ const CartPageItem = ({ cartItem }) => {
   const { toggleItemCart, setItemCartByInput, removeItemCart } =
     useCartContext();
   const { miniAction } = useButtonContext();
-  const {
-    cleartSingleProductActionTSP,
-    setIdCartTSP,
-    getSingleProduct,
-    getSingleProductTSP,
-  } = useProductContext();
+  const { setIdCartTSP, getSingleProduct, getSingleProductTSP } =
+    useProductContext();
   const {
     colorIndex,
     size,
@@ -39,7 +35,7 @@ const CartPageItem = ({ cartItem }) => {
       setInputNumber(itemCount);
     } else {
       setInputNumber(0);
-    }
+    } // eslint-disable-next-line
   }, [itemCount]);
   return (
     <Grid container>

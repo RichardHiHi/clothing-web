@@ -20,7 +20,7 @@ import CartToolBar from '../cart-tool-bar/CartToolBar';
 const Navbar = () => {
   const { miniAction, currentPage } = useButtonContext();
   const { saleProducts: sale } = useProductContext();
-  const { filterCategoryUpdate, clearAllFilter } = useFilterContext();
+  const { filterCategoryUpdate } = useFilterContext();
   const [hiddenToolbar, setHiddenToolbar] = useState(true);
   const [hiddenBackBTN, setHiddenBackBTN] = useState(false);
   const [hiddenNavbar, setHiddenNavbar] = useState(true);
@@ -60,7 +60,7 @@ const Navbar = () => {
       }
 
       prevScrollpos = currentScrollPos;
-    };
+    }; // eslint-disable-next-line
   }, [currentPage]);
   const handleSubHover = () => {
     setSubHover(false);
@@ -68,12 +68,7 @@ const Navbar = () => {
       setSubHover(true);
     }, 400);
   };
-  const offSubHover = () => {
-    setSubHover(false);
-  };
-  const onSubHover = () => {
-    setSubHover(true);
-  };
+
   var settingSlide = {
     speed: 600,
     slidesToShow: 4,
@@ -185,9 +180,9 @@ const Navbar = () => {
                 </div>
               </li>
               <li>
-                <Link className='nav-button' style={{ color: 'red' }}>
+                <button className='nav-button' style={{ color: 'red' }}>
                   Sale
-                </Link>
+                </button>
                 <div
                   className={
                     subHover
@@ -236,7 +231,7 @@ const Navbar = () => {
                 </div>
               </li>
               <li>
-                <a href='#'>About</a>
+                <Link to='/about'>About</Link>
               </li>
               <li>
                 <Link to='/blog'>Blog</Link>

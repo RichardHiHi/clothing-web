@@ -421,7 +421,7 @@ const products_reducer = (state, action) => {
         if (wishList.some((wish) => wish === product.id)) {
           return product;
         }
-        return;
+        return undefined;
       });
       newWishProduct = newWishProduct.filter((item) => item);
     }

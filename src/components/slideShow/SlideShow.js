@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './slideShow.scss';
 import blur from '../../assets/blur.jpeg';
-import { fetchData } from '../../utils/helper';
 import { useProductContext } from '../../context/product_context';
 import { useFilterContext } from '../../context/filter_context';
 import { Link } from 'react-router-dom';
@@ -37,7 +36,7 @@ const SlideShow = () => {
       .addEventListener('touchend', (e) => {
         setMouseUp(e.changedTouches[0].clientX);
         console.log(e);
-      });
+      }); // eslint-disable-next-line
   }, []);
   useEffect(() => {
     if (mouseDown !== mouseUp) {
@@ -61,7 +60,7 @@ const SlideShow = () => {
       }
     }
     setMouseDown(0);
-    setMouseUp(0);
+    setMouseUp(0); // eslint-disable-next-line
   }, [mouseUp]);
 
   if (slides.length === 0) {

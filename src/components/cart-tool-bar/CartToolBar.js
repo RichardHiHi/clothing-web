@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './cartToolBar.scss';
 // import Gird from '@material-ui/core/Gird';
 import { useCartContext } from '../../context/cart_context';
@@ -15,7 +15,7 @@ const CartToolBar = ({ hiddenToolbar }) => {
       indexIMG,
       size,
       itemCount,
-      productAlertMess: { show, color, message },
+      productAlertMess: { show, color },
     },
   } = useProductContext();
   const { addToCart } = useCartContext();

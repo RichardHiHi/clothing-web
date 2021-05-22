@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { BlogInsta, BlogItem } from '../../components';
-import { fetchData, NextArrow, PrevArrow } from '../../utils/helper';
+import { BlogItem } from '../../components';
+import { NextArrow, PrevArrow } from '../../utils/helper';
 import Slider from 'react-slick';
 import './blogPage.scss';
 import Grid from '@material-ui/core/Grid';
 import LoadingImg from '../../components/loadding-img/LoaddingImg';
 import { useProductContext } from '../../context/product_context';
 import { scrollToTop } from '../../utils/helper';
-
+import { Link } from 'react-router-dom';
 const BlogPage = () => {
   const { blogs } = useProductContext();
   const [currentPage, setCurrentPage] = useState(0);
-  const [blogPerPage, setBlogPerpage] = useState(4);
+  const blogPerPage = 4;
   const [pageNumbers, setPageNumbers] = useState(0);
 
   useEffect(() => {
     setPageNumbers(Math.round(blogs.length / blogPerPage));
+    // eslint-disable-next-line
   }, []);
 
   const switchPage = (value) => {
@@ -56,9 +57,9 @@ const BlogPage = () => {
               {Array.from({ length: 3 }, (_, i) => i).map((blog, index) => {
                 return (
                   <article className='blog-slide position' key={index}>
-                    <a href='#'>
+                    <Link to='#'>
                       <LoadingImg classImg={'img-blog'} />
-                    </a>
+                    </Link>
                   </article>
                 );
               })}
@@ -95,18 +96,18 @@ const BlogPage = () => {
             {blogs.slice(0, 4).map((blog, index) => {
               return (
                 <article className='blog-slide position' key={index}>
-                  <a href='#'>
+                  <Link to='#'>
                     <div
                       className='img-blog'
                       style={{ backgroundImage: `url(${blog.img})` }}
                     ></div>
-                  </a>
+                  </Link>
                   <div className='blog-page-post-info'>
                     <span className='post-author'>
                       by <span className='bold'>{blog.author}</span>
                     </span>
                     <h4 className='post-title'>
-                      <a href='#'>{blog.postTitle}</a>
+                      <Link to='#'>{blog.postTitle}</Link>
                     </h4>
                     <span className='post-time'>
                       <span className='bold'>

@@ -33,7 +33,6 @@ import {
   SET_ID_CART_TSP,
   HIDDEN_PRODUCT_ALTER_MESS_TSP,
 } from '../actions';
-import { ContactsOutlined } from '@material-ui/icons';
 import { useUserContext } from '../context/user_context';
 const ProductContext = React.createContext();
 var Airtable = require('airtable');
@@ -249,36 +248,35 @@ export const ProductProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    let timer;
     if (state.singleProductAction.productAlertMess.show) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS });
       }, 1000);
     }
+    // eslint-disable-next-line
   }, [state.singleProductAction.productAlertMess.show]);
 
   useEffect(() => {
-    let timer;
     if (state.tempSingleProductAction.productAlertMess.show) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         dispatch({ type: HIDDEN_PRODUCT_ALTER_MESS_TSP });
       }, 1000);
-    }
+    } // eslint-disable-next-line
   }, [state.tempSingleProductAction.productAlertMess]);
 
   //wishlist change
   useEffect(() => {
-    updateWishList(state.products);
+    updateWishList(state.products); // eslint-disable-next-line
   }, [wishList]);
 
   //
   useEffect(() => {
     //when indexIMG change , find color follow product
-    setColorFollowIndex();
+    setColorFollowIndex(); // eslint-disable-next-line
   }, [state.singleProductAction.indexIMG]);
   useEffect(() => {
     //when indexIMG change , find color follow product
-    setColorFollowIndexTSP();
+    setColorFollowIndexTSP(); // eslint-disable-next-line
   }, [state.tempSingleProductAction.indexIMG]);
 
   useEffect(() => {
@@ -287,7 +285,7 @@ export const ProductProvider = ({ children }) => {
       setSingleProductSize(state.singleProduct.size[0]);
     }
     randomProduct(state.products, 'recommendProducts');
-    setViewedProduct();
+    setViewedProduct(); // eslint-disable-next-line
   }, [state.singleProduct]);
 
   useEffect(() => {
@@ -297,7 +295,7 @@ export const ProductProvider = ({ children }) => {
     );
     if (state.temSingleProduct) {
       setSingleProductSizeTSP(state.temSingleProduct.size[0]);
-    }
+    } // eslint-disable-next-line
   }, [state.tempSingleProduct]);
 
   useEffect(() => {
@@ -306,7 +304,7 @@ export const ProductProvider = ({ children }) => {
     getTable('collection', ADD_COLLECTION, 'full');
     getTable('blog', ADD_BLOG);
     getTable('banner', ADD_BANNER);
-    getTable('blog', ADD_BLOG_HOME);
+    getTable('blog', ADD_BLOG_HOME); // eslint-disable-next-line
   }, []);
   return (
     <ProductContext.Provider

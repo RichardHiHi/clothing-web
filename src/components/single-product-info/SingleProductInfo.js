@@ -62,7 +62,7 @@ const SingleProductInfo = ({
     }
     return () => {
       clearTimeout(timeout);
-    };
+    }; // eslint-disable-next-line
   }, [shake]);
 
   return (
@@ -288,9 +288,9 @@ const SingleProductInfo = ({
         <div className='social-footer-container'>
           {icons.map((icon, index) => {
             return (
-              <a href='#' className={`social-icon ${icon.name}`} key={index}>
+              <Link to='#' className={`social-icon ${icon.name}`} key={index}>
                 {icon.icon}
-              </a>
+              </Link>
             );
           })}
         </div>

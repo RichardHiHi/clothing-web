@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './cartModal.scss';
 import { useButtonContext } from '../../context/button_context';
 import { useProductContext } from '../../context/product_context';
@@ -25,7 +25,7 @@ const CartModal = () => {
     tempSingleProductAction: {
       size: sizeAction,
       itemCount,
-      productAlertMess: { show, color, message },
+      productAlertMess: { show, color },
     },
     setSingleProductSizeTSP,
     setItemCountTSP,

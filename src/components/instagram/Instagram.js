@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './instagram.scss';
 import Slider from 'react-slick';
-import { instas, secShippings } from '../../utils/data';
+import { secShippings } from '../../utils/data';
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi';
 import Grid from '@material-ui/core/Grid';
 import Loadding from '../loadding-img/LoaddingImg';
@@ -10,8 +10,7 @@ import { useProductContext } from '../../context/product_context';
 import { useButtonContext } from '../../context/button_context';
 const Instagram = () => {
   const [instas, setInstas] = useState([]);
-  const { getSingleProductTSP, cleartSingleProductActionTSP } =
-    useProductContext();
+  const { getSingleProductTSP } = useProductContext();
   const { miniAction } = useButtonContext();
   useEffect(() => {
     document
@@ -38,7 +37,7 @@ const Instagram = () => {
 
       setInstas(newInstas);
     };
-    fetchData();
+    fetchData(); // eslint-disable-next-line
   }, []);
   const NextArrow = ({ onClick }) => {
     return (

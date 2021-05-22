@@ -2,7 +2,7 @@ import React from 'react';
 import './loginMini.scss';
 import { useButtonContext } from '../../context/button_context';
 import RotateCloseBtn from '../rotateCloseBtn/RotateCloseBtn';
-import CloseIcon from '@material-ui/icons/Close';
+import { Link } from 'react-router-dom';
 const LoginMini = () => {
   const { isMiniLoginOpen, miniAction } = useButtonContext();
   const action = () => {
@@ -58,11 +58,11 @@ const LoginMini = () => {
               >
                 <p className='login-link-acc'>
                   New customer?
-                  <a href='#'>Create your account</a>
+                  <Link to='#'>Create your account</Link>
                 </p>
                 <p className='login-link-acc'>
                   Lost password?
-                  <a href='#'>Recover password</a>
+                  <Link to='#'>Recover password</Link>
                 </p>
               </div>
             </form>

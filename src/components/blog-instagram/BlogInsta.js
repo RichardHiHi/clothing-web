@@ -5,6 +5,7 @@ import Loadding from '../loadding-img/LoaddingImg';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import BlogItem from '../blog-item/BlogItem';
 import { useProductContext } from '../../context/product_context';
+import { Link } from 'react-router-dom';
 const BlogInsta = () => {
   const { blogHomes: blogs } = useProductContext();
   var settingsBlog = {
@@ -45,12 +46,12 @@ const BlogInsta = () => {
                 {Array.from({ length: 3 }, (_, i) => i).map((blog, index) => {
                   return (
                     <article className='blog-slide padding' key={index}>
-                      <a href='#'>
+                      <Link to='#'>
                         <Loadding classImg={'img-blog'} />
-                      </a>
+                      </Link>
                       <div className='post-info'>
                         <h4 className='post-title'>
-                          <a href='#'>Style for couple in Weeding season</a>
+                          <Link to='#'>Style for couple in Weeding season</Link>
                         </h4>
                         <span className='post-author'>
                           by <span className='bold'>Henrry</span>

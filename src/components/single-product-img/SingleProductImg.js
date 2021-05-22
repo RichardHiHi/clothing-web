@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { NextArrow, PrevArrow } from '../../utils/helper';
 import './singleProductImg.scss';
 const SingleProductImg = ({

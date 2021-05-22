@@ -22,14 +22,8 @@ const CartMiniProductItem = ({ cartItem }) => {
     mess: { show, color },
   } = cartItem;
   const { miniAction } = useButtonContext();
-  const {
-    getSingleProduct,
-    getSingleProductTSP,
-    switchIMG,
-    cleartSingleProductActionTSP,
-    cleartSingleProductAction,
-    setIdCartTSP,
-  } = useProductContext();
+  const { getSingleProduct, getSingleProductTSP, switchIMG, setIdCartTSP } =
+    useProductContext();
   const { hiddenCartItemMess } = useCartContext();
   const mutipleAction = (id, indexFollowColor) => {
     getSingleProduct(id);
@@ -42,15 +36,14 @@ const CartMiniProductItem = ({ cartItem }) => {
       setInputNumber(itemCount);
     } else {
       setInputNumber(0);
-    }
+    } // eslint-disable-next-line
   }, [itemCount]);
   useEffect(() => {
-    let timer;
     if (show) {
-      timer = setTimeout(() => {
+      setTimeout(() => {
         hiddenCartItemMess(idCart);
       }, 1500);
-    }
+    } // eslint-disable-next-line
   }, [show]);
   //get first img of color
   let imgFollowColor = colorImg.find((item) => item.colorName === colorIndex)

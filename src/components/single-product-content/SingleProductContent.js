@@ -35,7 +35,7 @@ const SingleProductContent = () => {
       .querySelector('.single-product-img')
       .addEventListener('mouseup', (e) => {
         setMouseUp(e.x);
-      });
+      }); // eslint-disable-next-line
   }, []);
   useEffect(() => {
     if (mouseDown !== mouseUp) {
@@ -47,7 +47,7 @@ const SingleProductContent = () => {
       }
     }
     setMouseDown(0);
-    setMouseUp(0);
+    setMouseUp(0); // eslint-disable-next-line
   }, [mouseUp]);
   //set position of slider
   const handleOnClick = (index) => {
@@ -55,7 +55,7 @@ const SingleProductContent = () => {
   };
   //set color follow index
   useEffect(() => {
-    handleOnClick(indexIMG - 2);
+    handleOnClick(indexIMG - 2); // eslint-disable-next-line
   }, [indexIMG]);
 
   var settingsSingleProduct = {
@@ -108,10 +108,8 @@ const SingleProductContent = () => {
                 {...product}
                 addToCart={addToCart}
                 colorIndex={colorIndex}
-                switchIMG={switchIMG}
                 hiddenInfo={hiddenInfo}
                 switchIMG={switchIMG}
-                addToCart={addToCart}
                 setSingleProductSize={setSingleProductSize}
                 singleProductAction={singleProductAction}
                 setItemCount={setItemCount}

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './banner.scss';
 import Grid from '@material-ui/core/Grid';
 import LoaddingImg from '../loadding-img/LoaddingImg';
-import { fetchData } from '../../utils/helper';
 import { Link } from 'react-router-dom';
 import { useFilterContext } from '../../context/filter_context';
 import { useProductContext } from '../../context/product_context';
@@ -32,7 +31,7 @@ const BannerBlog = () => {
                         ></div>
                       </Link>
                       {/* change h3 h4 */}
-                      {index % 2 == 0 ? (
+                      {index % 2 === 0 ? (
                         <div className='banner-title'>
                           <h3>{banner.bigText}</h3>
                           <h4>{banner.smallText}</h4>
@@ -62,9 +61,9 @@ const BannerBlog = () => {
               return (
                 <Grid item sx={12} sm={6} md={6} lg={6} key={index}>
                   <div className='banner-content'>
-                    <a href=''>
+                    <Link to=''>
                       <LoaddingImg classImg={'banner-img'} />
-                    </a>
+                    </Link>
                   </div>
                 </Grid>
               );

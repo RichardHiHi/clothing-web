@@ -1,19 +1,20 @@
 import React from 'react';
 import './blogItem.scss';
 import LoadingImg from '../loadding-img/LoaddingImg';
+import { Link } from 'react-router-dom';
 const BlogItem = ({ blog, hideContent }) => {
   if (blog) {
     return (
       <article className='blog-slide padding' key={blog.id}>
-        <a href='#'>
+        <Link to='#'>
           <div
             className='img-blog'
             style={{ backgroundImage: `url(${blog.img})` }}
           ></div>
-        </a>
+        </Link>
         <div className='post-info'>
           <h4 className='post-title'>
-            <a href='#'>{blog.postTitle}</a>
+            <Link to='#'>{blog.postTitle}</Link>
           </h4>
           <span className='post-author'>
             by <span className='bold'>{blog.author}</span>
@@ -35,12 +36,12 @@ const BlogItem = ({ blog, hideContent }) => {
   }
   return (
     <article className='blog-slide padding'>
-      <a href='#'>
+      <Link to='#'>
         <LoadingImg classImg={'img-blog'} />
-      </a>
+      </Link>
       <div className='post-info'>
         <h4 className='post-title'>
-          <a href='#'>Style Advice All Men Should Hear</a>
+          <Link to='#'>Style Advice All Men Should Hear</Link>
         </h4>
         <span className='post-author'>
           by <span className='bold'>admin</span>

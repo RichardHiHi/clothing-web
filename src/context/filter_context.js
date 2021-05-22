@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react';
+import React, { useEffect, useContext, useReducer } from 'react';
 import reducer from '../reducers/filter_reducer';
 import { useProductContext } from '../context/product_context';
 import {
   SORT_PRODUCTS,
-  LOAD_PRODUCTS,
   UPDATE_SORT_OPTION,
   UPDATE_FILTER,
   FILTER_PRODUCTS,
@@ -43,7 +42,7 @@ export const FilterProvider = ({ children }) => {
     dispatch({
       type: 'LOAD_PRODUCTS',
       payload: { products, category, color, size, brand },
-    });
+    }); // eslint-disable-next-line
   }, [products]);
   useEffect(() => {
     dispatch({
@@ -52,7 +51,7 @@ export const FilterProvider = ({ children }) => {
     dispatch({
       type: SORT_PRODUCTS,
     });
-    dispatch({ type: UPDATE_FILTER_MENU });
+    dispatch({ type: UPDATE_FILTER_MENU }); // eslint-disable-next-line
   }, [state.sortOption, state.filter, products]);
 
   const sortUpdate = (e) => {

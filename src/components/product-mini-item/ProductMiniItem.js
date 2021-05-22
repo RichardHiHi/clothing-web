@@ -25,14 +25,13 @@ const ProductMiniItem = ({
   const [lockImgHover, setLockImgHover] = useState(true);
   const {
     getSingleProductTSP,
-    cleartSingleProductActionTSP,
-    cleartSingleProductAction,
+
     getSingleProduct,
   } = useProductContext();
-  const { miniAction, currentPage } = useButtonContext();
+  const { miniAction } = useButtonContext();
   useEffect(() => {
     setLockImgHover(true);
-    setIndexImg(0);
+    setIndexImg(0); // eslint-disable-next-line
   }, [paginationPage, wishList, recommendProducts]);
   return (
     <div className='mini-product-item'>

@@ -31,7 +31,7 @@ export const ButtonProvider = ({ children }) => {
     dispatch({ type: SET_PAGE, payload: { value } });
   };
   useEffect(() => {
-    clearAllFilter();
+    clearAllFilter(); // eslint-disable-next-line
   }, [state.isMiniSearchOpen]);
   return (
     <ButtonContext.Provider

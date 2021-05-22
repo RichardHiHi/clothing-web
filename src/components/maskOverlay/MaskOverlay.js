@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './maskOverlay.scss';
 import CloseIcon from '@material-ui/icons/Close';
 import { useButtonContext } from '../../context/button_context';
