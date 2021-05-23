@@ -48,6 +48,7 @@ export const CLEAR_ALL_FILTERS = 'CLEAR_ALL_FILTERS';
 //cart
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const CLEAR_CART = ' CLEAR_CART';
+export const CHECK_CART = ' CHECK_CART';
 export const CART_TOTAL = 'CART_TOTAL';
 export const TOGGLE_ITEM_CART = 'TOGGLE_ITEM_CART';
 export const REMOVE_ITEM_CART = 'REMOVE_ITEM_CART';

@@ -7,6 +7,7 @@ import {
   HIDDEN_CART_ALTER_MESS,
   SHOW_CART_ALTER_MESS,
   HIDDEN_CART_ITEM_MESS,
+  CHECK_CART,
 } from '../actions';
 const button_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
@@ -22,7 +23,7 @@ const button_reducer = (state, action) => {
       if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
         return { ...state };
       }
-      console.log(123);
+
       newCart = newCart.filter((itemCart) => itemCart.idCart !== id);
     }
     //ktra xem trong cart có cartproduct trùng không
@@ -149,6 +150,9 @@ const button_reducer = (state, action) => {
           message: 'items is max',
         };
       }
+      if (newItemCount < 0) {
+        newItemCount = 0;
+      }
       newProductCart = {
         ...newProductCart,
         itemCount: newItemCount,
@@ -229,6 +233,15 @@ const button_reducer = (state, action) => {
       ...state,
       cart: newCart,
     };
+  }
+  //checkCart
+  if (action.type === CHECK_CART) {
+    const check = state.cart.some((item) => item.itemCount < 1);
+
+    if (state.cart.length > 0 && check === false) {
+      return { ...state, checkCart: true };
+    }
+    return { ...state, checkCart: false };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

@@ -7,6 +7,7 @@ import CartPage from './cartPage/CartPage';
 import WishListPage from './wishlistPage/WishListPage';
 import PrivateRouter from './PrivateRoute';
 import CheckOutPage from './checkOutPage/CheckOutPage';
+import UserPage from './user-page/UserPage';
 export {
   HomePage,
   BlogPage,
@@ -17,4 +18,5 @@ export {
   WishListPage,
   PrivateRouter,
   CheckOutPage,
+  UserPage,
 };

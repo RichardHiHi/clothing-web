@@ -10,12 +10,11 @@ import FilterListOutlinedIcon from '@material-ui/icons/FilterListOutlined';
 import SortIcon from '@material-ui/icons/Sort';
 import { useCartContext } from '../../context/cart_context';
 import { useUserContext } from '../../context/user_context';
-import { FaUserCheck } from 'react-icons/fa';
 
 const Toolbar = () => {
   const { miniAction, isInProductPage, currentPage } = useButtonContext();
   const { totalItem } = useCartContext();
-  const { wishList, myUser, logout, loginWithRedirect } = useUserContext();
+  const { wishList, myUser, loginWithRedirect } = useUserContext();
   return (
     <div className='toolbar-section'>
       {!isInProductPage && (
@@ -102,12 +101,14 @@ const Toolbar = () => {
       </div>
       <div className='toolbar-icon-wrapper'>
         {myUser && (
-          <button className='toolbar-link' onClick={logout}>
+          <Link to='/user' className='toolbar-link'>
             <span className='toolbar-icon'>
-              <FaUserCheck />
+              <div className='user__img'>
+                <img src={myUser.picture} alt='empty'></img>
+              </div>
             </span>
             <span className='toolbar-name'>{myUser.nickname}</span>
-          </button>
+          </Link>
         )}
         {!myUser && (
           <button className='toolbar-link' onClick={loginWithRedirect}>

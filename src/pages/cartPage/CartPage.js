@@ -4,14 +4,15 @@ import { CartPageItem, SingleProductRecommend } from '../../components';
 import hero from '../../assets/hero.jpg';
 import Grid from '@material-ui/core/Grid';
 import { useCartContext } from '../../context/cart_context';
-
 import payment from '../../assets/payment.png';
 import { formatPrice, scrollToTop } from '../../utils/helper';
 import RemoveShoppingCartOutlinedIcon from '@material-ui/icons/RemoveShoppingCartOutlined';
 import { Link } from 'react-router-dom';
+import { useUserContext } from '../../context/user_context';
 const CartPage = () => {
-  const { cart, amountTotal, clearCart } = useCartContext();
-
+  const { cart, amountTotal, clearCart, checkCart, showCartmessage } =
+    useCartContext();
+  const { myUser, logout } = useUserContext();
   return (
     <div className='content'>
       <div className='hero-section margin'>
@@ -65,7 +66,35 @@ const CartPage = () => {
                         Taxes, shipping and discounts codes calculated at
                         checkout
                       </span>
-                      <button className='button_primary'>CHECK OUT</button>
+                      {!myUser && (
+                        <button
+                          className='button_primary'
+                          onClick={() =>
+                            logout({ returnTo: window.location.origin })
+                          }
+                        >
+                          LOGIN
+                        </button>
+                      )}
+                      {myUser && checkCart && (
+                        <Link to='/checkOut' className='button_primary'>
+                          CHECK OUT
+                        </Link>
+                      )}
+                      {myUser && !checkCart && (
+                        <button
+                          onClick={() =>
+                            showCartmessage(
+                              'Warning!',
+                              'please fill quantity of cart item',
+                              '#ff9800'
+                            )
+                          }
+                          className='button_primary'
+                        >
+                          CHECK OUT
+                        </button>
+                      )}
                       <img
                         src={payment}
                         alt='logo'
@@ -77,7 +106,7 @@ const CartPage = () => {
               </div>
             </>
           ) : (
-            <div class='shopping-cart--empty'>
+            <div className='shopping-cart--empty'>
               <RemoveShoppingCartOutlinedIcon />
               <h4>Your cart is empty.</h4>
               <p>
@@ -86,7 +115,10 @@ const CartPage = () => {
                 <br /> You will find a lot of interesting products on our "Shop"
                 page.
               </p>
-              <Link to='/products' class='link-back-to-shop button_primary '>
+              <Link
+                to='/products'
+                className='link-back-to-shop button_primary '
+              >
                 <span>RETURN TO SHOP</span>
               </Link>
             </div>

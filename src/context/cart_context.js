@@ -9,6 +9,7 @@ import {
   HIDDEN_CART_ALTER_MESS,
   SHOW_CART_ALTER_MESS,
   HIDDEN_CART_ITEM_MESS,
+  CHECK_CART,
 } from '../actions';
 import { useProductContext } from '../context/product_context';
 
@@ -25,6 +26,7 @@ const initialState = {
   cart: getLocalStorage(),
   amountTotal: 0,
   totalItem: 0,
+  checkCart: false,
   cartAlertMess: { show: false, message: '', color: '', status: '' },
 };
 export const CartProvider = ({ children }) => {
@@ -117,9 +119,14 @@ export const CartProvider = ({ children }) => {
   const hiddenCartItemMess = (idCart) => {
     dispatch({ type: HIDDEN_CART_ITEM_MESS, payload: { idCart } });
   };
+  const checkcart = () => {
+    dispatch({ type: CHECK_CART });
+  };
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
-    totalCart(); // eslint-disable-next-line
+    totalCart();
+    checkcart();
+    // eslint-disable-next-line
   }, [state.cart]);
 
   useEffect(() => {

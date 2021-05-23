@@ -87,6 +87,11 @@ p {
     pointer-events: none;
     background-color: rgb(165, 165, 165);
   }
+  &.link {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+  }
   margin: 10px 0;
   width: 100%;
   border-radius: 30px;
@@ -459,7 +464,9 @@ p {
     }
   }
 }
-
+.relative {
+  position: relative;
+}
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {
   html {

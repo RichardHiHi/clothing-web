@@ -4,7 +4,6 @@ import { useUserContext } from '../context/user_context';
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { myUser } = useUserContext();
-  console.log(myUser);
   return (
     <Route
       {...rest}

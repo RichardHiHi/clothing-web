@@ -62,12 +62,26 @@ const SlideShow = () => {
     setMouseDown(0);
     setMouseUp(0); // eslint-disable-next-line
   }, [mouseUp]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSlideIndex((oldTest) => {
+        let newTest = oldTest + 1;
+        if (newTest > 3) {
+          newTest = 0;
+        }
+        return newTest;
+      });
+    }, 5000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [slideIdex]);
 
   if (slides.length === 0) {
     return (
       <div className='section-slide-show-inner'>
         <div className='section-slide-show-inner-loadding '>
-          <img src={blur} alt='' className='img-loading' />
+          <img src={blur} alt='empty' className='img-loading' />
         </div>
         <div className='slide-dot-button-container'>
           {Array.from({ length: 4 }, (_, i) => i).map((a, index) => {

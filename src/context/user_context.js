@@ -123,7 +123,7 @@ export const UserProvider = ({ children }) => {
         setMyUser(state.myUser, state.wishList);
       }
     };
-    updateWishList();
+    updateWishList(); // eslint-disable-next-line
   }, [state.wishList]);
 
   return (

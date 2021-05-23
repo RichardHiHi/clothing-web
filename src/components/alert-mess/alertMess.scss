@@ -4,7 +4,9 @@
     opacity: 1;
     visibility: visible;
     left: 10px;
+    @include transform(scale(1));
   }
+  @include transform(scale(0));
   min-width: 200px;
   height: 45px;
   display: flex;
@@ -18,7 +20,7 @@
   z-index: 102;
   border-radius: 4px;
   box-shadow: 1px 1px 5px;
-  left: -100px;
+  left: -150px;
   padding: 0 10px;
   span {
     @include font-size-weight(1.5rem, 500);

@@ -57,7 +57,7 @@ const WishListPage = () => {
           </div>
         ) : (
           <div className='sale-container section-container'>
-            <div class='shopping-cart--empty'>
+            <div className='shopping-cart--empty'>
               <FavoriteBorderIcon />
               <h4>WISHLIST IS EMPTY.</h4>
               <p>
@@ -65,7 +65,10 @@ const WishListPage = () => {
                 <br /> You will find a lot of interesting products on our "Shop"
                 page.
               </p>
-              <Link to='/products' class='link-back-to-shop button_primary '>
+              <Link
+                to='/products'
+                className='link-back-to-shop button_primary '
+              >
                 <span>RETURN TO SHOP</span>
               </Link>
             </div>

@@ -9,12 +9,15 @@ import { useProductContext } from '../../context/product_context';
 import { useUserContext } from '../../context/user_context';
 import { Link } from 'react-router-dom';
 import { useFilterContext } from '../../context/filter_context';
+import { useCartContext } from '../../context/cart_context';
 const SideBar = () => {
   const [test, setTest] = useState('menu');
   const { isSideBarOpen, miniAction } = useButtonContext();
   const { category } = useProductContext();
   const { logout, myUser, loginWithRedirect } = useUserContext();
   const { filterUpdate } = useFilterContext();
+  const { cart, checkCart, showCartmessage } = useCartContext();
+
   return (
     <div className={isSideBarOpen ? 'sidebar sidebar-openned' : 'sidebar '}>
       <div
@@ -59,12 +62,7 @@ const SideBar = () => {
         </li>
         <li>
           <Link to='/products' onClick={() => miniAction('close', 'SideBar')}>
-            Products
-          </Link>
-        </li>
-        <li>
-          <Link to='' onClick={() => miniAction('close', 'SideBar')}>
-            Sale
+            Shopping
           </Link>
         </li>
         <li>
@@ -85,7 +83,6 @@ const SideBar = () => {
         </li>
         <li>
           <button
-            href=''
             onClick={() => {
               miniAction('close', 'SideBar');
               miniAction('open', 'MiniSearch');
@@ -95,7 +92,7 @@ const SideBar = () => {
             Search
           </button>
         </li>
-        {myUser && (
+        {myUser && checkCart && (
           <>
             <li>
               <Link
@@ -114,6 +111,40 @@ const SideBar = () => {
             </li>
           </>
         )}
+        {myUser && !checkCart && (
+          <>
+            <li>
+              <button
+                onClick={() => {
+                  miniAction('close', 'SideBar');
+                  if (cart.length === 0) {
+                    showCartmessage(
+                      'Warning!',
+                      'Cart is empty, please chose your product',
+                      '#ff9800'
+                    );
+                  } else {
+                    showCartmessage(
+                      'Warning!',
+                      'please fill quantity of cart item',
+                      '#ff9800'
+                    );
+                  }
+                }}
+              >
+                <CheckCircleOutlineOutlinedIcon />
+                Check Out
+              </button>
+            </li>
+            <li>
+              <button onClick={logout}>
+                <PersonOutlineOutlinedIcon />
+                Logout
+              </button>
+            </li>
+          </>
+        )}
+
         {!myUser && (
           <li>
             <button onClick={loginWithRedirect}>

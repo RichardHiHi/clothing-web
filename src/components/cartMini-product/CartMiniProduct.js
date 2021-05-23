@@ -10,7 +10,7 @@ import { useUserContext } from '../../context/user_context';
 import CartMiniProductItem from '../../components/cartMini-product-item/CartMiniProductItem';
 const CartMiniProduct = ({ isMiniCartOpen }) => {
   const { miniAction } = useButtonContext();
-  const { amountTotal } = useCartContext();
+  const { amountTotal, checkCart, showCartmessage } = useCartContext();
   const { cart, clearCart } = useCartContext();
   const { myUser, loginWithRedirect } = useUserContext();
   return (
@@ -55,11 +55,32 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
         >
           VIEW CART
         </Link>
-        {myUser ? (
-          <button className='button_primary'>CHECK OUT</button>
-        ) : (
+        {!myUser && (
           <button className='button_primary' onClick={loginWithRedirect}>
             LOGIN
+          </button>
+        )}
+        {myUser && checkCart && (
+          <Link
+            to='/checkOut'
+            className='button_primary link'
+            onClick={() => miniAction('close', 'MiniCart')}
+          >
+            CHECK OUT
+          </Link>
+        )}
+        {myUser && !checkCart && (
+          <button
+            onClick={() =>
+              showCartmessage(
+                'Warning!',
+                'please fill quantity of cart item',
+                '#ff9800'
+              )
+            }
+            className='button_primary'
+          >
+            CHECK OUT
           </button>
         )}
         <img src={trust_img2_360x} alt='' />

@@ -4,7 +4,6 @@ import { useButtonContext } from '../../context/button_context';
 import { BsSearch, BsHeart } from 'react-icons/bs';
 import { BiUser } from 'react-icons/bi';
 import { FiShoppingCart } from 'react-icons/fi';
-import { FaUserCheck } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../context/cart_context';
 import { useUserContext } from '../../context/user_context';
@@ -26,12 +25,23 @@ const Navbutton = () => {
           {/* icon when user login */}
         </button>
       ) : (
-        <button
-          className='nav-icon-user'
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
+        <button className='nav-icon-user'>
           {/* icon when user login */}
-          <FaUserCheck />
+          <div className='user__img'>
+            <img src={myUser.picture} alt='empty'></img>
+          </div>
+          <ul className='user-sub-menu'>
+            <li className='no-pointer'>
+              <img src={myUser.picture} alt='empty'></img>{' '}
+              <strong>{myUser.nickname}</strong>
+            </li>
+            <li>
+              <Link to='/user'>Dashboard</Link>
+            </li>
+            <li onClick={() => logout({ returnTo: window.location.origin })}>
+              Logout
+            </li>
+          </ul>
         </button>
       )}
       <Link
