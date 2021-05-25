@@ -22,7 +22,8 @@ export const SET_COLOR_INDEX_TSP = '  SET_COLOR_INDEX_TSP,';
 export const CLEAR_SINGLE_ACTION_TSP = '  CLEAR_SINGLE_ACTION_TSP,';
 export const SET_SIZE_PRODUCT_TSP = '  SET_SIZE_PRODUCT_TSP,';
 export const SET_ITEM_COUNT_TSP = '  SET_ITEM_COUNT_TSP,';
-export const SET_ID_CART_TSP = '  SET_ID_CART_TSP,';
+export const SET_ID_CART_TSP = '  SET_ID_CART_TSP';
+export const ADD_ABOUT = 'ADD_ABOUT';
 export const HIDDEN_CART_ITEM_MESS = 'HIDDEN_CART_ITEM_MESS';
 export const HIDDEN_PRODUCT_ALTER_MESS_TSP = 'HIDDEN_PRODUCT_ALTER_MESS_TSP';
 //product-get home page element

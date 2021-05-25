@@ -32,6 +32,7 @@ import {
   SET_ITEM_COUNT_TSP,
   SET_ID_CART_TSP,
   HIDDEN_PRODUCT_ALTER_MESS_TSP,
+  ADD_ABOUT,
 } from '../actions';
 import { useUserContext } from '../context/user_context';
 const ProductContext = React.createContext();
@@ -60,6 +61,7 @@ const initialState = {
   blogHomes: [],
   banners: [],
   blogs: [],
+  about: [],
   collections: [],
   category: [],
   brand: [],
@@ -305,6 +307,7 @@ export const ProductProvider = ({ children }) => {
     getTable('blog', ADD_BLOG);
     getTable('banner', ADD_BANNER);
     getTable('blog', ADD_BLOG_HOME); // eslint-disable-next-line
+    getTable('about', ADD_ABOUT); // eslint-disable-next-line
   }, []);
   return (
     <ProductContext.Provider

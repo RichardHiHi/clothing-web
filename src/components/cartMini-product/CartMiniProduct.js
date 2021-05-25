@@ -17,21 +17,23 @@ const CartMiniProduct = ({ isMiniCartOpen }) => {
     <div className='mini-wrap-2'>
       <div className='content-mini-cart'>
         <div className='mini-cart-list-wrapper'>
-          <ul className='mini-cart-list'>
-            {cart.map((cartItem, index) => {
-              return <CartMiniProductItem cartItem={cartItem} key={index} />;
-            })}
-            <div className='mini-cart-list__btn'>
-              <button
-                className='sc-content-clear__btn'
-                onClick={() => {
-                  clearCart();
-                }}
-              >
-                CLEAR CART
-              </button>
-            </div>
-          </ul>
+          {cart.length > 0 && (
+            <ul className='mini-cart-list'>
+              {cart.map((cartItem, index) => {
+                return <CartMiniProductItem cartItem={cartItem} key={index} />;
+              })}
+              <div className='mini-cart-list__btn'>
+                <button
+                  className='sc-content-clear__btn'
+                  onClick={() => {
+                    clearCart();
+                  }}
+                >
+                  CLEAR CART
+                </button>
+              </div>
+            </ul>
+          )}
         </div>
       </div>
       <div

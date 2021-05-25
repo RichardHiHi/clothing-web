@@ -30,6 +30,7 @@ import {
   SET_ITEM_COUNT_TSP,
   SET_ID_CART_TSP,
   HIDDEN_PRODUCT_ALTER_MESS_TSP,
+  ADD_ABOUT,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -69,6 +70,9 @@ const products_reducer = (state, action) => {
   }
   if (action.type === ADD_BLOG_HOME) {
     return { ...state, blogHomes: action.payload.value };
+  }
+  if (action.type === ADD_ABOUT) {
+    return { ...state, about: action.payload.value };
   }
   if (action.type === ADD_SLIDESHOW) {
     return { ...state, slideShows: action.payload.value };
