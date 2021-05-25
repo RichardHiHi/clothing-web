@@ -333,6 +333,9 @@
   }
 }
 @media (max-width: 960px) {
+  .under-letter {
+    display: none;
+  }
   .back-to-top-btn-wrapper {
     &.top {
       bottom: 165px;
