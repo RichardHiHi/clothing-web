@@ -2,6 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import './aboutPage.scss';
 import aboutUs from '../../assets/aboutUs.mp4';
+import aboutUsIMG from '../../assets/about-us.jpg';
 import { useProductContext } from '../../context/product_context';
 import Grid from '@material-ui/core/Grid';
 const AboutPage = () => {
@@ -76,6 +77,25 @@ const AboutPage = () => {
             </Grid>
           );
         })}
+        <h3 className='Featured-content__title'>Featured content</h3>
+        <div className='Featured-content'>
+          <div className='Featured-content__img'>
+            <img src={aboutUsIMG} alt='empty'></img>
+            <div className='Featured-content__content'>
+              <h3>
+                Striving for positive social change is at the heart of our
+                purpose, culture and work.
+              </h3>
+              <p>
+                The true social conscience of any organization becomes more
+                evident in a crisis. This collection of articles shares our
+                view-points on the potential role of tech organizations and
+                technologists during and post the Covid-19 pandemic.
+              </p>
+              <span className='Featured-content__label'>Report</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

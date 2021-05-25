@@ -61,6 +61,56 @@
   @include font-size-weight(4rem, 700);
   margin-top: 100px;
 }
+.Featured-content {
+  position: relative;
+  margin-bottom: 200px;
+  .Featured-content__img {
+    width: 55%;
+    img {
+      width: 100%;
+    }
+    .Featured-content__content {
+      width: 55%;
+      height: 100%;
+      position: absolute;
+      top: 40px;
+      right: 0%;
+      padding: 72px 64px 64px;
+      background-color: $whiteColor;
+      box-shadow: 0 5px 56px 0 rgba(34, 29, 31, 0.12);
+      @include transition(all 1s);
+      h3 {
+        @include font-size-weight(2.4rem, 500);
+        margin-bottom: 30px;
+      }
+      p {
+        @include font-size-weight(1.7rem, 300);
+        line-height: 1.7;
+      }
+      .Featured-content__label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include font-size-weight(1.5rem, 700);
+        color: $whiteColor;
+        background-color: $letterColor;
+        padding: 8px 15px;
+        @include transform(translate(-50%, -50%));
+      }
+    }
+  }
+  &:hover {
+    .Featured-content__content {
+      box-shadow: 0 5px 56px 0 rgba(34, 29, 31, 0.4);
+      right: 5%;
+    }
+  }
+}
+.Featured-content__title {
+  @include font-size-weight(4rem, 600);
+  margin: 150px 0 60px 0;
+  color: $letterColor;
+}
 @media (max-width: 960px) {
   .about-us__content {
     .about-us__content__title {

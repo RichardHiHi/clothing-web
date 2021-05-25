@@ -370,8 +370,6 @@ const products_reducer = (state, action) => {
         newItemCount = 1;
       }
     }
-
-    console.log(newProductAlertMess);
     return {
       ...state,
       tempSingleProductAction: {

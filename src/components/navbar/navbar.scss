@@ -323,6 +323,15 @@
     }
   }
 }
+.under-letter {
+  position: fixed;
+  z-index: -1;
+  top: 40%;
+  left: -100%;
+  img {
+    width: 500px;
+  }
+}
 @media (max-width: 960px) {
   .back-to-top-btn-wrapper {
     &.top {

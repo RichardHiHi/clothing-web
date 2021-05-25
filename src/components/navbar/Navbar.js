@@ -26,6 +26,7 @@ const Navbar = () => {
   const [hiddenNavbar, setHiddenNavbar] = useState(true);
   const [subHover, setSubHover] = useState(true);
   const { category } = useProductContext();
+  const [left, setLeft] = useState('-100%');
   //  singleProduct;
   useEffect(() => {
     document
@@ -33,9 +34,10 @@ const Navbar = () => {
       .addEventListener('mousedown', (e) => {
         e.preventDefault();
       });
-    var prevScrollpos = window.pageYOffset;
+    let prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
-      var currentScrollPos = window.pageYOffset;
+      const currentScrollPos = window.pageYOffset;
+
       if (prevScrollpos < currentScrollPos && currentScrollPos > 75) {
         setHiddenNavbar(false);
       } else {
@@ -59,6 +61,21 @@ const Navbar = () => {
         setHiddenToolbar(true);
       }
 
+      if (currentPage === '/about') {
+        const videoEle = document.querySelector('.video-container');
+        if (videoEle) {
+          const heightVideo =
+            document.querySelector('.video-container').offsetHeight + 75;
+          const widthLetter =
+            document.querySelector('.under-letter').offsetWidth;
+          if (currentScrollPos > heightVideo) {
+            const left = currentScrollPos - heightVideo - widthLetter - 10;
+            setLeft(left);
+          } else {
+            setLeft(-10000);
+          }
+        }
+      }
       prevScrollpos = currentScrollPos;
     }; // eslint-disable-next-line
   }, [currentPage]);
@@ -258,6 +275,11 @@ const Navbar = () => {
           <ExpandLessIcon />
         </button>
       </div>
+      {currentPage === '/about' && (
+        <div className='under-letter' style={{ left: `${left}px` }}>
+          <img src={logo} alt='empty' />
+        </div>
+      )}
     </>
   );
 };
