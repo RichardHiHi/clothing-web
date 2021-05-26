@@ -76,7 +76,7 @@ const SideBar = () => {
           </Link>
         </li>
         <li>
-          <Link to='wishList' onClick={() => miniAction('close', 'SideBar')}>
+          <Link to='/wishList' onClick={() => miniAction('close', 'SideBar')}>
             <FavoriteBorderOutlinedIcon />
             Wishlist
           </Link>

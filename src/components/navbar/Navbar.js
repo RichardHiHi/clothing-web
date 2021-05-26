@@ -51,7 +51,6 @@ const Navbar = () => {
       }
       //set toolbar
       if (currentPage.split('/')[1] === 'singleProduct') {
-        console.log(123);
         if (currentScrollPos > 590) {
           setHiddenToolbar(false);
         } else {

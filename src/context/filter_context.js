@@ -69,7 +69,7 @@ export const FilterProvider = ({ children }) => {
 
   const filterUpdate = (e) => {
     const filterName = e.target.name;
-    // console.log(e.target.dataset.size);
+
     if (filterName === 'search') {
       dispatch({
         type: UPDATE_FILTER,

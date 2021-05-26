@@ -31,6 +31,7 @@ import {
   SET_ID_CART_TSP,
   HIDDEN_PRODUCT_ALTER_MESS_TSP,
   ADD_ABOUT,
+  ADD_ABOUT_VIDEO,
 } from '../actions';
 import { getUnique, getUniqueObj } from '../utils/helper';
 
@@ -76,6 +77,9 @@ const products_reducer = (state, action) => {
   }
   if (action.type === ADD_SLIDESHOW) {
     return { ...state, slideShows: action.payload.value };
+  }
+  if (action.type === ADD_ABOUT_VIDEO) {
+    return { ...state, aboutVideo: action.payload.value };
   }
   //////////// singleProduct ///////////
   //////////////////////////////////////
@@ -329,7 +333,7 @@ const products_reducer = (state, action) => {
     let newItemCount;
     let newProductAlertMess = state.tempSingleProductAction.productAlertMess;
     if (value === 'inc') {
-      newItemCount = state.tempSingleProductAction.itemCount + 1;
+      newItemCount = state.tempSingleProductAcADD_ABOUT_VIDEOtion.itemCount + 1;
       if (isNaN(newItemCount)) {
         newItemCount = 1;
       }

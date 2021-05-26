@@ -33,6 +33,7 @@ import {
   SET_ID_CART_TSP,
   HIDDEN_PRODUCT_ALTER_MESS_TSP,
   ADD_ABOUT,
+  ADD_ABOUT_VIDEO,
 } from '../actions';
 import { useUserContext } from '../context/user_context';
 const ProductContext = React.createContext();
@@ -68,6 +69,7 @@ const initialState = {
   products: [],
   color: [],
   size: [],
+  aboutVideo: [],
   productsLoading: false,
   productsError: false,
   trendingProducts: [],
@@ -126,12 +128,6 @@ export const ProductProvider = ({ children }) => {
           });
           return { ...item, indexImg: indexImgArray, img: newImg };
         });
-        //create indexImg for each img
-        // const b = newColorImg.map((item) => {
-        //   console.log(item);
-
-        //   return { ...item };
-        // });
 
         const AllOfImg = newColorImg.reduce((acc, cur) => {
           return acc.concat(cur.img);
@@ -306,7 +302,8 @@ export const ProductProvider = ({ children }) => {
     getTable('collection', ADD_COLLECTION, 'full');
     getTable('blog', ADD_BLOG);
     getTable('banner', ADD_BANNER);
-    getTable('blog', ADD_BLOG_HOME); // eslint-disable-next-line
+    getTable('blog', ADD_BLOG_HOME);
+    getTable('aboutVideo', ADD_ABOUT_VIDEO);
     getTable('about', ADD_ABOUT); // eslint-disable-next-line
   }, []);
   return (

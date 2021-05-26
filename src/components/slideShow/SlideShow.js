@@ -29,13 +29,11 @@ const SlideShow = () => {
       .addEventListener('touchstart', (e) => {
         e.preventDefault();
         setMouseDown(e.touches[0].clientX);
-        console.log(e.touches[0].clientX);
       });
     document
       .querySelector('.section-slide-show-inner')
       .addEventListener('touchend', (e) => {
         setMouseUp(e.changedTouches[0].clientX);
-        console.log(e);
       }); // eslint-disable-next-line
   }, []);
   useEffect(() => {

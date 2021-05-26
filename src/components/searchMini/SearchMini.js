@@ -13,7 +13,7 @@ const SearchMini = () => {
   const action = () => {
     miniAction('close', 'MiniSearch');
   };
-  const { getSingleProduct } = useProductContext();
+  const { getSingleProduct, products } = useProductContext();
   const {
     category,
     filterUpdate,
@@ -76,9 +76,17 @@ const SearchMini = () => {
               }
             >
               <ul className='result-list'>
-                {filteredProducts.map((product, index) => {
+                {products.map((product, index) => {
+                  const check = filteredProducts.some(
+                    (item) => item.id === product.id
+                  );
                   return (
-                    <li key={index}>
+                    <li
+                      key={index}
+                      className={
+                        check ? 'result-list__item' : 'result-list__item hidden'
+                      }
+                    >
                       <Link
                         to={`/singleProduct/miniSearch/${category}`}
                         key={index}
@@ -113,7 +121,9 @@ const SearchMini = () => {
                     </li>
                   );
                 })}
-
+                {filteredProducts.length === 0 && (
+                  <h3 className='mini-search-alert-empty'>No Results</h3>
+                )}
                 <div className='mini-search-footer'>
                   <div>
                     <Link

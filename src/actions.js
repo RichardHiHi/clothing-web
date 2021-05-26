@@ -26,6 +26,7 @@ export const SET_ID_CART_TSP = '  SET_ID_CART_TSP';
 export const ADD_ABOUT = 'ADD_ABOUT';
 export const HIDDEN_CART_ITEM_MESS = 'HIDDEN_CART_ITEM_MESS';
 export const HIDDEN_PRODUCT_ALTER_MESS_TSP = 'HIDDEN_PRODUCT_ALTER_MESS_TSP';
+export const ADD_ABOUT_VIDEO = 'ADD_ABOUT_VIDEO';
 //product-get home page element
 export const ADD_BLOG = 'ADD_BLOG';
 export const ADD_COLLECTION = 'ADD_COLLECTION';
