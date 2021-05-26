@@ -353,3 +353,14 @@
     }
   }
 }
+@media (max-width: 600px) {
+  .filter-wrapper {
+    .filter-title {
+      .filter-title__clear-btn {
+        .hoverText {
+          display: none;
+        }
+      }
+    }
+  }
+}

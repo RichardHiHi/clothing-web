@@ -170,7 +170,7 @@ const Filter = () => {
           <FilterSeketon />
         ) : (
           <ul className='filter-list'>
-            {category.map((item, index) => {
+            {category.sort().map((item, index) => {
               return (
                 <li className='category-filter-item filter-item' key={index}>
                   <button
@@ -212,7 +212,7 @@ const Filter = () => {
           <FilterSeketon />
         ) : (
           <ul className='filter-list height-150'>
-            {brand.map((item, index) => {
+            {brand.sort().map((item, index) => {
               return (
                 <li className='filter-item' key={index}>
                   <button
@@ -256,7 +256,7 @@ const Filter = () => {
           <FilterSeketon />
         ) : (
           <ul className='filter-list'>
-            {color.map((item, index) => {
+            {color.sort().map((item, index) => {
               return (
                 <li className='filter-item' key={index}>
                   <button
@@ -303,7 +303,7 @@ const Filter = () => {
           <FilterSeketon />
         ) : (
           <ul className='filter-list height-150'>
-            {size.map((item, index) => {
+            {size.sort().map((item, index) => {
               if (item) {
                 return (
                   <li className='filter-item' key={index}>

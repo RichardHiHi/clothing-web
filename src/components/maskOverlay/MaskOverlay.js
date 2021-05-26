@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './maskOverlay.scss';
 import CloseIcon from '@material-ui/icons/Close';
 import { useButtonContext } from '../../context/button_context';
@@ -23,6 +23,14 @@ const MaskOverlay = () => {
     miniAction('close', 'SortMini');
     miniAction('close', 'SingleProductModal');
   };
+  useEffect(() => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        action();
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
   return (
     <div
       className={

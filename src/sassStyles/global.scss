@@ -467,6 +467,9 @@ p {
 .relative {
   position: relative;
 }
+button {
+  outline: none;
+}
 // // Small devices (landscape phones, 576px and up)
 @media (max-width: 575.99px) {
   html {

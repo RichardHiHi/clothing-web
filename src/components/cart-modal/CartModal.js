@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './cartModal.scss';
 import { useButtonContext } from '../../context/button_context';
 import { useProductContext } from '../../context/product_context';
@@ -41,6 +41,13 @@ const CartModal = () => {
   const action = () => {
     miniAction('close', 'CartModal');
   };
+  useEffect(() => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        action();
+      }
+    }); // eslint-disable-next-line
+  }, []);
   return (
     <>
       <div
