@@ -107,7 +107,14 @@ const Toolbar = () => {
                 <img src={myUser.picture} alt='empty'></img>
               </div>
             </span>
-            <span className='toolbar-name'>{myUser.nickname}</span>
+            {myUser.nickname.length > 10 && (
+              <span className='toolbar-name'>
+                {myUser.nickname.slice(0, 10)}...
+              </span>
+            )}
+            {myUser.nickname.length < 11 && (
+              <span className='toolbar-name'>{myUser.nickname}</span>
+            )}
           </Link>
         )}
         {!myUser && (
