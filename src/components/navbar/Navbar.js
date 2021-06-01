@@ -82,7 +82,7 @@ const Navbar = () => {
     setSubHover(false);
     setTimeout(() => {
       setSubHover(true);
-    }, 400);
+    }, 500);
   };
 
   var settingSlide = {

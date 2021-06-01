@@ -19,8 +19,12 @@ const Instagram = () => {
         e.preventDefault();
       });
     const fetchData = async () => {
-      const res = await fetch(getLinkApi('instagram'));
-      const resLink = await fetch(getLinkApi('instagramLinking'));
+      // const res = await fetch(getLinkApi('instagram'));
+      // const resLink = await fetch(getLinkApi('instagramLinking'));
+      const [res, resLink] = await Promise.all([
+        fetch(getLinkApi('instagram')),
+        fetch(getLinkApi('instagramLinking')),
+      ]);
       const data = await res.json();
       const dataLink = await resLink.json();
 

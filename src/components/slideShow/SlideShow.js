@@ -112,7 +112,7 @@ const SlideShow = () => {
             classa = 'slide-right';
           }
           return (
-            <div className={`slide ${classa}`} key={index}>
+            <div className={`slide ${classa || 'slide-right'}`} key={index}>
               <div className={`slide-content slide-content-${position}`}>
                 <div className='slide-content-caption'>
                   <div className='slide-content-title'>

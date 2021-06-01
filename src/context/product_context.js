@@ -107,6 +107,8 @@ export const ProductProvider = ({ children }) => {
         base('product').select({}).firstPage(),
         base('productColorImg').select({}).firstPage(),
       ]);
+      // const res = await base('product').select({}).firstPage();
+      // const resColor = await base('productColorImg').select({}).firstPage();
       const products = res.map((item) => {
         const newColorImg = item.fields.colorImg.map((color) => {
           return resColor.find((colorin) => colorin.id === color).fields;

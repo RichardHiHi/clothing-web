@@ -10,6 +10,7 @@ import { useProductContext } from '../../context/product_context';
 import { Link } from 'react-router-dom';
 import { useButtonContext } from '../../context/button_context';
 import { useUserContext } from '../../context/user_context';
+import { useFilterContext } from '../../context/filter_context';
 const ProductMiniItem = ({
   product,
   page,
@@ -23,16 +24,13 @@ const ProductMiniItem = ({
   const { wishList, addToWishList, removeWishList } = useUserContext();
   const [indexImg, setIndexImg] = useState(0);
   const [lockImgHover, setLockImgHover] = useState(true);
-  const {
-    getSingleProductTSP,
-
-    getSingleProduct,
-  } = useProductContext();
+  const { getSingleProductTSP, getSingleProduct } = useProductContext();
   const { miniAction } = useButtonContext();
+  const { filteredProducts } = useFilterContext();
   useEffect(() => {
     setLockImgHover(true);
     setIndexImg(0); // eslint-disable-next-line
-  }, [paginationPage, wishList, recommendProducts]);
+  }, [paginationPage, wishList, recommendProducts, filteredProducts]);
   return (
     <div className='mini-product-item'>
       <div className='mini-product-img-container'>

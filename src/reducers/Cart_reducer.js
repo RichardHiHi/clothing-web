@@ -23,7 +23,6 @@ const button_reducer = (state, action) => {
       if (!state.cart.some((itemCar) => itemCar.idCart === id)) {
         return { ...state };
       }
-
       newCart = newCart.filter((itemCart) => itemCart.idCart !== id);
     }
     //ktra xem trong cart có cartproduct trùng không
